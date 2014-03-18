@@ -4,6 +4,7 @@ import hashlib
 import urllib2
 import urllib
 import json
+from .message import msg_format
 
 
 class WebChat(object):
@@ -100,6 +101,6 @@ class WebChat(object):
         result = json.loads(json_string)['url']
         return result
 
-    #@staticmethod
-    #def reply(msg_type, msg_dict):
-    #    return msg_format(msg_type, msg_dict)
+    @staticmethod
+    def reply(msg_type, msg_dict):
+        return msg_format(msg_type, msg_dict)
