@@ -4,7 +4,8 @@ import hashlib
 import urllib2
 import urllib
 import json
-from .message import msg_format
+
+from repast.weixin.message import msg_format
 
 
 class WebChat(object):
@@ -28,6 +29,12 @@ class WebChat(object):
     def create_menu(self, menu_string):
         menu_url = self.create_menu_url()
         urllib2.urlopen(menu_url, menu_string.encode('utf-8'))
+
+    def delete_menu(self):
+        '''删除菜单'''
+        access_token = self.get_access_token()
+        delete_menu_url = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s" %(access_token)
+        urllib2.urlopen(delete_menu_url)
 
     def oauth_user_info(self):
         '''得到授权后的json字符串'''
