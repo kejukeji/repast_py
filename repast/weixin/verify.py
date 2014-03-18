@@ -98,8 +98,10 @@ def response_event(xml_recv, web_chat):
     # Content = '您还没绑定点击此连接进行<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx55970915710ceae8&redirect_uri=http%3A%2F%2Fschool.kejukeji.com%2Foauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">绑定</a>'
     Content = '您还没绑定点击此连接进行<a href="http://school.kejukeji.com/register?openid='+FromUserName+'">绑定</a>'
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
-    if (Event == 'SUBSCRIBE'):
+    if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey)
+    if (Event == 'SCAN'):
+        reply_dict = event_scan(FromUserName, ToUserName, EventKey)
     return response(web_chat, reply_dict, "text")
 
 def event_subscribe(FromUserName, ToUserName, EventKey):
@@ -109,6 +111,12 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
     reply_dic = response_event_message(FromUserName, ToUserName, Content)
     return reply_dic
 
+def event_scan(FromUserName, ToUserName, EventKey):
+    '''用户扫二维码已关注'''
+    stores_id = EventKey
+    Content = '点击此处进入<a href="%s/repast?stores_id=%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
+    reply_dic = response_event_message(FromUserName, ToUserName, Content)
+    return reply_dic
 
 
 def response_event_message(FromUserName, ToUserName, Content):
