@@ -115,10 +115,10 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": '喵喵',
+                "Title": name,
                 "Description": '餐厅',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/repast/%s' %(BASE_URL, stores_id)
+                "Url": '%s/repast/%s?name=%s' %(BASE_URL, stores_id, name)
             }]
     }
     return reply_dict
@@ -127,16 +127,16 @@ def event_scan(FromUserName, ToUserName, EventKey):
     '''用户扫二维码已关注'''
     stores_id = EventKey
     name = check_repast(stores_id)
-    Content = '点击此处进入<a href="%s/repast/%s">%s</a>' %(BASE_URL,stores_id,stores_id)
+    Content = '点击此处进入<a href="%s/repast/%s?name=%s">%s</a>' %(BASE_URL,stores_id,name,name)
     reply_dic = response_event_message(FromUserName, ToUserName, Content)
     return reply_dic
 
 def check_repast(stores_id):
     '''判断是那个餐厅'''
     name = ''
-    if stores_id == 1:
+    if stores_id == '1':
         name = '喵喵餐厅'
-    if stores_id == 2:
+    if stores_id == '2':
         name = '饭饭餐厅'
     return name
 
