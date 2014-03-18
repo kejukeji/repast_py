@@ -100,6 +100,7 @@ def response_event(xml_recv, web_chat):
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey)
+        return response(web_chat, reply_dict, 'news')
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey)
     return response(web_chat, reply_dict, "text")
@@ -107,16 +108,36 @@ def response_event(xml_recv, web_chat):
 def event_subscribe(FromUserName, ToUserName, EventKey):
     '''用户扫二维码未关注，点击关注后的事件'''
     stores_id = EventKey.split('_')[1]
-    Content = '点击此处进入<a href="%s/repast/%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
-    reply_dic = response_event_message(FromUserName, ToUserName, Content)
-    return reply_dic
+    name = check_repast(stores_id)
+    Content = '点击此处进入<a href="%s/repast/%s">%s</a>' %(BASE_URL,stores_id, name)
+    reply_dict = {
+            "ToUserName": FromUserName,
+            "FromUserName": ToUserName,
+            "ArticleCount": 1,
+            "item": [{
+                "Title": '喵喵',
+                "Description": '餐厅',
+                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Url": '%s/repast/%s' %(BASE_URL, stores_id)
+            }]
+    }
+    return reply_dict
 
 def event_scan(FromUserName, ToUserName, EventKey):
     '''用户扫二维码已关注'''
     stores_id = EventKey
-    Content = '点击此处进入<a href="%s/repast/%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
+    name = check_repast(stores_id)
+    Content = '点击此处进入<a href="%s/repast/%s">%s</a>' %(BASE_URL,stores_id,name)
     reply_dic = response_event_message(FromUserName, ToUserName, Content)
     return reply_dic
+
+def check_repast(stores_id):
+    '''判断是那个餐厅'''
+    if stores_id == 1:
+        name = '喵喵餐厅'
+    if stores_id == 2:
+        name = '饭饭餐厅'
+    return name
 
 
 def response_event_message(FromUserName, ToUserName, Content):
