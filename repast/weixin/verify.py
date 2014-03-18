@@ -133,6 +133,7 @@ def event_scan(FromUserName, ToUserName, EventKey):
 
 def check_repast(stores_id):
     '''判断是那个餐厅'''
+    name = ''
     if stores_id == 1:
         name = '喵喵餐厅'
     if stores_id == 2:
