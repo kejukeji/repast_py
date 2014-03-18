@@ -107,14 +107,14 @@ def response_event(xml_recv, web_chat):
 def event_subscribe(FromUserName, ToUserName, EventKey):
     '''用户扫二维码未关注，点击关注后的事件'''
     stores_id = EventKey.split('_')[1]
-    Content = '点击此处进入<a href="%s/repast?stores_id=%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
+    Content = '点击此处进入<a href="%s/repast/%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
     reply_dic = response_event_message(FromUserName, ToUserName, Content)
     return reply_dic
 
 def event_scan(FromUserName, ToUserName, EventKey):
     '''用户扫二维码已关注'''
     stores_id = EventKey
-    Content = '点击此处进入<a href="%s/repast?stores_id=%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
+    Content = '点击此处进入<a href="%s/repast/%s">喵喵餐厅</a>' %(BASE_URL,stores_id)
     reply_dic = response_event_message(FromUserName, ToUserName, Content)
     return reply_dic
 
