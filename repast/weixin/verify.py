@@ -30,7 +30,6 @@ def weixin():
         if MsgType == 'voice':
             return response_voice(xml_recv, web_chat)
 
-
 def response_voice(xml_receive, web_chat):
     '''对于用户语音进行处理'''
     recognition = xml_receive.find("Recognition").text
@@ -103,7 +102,15 @@ def response_event(xml_recv, web_chat):
         return response(web_chat, reply_dict, 'news')
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey)
+    if (Event == 'VIEW'):
+        reply_dict = event_view(FromUserName, ToUserName)
     return response(web_chat, reply_dict, "text")
+
+def event_view(FromUserName, ToUserName):
+    '''view事件'''
+    Content = '测试'
+    reply_dict = response_event_message(FromUserName, ToUserName, Content)
+    return reply_dict
 
 def event_subscribe(FromUserName, ToUserName, EventKey):
     '''用户扫二维码未关注，点击关注后的事件'''

@@ -5,6 +5,7 @@ from urllib import urlencode
 import json
 import sys
 from repast.weixin.webchat import WebChat
+from repast.setting.wbb import BASE_URL
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
@@ -17,9 +18,9 @@ menu = """
 {
    "button": [
        {
-           "type":"click",
+           "type":"view",
            "name": "主页",
-           "key": "home"
+           "key": "%s/restful/group"
        },
        {
            "type":"click",
@@ -33,6 +34,6 @@ menu = """
        }
        ]
 }
-"""
-webChat.delete_menu()
-#webChat.create_menu(menu)
+""" %(BASE_URL)
+#webChat.delete_menu()
+webChat.create_menu(menu)
