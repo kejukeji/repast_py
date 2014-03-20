@@ -18,9 +18,9 @@ menu = """
 {
    "button": [
        {
-           "type":"view",
-           "name": "主页",
-           "key": "%s/restful/group"
+            "type":"view",
+           "name":"主页",
+           "url":"%s/restful/group"
        },
        {
            "type":"click",

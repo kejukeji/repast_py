@@ -108,7 +108,7 @@ def response_event(xml_recv, web_chat):
 
 def event_view(FromUserName, ToUserName):
     '''view事件'''
-    Content = '测试'
+    Content = str(FromUserName)
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return reply_dict
 
