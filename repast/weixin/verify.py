@@ -7,13 +7,14 @@ from .tools import parse_request
 from .webchat import WebChat
 from ..setting.wbb import BASE_URL
 from repast.util.session_common import *
+from repast.services.user_service import insert_user
 
 import datetime
 
 import string
 
 def weixin():
-    web_chat = WebChat('1234')
+    web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
     if request.method == "GET":
         if web_chat.validate(**parse_request(request.args, ("timestamp", "nonce", "signature"))):
             return make_response(request.args.get("echostr"))
@@ -104,7 +105,8 @@ def response_event(xml_recv, web_chat):
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey)
     if (Event == 'VIEW'):
-        set_session_user('FromUserName', FromUserName)
+        dictionary = web_chat.get_user_info(FromUserName)
+        insert_user(dictionary['nickname'],FromUserName, dictionary['img_url'])
         reply_dict = event_view(FromUserName, ToUserName)
     return response(web_chat, reply_dict, "text")
 

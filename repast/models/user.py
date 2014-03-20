@@ -20,7 +20,7 @@ class User(Base, InitUpdate):
     picture_url = Column(String(500), nullable=True)
 
     def __init__(self, **kwargs):
-        args = ('name', 'nick_name','openid','picture_url')
+        args = ('nick_name','openid','picture_url')
         self.init_value(args, kwargs)
 
 
