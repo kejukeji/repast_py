@@ -6,6 +6,7 @@ from xml.etree import ElementTree as ET
 from .tools import parse_request
 from .webchat import WebChat
 from ..setting.wbb import BASE_URL
+from repast.util.session_common import *
 
 import datetime
 
@@ -103,6 +104,7 @@ def response_event(xml_recv, web_chat):
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey)
     if (Event == 'VIEW'):
+        set_session_user('FromUserName', FromUserName)
         reply_dict = event_view(FromUserName, ToUserName)
     return response(web_chat, reply_dict, "text")
 
