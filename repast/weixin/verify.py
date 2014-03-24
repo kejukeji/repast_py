@@ -5,7 +5,7 @@ from flask import request, make_response
 from xml.etree import ElementTree as ET
 from .tools import parse_request
 from .webchat import WebChat
-from ..setting.wbb import BASE_URL
+from ..setting.server import BASE_URL
 from repast.util.session_common import *
 from repast.services.user_service import insert_user
 

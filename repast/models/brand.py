@@ -13,7 +13,7 @@ class Brand(Base,InitUpdate):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
     description = Column(String(200), nullable=True)
-    group_id = Column(Integer, ForeignKey(Group.id, ondelete='cascade', onupdate='cascade'))
+    group_id = Column(Integer, nullable=False)
     group = Column(String(50), nullable=False)
     manager = Column(String(20), nullable=False)
     tel = Column(String(11), nullable=False)
@@ -25,5 +25,5 @@ class Brand(Base,InitUpdate):
         self.init_value(args,kwargs)
 
     def update(self, **kwargs):
-        args = ('name','description','group_id','manager','tel','email')
+        args = ('name','description','group_id','group','manager','tel','email')
         self.update_value(args, kwargs)

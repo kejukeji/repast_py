@@ -4,8 +4,8 @@
 $(document).ready(function(){
     function add_select() {
         var group = $("#group_id");
-		g_belong_area_id =group.val();
 		var city_select = $.parseHTML("<select name='group_id' id='group_id'></select>");
+        g_belong_area_id =group.val();
 		group.replaceWith(city_select);
 	}
 
