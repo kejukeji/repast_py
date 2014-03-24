@@ -156,7 +156,7 @@ $(document).ready(function(){
                 }
             },
             error: function() {
-                alert("获取区域资料失败，当前城市没有区！");
+                //alert("当前城市没有区！");
             }
         });
         var address = $("#address");
