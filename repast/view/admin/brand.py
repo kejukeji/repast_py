@@ -23,7 +23,7 @@ class BrandView(ModelView):
 
     #column_display_all_relations = ('id','group_id', True)
     column_searchable_list = ('name','description','group',)
-    column_exclude_list = ('group_id',)
+    column_exclude_list = ('group_id','description','email',)
 
     create_template = 'admin_page/brand_create.html'
     edit_template = 'admin_page/brand_edit.html'

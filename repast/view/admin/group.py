@@ -27,7 +27,7 @@ class GroupView(ModelView):
     can_edit = True # 能否修改
 
     column_searchable_list = ('name',)
-    column_exclude_list = ('email') # 过滤列名
+    column_exclude_list = ('email','description',) # 过滤列名
     # 后台列表显示列名，以及修改，新增
     column_labels = dict(
         id = u'ID',
