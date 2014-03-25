@@ -23,7 +23,7 @@ class StoresService():
             session.add(stores_info)
             session.commit()
         except Exception,ex:
-            flash(gettext('Failed to update model. %(error)s', error=str(ex)), 'error')
+            flash(gettext('Failed to create model. %(error)s', error=str(ex)), 'error')
             session.rollback()
             return False
         return True
@@ -33,6 +33,10 @@ class StoresService():
         '''更新stores'''
         is_true = True
         try:
+            group_name = GetName._get_group(form_dict)
+            form_dict['group'] = group_name
+            brand_name = GetName._get_brand(form_dict)
+            form_dict['brand'] = brand_name
             model.update(**form_dict)
             session.commit()
             pictures = files.getlist('pictures')

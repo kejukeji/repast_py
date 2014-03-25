@@ -18,7 +18,7 @@ class BrandService():
             #session.add(stores_info)
             #session.commit()
         except Exception,ex:
-            flash(gettext('Failed to update model. %(error)s', error=str(ex)), 'error')
+            flash(gettext('Failed to create model. %(error)s', error=str(ex)), 'error')
             session.rollback()
             return False
         return True

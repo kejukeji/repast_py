@@ -30,7 +30,6 @@ class GroupView(ModelView):
     column_exclude_list = ('email','description',) # 过滤列名
     # 后台列表显示列名，以及修改，新增
     column_labels = dict(
-        id = u'ID',
         name = u'集团名',
         description = u'介绍',
         address = u'地址',
@@ -39,7 +38,6 @@ class GroupView(ModelView):
     )
     # 列名的描述
     column_descriptions = dict(
-        id = u'唯一标识',
         name = u'集团名',
         description = u'集团简单介绍',
         address = u'集团地址',

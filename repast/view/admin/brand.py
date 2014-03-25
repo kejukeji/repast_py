@@ -23,13 +23,12 @@ class BrandView(ModelView):
 
     #column_display_all_relations = ('id','group_id', True)
     column_searchable_list = ('name','description','group',)
-    column_exclude_list = ('group_id','description','email',)
+    column_exclude_list = ('group_id','description','email','id')
 
     create_template = 'admin_page/brand_create.html'
     edit_template = 'admin_page/brand_edit.html'
 
     column_labels = dict(
-        id=u'ID',
         name = u'品牌名',
         description = u'介绍',
         manager = u'管理人',
@@ -40,7 +39,6 @@ class BrandView(ModelView):
     )
 
     column_descriptions = dict(
-        id = u'ID',
         name = u'品牌名称',
         description = u'品牌简单介绍',
         manager = u'负责管理此品牌',

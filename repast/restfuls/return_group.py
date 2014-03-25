@@ -2,6 +2,7 @@
 
 from ..models.group import Group
 from ..models.brand import Brand
+from ..models.stores import Stores
 from ..models.location import *
 from flask.ext import restful
 from ..util.session_common import *
@@ -46,6 +47,15 @@ class GetCounty(restful.Resource):
     def get(city_id):
         county = County.query.filter(County.city_id == city_id).all()
         json = append_json(county)
+        return json
+
+
+class GetStores(restful.Resource):
+    '''获取餐厅'''
+    @staticmethod
+    def get(brand_id):
+        stores = Stores.query.filter(Stores.brand_id == brand_id).all()
+        json = append_json(stores)
         return json
 
 

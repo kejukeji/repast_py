@@ -21,14 +21,13 @@ class StoresView(ModelView):
 
     #column_display_all_relations = ('id','group_id', True)
     column_searchable_list = ('name','description','group',)
-    column_exclude_list = ('group_id','brand_id','province_id','city_id','county_id','longitude','latitude','recommend','description',)
+    column_exclude_list = ('group_id','brand_id','province_id','city_id','county_id','longitude','latitude','recommend','description','id',)
     column_filters = ('group','brand',)
 
     create_template = 'admin_page/stores_create.html'
     edit_template = 'admin_page/stores_edit.html'
 
     column_labels = dict(
-        id = u'ID',
         name = u'餐厅名',
         address = u'餐厅地址',
         description = u'介绍',
@@ -46,7 +45,6 @@ class StoresView(ModelView):
     )
 
     column_descriptions = dict(
-        id = u'ID',
         name = u'餐厅名',
         address = u'详细地址',
         description = u'餐厅介绍',

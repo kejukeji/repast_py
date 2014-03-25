@@ -12,14 +12,24 @@ class QueueSetting(Base, InitUpdate):
     '''队列，每个餐厅的座位种类，每个种类有多少个座位'''
     __tablename__ = QUEUE_SETTING
     id = Column(Integer, primary_key=True)
-    type = Column(String(5), nullable=False)
-    number = Column(Integer, nullable=False)
-    stores_id = Column(Integer, ForeignKey(Stores.id, ondelete='cascade', onupdate='cascade'))
+    group_id = Column(Integer, nullable=False)
+    group = Column(String(50), nullable=False)
+    brand_id = Column(Integer, nullable=False)
+    brand = Column(String(50), nullable=False)
+    stores_id = Column(Integer, nullable=False)
+    stores = Column(String(50), nullable=False)
     status = Column(Integer, nullable=False, server_default='0')
+    type = Column(String(20), nullable=False)
+    number = Column(Integer, nullable=False)
+
 
     def __init__(self, **kwargs):
-        args = ('type','number','stores_id','status')
+        args = ('type','number','stores_id','stores', 'group_id','group','brand_id','brand')
         self.init_value(args, kwargs)
+
+    def update(self, **kwargs):
+        args = ('type','number','stores_id','stores', 'group_id','group','brand_id','brand')
+        self.update_value(args, kwargs)
 
 
 class Queue(Base,InitUpdate):

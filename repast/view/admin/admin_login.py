@@ -94,7 +94,7 @@ def login_view():
 
         return redirect('/admin')
 
-    return render_template('admin/auth.html', form=login_form)
+    return render_template('admin_page/auth.html', form=login_form)
 
 
 def register_view():
@@ -111,7 +111,7 @@ def register_view():
 
         return redirect('/admin')
 
-    return render_template('admin/auth.html', form=register_form)
+    return render_template('admin_page/auth.html', form=register_form)
 
 
 @login.login_required

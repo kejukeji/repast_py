@@ -5,6 +5,7 @@ from .group import Group
 from .stores import Stores
 from .brand import Brand
 from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy.dialects.mysql import DOUBLE
 
 USER = 'user'
 SHOP_ASSISTANT = 'shop_assistant'
@@ -18,6 +19,8 @@ class User(Base, InitUpdate):
     password = Column(String(20), nullable=False, server_default='888888')
     openid = Column(String(20), nullable=False)
     picture_url = Column(String(500), nullable=True)
+    longitude = Column(DOUBLE, nullable=False)
+    latitude = Column(DOUBLE, nullable=False)
 
     def __init__(self, **kwargs):
         args = ('nick_name','openid','picture_url')

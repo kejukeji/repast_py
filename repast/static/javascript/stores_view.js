@@ -48,7 +48,11 @@ $(document).ready(function(){
             success: function(json) {
                 group.empty();
                 $.each(json, function(i, value) {
-                    $("#group_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    if (g_belong_area_id == value[0]){
+                        $("#group_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
+                    }else{
+                        $("#group_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    }
                 });
                 group.val(init_group);
                 g_belong_group_id = init_group;
@@ -57,8 +61,7 @@ $(document).ready(function(){
                 alert("获取集团资料失败，请刷新网页！");
             }
         });
-        get_brand_ajax(init_group)
-
+        get_brand_ajax(group.val())
     }
 
     function get_brand_ajax(init_group){
@@ -73,7 +76,11 @@ $(document).ready(function(){
             success: function(json) {
                 brand.empty();
                 $.each(json, function(i, value) {
-                    $("#brand_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    if (g_belong_brand_id == value[0]){
+                        $("#brand_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
+                    }else{
+                         $("#brand_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    }
                 });
                 g_belong_brand_id = brand.val();
             },
@@ -93,7 +100,11 @@ $(document).ready(function(){
             success: function(json) {
                 province.empty();
                 $.each(json, function(i, value) {
-                    $("#province_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    if (g_belong_province_id == value[0]){
+                        $("#province_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
+                    }else{
+                         $("#province_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    }
                 });
                 province.val(init_province);
                 g_belong_province_id = init_province;
@@ -104,6 +115,12 @@ $(document).ready(function(){
         });
         get_city(province, init_province, init_city, init_county)
 
+    }
+    // 如果是新建的话，这几个id是不存在的，无法获取，使用默认参数
+    if (g_belong_group_id != "") {
+        init_group(g_belong_group_id);
+    } else {
+        init_group("1");
     }
     if (g_belong_province_id != ""){
         init_location(g_belong_province_id, g_belong_city_id, g_belong_county_id)
@@ -122,7 +139,12 @@ $(document).ready(function(){
             success: function(json) {
                 city.empty();
                 $.each(json, function(i, value) {
-                    $("#city_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    if (g_belong_city_id == value[0]){
+                        $("#city_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
+                    }else{
+                        $("#city_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                    }
+
                 });
                 city.val(init_city)
                 g_belong_city_id = init_city;
@@ -147,7 +169,11 @@ $(document).ready(function(){
                      $("#county_id").append($("<option>").text("").attr('value', "0"));
                 }else{
                     $.each(json, function(i, value) {
-                        $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                        if (g_belong_county_id == value[0]){
+                            $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
+                        }else{
+                            $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                        }
                     });
                     if (init_county != ""){
                         county.val(init_county);
@@ -170,12 +196,7 @@ $(document).ready(function(){
         address.val(temp_address)
     }
 
-   // 如果是新建的话，这几个id是不存在的，无法获取，使用默认参数
-    if (g_belong_group_id != "") {
-        init_group(g_belong_group_id);
-    } else {
-        init_group("1");
-    }
+
     // 地图初始化
 	function setResult(lng, lat) {
 		$("#latitude").val(lat);
