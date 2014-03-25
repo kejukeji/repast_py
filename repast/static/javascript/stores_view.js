@@ -48,7 +48,7 @@ $(document).ready(function(){
             success: function(json) {
                 group.empty();
                 $.each(json, function(i, value) {
-                    if (g_belong_area_id == value[0]){
+                    if (g_belong_group_id == value[0]){
                         $("#group_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
                     }else{
                         $("#group_id").append($("<option>").text(value[1]).attr('value', value[0]));
