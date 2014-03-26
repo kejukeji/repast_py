@@ -41,7 +41,12 @@ class Queue(Base,InitUpdate):
     now_queue_number = Column(Integer, nullable=False)
     status = Column(Boolean, nullable=False, server_default='0')
     user_id = Column(Integer, ForeignKey(User.id, ondelete='cascade', onupdate='cascade'))
+    stores_id = Column(Integer, ForeignKey(Stores.id, ondelete='cascade', onupdate='cascade'))
 
     def __init__(self, **kwargs):
-        args = ('queue_setting_id','queue_time','now_queue_number')
+        args = ('queue_setting_id','queue_time','now_queue_number','user_id','stores_id')
+        self.init_value(args, kwargs)
+
+    def update(self, **kwargs):
+        args = ('queue_setting_id','queue_time','now_queue_number','user_id','stores_id')
         self.init_value(args, kwargs)

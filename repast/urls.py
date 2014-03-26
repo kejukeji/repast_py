@@ -3,7 +3,7 @@ from . import app
 from flask.ext.admin import Admin
 from flask.ext import restful
 from .weixin.verify import weixin
-from .view.repast import to_repast_by_stores_id
+from .view.repasts import to_repast_by_stores_id
 from .view.admin.group import GroupView
 from .models.database import db
 from .view.admin.index import HomeView

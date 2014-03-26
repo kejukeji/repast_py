@@ -11,3 +11,6 @@ def to_repast_by_stores_id(stores_id):
     return render_template('repast.html',
                            stores_id=stores_id,
                            message=message)
+
+
+
