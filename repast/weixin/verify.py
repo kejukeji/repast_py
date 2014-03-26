@@ -106,7 +106,7 @@ def event_click(FromUserName, ToUserName):
                 "Title": '微餐饮',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/to_home_page' %(BASE_URL)
+                "Url": '%s/home_page' %(BASE_URL)
             }]
     }
     return reply_dict
@@ -130,7 +130,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
                 "Title": name,
                 "Description": '餐厅',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/repast/%s?name=%s' %(BASE_URL, stores_id, name)
+                "Url": '%s/repast/1?name=%s' %(BASE_URL, name)
             }]
     }
     return reply_dict
