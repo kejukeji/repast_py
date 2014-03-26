@@ -4,6 +4,7 @@ from .base_class import InitUpdate
 from sqlalchemy import Column, Integer, String, ForeignKey, DATETIME,Boolean
 from .stores import Stores
 from .user import User
+from repast.util.ex_time import *
 
 QUEUE_SETTING = 'queue_setting'
 QUEUE = 'queue'
@@ -39,14 +40,15 @@ class Queue(Base,InitUpdate):
     queue_setting_id = Column(Integer, ForeignKey(QueueSetting.id, ondelete='cascade', onupdate='cascade'))
     queue_time = Column(DATETIME, nullable=False)
     now_queue_number = Column(Integer, nullable=False)
-    status = Column(Boolean, nullable=False, server_default='0')
+    status = Column(Boolean, nullable=False, server_default='1')
     user_id = Column(Integer, ForeignKey(User.id, ondelete='cascade', onupdate='cascade'))
     stores_id = Column(Integer, ForeignKey(Stores.id, ondelete='cascade', onupdate='cascade'))
 
     def __init__(self, **kwargs):
-        args = ('queue_setting_id','queue_time','now_queue_number','user_id','stores_id')
+        args = ('queue_setting_id','now_queue_number','user_id','stores_id')
+        self.queue_time = todayfstr()
         self.init_value(args, kwargs)
 
     def update(self, **kwargs):
-        args = ('queue_setting_id','queue_time','now_queue_number','user_id','stores_id')
-        self.init_value(args, kwargs)
+        args = ('status')
+        self.update_value(args, kwargs)

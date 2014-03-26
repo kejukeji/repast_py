@@ -12,6 +12,7 @@ from restfuls.return_group import *
 from .view.admin.stores import StoresView
 from .view.admin.queue_setting import QueueSettingView
 from .view.admin.admin_login import *
+from .view.repasts import *
 
 # 用户管理路径
 # app.add_url_rule('url','method_name', method_name, method=('GET','POST'))
@@ -19,6 +20,16 @@ app.add_url_rule('/weixin', 'weixin', weixin, methods=('GET','POST'))
 app.add_url_rule('/repast/<int:stores_id>', 'repast', to_repast_by_stores_id, methods=('GET','POST'))
 app.add_url_rule('/login', 'login_view', login_view, methods=('GET', 'POST'))
 app.add_url_rule('/register','login_register', register_view, methods=('GET','POST'))
+app.add_url_rule('/call_number','to_call_number', to_call_number, methods=('GET','POST'))
+app.add_url_rule('/home','to_home', to_home, methods=('GET','POST'))
+app.add_url_rule('/home_page','to_home_page', to_home_page, methods=('GET','POST'))
+app.add_url_rule('/login','to_login', to_login, methods=('GET','POST'))
+app.add_url_rule('/my_page','to_my_page', to_my_page, methods=('GET','POST'))
+app.add_url_rule('/order_dishes','to_order_dishes', to_order_dishes, methods=('GET','POST'))
+app.add_url_rule('/queue','to_queue', to_queue, methods=('GET','POST'))
+app.add_url_rule('/reservation','to_reservation', to_reservation, methods=('GET','POST'))
+app.add_url_rule('/search','to_search', to_search, methods=('GET','POST'))
+app.add_url_rule('/search_result','to_search_result', to_search_result, methods=('GET','POST'))
 
 
 # 接口定义

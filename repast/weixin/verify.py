@@ -28,7 +28,7 @@ def weixin():
         if MsgType == "event":
             return response_event(xml_recv, web_chat)
         if MsgType == "text":
-            return response_text(xml_recv, web_chat, 1)
+            return response_text(xml_recv, web_chat)
         if MsgType == 'voice':
             return response_voice(xml_recv, web_chat)
 
@@ -45,30 +45,13 @@ def response_voice(xml_receive, web_chat):
     }
     return response(web_chat, reply_dict, 'text')
 
-
-def response_text(xml_recv, web_chat, pub_id):
-    """对于用户的输入进行回复"""
-    Content = xml_recv.find("Content").text
-    input_type = get_type(Content)
-
-    if input_type in ('jia', 'gai'):
-        return response_member_text(xml_recv, web_chat, pub_id, input_type)
-    if input_type == '授权':
-        return response_oauth(xml_recv, web_chat)
-
-    # 下面的句子是鹦鹉学舌，后期改过来
-    ToUserName = xml_recv.find("ToUserName").text
-    FromUserName = xml_recv.find("FromUserName").text
-    if input_type == '登录':
-        Content = '<a href="http://school.kejukeji.com/login">点击登录</a>'
-
-    reply_dict = {
-            "ToUserName": FromUserName,
-            "FromUserName": ToUserName,
-            "CreateTime": 123,
-            "Content": Content
-    }
-    return response(web_chat, reply_dict, "text")
+def response_text(xml_receive, web_chat):
+    '''回复'''
+    Content = xml_receive.find("Content").text
+    ToUserName = xml_receive.find("ToUserName").text
+    FromUserName = xml_receive.find("FromUserName").text
+    reply_dict = response_event_message(FromUserName, ToUserName, Content)
+    return response(web_chat, reply_dict, 'text')
 
 
 def response_oauth(xml_receive, web_chat):
@@ -99,6 +82,9 @@ def response_event(xml_recv, web_chat):
     # Content = '您还没绑定点击此连接进行<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx55970915710ceae8&redirect_uri=http%3A%2F%2Fschool.kejukeji.com%2Foauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">绑定</a>'
     #Content = '您还没绑定点击此连接进行<a href="http://school.kejukeji.com/register?openid='+FromUserName+'">绑定</a>'
     reply_dict = response_event_message(FromUserName, ToUserName, '感谢关注！')
+    if (Event == 'CLICK' and EventKey == 'home'):
+        reply_dict = event_click(FromUserName, ToUserName)
+        return response(web_chat, reply_dict, 'news')
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey)
         return response(web_chat, reply_dict, 'news')
@@ -109,6 +95,21 @@ def response_event(xml_recv, web_chat):
         insert_user(dictionary['nickname'],FromUserName, dictionary['img_url'])
         reply_dict = event_view(FromUserName, ToUserName)
     return response(web_chat, reply_dict, "text")
+
+def event_click(FromUserName, ToUserName):
+    '''响应click事件'''
+    reply_dict = {
+            "ToUserName": FromUserName,
+            "FromUserName": ToUserName,
+            "ArticleCount": 1,
+            "item": [{
+                "Title": '微餐饮',
+                "Description": '微生活 | 微一切',
+                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Url": '%s/to_home_page' %(BASE_URL)
+            }]
+    }
+    return reply_dict
 
 def event_view(FromUserName, ToUserName):
     '''view事件'''
@@ -161,19 +162,6 @@ def response_event_message(FromUserName, ToUserName, Content):
             "Content": Content
     }
     return reply_dict
-def response_member_text(xml_recv, web_chat, input_type):
-    """如果用户输入jia或者是gai手机号码，这里进行判断"""
-    Content = xml_recv.find("Content").text
-    ToUserName = xml_recv.find("ToUserName").text
-    FromUserName = xml_recv.find("FromUserName").text
-    mobile = Content[3:]
-    message = '测试'
-    reply_dict = {
-            "ToUserName": FromUserName,
-            "FromUserName": ToUserName,
-            "Content": message
-        }
-    return response(web_chat, reply_dict, "text")
 
 def response(web_chat, reply_dict, reply_type):
     """通过返回的xml与类型，创建一个回复"""

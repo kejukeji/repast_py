@@ -20,7 +20,7 @@ menu = """
        {
             "type":"view",
            "name":"主页",
-           "url":"%s/restful/group"
+           "key":"home"
        },
        {
            "type":"click",
@@ -34,6 +34,6 @@ menu = """
        }
        ]
 }
-""" %(BASE_URL)
+"""
 #webChat.delete_menu()
 webChat.create_menu(menu)

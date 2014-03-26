@@ -14,3 +14,32 @@ def to_repast_by_stores_id(stores_id):
 
 
 
+def to_call_number():
+    return render_template('reception/call_number.html')
+
+def to_home():
+    return render_template('reception/home.html')
+
+def to_home_page():
+    return render_template('reception/home_page.html')
+
+def to_login():
+    return render_template('reception/login.html')
+
+def to_my_page():
+    return render_template('reception/my_page.html')
+
+def to_order_dishes():
+    return render_template('reception/order_dishes.html')
+
+def to_queue():
+    return render_template('reception/queue.html')
+
+def to_reservation():
+    return render_template('reception/reservation.html')
+
+def to_search():
+    return render_template('reception/search.html')
+
+def to_search_result():
+    return render_template('reception/search_result.html')
