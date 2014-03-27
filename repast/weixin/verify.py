@@ -130,7 +130,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
                 "Title": name,
                 "Description": '餐厅',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/repast/1?name=%s' %(BASE_URL, name)
+                "Url": '%s/home_page' %(BASE_URL)
             }]
     }
     return reply_dict
