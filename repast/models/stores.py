@@ -2,8 +2,9 @@
 
 from .database import Base
 from .base_class import InitUpdate
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME
 from sqlalchemy.dialects.mysql import DOUBLE
+from repast.util.ex_time import *
 from .group import Group
 from .brand import Brand
 from .location import Province, City, County
@@ -29,6 +30,7 @@ class Stores(Base, InitUpdate):
     manager = Column(String(20), nullable=False)
     tel = Column(String(20), nullable=False)
     stars = Column(Integer, nullable=False)
+    hours = Column(DATETIME, nullable=True)
     longitude = Column(DOUBLE, nullable=False)
     latitude = Column(DOUBLE, nullable=False)
 

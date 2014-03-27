@@ -3,10 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-<script type="text/javascript" src="./js/touch.js"></script>
- <script type="text/javascript" src="./js/zepto.extend.js"></script>
- <script type="text/javascript" src="./js/zepto.ui.js"></script>
- <script type="text/javascript" src="./js/slider.js"></script>
 <!-- 最新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
 
@@ -18,11 +14,11 @@
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script><title>微餐饮</title>
-<script type="text/javascript">
+    <script type="text/javascript">
     $(function(){
        var block = $('.btn-block')
         block.bind('click',function(){
-           window.location.href='/reservation'
+           window.location.href='/queue'
         });
     });
 </script>
@@ -37,7 +33,7 @@
 <!--地区--->
 <div class="id">
 <div class="idbg">
-<span style="font-size:14px; font-weight:bold; line-height:40px;">选择地区</span>
+<span style="font-size:14px; font-weight:bold; line-height:40px;">地区</span>
 <span>
 <select>
 <option>省</option>
@@ -58,6 +54,7 @@
 <option>黄浦区</option>
 <option>徐汇区</option>
 </select>
+<button type="button" class="btn btn-primary">确定</button>
 </span>
 
 </div>
@@ -85,7 +82,7 @@
 <p><a href="#">餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍</a></p>
 </div>
 <div class="button">
-   <button type="submit" class="btn btn-primary btn-lg btn-block">去排队</button>
+   <button type="submit" class="btn btn-primary btn-lg btn-block" >去排队</button>
 <div class="img"></div>
 </div>
 </div> 

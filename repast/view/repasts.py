@@ -1,5 +1,6 @@
 # coding: UTF-8
 from flask import request, render_template
+from repast.services.queue_setting_service import *
 
 
 def to_repast_by_stores_id(stores_id):
@@ -32,10 +33,11 @@ def to_my_page():
 def to_order_dishes():
     return render_template('reception/order_dishes.html')
 
-def to_queue():
+def to_my_queue():
     return render_template('reception/queue.html')
 
-def to_reservation():
+def to_queue(stores_id):
+    temp = get_queue_by_stores_id(stores_id)
     return render_template('reception/reservation.html')
 
 def to_search():

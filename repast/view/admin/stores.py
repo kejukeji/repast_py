@@ -21,7 +21,7 @@ class StoresView(ModelView):
 
     #column_display_all_relations = ('id','group_id', True)
     column_searchable_list = ('name','description','group',)
-    column_exclude_list = ('group_id','brand_id','province_id','city_id','county_id','longitude','latitude','recommend','description','id',)
+    column_exclude_list = ('group_id','brand_id','province_id','city_id','county_id','longitude','latitude','recommend','description','id','hours',)
     column_filters = ('group','brand',)
 
     create_template = 'admin_page/stores_create.html'
@@ -74,6 +74,7 @@ class StoresView(ModelView):
         delattr(form_class, 'group')
         delattr(form_class, 'brand')
         delattr(form_class, 'recommend')
+        delattr(form_class, 'hours')
         return form_class
 
     def create_model(self, form):

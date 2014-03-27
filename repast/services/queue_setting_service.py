@@ -103,10 +103,56 @@ def get_queue(user_id, stores_id, table_type_id, next_number):
     return queue
 
 def cancel(queue_id):
-    '''取消队列'''
+    '''取消排队'''
     queue = Queue.query.filter(Queue.id == queue_id).first()
-    queue.status = 0
-    db.commit()
+    if queue:
+        queue.status = 0
+        try:
+            db.commit()
+        except:
+            db.rollback()
+
+
+def get_table_type_by_stores_id(stores_id):
+    '''得到餐厅的所有桌型'''
+    queue_setting_count = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).count() # 得到总共有多少个桌型
+    if queue_setting_count > 1:
+        queue_setting = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).all() #
+    else:
+        queue_setting = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).first()
+    return queue_setting,queue_setting_count
+
+
+def get_queue_by_stores_id(stores_id):
+    '''得到一个餐厅的所有队列'''
+    table_type, table_type_count = get_table_type_by_stores_id(stores_id)
+    temp = []
+    if table_type_count > 1:
+        for t in table_type:
+            queue, queue_count = get_queue_by_table_type_id(t.id)
+            t.queue_number = queue_count
+            temp.append(t)
+    else:
+        queue, queue_count = get_queue_by_table_type_id(table_type.id)
+        table_type.queue_number = queue_count
+        temp.append(table_type)
+    return temp
+
+
+
+def get_queue_by_table_type_id(table_type_id):
+    """
+    根据桌型得到队列,
+    只获取当天有效的队列
+    """
+    args_time = get_date_time_str()
+    queue_count = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).count()
+    if queue_count > 1:
+        queue = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).all()
+    else:
+        queue = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).first()
+    return queue, queue_count
+
 
 
 def create_new_queue(model):

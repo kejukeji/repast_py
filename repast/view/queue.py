@@ -1,6 +1,7 @@
 # coding: UTF-8
 from flask import request, render_template
 from repast.services.queue_setting_service import *
+from repast.services.shop_assistant import *
 
 from repast.util.session_common import *
 
@@ -24,10 +25,22 @@ def cancel_queue(queue_id):
     cancel(queue_id)
 
 
+def shop_assistant_call_number(queue_id):
+    '''店员叫号'''
+    success_call_number = call_number(queue_id)
+
+
+def call_number_page(stores_id):
+    '''叫号页面'''
+    temp = get_queue_by_stores_id(stores_id)
+    for t in temp:
+        print t.type +' '+ str(t.queue_number)
 
 if __name__ == '__main__':
     #do_queue(1)
-    cancel(1)
+    #cancel(1)
+    #shop_assistant_call_number(2)
+    call_number_page(6)
 
 
 
