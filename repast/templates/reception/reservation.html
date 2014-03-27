@@ -1,4 +1,4 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,6 +8,7 @@
  <script type="text/javascript" src="./js/zepto.extend.js"></script>
  <script type="text/javascript" src="./js/zepto.ui.js"></script>
  <script type="text/javascript" src="./js/slider.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
   <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
 
     <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
@@ -30,41 +31,22 @@
 </div>
 <div class="xuanze">
 <ul>
-
+{% for t in temp %}
 <li style="background:#E9E9E9; height:40px; width:100%; margin:auto;"> 
 <ul class="xuanzeli">
-<li class="linka"><a href="#" class="link">2人桌</a></li>
-<li>前面还有1位</li>
+<li class="linka"><a href="#" class="link">{{ t.type }}</a></li>
+<li>前面还有{{ t.queue_number }}位</li>
 <li>预计5分钟</li>
 </ul>
 </li>
+{% endfor %}
 
-
-
-
-<li style=" height:40px; width:100%; margin:auto;"> 
-<ul class="xuanzeli">
-<li class="linka"><a href="#" class="link">4人桌</a></li>
-<li>前面还有1位</li>
-<li>预计5分钟</li>
-</ul>
-</li>
-
-
-
-<li style="background:#E9E9E9; height:40px; width:100%; margin:auto;"> 
-<ul class="xuanzeli">
-<li class="linka"><a href="#" class="link">8人桌</a></li>
-<li>前面还有1位</li>
-<li>预计5分钟</li>
-</ul>
-</li>
 <!--推荐-->
 <li style="padding:0; margin:10px 0;">
 <div id="tuijian">
 <ul>
-<li class="fl" style="width:40%; padding-left:2%;"><img src="/static/images/stores/food.png" /></li>
-<li class="fl" style="width:55%; margin-left:10px;"><p><b>滋乐牛排餐厅</b><br /><br />3月5日-3月10日期间，胡椒牛排八折优惠，消费满一百送一个凉菜，优惠多多，惊喜不断，赶快进来看看吧！</p></li>
+<li class="fl" style="width:40%; padding-left:2%;"><img src="{{ stores.image_url }}" /></li>
+<li class="fl" style="width:55%; margin-left:10px;"><p><b>{{ stores.name }}</b><br /><br />{{ stores.description }}</p></li>
 <li style=" margin:auto; padding-right:0 !important; width:100%; ">  
   <button type="button"  class="dian3" >进入餐厅</button>
 </li>

@@ -124,3 +124,12 @@ class StoresService():
                     return True
         else:
             return True
+
+
+def get_stores_by_id(stores_id):
+    stores = Stores.query.filter(Stores.id == stores_id).first()
+    stores.image_url = ''
+    stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
+    if stores_info:
+        stores.image_url = stores_info.rel_path + '/' +stores_info.picture_name
+    return stores
