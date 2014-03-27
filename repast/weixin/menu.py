@@ -18,7 +18,7 @@ menu = """
 {
    "button": [
        {
-            "type":"view",
+            "type":"click",
            "name":"主页",
            "key":"home"
        },
