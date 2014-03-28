@@ -87,7 +87,7 @@ def event_click(FromUserName, ToUserName, user):
                 "Title": '微餐饮',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/home_page?nickname=%s' %(BASE_URL, user.nick_name)
+                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             }]
     }
     return reply_dict

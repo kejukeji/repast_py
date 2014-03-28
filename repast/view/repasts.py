@@ -22,10 +22,9 @@ def to_call_number():
 def to_home():
     return render_template('reception/home.html')
 
-def to_home_page():
-    nick_name = request.args.get('nickname')
+def to_home_page(user_id):
     return render_template('reception/home_page.html',
-                           nick_name=nick_name)
+                           nick_name=user_id)
 
 def to_login():
     return render_template('reception/login.html')
