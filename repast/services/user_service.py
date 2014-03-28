@@ -9,8 +9,8 @@ class UserService(BaseService):
     '''用户'''
     def create_user(self, nickname, openid, picture_url):
 
-        user = User(nick_name=nickname, openid=openid, picture_url=picture_url, longitude=11.11, latitude=1231)
-        self.create_model(user)
+        user = User(nick_name=nickname, openid=openid, picture_url=picture_url)
+        return self.create_model(user)
 
     def update_user(self, longitude, latitude, openid):
         '''修改'''
@@ -45,5 +45,7 @@ def insert_user(nickname, openid, img_url):
 if __name__ == '__main__':
     user_service = UserService()
     #user_service.create_user('温饱思淫欲,','aiwe13k4h3qfakf','kflsdjflk')
-    user_service.update_user(111,111,'aiwe13k4h3qfakf')
+    #user_service.update_user(111,111,'aiwe13k4h3qfakf')
+    user = user_service.check_user_by_openid('hgdhghgdh', '温饱思淫欲，','kjklfjlka')
+    print user.nick_name
 
