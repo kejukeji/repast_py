@@ -45,8 +45,13 @@
 <li style="padding:0; margin:10px 0;">
 <div id="tuijian">
 <ul>
-<li class="fl" style="width:40%; padding-left:2%;"><img src="{{ stores.image_url }}" /></li>
-<li class="fl" style="width:55%; margin-left:10px;"><p><b>{{ stores.name }}</b><br /><br />{{ stores.description }}</p></li>
+{% if stores %}
+    <li class="fl" style="width:40%; padding-left:2%;"><img src="{{ stores.image_url }}" /></li>
+    <li class="fl" style="width:55%; margin-left:10px;"><p><b>{{ stores.name }}</b><br /><br />{{ stores.description }}</p></li>
+{% else %}
+    <li class="fl" style="width:40%; padding-left:2%;"><img src="/static/images/stores/img.jpeg" /></li>
+    <li class="fl" style="width:55%; margin-left:10px;"><p><b></b><br /><br /></p></li>
+{% endif %}
 <li style=" margin:auto; padding-right:0 !important; width:100%; ">  
   <button type="button"  class="dian3" >进入餐厅</button>
 </li>
