@@ -8,6 +8,7 @@ from .webchat import WebChat
 from ..setting.server import BASE_URL
 from repast.util.session_common import *
 from repast.services.user_service import *
+from repast.services.stores_service import get_stores_by_id
 
 import datetime
 
@@ -101,33 +102,45 @@ def event_view(FromUserName, ToUserName):
 def event_subscribe(FromUserName, ToUserName, EventKey):
     '''用户扫二维码未关注，点击关注后的事件'''
     stores_id = EventKey.split('_')[1]
-    name = check_repast(stores_id)
-    Content = '点击此处进入<a href="%s/repast/%s">%s</a>' %(BASE_URL,stores_id, name)
+    title, description, pic_url = get_stores_(stores_id)
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": name,
-                "Description": '餐厅',
-                "PicUrl": BASE_URL + '/static/images/img.jpg',
+                "Title": title,
+                "Description": description,
+                "PicUrl": BASE_URL + pic_url,
                 "Url": '%s/queue/%s' %(BASE_URL, stores_id)
             }]
     }
     return reply_dict
 
+
+def get_stores_(stores_id):
+    stores = get_stores_by_id(stores_id)
+    title = '餐厅'
+    description = '介绍'
+    pic_url = '/static/images/stores/miaomiao.jpeg'
+    if stores:
+        title = stores.name
+        description = stores.description
+        pic_url = stores.image_url
+    return title, description, pic_url
+
+
 def event_scan(FromUserName, ToUserName, EventKey):
     '''用户扫二维码已关注'''
     stores_id = EventKey
-    name = check_repast(stores_id)
+    title, description, pic_url = get_stores_(stores_id)
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": name,
-                "Description": '餐厅',
-                "PicUrl": BASE_URL + '/static/images/img.jpg',
+                "Title": title,
+                "Description": description,
+                "PicUrl": BASE_URL + pic_url,
                 "Url": '%s/queue/%s' %(BASE_URL, stores_id)
             }]
     }
