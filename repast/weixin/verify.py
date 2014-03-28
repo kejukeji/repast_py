@@ -139,7 +139,7 @@ def event_scan(FromUserName, ToUserName, EventKey):
     '''用户扫二维码已关注'''
     stores_id = EventKey
     name = check_repast(stores_id)
-    Content = '点击此处进入<a href="%s/repast/%s?name=%s">%s</a>' %(BASE_URL,stores_id,name,name)
+    Content = '点击此处进入<a href="%s/queue/%s">%s</a>' %(BASE_URL,stores_id,name)
     reply_dic = response_event_message(FromUserName, ToUserName, Content)
     return reply_dic
 
