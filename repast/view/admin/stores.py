@@ -3,6 +3,7 @@ import logging
 import os
 from flask.ext.admin.contrib.sqla import ModelView
 from flask import request
+from flask.ext import login
 
 
 from wtforms.fields import TextAreaField, FileField
@@ -62,6 +63,9 @@ class StoresView(ModelView):
 
     def __init__(self, db, **kwargs):
         super(StoresView, self).__init__(Stores, db, **kwargs)
+
+    #def is_accessible(self):
+    #    return login.current_user.is_superuser()
 
     # 描述字段为文本域
     form_overrides = dict(
