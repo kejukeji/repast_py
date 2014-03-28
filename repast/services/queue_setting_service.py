@@ -133,9 +133,10 @@ def get_queue_by_stores_id(stores_id):
             t.queue_number = queue_count
             temp.append(t)
     else:
-        queue, queue_count = get_queue_by_table_type_id(table_type.id)
-        table_type.queue_number = queue_count
-        temp.append(table_type)
+        if table_type:
+            queue, queue_count = get_queue_by_table_type_id(table_type.id)
+            table_type.queue_number = queue_count
+            temp.append(table_type)
     return temp
 
 

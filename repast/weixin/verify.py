@@ -14,7 +14,7 @@ import datetime
 import string
 
 def weixin():
-    web_chat = WebChat('1235','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
+    web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
     if request.method == "GET":
         if web_chat.validate(**parse_request(request.args, ("timestamp", "nonce", "signature"))):
             return make_response(request.args.get("echostr"))
