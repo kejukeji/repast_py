@@ -46,6 +46,6 @@ if __name__ == '__main__':
     user_service = UserService()
     #user_service.create_user('温饱思淫欲,','aiwe13k4h3qfakf','kflsdjflk')
     #user_service.update_user(111,111,'aiwe13k4h3qfakf')
-    user = user_service.check_user_by_openid('hgdhghgdh', '温饱思淫欲，','kjklfjlka')
-    print user.nick_name
+    #user = user_service.check_user_by_openid('hgdhghgdh', '温饱思淫欲，','kjklfjlka')
+    #print user.nick_name
 
