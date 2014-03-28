@@ -82,7 +82,7 @@ def response_event(xml_recv, web_chat):
     # Content = '您还没绑定点击此连接进行<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx55970915710ceae8&redirect_uri=http%3A%2F%2Fschool.kejukeji.com%2Foauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">绑定</a>'
     #Content = '您还没绑定点击此连接进行<a href="http://school.kejukeji.com/register?openid='+FromUserName+'">绑定</a>'
     reply_dict = response_event_message(FromUserName, ToUserName, '感谢关注！')
-    if (Event == 'CLICK' and EventKey == 'home'):
+    if (Event == 'click' and EventKey == 'home'):
         reply_dict = event_click(FromUserName, ToUserName)
         return response(web_chat, reply_dict, 'news')
     if (Event == 'subscribe'):
@@ -130,7 +130,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
                 "Title": name,
                 "Description": '餐厅',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/home_page' %(BASE_URL)
+                "Url": '%s/queue/%s' %(BASE_URL, stores_id)
             }]
     }
     return reply_dict
