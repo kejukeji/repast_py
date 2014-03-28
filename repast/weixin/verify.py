@@ -72,7 +72,7 @@ def response_event(xml_recv, web_chat):
         return response(web_chat, reply_dict, 'news')
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey)
-    return response(web_chat, reply_dict, "text")
+    return response(web_chat, reply_dict, "news")
 
 def event_location(FromUserName, ToUserName):
     '''响应获取地理位置'''
