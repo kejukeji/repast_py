@@ -110,7 +110,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
             "item": [{
                 "Title": name,
                 "Description": '餐厅',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "PicUrl": BASE_URL + '/static/images/img.jpg',
                 "Url": '%s/queue/%s' %(BASE_URL, stores_id)
             }]
     }
@@ -127,7 +127,7 @@ def event_scan(FromUserName, ToUserName, EventKey):
             "item": [{
                 "Title": name,
                 "Description": '餐厅',
-                "PicUrl": BASE_URL + '/static/images/img.jpeg',
+                "PicUrl": BASE_URL + '/static/images/img.jpg',
                 "Url": '%s/queue/%s' %(BASE_URL, stores_id)
             }]
     }
