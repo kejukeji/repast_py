@@ -17,7 +17,7 @@ class User(Base, InitUpdate):
     name = Column(String(20), nullable=True)
     nick_name = Column(String(20), nullable=True)
     password = Column(String(20), nullable=False, server_default='888888')
-    openid = Column(String(20), nullable=False)
+    openid = Column(String(200), nullable=False)
     picture_url = Column(String(500), nullable=True)
     longitude = Column(DOUBLE, nullable=True)
     latitude = Column(DOUBLE, nullable=True)
