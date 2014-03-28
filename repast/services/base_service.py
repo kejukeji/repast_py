@@ -5,10 +5,7 @@ class BaseService(object):
     '''基本增删改查'''
     def create_model(self, model):
         db.add(model)
-        try:
-            db.commit()
-        except:
-            db.rollback()
+        db.commit()
 
     def update_model(self, model, **kwargs):
         try:
