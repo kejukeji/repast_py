@@ -19,12 +19,16 @@ class User(Base, InitUpdate):
     password = Column(String(20), nullable=False, server_default='888888')
     openid = Column(String(20), nullable=False)
     picture_url = Column(String(500), nullable=True)
-    longitude = Column(DOUBLE, nullable=False)
-    latitude = Column(DOUBLE, nullable=False)
+    longitude = Column(DOUBLE, nullable=True)
+    latitude = Column(DOUBLE, nullable=True)
 
     def __init__(self, **kwargs):
         args = ('nick_name','openid','picture_url')
         self.init_value(args, kwargs)
+
+    def update(self, **kwargs):
+        args = ('longitude','latitude')
+        self.update_value(args,kwargs)
 
 
 class ShopAssistant(Base, InitUpdate):

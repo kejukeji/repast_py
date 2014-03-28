@@ -115,11 +115,11 @@ def cancel(queue_id):
 
 def get_table_type_by_stores_id(stores_id):
     '''得到餐厅的所有桌型'''
-    queue_setting_count = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).count() # 得到总共有多少个桌型
+    queue_setting_count = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).order_by(QueueSetting.type).count() # 得到总共有多少个桌型
     if queue_setting_count > 1:
-        queue_setting = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).all() #
+        queue_setting = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).order_by(QueueSetting.type).all() #
     else:
-        queue_setting = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).first()
+        queue_setting = QueueSetting.query.filter(QueueSetting.stores_id == stores_id).order_by(QueueSetting.type).first()
     return queue_setting,queue_setting_count
 
 

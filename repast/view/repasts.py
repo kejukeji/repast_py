@@ -23,7 +23,9 @@ def to_home():
     return render_template('reception/home.html')
 
 def to_home_page():
-    return render_template('reception/home_page.html')
+    nick_name = request.args.get('nickname')
+    return render_template('reception/home_page.html',
+                           nick_name=nick_name)
 
 def to_login():
     return render_template('reception/login.html')

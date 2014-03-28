@@ -2,6 +2,36 @@
 
 from repast.models.user import User
 from repast.models.database import db
+from repast.services.base_service import BaseService
+
+
+class UserService(BaseService):
+    '''用户'''
+    def create_user(self, nickname, openid, picture_url):
+
+        user = User(nick_name=nickname, openid=openid, picture_url=picture_url, longitude=11.11, latitude=1231)
+        self.create_model(user)
+
+    def update_user(self, longitude, latitude, openid):
+        '''修改'''
+        user = self.get_user_by_openid(openid)
+        user.update(longitude=longitude,latitude=latitude)
+        db.commit()
+
+    def get_user_by_openid(self, openid):
+        '''根据openid得到用户'''
+        user = User.query.filter(User.openid == openid).first()
+        return user
+
+    def check_user_by_openid(self, openid, nickname, picture_url):
+        user = self.get_user_by_openid(openid)
+        if user:
+            return user
+        else:
+            user = self.create_user(nickname, openid, picture_url)
+            return user
+
+
 
 
 def insert_user(nickname, openid, img_url):
@@ -9,5 +39,11 @@ def insert_user(nickname, openid, img_url):
     db.add(user)
     db.commit()
 
+
+
+
 if __name__ == '__main__':
-    insert_user('温饱思淫欲,','aiwe13k4h3qfakf','kflsdjflk')
+    user_service = UserService()
+    #user_service.create_user('温饱思淫欲,','aiwe13k4h3qfakf','kflsdjflk')
+    user_service.update_user(111,111,'aiwe13k4h3qfakf')
+

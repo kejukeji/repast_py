@@ -7,7 +7,7 @@ from .tools import parse_request
 from .webchat import WebChat
 from ..setting.server import BASE_URL
 from repast.util.session_common import *
-from repast.services.user_service import insert_user
+from repast.services.user_service import *
 
 import datetime
 
@@ -53,50 +53,31 @@ def response_text(xml_receive, web_chat):
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return response(web_chat, reply_dict, 'text')
 
-
-def response_oauth(xml_receive, web_chat):
-    '''授权'''
-    Content = xml_receive.find("Content").text
-    ToUserName = xml_receive.find("ToUserName").text
-    FromUserName = xml_receive.find("FromUserName").text
-    reply_dict = {
-            "ToUserName": FromUserName,
-            "FromUserName": ToUserName,
-            "ArticleCount": 1,
-            "item": [{
-                "Title": '刮刮',
-                "Description": '好玩',
-                "PicUrl": BASE_URL + '/static/images/scratch_matter.jpg',
-                "Url": 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxd66b61798e08ff5e&redirect_uri=scratch.kejukeji.com/oauth&response_type=code'
-            }]
-    }
-    return response(web_chat, reply_dict, "news")
-
-
 def response_event(xml_recv, web_chat):
     Event = xml_recv.find("Event").text
     EventKey = xml_recv.find("EventKey").text
     ToUserName = xml_recv.find("ToUserName").text
     FromUserName = xml_recv.find("FromUserName").text
-    # boolean = by_openId(FromUserName) # 根据openid判断是否存在
-    # Content = '您还没绑定点击此连接进行<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx55970915710ceae8&redirect_uri=http%3A%2F%2Fschool.kejukeji.com%2Foauth&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect">绑定</a>'
-    #Content = '您还没绑定点击此连接进行<a href="http://school.kejukeji.com/register?openid='+FromUserName+'">绑定</a>'
+
+    user_service = UserService() #
+    dictionary = web_chat.get_user_info(FromUserName)
+    user = user_service.check_user_by_openid(FromUserName, dictionary['nickname'], dictionary['img_url'])
+
     reply_dict = response_event_message(FromUserName, ToUserName, '感谢关注！')
     if (Event == 'CLICK' and EventKey == 'home'):
-        reply_dict = event_click(FromUserName, ToUserName)
+        reply_dict = event_click(FromUserName, ToUserName, user)
         return response(web_chat, reply_dict, 'news')
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey)
         return response(web_chat, reply_dict, 'news')
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey)
-    if (Event == 'VIEW'):
-        dictionary = web_chat.get_user_info(FromUserName)
-        insert_user(dictionary['nickname'],FromUserName, dictionary['img_url'])
-        reply_dict = event_view(FromUserName, ToUserName)
     return response(web_chat, reply_dict, "text")
 
-def event_click(FromUserName, ToUserName):
+def event_location(FromUserName, ToUserName):
+    '''响应获取地理位置'''
+
+def event_click(FromUserName, ToUserName, user):
     '''响应click事件'''
     reply_dict = {
             "ToUserName": FromUserName,
@@ -106,7 +87,7 @@ def event_click(FromUserName, ToUserName):
                 "Title": '微餐饮',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/home_page' %(BASE_URL)
+                "Url": '%s/home_page?nickname=%s' %(BASE_URL, user.nick_name)
             }]
     }
     return reply_dict
@@ -139,9 +120,18 @@ def event_scan(FromUserName, ToUserName, EventKey):
     '''用户扫二维码已关注'''
     stores_id = EventKey
     name = check_repast(stores_id)
-    Content = '点击此处进入<a href="%s/queue/%s">%s</a>' %(BASE_URL,stores_id,name)
-    reply_dic = response_event_message(FromUserName, ToUserName, Content)
-    return reply_dic
+    reply_dict = {
+            "ToUserName": FromUserName,
+            "FromUserName": ToUserName,
+            "ArticleCount": 1,
+            "item": [{
+                "Title": name,
+                "Description": '餐厅',
+                "PicUrl": BASE_URL + '/static/images/img.jpeg',
+                "Url": '%s/queue/%s' %(BASE_URL, stores_id)
+            }]
+    }
+    return reply_dict
 
 def check_repast(stores_id):
     '''判断是那个餐厅'''
