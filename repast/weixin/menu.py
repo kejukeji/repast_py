@@ -18,17 +18,17 @@ menu = """
 {
    "button": [
        {
-            "type":"click",
+            "type":"CLICK",
            "name":"主页",
            "key":"home"
        },
        {
-           "type":"click",
+           "type":"CLICK",
            "name": "进度",
            "key": "schedule"
        },
        {
-           "type": "click",
+           "type": "CLICK",
            "name": "我的",
            "key": "my"
        }
