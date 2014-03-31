@@ -1,8 +1,11 @@
-﻿ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport"
+      content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
 <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
 <!-- 最新 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
@@ -14,134 +17,254 @@
 <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script><title>微餐饮</title>
-    <script type="text/javascript">
-    $(function(){
-       var block = $('.btn-block')
-        block.bind('click',function(){
-           window.location.href='/queue/9'
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
+<title>微餐饮</title>
+
+
+<script type="text/javascript">
+$(function () {
+    var g_belong_province_id = 9;
+    var g_belong_city_id = 75;
+    var g_belong_county_id = 794;
+    var block = $('.btn-block');
+    block.bind('click', function () {
+        window.location.href = '/reservation'
+    });
+    $('#searchButton').click(function () {
+        str = $('#text').val();
+        $.ajax({
+            type: 'get',
+            url: '/restful/searchStore?keyword=' + str,
+            dataType: 'json',
+            success: function (data) {
+                var j = data;
+                $.each(j.stores, function (idx, item) {
+                    $('#result').append(
+                            '<div id="bg">' +
+                                    '<div class="xinxi">' +
+                                    '<ul style="width:98%; margin:auto; padding-top:5px;">' +
+                                    '<li class="fl"><img src="/static/images/stores/img.jpg" width="100px" height="100px"/></li>' +
+                                    '<li class="fl" style="padding-left:5px; width:63%;">' +
+                                    '<ul class="right">' +
+                                    '<li><a href="###" class="name">' + item.name + '</a></li>' +
+
+                                    '<li style="font-size:12px; font-family:"黑体"; color:#999;">地点：' + item.address + '</li>' +
+                                    '<li class="dizhi">300m</li>' +
+                                    '</ul>' +
+
+                                    '</li>' +
+                                    '</ul>' +
+
+                                    '</div>' +
+                                    '<div class="clear"></div>' +
+                                    '<div class="text">' +
+                                    '<p><a href="#">' + item.description + '</a></p>' +
+                                    '</div>' +
+                                    '<div class="button">' +
+                                    '<button type="submit" class="btn btn-primary btn-lg btn-block">去排队</button>' +
+                                    '<div class="img"></div>' +
+                                    '</div>' +
+                                    '</div>');
+                });
+            }
         });
     });
+        function positonStore() {
+            var province = $('#province_id').val();
+            var city = $('#city_id').val();
+            var county = $('#county_id').val();
+            $.ajax({
+                type: 'get',
+                url: '/restful/positionStore?province=' + province + '&city=' + city + '&county=' + county,
+                dataType: 'json',
+                success: function (data) {
+                    var j = data;
+                    $('#result').empty();
+                    $.each(j.stores, function (idx, item) {
+                        $('#result').append(
+                                '<div id="bg">' +
+                                        '<div class="xinxi">' +
+                                        '<ul style="width:98%; margin:auto; padding-top:5px;">' +
+                                        '<li class="fl"><img src="/static/images/stores/img.jpg" width="100px" height="100px"/></li>' +
+                                        '<li class="fl" style="padding-left:5px; width:63%;">' +
+                                        '<ul class="right">' +
+                                        '<li><a href="###" class="name">' + item.name + '</a></li>' +
+
+                                        '<li style="font-size:12px; font-family:"黑体"; color:#999;">地点：' + item.address + '</li>' +
+                                        '<li class="dizhi">300m</li>' +
+                                        '</ul>' +
+
+                                        '</li>' +
+                                        '</ul>' +
+
+                                        '</div>' +
+                                        '<div class="clear"></div>' +
+                                        '<div class="text">' +
+                                        '<p><a href="#">' + item.description + '</a></p>' +
+                                        '</div>' +
+                                        '<div class="button">' +
+                                        '<button type="submit" class="btn btn-primary btn-lg btn-block">去排队</button>' +
+                                        '<div class="img"></div>' +
+                                        '</div>' +
+                                        '</div>');
+                    });
+                }
+            });
+
+        }
+
+
+        //定义省份change事件
+        var province = $("#province_id");
+        province.bind('change', function () {
+            var province_val = province.val();
+            get_city(province, province_val, '', '');
+            var city_val = $("#city_id");
+            get_county(province, city_val, city_val.val(), "");
+            positonStore();
+        });
+        //定义城市cahnge事件
+        var city = $("#city_id");
+        city.bind('change', function () {
+            get_county(province, city, city.val(), "");
+            positonStore();
+        });
+        var county = $("#county_id");
+        county.bind('change', function () {
+            positonStore();
+        });
+
+        function init_location(init_province, init_city, init_county) {
+            var province = $('#province_id');
+            $.ajax({
+                type: "GET",
+                url: "/restful/province",
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (json) {
+                    province.empty();
+                    $.each(json, function (i, value) {
+                        if (g_belong_province_id == value[0]) {
+                            $("#province_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected', 'selected'));
+                        } else {
+                            $("#province_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                        }
+                    });
+                    province.val(init_province);
+                    g_belong_province_id = init_province;
+                },
+                error: function () {
+                    {#                alert("获取省资料失败，请刷新网页！");#}
+                }
+            });
+            get_city(province, init_province, init_city, init_county)
+
+        }
+
+        // 如果是新建的话，这几个id是不存在的，无法获取，使用默认参数
+
+        if (g_belong_province_id != "") {
+            init_location(g_belong_province_id, g_belong_city_id, g_belong_county_id)
+        } else {
+            init_location("9", "75", "794")
+        }
+        positonStore();
+        function get_city(province, init_province, init_city, init_county) {
+            var city = $('#city_id');
+            $.ajax({
+                type: "GET",
+                url: "/restful/city/" + init_province,
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (json) {
+                    city.empty();
+                    $.each(json, function (i, value) {
+                        if (g_belong_city_id == value[0]) {
+                            $("#city_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected', 'selected'));
+                        } else {
+                            $("#city_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                        }
+
+                    });
+                    if (init_city != '') {
+                        city.val(init_city);
+                        g_belong_city_id = init_city;
+                    }
+                },
+                error: function () {
+{#                    alert("获取市资料失败，请刷新网页！");#}
+                }
+            });
+            get_county(province, city, init_city, init_county)
+        }
+
+        function get_county(province, city, init_city, init_county) {
+            var county = $('#county_id');
+            $.ajax({
+                type: "GET",
+                url: "/restful/county/" + init_city,
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (json) {
+                    county.empty();
+                    if (json.length == 0) {
+                        $("#county_id").append($("<option>").text("").attr('value', "0"));
+                    } else {
+                        $.each(json, function (i, value) {
+                            if (g_belong_county_id == value[0]) {
+                                $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected', 'selected'));
+                            } else {
+                                $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                            }
+                        });
+                        if (init_county != "") {
+                            county.val(init_county);
+                            g_belong_county_id = init_county;
+                        }
+                    }
+                },
+                error: function () {
+                    //alert("当前城市没有区！");
+                }
+            });
+        }
+
+
+    });
+
+
 </script>
 </head>
 <body style="background:#EFF2F5; font-family:'微软雅黑';">
 <!--搜索框-->
-<div id="search" >
+<div id="search">
 
-<input type="text" style="border-radius:12px;" class="noneinput"  value="请输入关键字" onfocus="if (value =='请输入关键字'){value =''}"onblur="if (value ==''){value='请输入关键字'}"> </div>
-<div class="sou"><a href="#"><img src="/static/images/stores/sou.png" /></a></div>
+    <input id="text" type="text" style="border-radius:12px;" class="noneinput" placeholder="请输入关键字"/></div>
+<div class="sou"><a href="#" id="searchButton"><img src="/static/images/stores/sou.png"/></a></div>
 <!--搜索框结束-->
 <!--地区--->
 <div class="id">
-<div class="idbg">
-<span style="font-size:14px; font-weight:bold; line-height:40px;">地区</span>
-<span>
-<select>
-<option>省</option>
-<option>湖南省</option>
-<option>安徽省</option>
-<option>江苏省</option>
-</select>
-
-<select>
-<option>市</option>
-<option>合肥市</option>
-<option>安庆市</option>
-<option>淮北市</option>
-</select>
-<select>
-<option>区</option>
-<option>闵行区</option>
-<option>黄浦区</option>
-<option>徐汇区</option>
-</select>
-<button type="button" class="btn btn-primary">确定</button>
-</span>
-
+    <div class="idbg">
+        <span style="font-size:14px; font-weight:bold; line-height:40px;">选择地区</span>
+        <span>
+             <select name='province_id' id='province_id'></select>
+             <select name='city_id' id='city_id'></select>
+             <select name='county_id' id='county_id'></select>
+             <button type="button" class="btn btn-primary">确定</button>
+        </span>
+    </div>
 </div>
+
+<div id="result">
+
 </div>
 
 <!--搜索框结果-->
-<div id="bg">
-<div class="xinxi">
-<ul style="width:98%; margin:auto; padding-top:5px;">
-<li class="fl"><img src="/static/images/stores/img.jpg" width="100px" height="100px"/></li>
-<li class="fl" style="padding-left:5px; width:63%;">
-<ul class="right">
-<li><a href="###" class="name">上海泰妃阁美食餐厅（人民广场）</a></li>
-
-<li style="font-size:12px; font-family:'黑体'; color:#999;">地点：上海黄浦区人民广场南京东路</li>
-<li class="dizhi">300m</li>
-</ul>
-
-</li>
-</ul>
-
-</div>
-<div class="clear"></div>
-<div  class="text">
-<p><a href="#">餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍</a></p>
-</div>
-<div class="button">
-   <button type="submit" class="btn btn-primary btn-lg btn-block" >去排队</button>
-<div class="img"></div>
-</div>
-</div> 
-<!--搜索结果第一个结束-->
-
-<div id="bg">
-<div class="xinxi">
-<ul style="width:98%; margin:auto; padding-top:5px;">
-<li class="fl"><img src="/static/images/stores/img.jpg" width="100px" height="100px"/></li>
-<li class="fl" style="padding-left:5px; width:63%;">
-<ul class="right">
-<li><a href="###" class="name">上海泰妃阁美食餐厅（人民广场）</a></li>
-
-<li style="font-size:12px; font-family:'黑体'; color:#999;">地点：上海黄浦区人民广场南京东路</li>
-<li class="dizhi">300m</li>
-</ul>
-
-</li>
-</ul>
-
-</div>
-<div class="clear"></div>
-<div  class="text">
-<p><a href="#">餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍</a></p>
-</div>
-<div class="button">
-   <button type="submit" class="btn btn-primary btn-lg btn-block" >去排队</button>
-<div class="img"></div>
-</div>
-</div>
-<!--搜索结果第2个结束-->
-
-<div id="bg">
-<div class="xinxi">
-<ul style="width:98%; margin:auto; padding-top:5px;">
-<li class="fl"><img src="/static/images/stores/img.jpg" width="100px" height="100px"/></li>
-<li class="fl" style="padding-left:5px; width:63%;">
-<ul class="right">
-<li><a href="###" class="name">上海泰妃阁美食餐厅（人民广场）</a></li>
-
-<li style="font-size:12px; font-family:'黑体'; color:#999;">地点：上海黄浦区人民广场南京东路</li>
-<li class="dizhi">300m</li>
-</ul>
-
-</li>
-</ul>
-
-</div>
-<div class="clear"></div>
-<div  class="text">
-<p><a href="#">餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍餐厅介绍</a></p>
-</div>
-<div class="button">
-   <button type="submit" class="btn btn-primary btn-lg btn-block" >去排队</button>
-</div>
-</div>
-
-
 
 
 </body>

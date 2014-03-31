@@ -1,14 +1,20 @@
 # coding: UTF-8
-from . import app
 from flask.ext.admin import Admin
 from flask.ext import restful
+
+from . import app
 from .weixin.verify import weixin
 from .view.repasts import to_repast_by_stores_id
 from .view.admin.group import GroupView
 from .models.database import db
 from .view.admin.index import HomeView
 from .view.admin.brand import BrandView
+from restfuls.return_group import GetGroup
+from .view.home import *
+from .view.myMsg import *
+from .view.restaurant import *
 from restfuls.return_group import *
+from restfuls.store_search import *
 from .view.admin.stores import StoresView
 from .view.admin.queue_setting import QueueSettingView
 from .view.admin.admin_login import *
@@ -19,6 +25,9 @@ from restfuls.queue import AjaxCallNumber
 # app.add_url_rule('url','method_name', method_name, method=('GET','POST'))
 app.add_url_rule('/weixin', 'weixin', weixin, methods=('GET','POST'))
 app.add_url_rule('/repast/<int:stores_id>', 'repast', to_repast_by_stores_id, methods=('GET','POST'))
+# app.add_url_rule('/home','home',home,methods=('GET','POST'))
+app.add_url_rule('/myMsg','myMsg',myMsg,methods=('GET','POST'))
+app.add_url_rule('/restaurant','toRestaurant',toRestaurant,methods=('GET','POST'))
 app.add_url_rule('/login', 'login_view', login_view, methods=('GET', 'POST'))
 app.add_url_rule('/register','login_register', register_view, methods=('GET','POST'))
 app.add_url_rule('/call_number/<int:shop_assistant_id>','to_call_number', to_call_number, methods=('GET','POST'))
@@ -43,6 +52,8 @@ api.add_resource(GetProvince, '/restful/province')
 api.add_resource(GetCity, '/restful/city/<int:province_id>')
 api.add_resource(GetCounty, '/restful/county/<int:city_id>')
 api.add_resource(GetStores, '/restful/stores/<int:brand_id>')
+api.add_resource(SearchStore,'/restful/searchStore')
+api.add_resource(PositonStore,'/restful/positionStore')
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 
 
