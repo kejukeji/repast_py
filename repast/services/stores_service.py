@@ -7,6 +7,7 @@ import os
 from werkzeug import secure_filename
 from repast.util.ex_file import *
 from repast.setting.server import *
+from sqlalchemy import or_, and_
 #from repast.setting.wbb import *
 
 class StoresService():
@@ -124,6 +125,36 @@ class StoresService():
                     return True
         else:
             return True
+
+def get_store_by_search(case):
+
+    s = '%'+case+'%'
+    stores_count = Stores.query.filter(or_(Stores.name.like(s),Stores.address.like(s))).count()
+    if stores_count == 1:
+        stores = Stores.query.filter(or_(Stores.name.like(s),Stores.address.like(s))).first()
+    elif stores_count > 1:
+        stores = Stores.query.filter(or_(Stores.name.like(s),Stores.address.like(s))).all()
+    else:
+        stores = None
+    return stores
+
+def get_store_by_search_count(case):
+    s = '%'+case+'%'
+    stores_count = Stores.query.filter(or_(Stores.name.like(s),Stores.address.like(s))).count()
+    return stores_count
+
+def get_store_by_position(province_id,city_id,county_id):
+    stores_count = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).count()
+    if stores_count ==1:
+        stores  = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).first()
+    elif stores_count >1:
+        stores = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).all()
+    else:
+        stores =None
+    return stores
+
+def get_store_by_position_count(province_id,city_id,county_id):
+    return Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).count()
 
 
 def get_stores_by_id(stores_id):

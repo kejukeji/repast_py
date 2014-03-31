@@ -1,4 +1,6 @@
 # coding: UTF-8
+from flask import request, render_template
+from repast.services.stores_service import *
 from flask import request, render_template, redirect, url_for
 from repast.services.queue_setting_service import *
 from repast.services.stores_service import get_stores_by_id
@@ -16,6 +18,8 @@ def to_repast_by_stores_id(stores_id):
                            stores_id=stores_id,
                            message=message)
 
+def to_call_number():
+    return render_template('reception/call_number.html')
 
 
 def to_call_number(shop_assistant_id):
