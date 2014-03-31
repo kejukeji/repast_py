@@ -1,7 +1,9 @@
 # coding: UTF-8
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
 from repast.services.queue_setting_service import *
 from repast.services.stores_service import get_stores_by_id
+from repast.services.shop_assistant import *
+from repast.util.session_common import *
 
 
 def to_repast_by_stores_id(stores_id):
@@ -16,8 +18,21 @@ def to_repast_by_stores_id(stores_id):
 
 
 
-def to_call_number():
-    return render_template('reception/call_number.html')
+def to_call_number(shop_assistant_id):
+    '''员工登录成功后返回叫号页面'''
+    set_session_user('shop_assistant_id', shop_assistant_id)
+    stores_id = get_stores_id_by_shop_assistant_id(shop_assistant_id)
+    stores_queue_info = get_now_queue_number_and_number_wait_by_stores_id(stores_id)
+    stores = get_stores_by_id(stores_id)
+    return render_template('reception/call_number.html',
+                           stores_queue_info=stores_queue_info,
+                           stores=stores)
+
+def do_call_number(queue_id):
+    '''叫号'''
+    shop_assistant_id = get_session('shop_assistant_id')
+    call_success = call_number(queue_id)
+    return redirect(url_for('to_call_number', shop_assistant_id=shop_assistant_id))
 
 def to_home():
     return render_template('reception/home.html')
@@ -28,6 +43,14 @@ def to_home_page(user_id):
 
 def to_login():
     return render_template('reception/login.html')
+
+def do_assistant_login():
+    shop_assistant = get_shop_assistant_by_user(request)
+    if shop_assistant:
+        return redirect(url_for('to_call_number', shop_assistant_id=shop_assistant.id))
+    else:
+        return render_template('reception/login.html',
+                               message='帐号或密码错误！')
 
 def to_my_page():
     return render_template('reception/my_page.html')

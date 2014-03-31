@@ -8,7 +8,7 @@ from repast.util.session_common import *
 def do_queue(table_type_id):
     '''用户排队'''
     #user_id = get_session('user_id') # 得到当前用户id
-    user_id = 1
+    user_id = 4
     #stores_id = request.args.get('stores_id') # 用户排队的餐厅
     stores_id = 6
     queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
@@ -17,7 +17,7 @@ def do_queue(table_type_id):
         print message
     else:
         queue = create_queue(user_id, stores_id, table_type_id)
-        print queue.id
+        print queue.now_queue_number
 
 
 def cancel_queue(queue_id):
@@ -30,17 +30,25 @@ def shop_assistant_call_number(queue_id):
     success_call_number = call_number(queue_id)
 
 
-def call_number_page(stores_id):
-    '''叫号页面'''
+def queue_page(stores_id):
+    '''排队页面'''
     temp = get_queue_by_stores_id(stores_id)
     for t in temp:
         print t.type +' '+ str(t.queue_number)
 
+
+def call_number_page(stores_id):
+    '''叫号'''
+    json = get_now_queue_number_and_number_wait_by_stores_id(stores_id)
+    for j in json:
+        print str(j.now_number) + ' ' + str(j.wait_number)
+
 if __name__ == '__main__':
-    #do_queue(1)
+    do_queue(5)
     #cancel(1)
-    #shop_assistant_call_number(2)
-    call_number_page(6)
+    #shop_assistant_call_number(6)
+    #queue_page(6)
+    #call_number_page(6)
 
 
 

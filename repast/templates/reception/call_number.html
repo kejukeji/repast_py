@@ -4,14 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
 <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-<script type="text/javascript" src="./js/touch.js"></script>
- <script type="text/javascript" src="./js/zepto.extend.js"></script>
- <script type="text/javascript" src="./js/zepto.ui.js"></script>
- <script type="text/javascript" src="./js/slider.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
   <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
 
     <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+    $(function(){
+        function ajax_call_number(){
+            var now_number = $('.now_number');
+            $.each(now_number, function(i, value){
+                var now_number_text = value.innerText;
+                if (now_number_text == '当前没有人排队'){
+                    window.location.reload();
+                }
+            })
+        }
+        window.setTimeout(ajax_call_number, 5000)
+    })
+</script>
 <title>微餐饮</title>
 </head> 
 <style>
@@ -19,9 +29,11 @@
 <body style="background:#EFF2F5;">
 
 <div class="top">
-<h3>上海泰妃阁美食餐厅</h3>
+<h3>{{ stores.name }}</h3>
 </div>
-
+{% if stores_queue_info %}
+{% for queue in stores_queue_info %}
+<form action="/do_call_number/{{ queue.now_id }}" method="get">
 <div class="jiaohao">
 <div class="nav">
 <ul>
@@ -35,50 +47,22 @@
 <ul style="width:96%; margin:auto;">
 	<li>
     <ul class="shuzi">
-	<li> 2人桌</li>
-	<li>12</li>
-	<li>36</li>
+	<li> {{ queue.type }}</li>
+	<li class="now_number">{{ queue.now_number }}</li>
+	<li>{{ queue.wait_number }}</li>
     </ul>
     </li>
     <li id="dayin">
   <button type="button"  class="dayin" style="color:#FFF; font-weight:bold;">打印</button>
-  <button type="button"  class="dayin" style="color:#FFF; font-weight:bold;">叫号</button>
+  <button type="submit"  class="dayin" id="callNumber" style="color:#FFF; font-weight:bold;">叫号</button>
     </li>
 
 </ul>
 </div>
 </div>
-
-
-
-<div class="jiaohao">
-<div class="nav">
-<ul>
-<li> 餐桌类型</li>
-<li>排队号</li>
-<li>等待号</li>
-</ul>
-
-</div>
-<div class="number">
-<ul style="width:96%; margin:auto;">
-	<li>
-    <ul class="shuzi">
-	<li> 2人桌</li>
-	<li>12</li>
-	<li>36</li>
-    </ul>
-    </li>
-    <li id="dayin">
-  <button type="button"  class="dayin" style="color:#FFF; font-weight:bold;">打印</button>
-  <button type="button"  class="dayin" style="color:#FFF; font-weight:bold;" >叫号</button>
-    </li>
-
-</ul>
-</div>
-</div>
-
-
+</form>
+{% endfor %}
+{% endif %}
 </body>
 </html>
 

@@ -8,6 +8,7 @@ from repast.models.queue import QueueSetting, Queue
 from .common_service import *
 from repast.util.ex_time import *
 from repast.models.database import db
+from .stores_service import get_stores_by_id
 
 
 class QueueService():
@@ -76,22 +77,22 @@ def get_date_time_str():
 def create_queue(user_id, stores_id, table_type_id):
     '''根据当前时间得到队列'''
     args_time = get_date_time_str()
-    queue_count = Queue.query.filter(Queue.queue_time.like(args_time)).count()
+    queue_count = Queue.query.filter(Queue.queue_time.like(args_time), Queue.queue_setting_id == table_type_id).count()
     queue = None
     if queue_count == 1:
-        queue = Queue.query.filter(Queue.queue_time.like(args_time)).first() # 得到队列中最后一个
+        queue = Queue.query.filter(Queue.queue_time.like(args_time), Queue.queue_setting_id == table_type_id).first() # 得到队列中最后一个
         next_number = queue.now_queue_number + 1 # 得到下一个队列号
         new_queue = get_queue(user_id,stores_id,table_type_id,next_number)
         create_new_queue(new_queue)
     elif queue_count > 1:
-        queue = Queue.query.filter(Queue.queue_time.like(args_time)).order_by(Queue.queue_time.desc()).first()# 得到已经存在的队列
+        queue = Queue.query.filter(Queue.queue_time.like(args_time), Queue.queue_setting_id == table_type_id).order_by(Queue.queue_time.desc()).first()# 得到已经存在的队列
         next_number = queue.now_queue_number + 1 # 得到下一个队列号
         new_queue = get_queue(user_id,stores_id,table_type_id,next_number)
         create_new_queue(new_queue)
     if queue_count == 0:
-        queue = get_queue(user_id,stores_id,table_type_id, 1) # 如果当前没有队列，那么就创建一个新队列并为第一个
+        new_queue = get_queue(user_id,stores_id,table_type_id, 1) # 如果当前没有队列，那么就创建一个新队列并为第一个
         create_new_queue(queue)
-    return queue
+    return new_queue
 
 
 def get_queue(user_id, stores_id, table_type_id, next_number):
@@ -140,6 +141,46 @@ def get_queue_by_stores_id(stores_id):
     return temp
 
 
+def get_now_queue_number_and_number_wait_by_stores_id(stores_id):
+    '''根据餐厅id得到当前号码，等待号码'''
+    table_type, table_type_count = get_table_type_by_stores_id(stores_id) # 得到餐厅桌型
+    temp = []
+    if table_type_count > 1:
+        for t in table_type:
+            now_number, wait_number, now_id = get_now_number_wait_number(t.id)
+            t.now_number = now_number
+            t.wait_number = wait_number
+            t.now_id = now_id
+            temp.append(t)
+    else:
+        if table_type:
+            now_number, wait_number, now_id = get_now_number_wait_number(table_type.id)
+            table_type.now_number = now_number
+            table_type.wait_number = wait_number
+            table_type.now_id = now_id
+            temp.append(table_type)
+    return temp
+
+def get_now_number_wait_number(table_type_id):
+    '''得到当前号码'''
+    queue, queue_count = get_queue_by_table_type_id(table_type_id)
+    now_number = 1
+    wait_number = 1
+    now_id = 1
+    if queue_count > 1:
+        now_number = queue[0].now_queue_number
+        wait_number = queue[-1].now_queue_number + 1
+        now_id = queue[0].id
+    else:
+        if queue:
+            now_number = queue.now_queue_number
+            wait_number = queue.now_queue_number + 1
+            now_id = queue.id
+        else:
+            now_number = '当前没有人排队'
+            wait_number = get_wait_number(table_type_id)
+    return now_number, wait_number, now_id
+
 
 def get_queue_by_table_type_id(table_type_id):
     """
@@ -149,10 +190,18 @@ def get_queue_by_table_type_id(table_type_id):
     args_time = get_date_time_str()
     queue_count = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).count()
     if queue_count > 1:
-        queue = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).all()
+        queue = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).order_by(Queue.now_queue_number).all()
     else:
         queue = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time), Queue.status == 1).first()
     return queue, queue_count
+
+
+def get_wait_number(table_type_id):
+    '''获取已经叫过号，并且没有人继续排队时候的等待号'''
+    args_time = get_date_time_str()
+    queue_count = Queue.query.filter(Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time)).count()
+    wait_number = queue_count + 1
+    return wait_number
 
 
 
