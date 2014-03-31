@@ -36,15 +36,18 @@
 </div>
 <div class="xuanze">
 <ul>
+<form name="queueForm" action="/do_queue">
 {% for t in temp %}
 <li style="background:#E9E9E9; height:40px; width:100%; margin:auto;"> 
 <ul class="xuanzeli">
-<li class="linka"><a href="#" class="link">{{ t.type }}</a></li>
+<li class="linka"><input type="radio" name="table_type_id" value="{{ t.id }}"/></li>
+<li>{{ t.type }}</li>
 <li>前面还有{{ t.queue_number }}位</li>
 <li>预计5分钟</li>
 </ul>
 </li>
 {% endfor %}
+</form>
 
 <!--推荐-->
 <li style="padding:0; margin:10px 0;">

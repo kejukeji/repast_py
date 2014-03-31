@@ -31,6 +31,7 @@ app.add_url_rule('/my_page','to_my_page', to_my_page, methods=('GET','POST'))
 app.add_url_rule('/order_dishes','to_order_dishes', to_order_dishes, methods=('GET','POST'))
 app.add_url_rule('/my_queue','to_my_queue', to_my_queue, methods=('GET','POST'))
 app.add_url_rule('/queue/<int:stores_id>','to_queue', to_queue, methods=('GET','POST'))
+app.add_url_rule('/do_queue/<int:table_type_id>','do_queue', do_queue, methods=('GET','POST'))
 app.add_url_rule('/search','to_search', to_search, methods=('GET','POST'))
 app.add_url_rule('/search_result','to_search_result', to_search_result, methods=('GET','POST'))
 
