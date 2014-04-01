@@ -38,12 +38,17 @@ def weixin():
 
 def response_location(xml_recv, web_chat):
     '''用户手动发送地理位置'''
+
     FromUserName = xml_recv.find('FromUserName').text
     ToUserName = xml_recv.find('ToUserName').text
     latitude = xml_recv.find('Location_X').text
     longitude = xml_recv.find('Location_Y').text
     lable = xml_recv.find('Label').text
     Content = str(lable)
+    user_service = UserService() #
+    dictionary = web_chat.get_user_info(FromUserName)
+    user = user_service.check_user_by_openid(FromUserName, dictionary['nickname'], dictionary['img_url'])
+    user_service.get_location_and_save(FromUserName, longitude, latitude)
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return response(web_chat,reply_dict, 'text')
 
