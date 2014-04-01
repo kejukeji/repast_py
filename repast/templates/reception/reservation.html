@@ -36,6 +36,7 @@
 </div>
 <div class="xuanze">
 <form name="queueForm" action="/do_queue">
+    <input type="hidden" name="stores_id" value="{{ stores.id }}"/>
 <ul>
 {% for t in temp %}
 <li style="background:#E9E9E9; height:40px; width:100%; margin:auto;"> 

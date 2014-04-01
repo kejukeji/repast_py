@@ -18,9 +18,6 @@ def to_repast_by_stores_id(stores_id):
                            stores_id=stores_id,
                            message=message)
 
-def to_call_number():
-    return render_template('reception/call_number.html')
-
 
 def to_call_number(shop_assistant_id):
     '''员工登录成功后返回叫号页面'''
@@ -42,6 +39,7 @@ def to_home():
     return render_template('reception/home.html')
 
 def to_home_page(user_id):
+    set_session_user('user_id', user_id)
     return render_template('reception/home_page.html',
                            nick_name=user_id)
 
@@ -66,6 +64,8 @@ def to_my_queue():
     return render_template('reception/queue.html')
 
 def to_queue(stores_id):
+    user_id = request.args.get('user_id')
+    set_session_user('user_id', user_id)
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     return render_template('reception/reservation.html',
@@ -75,7 +75,7 @@ def to_queue(stores_id):
 def do_queue():
     '''排队'''
     table_type_id = request.args.get('table_type_id') # 得到前端用户选择桌型
-    queue = do_queue_format(table_type_id)
+    queue = do_queue_format(table_type_id, request)
     stores_id = queue.stores_id
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)

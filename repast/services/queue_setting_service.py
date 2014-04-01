@@ -1,6 +1,7 @@
 # coding: UTF-8
 
 from flask import flash
+from repast.util.session_common import *
 from flask.ext.admin.babel import gettext
 import os
 from werkzeug import secure_filename
@@ -113,12 +114,10 @@ def cancel(queue_id):
         except:
             db.rollback()
 
-def do_queue_format(table_type_id):
+def do_queue_format(table_type_id, request):
     '''用户排队'''
-    #user_id = get_session('user_id') # 得到当前用户id
-    user_id = 4
-    #stores_id = request.args.get('stores_id') # 用户排队的餐厅
-    stores_id = 6
+    user_id = get_session('user_id') # 得到当前用户id
+    stores_id = request.args.get('stores_id') # 用户排队的餐厅
     queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
     queue_q, queue_count = get_queue_by_table_type_id(table_type_id)
     if queue:
