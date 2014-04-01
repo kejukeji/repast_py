@@ -67,7 +67,7 @@ b{ color:#F00;}
  .top{ background:#FF373A; width:96%; margin:auto; height:40px; text-align:center; color:#FFF; margin-bottom:10px;  }
  .xuanze{ width:96%; margin:auto; height:500px; background:#FFF; border:1px solid #ccc;}
  .xuanzeli{ width:96%; margin:auto; text-align:center;}
- .xuanzeli li{ float:left; width:16%; height:40px; line-height:40px; font-size:15px; font-weight:bold; color:#999;}
+ .xuanzeli li{ float:left; width:24%; height:40px; line-height:40px; font-size:15px; font-weight:bold; color:#999;}
  .linka{ padding-left:3%;}
  .linka input{ display:block; background:url(/static/images/stores/xuanze_r3.png) no-repeat center left; height:40px; padding-left:5px; }
 .linka a:active { display:block; background:url(/static/images/stores/xuanze_r1.png) no-repeat center left;} 
