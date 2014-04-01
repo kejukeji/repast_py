@@ -18,6 +18,7 @@ from restfuls.store_search import *
 from .view.admin.stores import StoresView
 from .view.admin.queue_setting import QueueSettingView
 from .view.admin.admin_login import *
+from .view.admin.shop_assistant import ShopAssistantView
 from .view.repasts import *
 from restfuls.queue import AjaxCallNumber
 
@@ -40,6 +41,7 @@ app.add_url_rule('/my_page','to_my_page', to_my_page, methods=('GET','POST'))
 app.add_url_rule('/order_dishes','to_order_dishes', to_order_dishes, methods=('GET','POST'))
 app.add_url_rule('/my_queue','to_my_queue', to_my_queue, methods=('GET','POST'))
 app.add_url_rule('/queue/<int:stores_id>','to_queue', to_queue, methods=('GET','POST'))
+app.add_url_rule('/do_queue','do_queue', do_queue, methods=('GET','POST'))
 app.add_url_rule('/search','to_search', to_search, methods=('GET','POST'))
 app.add_url_rule('/search_result','to_search_result', to_search_result, methods=('GET','POST'))
 
@@ -65,3 +67,4 @@ admin.add_view(GroupView(db, name=u'集团', endpoint='group', category=u'管理
 admin.add_view(BrandView(db, name=u'品牌', endpoint='brand', category=u'管理'))
 admin.add_view(StoresView(db, name=u'餐厅', endpoint='stores', category=u'管理'))
 admin.add_view(QueueSettingView(db, name=u'桌型维护', endpoint='queue'))
+admin.add_view(ShopAssistantView(db, name=u'店员维护', endpoint='shop_assistant'))

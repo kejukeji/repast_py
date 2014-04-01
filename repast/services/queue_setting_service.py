@@ -1,6 +1,7 @@
 # coding: UTF-8
 
 from flask import flash
+from repast.util.session_common import *
 from flask.ext.admin.babel import gettext
 import os
 from werkzeug import secure_filename
@@ -91,7 +92,7 @@ def create_queue(user_id, stores_id, table_type_id):
         create_new_queue(new_queue)
     if queue_count == 0:
         new_queue = get_queue(user_id,stores_id,table_type_id, 1) # 如果当前没有队列，那么就创建一个新队列并为第一个
-        create_new_queue(queue)
+        create_new_queue(new_queue)
     return new_queue
 
 
@@ -112,6 +113,21 @@ def cancel(queue_id):
             db.commit()
         except:
             db.rollback()
+
+def do_queue_format(table_type_id, request, user_id):
+    '''用户排队'''
+    stores_id = request.args.get('stores_id') # 用户排队的餐厅
+    queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
+    queue_q, queue_count = get_queue_by_table_type_id(table_type_id)
+    if queue:
+        message = '您已在队列中，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count) # 如果存在队列中，提示
+        queue.message = message
+        return queue
+    else:
+        queue = create_queue(user_id, stores_id, table_type_id)
+        message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
+        queue.message = message
+        return queue
 
 
 def get_table_type_by_stores_id(stores_id):

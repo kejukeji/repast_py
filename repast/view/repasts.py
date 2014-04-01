@@ -18,13 +18,10 @@ def to_repast_by_stores_id(stores_id):
                            stores_id=stores_id,
                            message=message)
 
-def to_call_number():
-    return render_template('reception/call_number.html')
-
 
 def to_call_number(shop_assistant_id):
     '''员工登录成功后返回叫号页面'''
-    set_session_user('shop_assistant_id', shop_assistant_id)
+    set_session_user('shop_assistant_id', shop_assistant_id,'shop','')
     stores_id = get_stores_id_by_shop_assistant_id(shop_assistant_id)
     stores_queue_info = get_now_queue_number_and_number_wait_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
@@ -34,7 +31,7 @@ def to_call_number(shop_assistant_id):
 
 def do_call_number(queue_id):
     '''叫号'''
-    shop_assistant_id = get_session('shop_assistant_id')
+    shop_assistant_id = get_session_shop_user()
     call_success = call_number(queue_id)
     return redirect(url_for('to_call_number', shop_assistant_id=shop_assistant_id))
 
@@ -42,6 +39,7 @@ def to_home():
     return render_template('reception/home.html')
 
 def to_home_page(user_id):
+    set_session_user('user', user_id, 't','')
     return render_template('reception/home_page.html',
                            nick_name=user_id)
 
@@ -66,9 +64,25 @@ def to_my_queue():
     return render_template('reception/queue.html')
 
 def to_queue(stores_id):
+    user_id = request.args.get('user_id')
+    set_session_user('user', user_id, 't','')
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     return render_template('reception/reservation.html',
+                           temp=temp,
+                           stores=stores)
+
+def do_queue():
+    '''排队'''
+    table_type_id = request.args.get('table_type_id') # 得到前端用户选择桌型
+    user_id = get_session_user()
+    #user_id = int(request.args.get('user_id'))
+    queue = do_queue_format(table_type_id, request, user_id)
+    stores_id = queue.stores_id
+    temp = get_queue_by_stores_id(stores_id)
+    stores = get_stores_by_id(stores_id)
+    return render_template('reception/reservation.html',
+                           message=queue.message,
                            temp=temp,
                            stores=stores)
 

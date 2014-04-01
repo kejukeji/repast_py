@@ -60,6 +60,7 @@ def response_event(xml_recv, web_chat):
     ToUserName = xml_recv.find("ToUserName").text
     FromUserName = xml_recv.find("FromUserName").text
 
+
     user_service = UserService() #
     dictionary = web_chat.get_user_info(FromUserName)
     user = user_service.check_user_by_openid(FromUserName, dictionary['nickname'], dictionary['img_url'])
@@ -67,16 +68,27 @@ def response_event(xml_recv, web_chat):
     reply_dict = response_event_message(FromUserName, ToUserName, '感谢关注！')
     if (Event == 'CLICK' and EventKey == 'home'):
         reply_dict = event_click(FromUserName, ToUserName, user)
-        return response(web_chat, reply_dict, 'news')
+        return response(web_chat, reply_dict, "news")
     if (Event == 'subscribe'):
-        reply_dict = event_subscribe(FromUserName, ToUserName, EventKey)
-        return response(web_chat, reply_dict, 'news')
+        reply_dict = event_subscribe(FromUserName, ToUserName, EventKey, user)
+        return response(web_chat, reply_dict, "news")
     if (Event == 'SCAN'):
-        reply_dict = event_scan(FromUserName, ToUserName, EventKey)
-    return response(web_chat, reply_dict, "news")
+        reply_dict = event_scan(FromUserName, ToUserName, EventKey, user)
+        return response(web_chat, reply_dict, "news")
+    if (Event == 'LOCATION'):
+        longitude = xml_recv.find("Latitude").text
+        latitude = xml_recv.find("Longitude").text
+        reply_dict = event_location(user_service, longitude, latitude, FromUserName, ToUserName)
+        return response(web_chat, reply_dict, 'text')
+    return response(web_chat, reply_dict, "text")
 
-def event_location(FromUserName, ToUserName):
+def event_location(user_service, longitude, latitude, FromUserName, ToUserName):
     '''响应获取地理位置'''
+    user_service.get_location_and_save(FromUserName, longitude, latitude)
+    Content = "longitude" + str(longitude)
+    reply_dict = response_event_message(FromUserName, ToUserName, Content)
+    return reply_dict
+
 
 def event_click(FromUserName, ToUserName, user):
     '''响应click事件'''
@@ -99,7 +111,7 @@ def event_view(FromUserName, ToUserName):
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return reply_dict
 
-def event_subscribe(FromUserName, ToUserName, EventKey):
+def event_subscribe(FromUserName, ToUserName, EventKey, user):
     '''用户扫二维码未关注，点击关注后的事件'''
     stores_id = EventKey.split('_')[1]
     title, description, pic_url = get_stores_(stores_id)
@@ -111,7 +123,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey):
                 "Title": title,
                 "Description": description,
                 "PicUrl": BASE_URL + pic_url,
-                "Url": '%s/queue/%s' %(BASE_URL, stores_id)
+                "Url": '%s/queue/%s?user_id=%s' %(BASE_URL, stores_id, user.id)
             }]
     }
     return reply_dict
@@ -129,7 +141,7 @@ def get_stores_(stores_id):
     return title, description, pic_url
 
 
-def event_scan(FromUserName, ToUserName, EventKey):
+def event_scan(FromUserName, ToUserName, EventKey, user):
     '''用户扫二维码已关注'''
     stores_id = EventKey
     title, description, pic_url = get_stores_(stores_id)
@@ -141,7 +153,7 @@ def event_scan(FromUserName, ToUserName, EventKey):
                 "Title": title,
                 "Description": description,
                 "PicUrl": BASE_URL + pic_url,
-                "Url": '%s/queue/%s' %(BASE_URL, stores_id)
+                "Url": '%s/queue/%s?user_id=%s' %(BASE_URL, stores_id, user.id)
             }]
     }
     return reply_dict

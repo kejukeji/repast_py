@@ -31,6 +31,12 @@ class UserService(BaseService):
             user = self.create_user(nickname, openid, picture_url)
             return user
 
+    def get_location_and_save(self, openid, longitude, latitude):
+        '''获取用户地址位置，并且保存'''
+        user = self.get_user_by_openid(openid)
+        user.update(longitude=longitude,latitude=latitude)
+        db.commit()
+
 
 
 

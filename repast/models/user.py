@@ -35,16 +35,22 @@ class ShopAssistant(Base, InitUpdate):
     '''店员'''
     __tablename__ = SHOP_ASSISTANT
     id = Column(Integer, primary_key=True)
-    group_id = Column(Integer, ForeignKey(Group.id, ondelete='cascade', onupdate='cascade'))
+    group_id = Column(Integer, nullable=False)
     group = Column(String(50), nullable=False)
-    brand_id = Column(Integer, ForeignKey(Brand.id, ondelete='cascade', onupdate='cascade'))
+    brand_id = Column(Integer, nullable=False)
     brand = Column(String(50), nullable=False)
-    stores_id = Column(Integer, ForeignKey(Stores.id, ondelete='cascade', onupdate='cascade'))
+    stores_id = Column(Integer, nullable=False)
     stores = Column(String(50), nullable=False)
     name = Column(String(20), nullable=False)
     user_name = Column(String(20), nullable=False)
-    password = Column(String(20), nullable=False)
+    password = Column(String(200), nullable=False)
+    tel = Column(String(12), nullable=True)
 
     def __init__(self, **kwargs):
-        args = ('group_id','group','brand_id','brand','stores_id','stores','name','user_name','password')
+        args = ('group_id','group','brand_id','brand','stores_id','stores','name','tel','user_name','password')
         self.init_value(args, kwargs)
+
+
+    def update(self, **kwargs):
+        args = ('group_id','group','brand_id','brand','stores_id','stores','name','tel','user_name','password')
+        self.update_value(args, kwargs)
