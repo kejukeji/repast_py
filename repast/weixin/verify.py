@@ -32,6 +32,22 @@ def weixin():
             return response_text(xml_recv, web_chat)
         if MsgType == 'voice':
             return response_voice(xml_recv, web_chat)
+        if MsgType == 'location':
+            return response_location(xml_recv, web_chat)
+
+
+def response_location(xml_recv, web_chat):
+    '''用户手动发送地理位置'''
+    FromUserName = xml_recv.find('FromUserName').text
+    ToUserName = xml_recv.find('ToUserName').text
+    latitude = xml_recv.find('Location_X').text
+    longitude = xml_recv.find('Location_Y').text
+    lable = xml_recv.find('Label').text
+    Content = str(lable)
+    reply_dict = response_event_message(FromUserName, ToUserName, Content)
+    return response(web_chat,reply_dict, 'text')
+
+
 
 def response_voice(xml_receive, web_chat):
     '''对于用户语音进行处理'''
