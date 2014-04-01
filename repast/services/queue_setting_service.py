@@ -122,12 +122,12 @@ def do_queue_format(table_type_id):
     queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
     queue_q, queue_count = get_queue_by_table_type_id(table_type_id)
     if queue:
-        message = '您已在队列中，当前号码为%s\n前面还有%s位' %(queue.now_queue_number, queue_count) # 如果存在队列中，提示
+        message = '您已在队列中，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count) # 如果存在队列中，提示
         queue.message = message
         return queue
     else:
         queue = create_queue(user_id, stores_id, table_type_id)
-        message = '排队成功，当前号码为%s\n前面还有%s位' %(queue.now_queue_number, queue_count)
+        message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
         queue.message = message
         return queue
 

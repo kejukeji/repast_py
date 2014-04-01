@@ -76,8 +76,13 @@ def do_queue():
     '''排队'''
     table_type_id = request.args.get('table_type_id') # 得到前端用户选择桌型
     queue = do_queue_format(table_type_id)
+    stores_id = queue.stores_id
+    temp = get_queue_by_stores_id(stores_id)
+    stores = get_stores_by_id(stores_id)
     return render_template('reception/reservation.html',
-                           queue=queue)
+                           message=queue.message,
+                           temp=temp,
+                           stores=stores)
 
 def to_search():
     return render_template('reception/search.html')
