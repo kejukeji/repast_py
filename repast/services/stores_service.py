@@ -144,18 +144,40 @@ def get_store_by_search_count(case):
     return stores_count
 
 def get_store_by_position(province_id,city_id,county_id):
-    stores_count = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).count()
-    if stores_count ==1:
-        stores  = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).first()
-    elif stores_count >1:
-        stores = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).all()
+    if city_id==0 and county_id==0:
+        stores_count = Stores.query.filter(Stores.province_id ==province_id).count()
+        if stores_count ==1:
+            stores = Stores.query.filter(Stores.province_id == province_id).first()
+        elif stores_count >1:
+            stores = Stores.query.filter(Stores.province_id==province_id).all()
+        else:
+            stores = None
+    elif city_id!=0 and county_id==0:
+        stores_count = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id)).count()
+        if stores_count ==1:
+            stores = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id)).first()
+        elif stores_count >1:
+            stores = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id)).all()
+        else:
+            stores = None
     else:
-        stores =None
+        stores_count = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).count()
+        if stores_count ==1:
+            stores  = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).first()
+        elif stores_count >1:
+            stores = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).all()
+        else:
+            stores =None
     return stores
 
 def get_store_by_position_count(province_id,city_id,county_id):
-    return Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).count()
-
+    if city_id==0 and county_id==0:
+        stores_count = Stores.query.filter(Stores.province_id ==province_id).count()
+    elif city_id!=0 and county_id==0:
+        stores_count = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id)).count()
+    else:
+        stores_count = Stores.query.filter(and_(Stores.province_id==province_id,Stores.city_id==city_id,Stores.county_id==county_id)).count()
+    return stores_count
 
 def get_stores_by_id(stores_id):
     stores = Stores.query.filter(Stores.id == stores_id).first()
