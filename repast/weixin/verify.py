@@ -67,10 +67,8 @@ def response_event(xml_recv, web_chat):
     reply_dict = response_event_message(FromUserName, ToUserName, '感谢关注！')
     if (Event == 'CLICK' and EventKey == 'home'):
         reply_dict = event_click(FromUserName, ToUserName, user)
-        return response(web_chat, reply_dict, 'news')
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey, user)
-        return response(web_chat, reply_dict, 'news')
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey, user)
     if (Event == 'LOCATION'):
@@ -83,7 +81,7 @@ def event_location(user_service, xml_recv, FromUserName, ToUserName):
     longitude = xml_recv.find("Longitude").text
     latitude =xml_recv.find("Latitude").text
     user_service.get_location_and_save(FromUserName, longitude, latitude)
-    Content = str(longitude)
+    Content = "longitude" + str(longitude)
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return reply_dict
 
