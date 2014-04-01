@@ -5,6 +5,7 @@ from flask import request, render_template, redirect, url_for
 from repast.services.queue_setting_service import *
 from repast.services.stores_service import get_stores_by_id
 from repast.services.shop_assistant import *
+from repast.services.user_service import *
 from repast.util.session_common import *
 
 
@@ -87,7 +88,18 @@ def do_queue():
                            stores=stores)
 
 def to_search():
-    return render_template('reception/search.html')
+    user_id = get_session_user()
+    if user_id:
+        latitude = get_user_by_id(user_id).latitude
+        longitude = get_user_by_id(user_id).longitude
+        if latitude and longitude:
+            return render_template('reception/search.html',
+                                   latitude=latitude,
+                                   longitude=longitude)
+        else:
+            return render_template('reception/search_copy.html')
+    else:
+        return render_template('reception/search_copy.html')
 
 def to_search_result():
     return render_template('reception/search_result.html')
