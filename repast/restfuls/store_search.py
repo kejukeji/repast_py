@@ -75,21 +75,20 @@ class PositonStoreXY(restful.Resource):
         stores = get_store_by_position(province,city,county)
         dicts = {}
         dicts['stores'] = []
+
         if type(stores) is list:
-            for s in stores:
-                lat = s.latitude
-                lng = s.langitude
-                d = get_distance(latitude,longitude,lat,lng)
-                s.distance = d
-                sorteds = lambda stores: d
-                store = sorted(d,key=sorteds)
-                stores_pic = flatten(store)
+            sorteds = lambda stores: get_distance(latitude,longitude,stores.latitude,stores.longitude)
+            store = sorted(stores,key=sorteds)
+
+            for s in store:
+                s.distance =  str(get_distance(latitude,longitude,s.latitude,s.longitude))[:6]
+                stores_pic = flatten(s)
                 dicts['stores'].append(stores_pic)
         else:
             if stores:
                 lat = stores.latitude
                 lng = stores.longitude
-                d = get_distance(latitude,longitude,lat,lng)
+                d = str(get_distance(latitude,longitude,lat,lng))[:6]
                 stores.distance = d
                 stores_pic = flatten(stores)
                 dicts['stores'].append(stores_pic)
