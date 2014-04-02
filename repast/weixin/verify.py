@@ -94,6 +94,9 @@ def response_event(xml_recv, web_chat):
     if (Event == 'CLICK' and EventKey == 'schedule'):
         reply_dict = event_schedule(FromUserName, ToUserName, user)
         return response(web_chat, reply_dict, 'text')
+    if (Event == 'CLICK' and EventKey == 'my'):
+        reply_dict = event_schedule(FromUserName,ToUserName, user)
+        return response(web_chat, reply_dict, 'news')
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey, user)
         return response(web_chat, reply_dict, "news")
@@ -106,6 +109,41 @@ def response_event(xml_recv, web_chat):
         reply_dict = event_location(user_service, longitude, latitude, FromUserName, ToUserName)
         return response(web_chat, reply_dict, 'text')
     return response(web_chat, reply_dict, "text")
+
+
+def event_my(FromUserName, ToUserName, user):
+    '''我的排队，我的订单，我的账单，我的优惠'''
+    reply_dict = {
+            "ToUserName": FromUserName,
+            "FromUserName": ToUserName,
+            "ArticleCount": 4,
+            "Articles" : [{
+                "item": [{
+                    "Title": '微餐饮1',
+                    "Description": '微生活 | 微一切',
+                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                },{
+                    "Title": '微餐饮2',
+                    "Description": '微生活 | 微一切',
+                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                },{
+                   "Title": '微餐饮3',
+                    "Description": '微生活 | 微一切',
+                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                },{
+                    "Title": '微餐饮4',
+                    "Description": '微生活 | 微一切',
+                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                }]
+            }]
+    }
+    return reply_dict
+
+
 
 def event_schedule(FromUserName, ToUserName, user):
     '''进度'''
