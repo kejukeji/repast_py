@@ -117,28 +117,26 @@ def event_my(FromUserName, ToUserName, user):
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
             "ArticleCount": 4,
-            "Articles" : [{
-                "item": [{
-                    "Title": '微餐饮1',
-                    "Description": '微生活 | 微一切',
-                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
-                },{
-                    "Title": '微餐饮2',
-                    "Description": '微生活 | 微一切',
-                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
-                },{
-                   "Title": '微餐饮3',
-                    "Description": '微生活 | 微一切',
-                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
-                },{
-                    "Title": '微餐饮4',
-                    "Description": '微生活 | 微一切',
-                    "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                    "Url": '%s/home_page/%s' %(BASE_URL, user.id)
-                }]
+            "item": [{
+                "Title": '微餐饮1',
+                "Description": '微生活 | 微一切',
+                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+            },{
+                "Title": '微餐饮2',
+                "Description": '微生活 | 微一切',
+                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+            },{
+               "Title": '微餐饮3',
+                "Description": '微生活 | 微一切',
+                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+            },{
+                "Title": '微餐饮4',
+                "Description": '微生活 | 微一切',
+                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             }]
     }
     return reply_dict
