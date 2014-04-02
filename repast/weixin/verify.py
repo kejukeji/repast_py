@@ -9,6 +9,7 @@ from ..setting.server import BASE_URL
 from repast.util.session_common import *
 from repast.services.user_service import *
 from repast.services.stores_service import get_stores_by_id
+from repast.services.queue_setting_service import get_schedule_by_user_id
 
 import datetime
 
@@ -90,6 +91,9 @@ def response_event(xml_recv, web_chat):
     if (Event == 'CLICK' and EventKey == 'home'):
         reply_dict = event_click(FromUserName, ToUserName, user)
         return response(web_chat, reply_dict, "news")
+    if (Event == 'CLICK' and EventKey == 'schedule'):
+        reply_dict = event_schedule(FromUserName, ToUserName, user)
+        return response(web_chat, reply_dict, 'text')
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey, user)
         return response(web_chat, reply_dict, "news")
@@ -102,6 +106,14 @@ def response_event(xml_recv, web_chat):
         reply_dict = event_location(user_service, longitude, latitude, FromUserName, ToUserName)
         return response(web_chat, reply_dict, 'text')
     return response(web_chat, reply_dict, "text")
+
+def event_schedule(FromUserName, ToUserName, user):
+    '''进度'''
+    schedule = get_schedule_by_user_id(user.id)
+    Content = '您的排队号数为%s号,前面有%s位等候者,请您耐心等候.' %(schedule.id, schedule.schedule_count)
+    reply_dict = response_event_message(FromUserName, ToUserName, Content)
+    return reply_dict
+
 
 def event_location(user_service, longitude, latitude, FromUserName, ToUserName):
     '''响应获取地理位置'''
