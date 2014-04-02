@@ -95,7 +95,7 @@ def response_event(xml_recv, web_chat):
         reply_dict = event_schedule(FromUserName, ToUserName, user)
         return response(web_chat, reply_dict, 'text')
     if (Event == 'CLICK' and EventKey == 'my'):
-        reply_dict = event_schedule(FromUserName,ToUserName, user)
+        reply_dict = event_my(FromUserName,ToUserName, user)
         return response(web_chat, reply_dict, 'news')
     if (Event == 'subscribe'):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey, user)
