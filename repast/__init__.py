@@ -14,6 +14,8 @@ from .ex_var import CONFIG_FILE
 app = Flask(__name__)
 # 加载配置文件
 app.config.from_pyfile(CONFIG_FILE)
+#app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT^&556gh/ghj~hj/kh'
+#app.session_cookie_name = 'session'
 
 
 # 关闭数据库

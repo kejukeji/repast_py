@@ -1,6 +1,6 @@
 # coding: UTF-8
-from flask import session
-
+from flask import Session, sessions
+session = Session()
 
 def get_session_user():
     if session.has_key('user') and session['user']:
@@ -14,10 +14,11 @@ def get_session_shop_user():
         return session['shop_user']
     return None
 
-def set_session_user(key_name, value_name, key_id, value_id):
+def set_session_user(value_name):
     """
        登陆成功保存到session当中
     """
-    session[str(key_name)] = value_name
-    session[str(key_id)] = value_id
+    session['user'] = value_name
 
+def set_session_shop_user(value_name):
+    session['shop_user'] = value_name

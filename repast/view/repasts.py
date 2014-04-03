@@ -22,7 +22,7 @@ def to_repast_by_stores_id(stores_id):
 
 def to_call_number(shop_assistant_id):
     '''员工登录成功后返回叫号页面'''
-    set_session_user('shop_assistant_id', shop_assistant_id,'shop','')
+    set_session_shop_user(shop_assistant_id)
     stores_id = get_stores_id_by_shop_assistant_id(shop_assistant_id)
     stores_queue_info = get_now_queue_number_and_number_wait_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
@@ -40,9 +40,9 @@ def to_home():
     return render_template('reception/home.html')
 
 def to_home_page(user_id):
-    set_session_user('user', user_id, 't','')
+    set_session_user(user_id)
     return render_template('reception/home_page.html',
-                           nick_name=user_id)
+                           user_id=user_id)
 
 def to_login():
     return render_template('reception/login.html')
@@ -62,7 +62,7 @@ def to_order_dishes():
     return render_template('reception/order_dishes.html')
 
 def to_my_queue(user_id):
-    set_session_user('user', user_id, 'key', '')
+    set_session_user(user_id)
     user_schedule = get_schedule_by_user_id(user_id)
     stores = get_stores_by_id(user_schedule.stores_id)
     return render_template('reception/queue.html',
@@ -71,7 +71,7 @@ def to_my_queue(user_id):
 
 def to_queue(stores_id):
     user_id = request.args.get('user_id')
-    set_session_user('user', user_id, 't','')
+    get_session_user()
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     return render_template('reception/reservation.html',
