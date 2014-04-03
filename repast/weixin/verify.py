@@ -147,7 +147,7 @@ def event_schedule(FromUserName, ToUserName, user):
     '''进度'''
     schedule = get_schedule_by_user_id(user.id)
     if schedule:
-        Content = '您的排队号数为%s号,前面有%s位等候者,请您耐心等候.' %(schedule.id, schedule.schedule_count)
+        Content = '您的排队号数为%s号,前面有%s位等候者,请您耐心等候.' %(schedule.now_queue_number, schedule.schedule_count)
     else:
         Content = '您还没任何排队信息！'
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
