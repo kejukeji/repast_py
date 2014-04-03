@@ -120,22 +120,22 @@ def event_my(FromUserName, ToUserName, user):
             "item": [{
                 "Title": '我的排队',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/queue.jpg',
+                "PicUrl": BASE_URL + '/static/images/stores/queue.jpg',
                 "Url": '%s/my_queue/%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的预定',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/Customized.jpg',
+                "PicUrl": BASE_URL + '/static/images/stores/Customized.jpg',
                 "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             },{
                "Title": '我的优惠',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/preferential.png',
+                "PicUrl": BASE_URL + '/static/images/stores/preferential.png',
                 "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的账单',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/bill.jpg',
+                "PicUrl": BASE_URL + '/static/images/stores/bill.jpg',
                 "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             }]
     }
