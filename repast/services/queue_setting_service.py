@@ -10,6 +10,7 @@ from .common_service import *
 from repast.util.ex_time import *
 from repast.models.database import db
 from .stores_service import get_stores_by_id
+from .queue_service import get_queue_by_id
 
 
 class QueueService():
@@ -63,8 +64,12 @@ class QueueService():
 def check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id):
     '''根据user_id,stores_id判断是否已经存在'''
     args_time = get_date_time_str()
-    queue = Queue.query.filter(Queue.user_id == user_id, Queue.stores_id == stores_id, Queue.queue_setting_id == table_type_id, Queue.queue_time.like(args_time)).first()
+    queue = Queue.query.filter(Queue.user_id == user_id, Queue.stores_id == stores_id, Queue.queue_time.like(args_time)).first()
     if queue:
+        table_type = QueueSetting.query.filter(QueueSetting.id == queue.queue_setting_id).first()
+        queue.table_type = ''
+        if table_type:
+            queue.table_type = table_type.type
         return queue
     return None
 
@@ -120,7 +125,7 @@ def do_queue_format(table_type_id, request, user_id):
     queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
     queue_q, queue_count = get_queue_by_table_type_id(table_type_id)
     if queue:
-        message = '您已在队列中，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count) # 如果存在队列中，提示
+        message = '您已在队列中，当前桌型为%s,号码为%s,前面还有%s位' %(queue.table_type,queue.now_queue_number, queue_count) # 如果存在队列中，提示
         queue.message = message
         return queue
     else:
@@ -227,7 +232,16 @@ def get_schedule_by_user_id(user_id):
     if get_stores:
         schedule_count = Queue.query.filter(Queue.queue_time.like(args_time), Queue.status == 1,Queue.user_id != user_id, Queue.stores_id == get_stores.stores_id).count()
         get_stores.schedule_count = schedule_count
+        get_stores.table_type = get_table_type(get_stores.queue_setting_id)
         return get_stores
+    return None
+
+def get_table_type(table_type_id):
+    table_type = get_queue_by_id(table_type_id)
+    if table_type:
+        return table_type.type
+    return ''
+
 
 
 def create_new_queue(model):

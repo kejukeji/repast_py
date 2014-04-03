@@ -118,24 +118,24 @@ def event_my(FromUserName, ToUserName, user):
             "FromUserName": ToUserName,
             "ArticleCount": 4,
             "item": [{
-                "Title": '微餐饮1',
+                "Title": '我的排队',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "PicUrl": BASE_URL + '/static/images/queue.jpg',
+                "Url": '%s/my_queue/%s' %(BASE_URL, user.id)
+            },{
+                "Title": '我的预定',
+                "Description": '微生活 | 微一切',
+                "PicUrl": BASE_URL + '/static/images/Customized.jpg',
                 "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             },{
-                "Title": '微餐饮2',
+               "Title": '我的优惠',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "PicUrl": BASE_URL + '/static/images/preferential.png',
                 "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             },{
-               "Title": '微餐饮3',
+                "Title": '我的账单',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
-            },{
-                "Title": '微餐饮4',
-                "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "PicUrl": BASE_URL + '/static/images/bill.jpg',
                 "Url": '%s/home_page/%s' %(BASE_URL, user.id)
             }]
     }
@@ -146,7 +146,10 @@ def event_my(FromUserName, ToUserName, user):
 def event_schedule(FromUserName, ToUserName, user):
     '''进度'''
     schedule = get_schedule_by_user_id(user.id)
-    Content = '您的排队号数为%s号,前面有%s位等候者,请您耐心等候.' %(schedule.id, schedule.schedule_count)
+    if schedule:
+        Content = '您的排队号数为%s号,前面有%s位等候者,请您耐心等候.' %(schedule.id, schedule.schedule_count)
+    else:
+        Content = '您还没任何排队信息！'
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return reply_dict
 

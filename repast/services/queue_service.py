@@ -15,3 +15,9 @@ def find_queue_by_store_id(store_id):
     else:
         restaurant = ''
     return restaurant
+
+def get_queue_by_id(queue_id):
+    '''根据id得到桌型'''
+    table_type = QueueSetting.query.filter(Queue.id == queue_id).first()
+    return table_type
+

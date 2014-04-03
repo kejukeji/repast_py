@@ -61,8 +61,13 @@ def to_my_page():
 def to_order_dishes():
     return render_template('reception/order_dishes.html')
 
-def to_my_queue():
-    return render_template('reception/queue.html')
+def to_my_queue(user_id):
+    set_session_user('user', user_id, 'key', '')
+    user_schedule = get_schedule_by_user_id(user_id)
+    stores = get_stores_by_id(user_schedule.stores_id)
+    return render_template('reception/queue.html',
+                           schedule=user_schedule,
+                           stores=stores)
 
 def to_queue(stores_id):
     user_id = request.args.get('user_id')

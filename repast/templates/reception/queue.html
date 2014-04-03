@@ -17,16 +17,15 @@
 <body style="background:#EFF2F5; font-family:'微软雅黑' !important;">
 
 <div class="top" style="margin-bottom:0;">
-<h3>上海泰妃阁美食餐厅</h3>
+<h3>{{ stores.name }}</h3>
 </div>
 
 <div class="diancai">
 <ul>
-<li style="background:#E9E9E9;">餐桌类型：<span style="color:#09F;">2人桌</span> </li>
-<li >排队号：<span style="color:#09F;">18号</span></li>
-<li style="background:#E9E9E9;">桌号：<span style="color:#09F;">8号</span></li>
+<li style="background:#E9E9E9;">餐桌类型：<span style="color:#09F;">{{ schedule.table_type }}</span> </li>
+<li >排队号：<span style="color:#09F;">{{ schedule.now_queue_number }}号</span></li>
 <li >预计<span style="color:#09F;">20分钟</span></li>
-<li style="background:#E9E9E9;">地址：上海黄浦区人民广场</li>
+<li style="background:#E9E9E9;">地址：{{ stores.address }}</li>
 <br /><br /><br />
 <li style="padding:0;">  
 <button type="button"  class="dian2" style="margin-left:4%;" >去点菜</button>
