@@ -27,6 +27,7 @@ class StoresView(ModelView):
 
     create_template = 'admin_page/stores_create.html'
     edit_template = 'admin_page/stores_edit.html'
+    list_template = 'admin_page/stores_list.html'
 
     column_labels = dict(
         name = u'餐厅名',

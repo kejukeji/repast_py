@@ -27,6 +27,7 @@ class BrandView(ModelView):
 
     create_template = 'admin_page/brand_create.html'
     edit_template = 'admin_page/brand_edit.html'
+    list_template = 'admin_page/brand_list.html'
 
     column_labels = dict(
         name = u'品牌名',

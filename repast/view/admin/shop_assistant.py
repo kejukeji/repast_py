@@ -22,6 +22,7 @@ class ShopAssistantView(ModelView):
 
     create_template = 'admin_page/shop_assistant_create.html'
     edit_template = 'admin_page/shop_assistant_edit.html'
+    list_template = 'admin_page/shop_assistant_list.html'
 
     column_labels = dict(
         group_id = u'集团',

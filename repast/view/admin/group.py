@@ -47,6 +47,7 @@ class GroupView(ModelView):
 
     create_template = 'admin_page/group_create.html'
     edit_template = 'admin_page/group_edit.html'
+    list_template = 'admin_page/group_list.html'
     # 新增修改，描述为文本域
     form_overrides = dict(
         description = TextAreaField

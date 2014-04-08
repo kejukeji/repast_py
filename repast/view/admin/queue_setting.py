@@ -19,6 +19,7 @@ class QueueSettingView(ModelView):
 
     create_template = 'admin_page/queue_setting_create.html'
     edit_template = 'admin_page/queue_setting_edit.html'
+    list_template = 'admin_page/queue_setting_list.html'
 
 
     column_labels = dict(
