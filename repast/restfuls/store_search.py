@@ -90,18 +90,22 @@ class PositonStoreXY(restful.Resource):
                 store_info = find_info_by_storeId(s.id)
                 s.rel_path = store_info.rel_path
                 s.picture_name = store_info.picture_name
-                s.distance =  str(get_distance(latitude,longitude,s.latitude,s.longitude))[:6]
-                stores_pic = flatten(s)
-                dicts['stores'].append(stores_pic)
+                distance = get_distance(latitude,longitude,s.latitude,s.longitude)
+                dis = int(distance*1000)
+                s.distance =  dis
+                if dis < 500:
+                    stores_pic = flatten(s)
+                    dicts['stores'].append(stores_pic)
         else:
             if stores:
                 lat = stores.latitude
                 lng = stores.longitude
-                d = str(get_distance(latitude,longitude,lat,lng))[:6]
+                d = get_distance(latitude,longitude,lat,lng)
+                dis = int(d*1000)
                 store_info = find_info_by_storeId(stores.id)
                 stores.rel_path = store_info.rel_path
                 stores.picture_name = store_info.picture_name
-                stores.distance = d
+                stores.distance = dis
                 stores_pic = flatten(stores)
                 dicts['stores'].append(stores_pic)
         print(dicts)
