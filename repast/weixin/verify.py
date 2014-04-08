@@ -44,12 +44,12 @@ def response_location(xml_recv, web_chat):
     ToUserName = xml_recv.find('ToUserName').text
     latitude = xml_recv.find('Location_X').text
     longitude = xml_recv.find('Location_Y').text
-    lable = xml_recv.find('Label').text
-    Content = str(lable)
+    label = xml_recv.find('Label').text
+    Content = str(label)
     user_service = UserService() #
     dictionary = web_chat.get_user_info(FromUserName)
     user = user_service.check_user_by_openid(FromUserName, dictionary['nickname'], dictionary['img_url'])
-    user_service.get_location_and_save(FromUserName, longitude, latitude)
+    user_service.get_location_and_save(FromUserName, longitude, latitude, label)
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return response(web_chat,reply_dict, 'text')
 

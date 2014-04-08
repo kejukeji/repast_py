@@ -28,7 +28,7 @@ class User(Base, InitUpdate):
         self.init_value(args, kwargs)
 
     def update(self, **kwargs):
-        args = ('longitude','latitude')
+        args = ('longitude','latitude', 'description')
         self.update_value(args,kwargs)
 
 
