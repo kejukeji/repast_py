@@ -82,41 +82,40 @@ $(function () {
             url: '/restful/positionStoreXY?province=' + province + '&city=' + city + '&county=' + county + '&latitude=' + latitude + '&longitude=' + longitude,
             dataType: 'json',
             success: function (data) {
-                alert(data);
-                if(data!=null && data!=''){
                 $('#result').empty();
                     $.each(data.stores, function (idx, item) {
-                        $('#result').append(
-                                '<div id="bg">' +
-                                        '<div class="xinxi">' +
-                                        '<ul style="width:98%; margin:auto; padding-top:5px;">' +
-                                        '<li class="fl"><img src="' + item.rel_path + '/' + item.picture_name + '" width="100px" height="100px"/></li>' +
-                                        '<li class="fl" style="padding-left:5px; width:63%;">' +
-                                        '<ul class="right">' +
-                                        '<li><a href="###" class="name">' + item.name + '</a></li>' +
-                                        '<li style="font-size:12px; font-family:"黑体"; color:#999;">地点：' + item.address + '</li>' +
-                                        '<li class="dizhi">' + item.distance + '米</li>' +
-                                        '</ul>' +
+                        if(item.id == null || item.id == ''){
+                                                $('#result').append('<div id="bg">没有找到相应的餐厅，您可以<a href="/to_search_position">通过地区选择</a>！</div>');
+                        }
+                        else{
+                            $('#result').append(
+                                    '<div id="bg">' +
+                                            '<div class="xinxi">' +
+                                            '<ul style="width:98%; margin:auto; padding-top:5px;">' +
+                                            '<li class="fl"><img src="' + item.rel_path + '/' + item.picture_name + '" width="100px" height="100px"/></li>' +
+                                            '<li class="fl" style="padding-left:5px; width:63%;">' +
+                                            '<ul class="right">' +
+                                            '<li><a href="###" class="name">' + item.name + '</a></li>' +
+                                            '<li style="font-size:12px; font-family:"黑体"; color:#999;">地点：' + item.address + '</li>' +
+                                            '<li class="dizhi">' + item.distance + '米</li>' +
+                                            '</ul>' +
 
-                                        '</li>' +
-                                        '</ul>' +
+                                            '</li>' +
+                                            '</ul>' +
 
-                                        '</div>' +
-                                        '<div class="clear"></div>' +
-                                        '<div class="text">' +
-                                        '<p><a href="#">' + item.description + '</a></p>' +
-                                        '</div>' +
-                                        '<div class="button">' +
-                                        '<a href="/queue/' + item.id + '"  type="button" class="btn btn-primary btn-lg btn-block">去排队</a>' +
-                                        '<div class="img"></div>' +
-                                        '</div>' +
-                                        '</div>');
+                                            '</div>' +
+                                            '<div class="clear"></div>' +
+                                            '<div class="text">' +
+                                            '<p><a href="#">' + item.description + '</a></p>' +
+                                            '</div>' +
+                                            '<div class="button">' +
+                                            '<a href="/queue/' + item.id + '"  type="button" class="btn btn-primary btn-lg btn-block">去排队</a>' +
+                                            '<div class="img"></div>' +
+                                            '</div>' +
+                                            '</div>');
+                        }
+
                     });
-                }
-                else{
-                    alert(111);
-                    $('#result').append('<div id="bg">没有找到相应的餐厅，您可以<a href="/to_search_position">通过地区选择</a>！</div>');
-                }
             }
         });
 
