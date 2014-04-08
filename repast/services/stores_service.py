@@ -187,3 +187,7 @@ def get_stores_by_id(stores_id):
         if stores_info:
             stores.image_url = stores_info.rel_path + '/' +stores_info.picture_name
     return stores
+
+def find_info_by_storeId(store_id):
+    store_info = StoresInfo.query.filter(StoresInfo.stores_id == store_id).first()
+    return store_info

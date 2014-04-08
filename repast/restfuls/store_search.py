@@ -47,10 +47,16 @@ class PositonStore(restful.Resource):
         dicts['stores'] = []
         if type(stores) is list:
             for s in stores:
+                store_info = find_info_by_storeId(s.id)
+                s.rel_path = store_info.rel_path
+                s.picture_name = store_info.picture_name
                 stores_pic = flatten(s)
                 dicts['stores'].append(stores_pic)
         else:
             if stores:
+                store_info = find_info_by_storeId(stores.id)
+                stores.rel_path = store_info.rel_path
+                stores.picture_name = store_info.picture_name
                 stores_pic = flatten(stores)
                 dicts['stores'].append(stores_pic)
         print(dicts)
@@ -81,6 +87,9 @@ class PositonStoreXY(restful.Resource):
             store = sorted(stores,key=sorteds)
 
             for s in store:
+                store_info = find_info_by_storeId(s.id)
+                s.rel_path = store_info.rel_path
+                s.picture_name = store_info.picture_name
                 s.distance =  str(get_distance(latitude,longitude,s.latitude,s.longitude))[:6]
                 stores_pic = flatten(s)
                 dicts['stores'].append(stores_pic)
@@ -89,6 +98,9 @@ class PositonStoreXY(restful.Resource):
                 lat = stores.latitude
                 lng = stores.longitude
                 d = str(get_distance(latitude,longitude,lat,lng))[:6]
+                store_info = find_info_by_storeId(stores.id)
+                stores.rel_path = store_info.rel_path
+                stores.picture_name = store_info.picture_name
                 stores.distance = d
                 stores_pic = flatten(stores)
                 dicts['stores'].append(stores_pic)
