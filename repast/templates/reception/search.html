@@ -82,9 +82,7 @@ $(function () {
             url: '/restful/positionStoreXY?province=' + province + '&city=' + city + '&county=' + county + '&latitude=' + latitude + '&longitude=' + longitude,
             dataType: 'json',
             success: function (data) {
-                alert(111);
                 if(data!=null && data!=''){
-                    alert(222);
                 $('#result').empty();
                     $.each(data.stores, function (idx, item) {
                         $('#result').append(
@@ -113,6 +111,9 @@ $(function () {
                                         '</div>' +
                                         '</div>');
                     });
+                }
+                else{
+                    $('#result').append('<div id="bg">没有找到相应的餐厅，您可以<a href="/to_search_position">通过地区选择</a>！</div>');
                 }
             }
         });
