@@ -39,7 +39,6 @@ $(function () {
             url: '/restful/searchStore?keyword=' + str,
             dataType: 'json',
             success: function (data) {
-                alert(data);
                 var j = data;
                 $.each(j.stores, function (idx, item) {
                     $('#result').append(
@@ -85,7 +84,6 @@ $(function () {
             success: function (data) {
                 var j = data;
                 $('#result').empty();
-                if (j != null) {
                     $.each(j.stores, function (idx, item) {
                         $('#result').append(
                                 '<div id="bg">' +
@@ -113,10 +111,7 @@ $(function () {
                                         '</div>' +
                                         '</div>');
                     });
-                }
-                else {
-                    $('#result').append('<div id="bg">' + '"没有找到相关的餐厅，"' + '<a href="/to_search_position">' + '"请点击这里具体查询！"' + '</a></div>');
-                }
+
             }
         });
 
@@ -274,7 +269,7 @@ $(function () {
 </div>
 
 <div id="result">
-
+没有找到相应的餐厅，您可以</a href="/to_search_position">通过地区选择</a>！
 </div>
 
 <!--搜索框结果-->
