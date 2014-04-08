@@ -82,9 +82,7 @@ $(function () {
             url: '/restful/positionStoreXY?province=' + province + '&city=' + city + '&county=' + county + '&latitude=' + latitude + '&longitude=' + longitude,
             dataType: 'json',
             success: function (data) {
-                alert(111);
-                if(data!=null && data!=''){
-                    alert(222);
+
                 $('#result').empty();
                     $.each(data.stores, function (idx, item) {
                         $('#result').append(
@@ -113,7 +111,7 @@ $(function () {
                                         '</div>' +
                                         '</div>');
                     });
-                }
+
             }
         });
 
