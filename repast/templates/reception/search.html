@@ -84,7 +84,7 @@ $(function () {
             success: function (data) {
                 $('#result').empty();
                     $.each(data.stores, function (idx, item) {
-                        if(item.id == null || item.id == ''){
+                        if(item.id == null && item.id == ''){
                                                 $('#result').append('<div id="bg">没有找到相应的餐厅，您可以<a href="/to_search_position">通过地区选择</a>！</div>');
                         }
                         else{
