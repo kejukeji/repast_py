@@ -106,5 +106,8 @@ def to_search():
     else:
         return render_template('reception/search_copy.html')
 
+def to_search_position():
+    return render_template('reception/search_copy.html')
+
 def to_search_result():
     return render_template('reception/search_result.html')
