@@ -83,7 +83,7 @@ $(function () {
             dataType: 'json',
             success: function (data) {
                 var j = data;
-                if(data==null || data==''){
+                if(data!=null || data!=''){
                 $('#result').empty();
                     $.each(j.stores, function (idx, item) {
                         $('#result').append(
