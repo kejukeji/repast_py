@@ -39,6 +39,7 @@ $(function () {
             url: '/restful/searchStore?keyword=' + str,
             dataType: 'json',
             success: function (data) {
+                alert(data);
                 var j = data;
                 $.each(j.stores, function (idx, item) {
                     $('#result').append(
