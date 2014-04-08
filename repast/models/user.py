@@ -21,6 +21,7 @@ class User(Base, InitUpdate):
     picture_url = Column(String(500), nullable=True)
     longitude = Column(DOUBLE, nullable=True)
     latitude = Column(DOUBLE, nullable=True)
+    description = Column(String(200), nullable=True)
 
     def __init__(self, **kwargs):
         args = ('nick_name','openid','picture_url')
