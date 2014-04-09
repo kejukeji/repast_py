@@ -106,7 +106,8 @@ class PositonStoreXY(restful.Resource):
                 stores.rel_path = store_info.rel_path
                 stores.picture_name = store_info.picture_name
                 stores.distance = dis
-                stores_pic = flatten(stores)
-                dicts['stores'].append(stores_pic)
+                if dis < 100:
+                    stores_pic = flatten(stores)
+                    dicts['stores'].append(stores_pic)
         print(dicts)
         return  dicts
