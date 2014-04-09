@@ -97,10 +97,12 @@ def to_search():
     if user_id:
         latitude = get_user_by_id(user_id).latitude
         longitude = get_user_by_id(user_id).longitude
+        description = get_user_by_id(user_id).description
         if latitude and longitude:
             return render_template('reception/search.html',
                                    latitude=latitude,
-                                   longitude=longitude)
+                                   longitude=longitude,
+                                   description=description)
         else:
             return render_template('reception/search_copy.html')
     else:
