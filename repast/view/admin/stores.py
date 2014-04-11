@@ -9,12 +9,17 @@ from flask.ext import login
 from wtforms.fields import TextAreaField, FileField
 from repast.models.stores import Stores
 from repast.services.stores_service import StoresService
+from repast.services.stores_admin_service import StoresAdminService
 from repast.util.others import form_to_dict
 
 log = logging.getLogger("flask-admin.sqla")
 
 class StoresView(ModelView):
     '''品牌'''
+    ARGS = ('name','address', 'description','longitude','latitude','brand_id','manager',
+        'tel','group_id','province_id','city_id','county_id','stars')
+    SPECIAL_ARGS = ('brand','group')
+    stores_admin_service = StoresAdminService()
     page_size = 20 # 每页条数
     column_display_pk = True # 显示外键
     can_create = True # 能否创建
@@ -84,25 +89,11 @@ class StoresView(ModelView):
 
     def create_model(self, form):
         '''添加集团'''
-        #try:
-        #    form_dict = form_to_dict(form)
-        #    group = self._get_brand(form_dict)
-        #    self.session.add(group)
-        #    self.session.commit()
-        #except Exception, ex:
-        #    flash(gettext('Failed to create model. %(error)s', error=str(ex)), 'error')
-        #    logging.exception('Failed to create model')
-        #    self.session.rollback()
-        #    return False
-        #return True
         form_dict = form_to_dict(form)
-        stores_bool = StoresService.insert_stores(self.session, form_dict, request.files)
-        return stores_bool
+        return self.stores_admin_service.create_stores(self.session, form_dict, Stores, self.ARGS, request.files, self.SPECIAL_ARGS)
 
 
     def update_model(self, form, model):
         '''修改餐厅'''
         form_dict = form_to_dict(form)
-        stores_bool = StoresService.update_stores(model, self.session, form_dict, request.files)
-        return stores_bool
-
+        return self.stores_admin_service.update_stores(self.session, form_dict, model, self.ARGS, request.files, self.SPECIAL_ARGS)
