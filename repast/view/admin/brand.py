@@ -1,21 +1,19 @@
 # coding: UTF-8
 import logging
-from flask import flash
 from flask.ext.admin.contrib.sqla import ModelView
-from flask.ext.admin.babel import gettext
 from wtforms.fields import TextField, FileField, TextAreaField
 from repast.util.others import form_to_dict
 from repast.models.brand import Brand
-from repast.services.common_service import GetName
-
-from repast.models.database import db
 from repast.util.others import form_to_dict
-from repast.services.brand_service import BrandService
+from repast.services.brand_admin_service import BrandAdminService
 
 log = logging.getLogger("flask-admin.sqla")
 
 class BrandView(ModelView):
     '''品牌'''
+    ARGS = ('name','description','group_id','manager','tel','email')
+    SPECIAL_ARGS = ('group',)
+    brand_admin_service = BrandAdminService()
     page_size = 20 # 每页条数
     column_display_pk = True # 显示外键
     can_create = True # 能否创建
@@ -64,43 +62,11 @@ class BrandView(ModelView):
 
     def create_model(self, form):
         '''添加集团'''
-        #try:
-        #    form_dict = form_to_dict(form)
-        #    group = self._get_brand(form_dict)
-        #    self.session.add(group)
-        #    self.session.commit()
-        #except Exception, ex:
-        #    flash(gettext('Failed to create model. %(error)s', error=str(ex)), 'error')
-        #    logging.exception('Failed to create model')
-        #    self.session.rollback()
-        #    return False
-        #return True
         form_dict = form_to_dict(form)
-        brand = BrandService.insert_brand(self.session, form_dict)
-        return brand
+        return self.brand_admin_service.create_brand(self.session, form_dict, Brand, self.ARGS, self.SPECIAL_ARGS)
 
 
     def update_model(self, form, model):
         '''添加集团'''
-        try:
-            form_dict = form_to_dict(form)
-            group_name = GetName._get_group(form_dict)
-            form_dict['group'] = group_name
-            model.update(**form_dict)
-            self.session.commit()
-        except Exception, ex:
-            flash(gettext('Failed to update model. %(error)s', error=str(ex)), 'error')
-            logging.exception('Failed to update model')
-            self.session.rollback()
-            return False
-        return True
-
-    def _get_brand(self, form_dict):
-        group_name = GetName._get_group(form_dict)
-        return Brand(name=form_dict['name'],
-                     description=form_dict['description'],
-                     group_id=form_dict['group_id'],
-                     group=group_name,
-                     manager=form_dict['manager'],
-                     tel=form_dict['tel'],
-                     email=form_dict['email'])
+        form_dict = form_to_dict(form)
+        return self.brand_admin_service.update_brand(self.session, form_dict, model, self.ARGS, self.SPECIAL_ARGS)

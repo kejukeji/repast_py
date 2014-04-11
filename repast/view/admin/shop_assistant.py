@@ -5,7 +5,7 @@ from flask.ext.admin.contrib.sqla import ModelView
 from wtforms.fields import PasswordField
 from flask import request
 from repast.models.user import ShopAssistant
-from repast.services.shop_assistant import ShopAssistantService
+from repast.services.shop_assistant_admin_service import ShopAssistantAdmin
 from repast.util.others import form_to_dict
 
 
@@ -13,6 +13,8 @@ log = logging.getLogger('flask-admin.sqla')
 
 class ShopAssistantView(ModelView):
     '''员工管理'''
+    ARGS = ('group_id', 'brand_id', 'stores_id', 'name', 'user_name', 'password', 'tel')
+    SPECIAL_ARGS = ('group', 'brand', 'stores')
     page_size = 20 # 每页条数
     can_create = True # 创建
     can_edit = True # 更新
@@ -67,10 +69,12 @@ class ShopAssistantView(ModelView):
 
     def create_model(self, form):
         form_dict = form_to_dict(form)
-        create_success = ShopAssistantService.create_shop_assistant(self.session, form_dict)
+        shop_assistant_admin = ShopAssistantAdmin()
+        create_success = shop_assistant_admin.create_shop_assistant(self.session, form_dict, ShopAssistant, self.ARGS, self.SPECIAL_ARGS)
         return create_success
 
     def update_model(self, form, model):
         form_dict = form_to_dict(form)
-        update_success = ShopAssistantService.update_shop_assistant(self.session, form_dict, model)
-        return update_success
+        shop_assistant_admin = ShopAssistantAdmin()
+        success = shop_assistant_admin.update_shop_assistant(self.session, form_dict, model, self.ARGS, self.SPECIAL_ARGS)
+        return success

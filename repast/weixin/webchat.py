@@ -118,6 +118,30 @@ class WebChat(object):
         avatar_img_url = json.loads(json_string)['headimgurl']
         return {'nickname': nickname, 'img_url':avatar_img_url}
 
+    def send_message_url(self):
+        '''url路径'''
+        access_token = self.get_access_token()
+        message_url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s" %(access_token)
+        return message_url
+
+    def send_text_message(self, openid, content):
+        body = '{"touser": "%s","msgtype":"text","text":{"content": "%s"}}' %(openid, content)
+        message_url = self.send_message_url()
+        req = urllib2.Request(message_url) # 请求post请求
+        opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
+        response = opener.open(req, body)
+        json_string = response.read() # 得到请求后json string
+        err_message = json.loads(json_string)['errmsg'] # 查看返回json string的error message
+        print json.loads(json_string)['errcode']
+        return err_message
+
+    def transcoding(self, openid):
+        '''转换编码utf-8 > ascii'''
+        openid = openid.decode('utf-8')
+        openid = openid.encode('ascii')
+        return openid
+
+
     @staticmethod
     def reply(msg_type, msg_dict):
         return msg_format(msg_type, msg_dict)

@@ -36,4 +36,6 @@ menu = """
 }
 """
 #webChat.delete_menu()
-webChat.create_menu(menu)
+# webChat.create_menu(menu)
+errmsg = webChat.send_text_message("oFmv0t8vPGGf5b7EKV5XOixs4mBA", "Say Hello")
+print errmsg
