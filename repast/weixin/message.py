@@ -36,7 +36,6 @@ NEWS_TAIL = """
 </xml>
 """
 
-
 def msg_format(msg_type, msg_dict):
     """返回格式化的xml"""
     if msg_type == 'text':  # text
@@ -44,14 +43,12 @@ def msg_format(msg_type, msg_dict):
     if msg_type == 'news':  # text picture
         return msg_news(msg_dict)
 
-
 def msg(msg_dict, xml_string):
     """返回文字消息的xml"""
     msg_dict["CreateTime"] = str(int(time.time()))
     for k in msg_dict:
         xml_string = xml_string.replace('$'+k+'$', str(msg_dict[k]))
     return xml_string
-
 
 def msg_news(msg_dict):
     """返回一个图文消息的xml"""

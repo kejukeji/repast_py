@@ -2,6 +2,7 @@
 from repast.models.group import Group
 from repast.models.brand import Brand
 from repast.models.stores import Stores
+from repast.models.dish import DishSort
 
 class GetName():
     @staticmethod
@@ -28,3 +29,27 @@ class GetName():
         if stores:
             stores_name = stores.name
         return stores_name
+
+    @staticmethod
+    def _get_dish_sort(form_dict):
+        dish_sort_name = ''
+        dish_sort_id_array = form_dict['dish_sort_id']
+        if type(dish_sort_id_array) is list:
+            for item in form_dict['dish_sort_id']:
+                dish_sort = DishSort.query.filter(DishSort.id == item).first()
+                dish_sort_name = dish_sort_name + ',' + dish_sort.name
+        else:
+            dish_sort = DishSort.query.filter(DishSort.id == dish_sort_id_array).first()
+            dish_sort_name = dish_sort.name
+        return dish_sort_name
+
+    @staticmethod
+    def _get_dish_sort_id(form_dict):
+        dish_sort_id = ''
+        dish_sort_id_array = form_dict['dish_sort_id']
+        if type(dish_sort_id_array) is list:
+            for item in form_dict['dish_sort_id']:
+                dish_sort_id = dish_sort_id + ',' + item
+        else:
+            dish_sort_id = dish_sort_id_array
+        return dish_sort_id

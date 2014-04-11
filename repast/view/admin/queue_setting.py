@@ -3,13 +3,16 @@ import logging
 from flask.ext.admin.contrib.sqla import ModelView
 from repast.util.others import form_to_dict
 from repast.models.queue import *
-from repast.services.queue_setting_service import QueueService
+from repast.services.table_type_admin_service import TableTypeService
 
 log = logging.getLogger("flask-admin.sqla")
 
 
 class QueueSettingView(ModelView):
     '''桌型'''
+    ARGS = ('type','number','stores_id', 'group_id','brand_id')
+    SPECIAL_ARGS = ('stores', 'group', 'brand')
+    table_type_service = TableTypeService()
     page_size = 20 # 条数
     can_create = True # 能否创建
     can_edit = True # 能否编辑
@@ -40,7 +43,7 @@ class QueueSettingView(ModelView):
         brand = u'所属品牌',
         stores_id = u'所属餐厅',
         stores = u'所属餐厅',
-        type = u'桌位类型，(如: 2人坐)',
+        type = u'桌位类型，(如: 2人桌)',
         number = u'桌位类型数'
     )
 
@@ -58,9 +61,9 @@ class QueueSettingView(ModelView):
     def create_model(self, form):
         '''覆盖创建model'''
         form_dict = form_to_dict(form)
-        return QueueService.create_queue_setting(self.session, form_dict)
+        return self.table_type_service.create_table_type(self.session, form_dict, QueueSetting, self.ARGS, self.SPECIAL_ARGS)
 
     def update_model(self, form, model):
         '''覆盖更新model'''
         form_dict = form_to_dict(form)
-        return QueueService.update_queue_setting(self.session, form_dict, model)
+        return self.table_type_service.update_table_type(self.session, form_dict, model, self.ARGS, self.SPECIAL_ARGS)

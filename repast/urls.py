@@ -20,6 +20,9 @@ from .view.admin.queue_setting import QueueSettingView
 from .view.admin.admin_login import *
 from .view.admin.shop_assistant import ShopAssistantView
 from .view.repasts import *
+from .view.order_dishes.a_la_carte import ToOrderDishes
+from .view.admin.dish import *
+from .view.admin.package import PackageView
 from restfuls.queue import AjaxCallNumber
 
 # 用户管理路径
@@ -44,6 +47,7 @@ app.add_url_rule('/queue/<int:stores_id>','to_queue', to_queue, methods=('GET','
 app.add_url_rule('/do_queue','do_queue', do_queue, methods=('GET','POST'))
 app.add_url_rule('/search','to_search', to_search, methods=('GET','POST'))
 app.add_url_rule('/search_result','to_search_result', to_search_result, methods=('GET','POST'))
+app.add_url_rule('/text',view_func=ToOrderDishes.as_view('text'))
 
 
 # 接口定义
@@ -57,6 +61,7 @@ api.add_resource(GetStores, '/restful/stores/<int:brand_id>')
 api.add_resource(SearchStore,'/restful/searchStore')
 api.add_resource(PositonStore,'/restful/positionStore')
 api.add_resource(PositonStoreXY,'/restful/positionStoreXY')
+api.add_resource(GetDishSort, '/restful/dish_sort')
 
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 
@@ -70,3 +75,5 @@ admin.add_view(BrandView(db, name=u'品牌', endpoint='brand', category=u'管理
 admin.add_view(StoresView(db, name=u'餐厅', endpoint='stores', category=u'管理'))
 admin.add_view(QueueSettingView(db, name=u'桌型维护', endpoint='queue'))
 admin.add_view(ShopAssistantView(db, name=u'店员维护', endpoint='shop_assistant'))
+admin.add_view(DishView(db, name=u'菜品', endpoint='dish', category=u'点菜'))
+admin.add_view(PackageView(db, name=u'套餐', endpoint='package', category=u'点菜'))

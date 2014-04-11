@@ -3,25 +3,18 @@ import logging
 import os
 import Image
 from flask.ext.admin.contrib.sqla import ModelView
-from flask import request, flash, redirect, url_for
-from flask.ext import login
-from flask.ext.admin.babel import gettext
-from flask.ext.admin.base import expose
-from flask.ext.admin.model.helpers import get_mdict_item_or_list
-from flask.ext.admin.helpers import validate_form_on_submit
-from flask.ext.admin.form import get_form_opts
 from wtforms.fields import TextField, FileField, TextAreaField
-from wtforms import validators
-from werkzeug import secure_filename
-
+from repast.services.group_admin_service import GroupAdminService
 from repast.models.group import Group
-from repast.models.database import db
 from repast.util.others import form_to_dict
 
 log = logging.getLogger("flask-admin.sqla")
 
 class GroupView(ModelView):
     '''集团'''
+    ARGS = ('name', 'description','address','group_person_in_charge','tel')
+    SPECIAL_ARGS = None
+    group_admin_service = GroupAdminService()
     page_size = 20 # 每页显示条数
     can_create = True # 能否创建
     can_edit = True # 能否修改
@@ -60,37 +53,12 @@ class GroupView(ModelView):
 
     def create_model(self, form):
         '''添加集团'''
-        try:
-            form_dict = form_to_dict(form)
-            group = self._get_group(form_dict)
-            self.session.add(group)
-            self.session.commit()
-        except Exception, ex:
-            flash(gettext('Failed to create model. %(error)s', error=str(ex)), 'error')
-            logging.exception('Failed to create model')
-            self.session.rollback()
-            return False
-        return True
+        form_dict = form_to_dict(form)
+        return self.group_admin_service.create_group(self.session, form_dict, Group, self.ARGS, self.SPECIAL_ARGS)
 
     def update_model(self, form, model):
-        '''添加集团'''
-        try:
-            form_dict = form_to_dict(form)
-            model.update(**form_dict)
-            self.session.commit()
-        except Exception, ex:
-            flash(gettext('Failed to update model. %(error)s', error=str(ex)), 'error')
-            logging.exception('Failed to update model')
-            self.session.rollback()
-            return False
-        return True
+        form_dict = form_to_dict(form)
+        return self.group_admin_service.update_group(self.session, form_dict, model, self.ARGS, self.SPECIAL_ARGS)
 
     def __init__(self, db, **kwargs):
         super(GroupView, self).__init__(Group, db, **kwargs)
-
-    def _get_group(self, form_dict):
-        return Group(name=form_dict['name'],
-                     description=form_dict['description'],
-                     address=form_dict['address'],
-                     group_person_in_charge=form_dict['group_person_in_charge'],
-                     tel=form_dict['tel'])

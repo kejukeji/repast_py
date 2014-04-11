@@ -7,3 +7,5 @@ from .brand import *
 from .group import *
 from .location import *
 from .queue import *
+from .dish import *
+from .package import *

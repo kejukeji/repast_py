@@ -4,6 +4,7 @@ from ..models.group import Group
 from ..models.brand import Brand
 from ..models.stores import Stores
 from ..models.location import *
+from ..models.dish import DishSort
 from flask.ext import restful
 from ..util.session_common import *
 
@@ -56,6 +57,14 @@ class GetStores(restful.Resource):
     def get(brand_id):
         stores = Stores.query.filter(Stores.brand_id == brand_id).all()
         json = append_json(stores)
+        return json
+
+class GetDishSort(restful.Resource):
+    '''获取菜品分类'''
+    @staticmethod
+    def get():
+        dish_sort = DishSort.query.filter().all()
+        json = append_json(dish_sort)
         return json
 
 
