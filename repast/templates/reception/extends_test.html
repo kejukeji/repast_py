@@ -121,18 +121,12 @@
 <div class="none">
 </div>
 
-<div id="foot">
-<ul>
-<a href="#" ><li class="home1"></li></a>
-<a href="#" ><li class="home2"></li></a>
-<a href="#" ><li class="home3"></li></a>
-<a href="#" ><li class="home4"></li></a>
-<a href="#" ><li class="home5"></li></a>
-</ul>
 
-</div>
 
 
 
 </body>
+{% block foot %}
+    {{   super() }}
+{% endblock %}
 {% endblock %}

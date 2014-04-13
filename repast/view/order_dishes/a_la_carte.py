@@ -9,7 +9,7 @@ class ToOrderDishes(View):
 
     def render_template(self, content):
         '''render template'''
-        return render_template('home.html', **content)
+        return render_template('reception/extends_test.html', **content)
 
     def dispatch_request(self):
         '''return render_template'''
