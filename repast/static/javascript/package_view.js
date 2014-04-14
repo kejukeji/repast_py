@@ -94,7 +94,7 @@ $(document).ready(function(){
             success: function(json) {
                 brand.empty();
                 $.each(json, function(i, value) {
-                     $("#dish_sort_id").before($("<input type='checkbox' name='dish_sort_id' id='dish_sort_id'/>"+value[0]+"").attr('value', value[0]))
+                     $("#dish_sort_id").before($("<input type='checkbox' name='dish_sort_id' id='dish_sort_id'/>").attr('value', value[0]).after($("<label>"+value[1]+"</label>")))
                 });
                 g_belong_sort_id = brand.val();
             },
