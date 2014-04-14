@@ -14,10 +14,10 @@
 {% block body %}
   <ul class="nav nav-tabs">
       <li>
-          <a href="{{ return_url }}">{{ _gettext('List') }}</a>
+          <a href="{{ return_url }}">{{ _gettext('列表') }}</a>
       </li>
       <li class="active">
-          <a href="javascript:void(0)">{{ _gettext('Create') }}</a>
+          <a href="javascript:void(0)">{{ _gettext('创建') }}</a>
       </li>
 	</ul>
 
@@ -32,5 +32,5 @@
   <script src="{{ url_for('admin.static', filename='datepicker/bootstrap-datepicker.js') }}"></script>
   <script src="{{ url_for('admin.static', filename='admin/js/form.js') }}"></script>
   <script src="{{ url_for('static', filename='javascript/group_view.js') }}"></script>
-  <script src="{{ url_for('static', filename='javascript/queue_view.js') }}"></script>
+  <script src="{{ url_for('static', filename='javascript/dish_view.js') }}"></script>
 {% endblock %}

@@ -12,6 +12,8 @@ class PackageView(ModelView):
     can_create = True
 
     column_exclude_list = ('group_id','brand_id', 'dish_sort_id',)
+    column_filters = ('group', 'brand', 'dish_sort',)
+    column_searchable_list = ('group', 'brand', 'dish_sort', 'name',)
 
     column_labels = dict(
         name = u'套餐',
@@ -39,6 +41,8 @@ class PackageView(ModelView):
         super(PackageView, self).__init__(Package, db, **kwargs)
 
     create_template = 'admin_page/package_create.html'
+    edit_template = 'admin_page/package_edit.html'
+    list_template = 'admin_page/package_list.html'
 
     def scaffold_form(self):
         form_class = super(PackageView, self).scaffold_form()

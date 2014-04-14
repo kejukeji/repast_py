@@ -65,3 +65,16 @@ class GetName():
         else:
             dish_sort_id = dish_sort_id_array
         return dish_sort_id
+
+    @staticmethod
+    def _get_only_dish_sort_string(form_dict):
+        dish_sort_string = ''
+        dish_sort = DishSort.query.filter(DishSort.id == form_dict['dish_sort_id']).first()
+        if dish_sort:
+            dish_sort_string = dish_sort.name
+        return dish_sort_string
+
+    @staticmethod
+    def _get_only_dish_sort_id(form_dict):
+        dish_sort_id = form_dict['dish_sort_id']
+        return dish_sort_id

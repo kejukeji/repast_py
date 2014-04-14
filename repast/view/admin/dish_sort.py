@@ -15,6 +15,8 @@ class DishSortView(ModelView):
     can_create = True
 
     column_exclude_list = ('group_id', 'brand_id',)
+    column_filters = ('group', 'brand',)
+    column_searchable_list = ('group', 'brand', 'name',)
 
     column_labels = dict(
         group_id = u'集团',
@@ -33,6 +35,8 @@ class DishSortView(ModelView):
     )
 
     create_template = 'admin_page/dish_sort_create.html'
+    list_template = 'admin_page/dish_sort_list.html'
+    edit_template = 'admin_page/dish_sort_edit.html'
 
     def __init__(self, db, **kwargs):
         super(DishSortView, self).__init__(DishSort, db, **kwargs)
@@ -47,4 +51,9 @@ class DishSortView(ModelView):
     def create_model(self, form):
         form_dict = form_to_dict(form)
         success = self.dish_sort_service.create_dish_sort(self.session, form_dict, DishSort, self.ARGS, self.SPECIAL_ARGS)
+        return success
+
+    def update_model(self, form, model):
+        form_dict = form_to_dict(form)
+        success = self.dish_sort_service.update_dish_sort(self.session, form_dict, model, self.ARGS, self.SPECIAL_ARGS)
         return success

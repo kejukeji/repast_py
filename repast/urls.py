@@ -62,7 +62,7 @@ api.add_resource(GetStores, '/restful/stores/<int:brand_id>')
 api.add_resource(SearchStore,'/restful/searchStore')
 api.add_resource(PositonStore,'/restful/positionStore')
 api.add_resource(PositonStoreXY,'/restful/positionStoreXY')
-api.add_resource(GetDishSort, '/restful/dish_sort')
+api.add_resource(GetDishSort, '/restful/dish_sort/<int:brand_id>')
 
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 

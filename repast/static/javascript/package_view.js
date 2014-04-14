@@ -2,6 +2,11 @@
  * Created by K on 3/19/14.
  */
 $(document).ready(function(){
+    $("input[name='suitable_number']").keyup(function(){  //keyup事件处理
+        $(this).val($(this).val().replace(/\D|^0/g,''));
+    }).bind("paste",function(){  //CTR+V事件处理
+        $(this).val($(this).val().replace(/\D|^0/g,''));
+    }).css("ime-mode", "disabled");  //CSS设置输入法不可用
     function add_select() {
         //替换所属集团
         var group = $("#group_id");
@@ -14,8 +19,9 @@ $(document).ready(function(){
         g_belong_brand_id =brand.val();
 		brand.replaceWith(brand_select);
         var dish_sort = $("#dish_sort_id");
-        var checkbox_sort = $.parseHTML("<input type='hidden' name='hidden' id='dish_sort_id'/>");
-        g_belong_sort_id = dish_sort.val()
+        //var checkbox_sort = $.parseHTML("<input type='hidden' name='hidden' id='dish_sort_id'/>");
+        var checkbox_sort = $.parseHTML("<label id='dish_sort_id'></label>");
+        g_belong_sort_id = dish_sort.val();
         dish_sort.replaceWith(checkbox_sort)
 	}
 
@@ -82,19 +88,23 @@ $(document).ready(function(){
     } else {
         init_group("1");
     }
-    function init_dish_sort(){
+    function init_dish_sort(init_dish_sort_id){
         var brand = $("#dish_sort_id");
         // 获取brand的json
         $.ajax({
             type: "GET",
-            url: "/restful/dish_sort",
+            url: "/restful/dish_sort/"+ init_dish_sort_id,
             dataType: "json",
             async: false,
             cache: false,
             success: function(json) {
                 brand.empty();
                 $.each(json, function(i, value) {
-                     $("#dish_sort_id").before($("<input type='checkbox' name='dish_sort_id' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                    if (g_belong_sort_id == value[0]){
+                        $("#dish_sort_id").before($("<input type='checkbox' checked name='dish_sort_id' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                    }else{
+                        $("#dish_sort_id").before($("<input type='checkbox' name='dish_sort_id' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                    }
                 });
                 g_belong_sort_id = brand.val();
             },
@@ -103,17 +113,21 @@ $(document).ready(function(){
             }
         });
     }
-    if (g_belong_sort_id != ''){
-        init_dish_sort()
-    }else{
-        init_dish_sort()
-    }
-
     //定义change事件
     var group = $('#group_id');
     group.bind('change',function(){
         var init_group_id = group.val();
         get_brand_ajax(init_group_id)
     });
+    var brand = $("#brand_id");
+    brand.bind('change', function(){
+        var brand_id = brand.val();
+        init_dish_sort(brand_id)
+    });
+    if (g_belong_sort_id != ''){
+        init_dish_sort(g_belong_sort_id)
+    }else{
+        init_dish_sort(brand.val())
+    }
 });
 
