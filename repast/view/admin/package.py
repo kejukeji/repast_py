@@ -19,8 +19,8 @@ class PackageView(ModelView):
         group = u'集团',
         brand_id = u'品牌',
         brand = u'品牌',
-        dish_sort_id = u'菜类',
-        dish_sort = u'菜类',
+        dish_sort_id = u'菜单类型',
+        dish_sort = u'菜单类型',
         suitable_number = u'人数'
     )
 
@@ -30,8 +30,8 @@ class PackageView(ModelView):
         group = u'所属集团',
         brand_id = u'所属品牌',
         brand = u'所属品牌',
-        dish_sort_id = u'菜品类型',
-        dish_sort = u'菜品类型',
+        dish_sort_id = u'菜单类型',
+        dish_sort = u'菜单类型',
         suitable_number = u'适应人数'
     )
 

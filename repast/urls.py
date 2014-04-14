@@ -23,6 +23,7 @@ from .view.repasts import *
 from .view.order_dishes.a_la_carte import ToOrderDishes
 from .view.admin.dish import *
 from .view.admin.package import PackageView
+from .view.admin.dish_sort import DishSortView
 from restfuls.queue import AjaxCallNumber
 
 # 用户管理路径
@@ -77,3 +78,4 @@ admin.add_view(QueueSettingView(db, name=u'桌型维护', endpoint='queue'))
 admin.add_view(ShopAssistantView(db, name=u'店员维护', endpoint='shop_assistant'))
 admin.add_view(DishView(db, name=u'菜品', endpoint='dish', category=u'点菜'))
 admin.add_view(PackageView(db, name=u'套餐', endpoint='package', category=u'点菜'))
+admin.add_view(DishSortView(db, name=u'菜单分类', endpoint='dish_sort', category=u'点菜'))
