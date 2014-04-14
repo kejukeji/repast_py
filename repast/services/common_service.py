@@ -33,11 +33,17 @@ class GetName():
     @staticmethod
     def _get_dish_sort(form_dict):
         dish_sort_name = ''
-        dish_sort_id_array = form_dict['dish_sort_id']
+        dish_sort_id_array = form_dict
+        sort_length = len(form_dict)
+        current_length = 1
         if type(dish_sort_id_array) is list:
-            for item in form_dict['dish_sort_id']:
+            for item in form_dict:
                 dish_sort = DishSort.query.filter(DishSort.id == item).first()
-                dish_sort_name = dish_sort_name + ',' + dish_sort.name
+                if current_length == sort_length:
+                    dish_sort_name = dish_sort_name + dish_sort.name
+                else:
+                    dish_sort_name = dish_sort.name + ',' + dish_sort_name
+                current_length = current_length + 1
         else:
             dish_sort = DishSort.query.filter(DishSort.id == dish_sort_id_array).first()
             dish_sort_name = dish_sort.name
@@ -46,10 +52,16 @@ class GetName():
     @staticmethod
     def _get_dish_sort_id(form_dict):
         dish_sort_id = ''
-        dish_sort_id_array = form_dict['dish_sort_id']
+        dish_sort_id_array = form_dict
+        current_length = 1
+        sort_length = len(form_dict)
         if type(dish_sort_id_array) is list:
-            for item in form_dict['dish_sort_id']:
-                dish_sort_id = dish_sort_id + ',' + item
+            for item in form_dict:
+                if current_length == sort_length:
+                    dish_sort_id = dish_sort_id + item
+                else:
+                    dish_sort_id = item + ',' + dish_sort_id
+                current_length = current_length + 1
         else:
             dish_sort_id = dish_sort_id_array
         return dish_sort_id

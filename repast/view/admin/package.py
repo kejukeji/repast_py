@@ -1,5 +1,6 @@
 # coding: utf-8
 from flask.ext.admin.contrib.sqla import ModelView
+from flask import request
 from repast.util.others import form_to_dict
 from repast.models.package import Package
 from repast.services.package_service import PackageService
@@ -49,7 +50,8 @@ class PackageView(ModelView):
     def create_model(self, form):
         form_dict = form_to_dict(form)
         package_service = PackageService()
-        success = package_service.create_package(self.session, form_dict, Package, self.ARGS, self.SPECIAL_ARGS)
+        sort_list = request.form.getlist('dish_sort_id')
+        success = package_service.create_package(self.session, form_dict, Package, self.ARGS, self.SPECIAL_ARGS, sort_list)
         return success
 
     def update_model(self, form, model):
