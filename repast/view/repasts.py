@@ -7,6 +7,7 @@ from repast.services.stores_service import get_stores_by_id
 from repast.services.shop_assistant import *
 from repast.services.user_service import *
 from repast.util.session_common import *
+from ..services.call_number_service import PushMessage
 
 
 def to_repast_by_stores_id(stores_id):
@@ -34,6 +35,8 @@ def do_call_number(queue_id):
     '''叫号'''
     shop_assistant_id = get_session_shop_user()
     call_success = call_number(queue_id)
+    push_message_service = PushMessage()
+    push_message_service.push_message(queue_id)
     return redirect(url_for('to_call_number', shop_assistant_id=shop_assistant_id))
 
 def to_home():
