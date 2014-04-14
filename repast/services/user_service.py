@@ -5,12 +5,14 @@ from repast.models.database import db
 from repast.services.base_service import BaseService
 
 
-class UserService(BaseService):
+class UserService():
     '''用户'''
     def create_user(self, nickname, openid, picture_url):
 
         user = User(nick_name=nickname, openid=openid, picture_url=picture_url)
-        return self.create_model(user)
+        db.add(user)
+        db.commit()
+        return user
 
     def update_user(self, longitude, latitude, openid):
         '''修改'''
