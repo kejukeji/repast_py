@@ -15,7 +15,10 @@ class DishView(ModelView):
     page_size = 20
     can_create = True
     can_edit = True
+
     column_exclude_list = ('group_id', 'brand_id', 'dish_sort_id','base_path', 'rel_path', 'picture_name',)
+    column_filters = ('group', 'brand', 'dish_sort',)
+    column_searchable_list = ('group','brand','dish_sort','name',)
 
     column_labels = dict(
         group_id = u'集团',

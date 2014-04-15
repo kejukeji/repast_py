@@ -89,24 +89,94 @@ $(document).ready(function(){
         init_group("1");
     }
     function init_dish_sort(init_dish_sort_id){
-        var brand = $("#dish_sort_id");
+        var bool = true;
+        try{
+            var dish_sort_array = init_dish_sort_id.split(',')
+        }catch(err){
+            bool = false;
+        }
+        var dish_sort = $("#dish_sort_id");
+        var brand = $("#brand_id");
+        var brand_val = brand.val();
         // 获取brand的json
         $.ajax({
             type: "GET",
-            url: "/restful/dish_sort/"+ init_dish_sort_id,
+            url: "/restful/dish_sort/"+ brand_val,
             dataType: "json",
             async: false,
             cache: false,
             success: function(json) {
-                brand.empty();
+                $(".parentEle").empty();
                 $.each(json, function(i, value) {
-                    if (g_belong_sort_id == value[0]){
-                        $("#dish_sort_id").before($("<input type='checkbox' checked name='dish_sort_id' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                    if (bool){
+                        var number_value = value[0].toString();
+                        var index = dish_sort_array.indexOf(number_value);
+                        if (index !== -1){
+                            $("#dish_sort_id").append($("<input type='checkbox' checked name='dish_sort_id' class='dish_sort' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                                var parentEle = $('#dish_sort_id').parent();
+                                parentEle.addClass('parentEle')
+                        }else{
+                            $("#dish_sort_id").append($("<input type='checkbox' name='dish_sort_id' style='float: left' class='dish_sort' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                            var parentEle = $('#dish_sort_id').parent();
+                            parentEle.addClass('parentEle')
+                        }
                     }else{
-                        $("#dish_sort_id").before($("<input type='checkbox' name='dish_sort_id' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                        if (init_dish_sort_id == value[0].toString()){
+                                $("#dish_sort_id").append($("<input type='checkbox' checked name='dish_sort_id' class='dish_sort' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                                var parentEle = $('#dish_sort_id').parent();
+                                parentEle.addClass('parentEle')
+                            }else{
+                                $("#dish_sort_id").append($("<input type='checkbox' name='dish_sort_id' style='float: left' class='dish_sort' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                                var parentEle = $('#dish_sort_id').parent();
+                                parentEle.addClass('parentEle')
+                            }
                     }
                 });
-                g_belong_sort_id = brand.val();
+
+            },
+            error: function() {
+                alert("获取菜品种类失败，请刷新网页！");
+            }
+        });
+    }
+    divEle = $(".controls");
+    function change_dish_sort(init_dish_sort_id){
+        var bool = true;
+        try{
+            var dish_sort_array = init_dish_sort_id.split(',')
+        }catch(err){
+            bool = false;
+        }
+        var dish_sort = $("#dish_sort_id");
+        var brand = $("#brand_id");
+        var brand_val = brand.val();
+        // 获取brand的json
+        $.ajax({
+            type: "GET",
+            url: "/restful/dish_sort/"+ brand_val,
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function(json) {
+                $(".parentEle").empty();
+                $.each(json, function(i, value) {
+                    if (bool){
+                        var number_value = value[0].toString();
+                        var index = dish_sort_array.indexOf(number_value);
+                        if (index !== -1){
+                            $(".parentEle").append($("<input type='checkbox' checked name='dish_sort_id' class='dish_sort' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                        }else{
+                            $(".parentEle").append($("<input type='checkbox' name='dish_sort_id' style='float: left' class='dish_sort' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                        }
+                    }else{
+                        if (init_dish_sort_id == value[0].toString()){
+                            $(".parentEle").append($("<input type='checkbox' checked name='dish_sort_id' class='dish_sort' style='float: left' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                        }else{
+                            $(".parentEle").append($("<input type='checkbox' name='dish_sort_id' style='float: left' class='dish_sort' id='dish_sort_id'/>").attr('value', value[0]).after($("<label style='float: left;margin-right: 10px;'>"+value[1]+"</label>")))
+                        }
+                    }
+                });
+
             },
             error: function() {
                 alert("获取菜品种类失败，请刷新网页！");
@@ -122,7 +192,7 @@ $(document).ready(function(){
     var brand = $("#brand_id");
     brand.bind('change', function(){
         var brand_id = brand.val();
-        init_dish_sort(brand_id)
+        change_dish_sort(g_belong_sort_id)
     });
     if (g_belong_sort_id != ''){
         init_dish_sort(g_belong_sort_id)

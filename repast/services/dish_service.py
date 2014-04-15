@@ -37,7 +37,18 @@ class DishService(BaseService):
 
     def update_dish(self, session, form_dict, model, args, files, special_args=None):
         pictures = files.getlist('pictures')
-        return self.update_dish_picture(session, model, form_dict, args, special_args, pictures)
+        base_path, rel_path, pic_name = self.update_dish_picture(session, model, form_dict, args, special_args, pictures)
+        if pic_name == "":
+            pic_name = model.picture_name
+        dictionary = self.get_dish_dictionary(form_dict, args, special_args, base_path, rel_path, pic_name)
+        model.update(**dictionary)
+        try:
+            session.commit()
+        except Exception, e:
+            flash(gettext('更新菜品失败%(error)s', error=str(e)), 'error')
+            return False
+        return True
+
 
     def get_dish(self, Object, form_dict, args, special_args, base_path, rel_path, pic_name):
         dictionary = self.get_dish_dictionary(form_dict, args, special_args, base_path, rel_path, pic_name)
@@ -45,6 +56,9 @@ class DishService(BaseService):
         return model
 
     def update_dish_picture(self, session, dish, form_dict, args, special_args, pictures):
+        base_path = ''
+        rel_path = ''
+        pic_name = ''
         for picture in pictures:
             if not allowed_file_extension(picture.filename, DISH_PICTURE_ALLOWED_EXTENSION):
                 continue
@@ -63,14 +77,9 @@ class DishService(BaseService):
                     picture.save(os.path.join(base_path+rel_path+'/', pic_name))
                 except Exception, e:
                     flash(gettext('更新菜品失败.找不到路径 %(error)s', error=str(e)), 'error')
-                    return False
-                dictionary = self.get_dish_dictionary(form_dict, args, special_args, base_path, rel_path, pic_name)
-                dish.update(**dictionary)
-                try:
-                    session.commit()
-                except Exception, e:
-                    flash(gettext('更新菜品失败.找不到路径 %(error)s', error=str(e)), 'error')
-                return True
+                return base_path, rel_path, pic_name
+        return base_path, rel_path, pic_name
+
 
     def get_dish_dictionary(self, form_dict, args, special_args, base_path, rel_path, pic_name):
         dictionary = {}
