@@ -53,7 +53,6 @@ def get_user_by_id(id):
     user = User.query.filter(User.id == id).first()
     return user
 
-
 if __name__ == '__main__':
     user_service = UserService()
     #user_service.create_user('温饱思淫欲,','aiwe13k4h3qfakf','kflsdjflk')

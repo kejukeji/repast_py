@@ -62,8 +62,8 @@ class GetStores(restful.Resource):
 class GetDishSort(restful.Resource):
     '''获取菜品分类'''
     @staticmethod
-    def get():
-        dish_sort = DishSort.query.filter().all()
+    def get(brand_id):
+        dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
         json = append_json(dish_sort)
         return json
 

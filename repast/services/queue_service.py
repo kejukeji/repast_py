@@ -21,3 +21,11 @@ def get_queue_by_id(queue_id):
     table_type = QueueSetting.query.filter(QueueSetting.id == queue_id).first()
     return table_type
 
+def get_q_by_id(queue_id):
+    queue = Queue.query.filter(Queue.id == queue_id).first()
+    return queue
+
+def get_queue_by_now_number(now_number):
+    queue = Queue.query.filter(Queue.now_queue_number == now_number).first()
+    return queue
+

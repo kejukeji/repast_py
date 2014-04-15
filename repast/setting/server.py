@@ -17,5 +17,9 @@ STORES_PICTURE_ALLOWED_EXTENSION = ('jpeg', 'png', 'jpg')
 STORES_PICTURE_BASE_PATH = '/var/www/repast_py/repast'
 STORES_PICTURE_REL_PATH = '/static/images/stores'
 
+DISH_PICTURE_ALLOWED_EXTENSION = ('jpeg', 'png', 'jpg')
+DISH_PICTURE_BASE_PATH = '/var/www/repast_py/repast'
+DISH_PICTURE_REL_PATH = '/static/images/dish'
+
 # 基本的url
 BASE_URL = "http://repast.kejukeji.com"
