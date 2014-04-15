@@ -3,7 +3,7 @@ import os
 from base_service import *
 from werkzeug import secure_filename
 from repast.util.ex_file import *
-from repast.setting.wbb import *
+from repast.setting.server import *
 
 class DishService(BaseService):
     '''菜品'''

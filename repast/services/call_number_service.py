@@ -10,10 +10,17 @@ class PushMessage():
         queue = get_q_by_id(queue_id)
         open_id = ''
         if queue:
-            user_id = queue.user_id
-            user = get_user_by_id(user_id)
-            if user:
-                open_id = user.openid
+            now_number = queue.now_queue_number
+            prompt_number = now_number + 3
+            while True:
+                prompt_queue = get_queue_by_now_number(prompt_number) # 得到当前号码后3位
+                if prompt_queue:
+                    user_id = prompt_queue.user_id
+                    user = get_user_by_id(user_id)
+                    if user:
+                        open_id = user.openid
+                    break
+                else:
+                    prompt_number = prompt_number - 1
         webChat = WebChat('1234', APPID, SECRET)
-        content = '很快就要到您呢， 请到餐厅等待。'
-        webChat.send_text_message(open_id, content)
+        webChat.send_text_message(open_id, "很快就要到您呢， 请到餐厅等待。")
