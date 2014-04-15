@@ -39,7 +39,6 @@
             <form name="queueForm" action="/do_queue">
                 <input type="hidden" name="stores_id" value="{{ stores.id }}"/>
                 <input type="hidden" name="user_id" value="{{ user_id }}"/>
-
                 <div class="destop">
                     <b>{{ stores.name }}</b>
                 </div>
@@ -48,7 +47,7 @@
                         {% for t in temp %}
                             <li>
                                 <ul class="zhuoxingul2">
-                                    <li><label><input name="table_type_id" type="radio" value="{{ t.id }}"/>&nbsp;{{ t.type }}
+                                    <li><label><input name="table_type_id" type="radio" value="{{ t.id }}" checked/>&nbsp;{{ t.type }}
                                     </label></li>
                                     <li>前面还有{{ t.queue_number }}位</li>
                                     <li>预计时间5分钟</li>
