@@ -126,11 +126,13 @@ def do_queue_format(table_type_id, request, user_id):
     queue_q, queue_count = get_queue_by_table_type_id(table_type_id)
     if queue:
         message = '您已在队列中，当前桌型为%s,号码为%s,前面还有%s位' %(queue.table_type,queue.now_queue_number, queue_count) # 如果存在队列中，提示
+        queue.queue_count = queue_count
         queue.message = message
         return queue
     else:
         queue = create_queue(user_id, stores_id, table_type_id)
         message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
+        queue.queue_count = queue_count
         queue.message = message
         return queue
 

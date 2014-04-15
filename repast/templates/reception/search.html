@@ -64,7 +64,7 @@ $(function () {
             dataType: 'json',
             success: function (data) {
                 if(data.stores == null || data.stores == ''){
-                    $('#result').append('<div id="bg">没有找到相应的餐厅，您可以<a href="/to_search_position">通过地区选择</a>！</div>');
+                    $('#result').append('<div class="topps2"><p>没有找到相应的餐厅，您可以<a href="/to_search_position">通过地区选择</a>！</p></div>');
                 }
                 else{
                     $('#result').empty();
@@ -252,7 +252,7 @@ $(function () {
         </span>
     </div>
 </div>
-<div>您现在的位置是：{{ description }}</div>
+<div class="topps"><p>您现在的位置是：<t style=" font-size:14px; color:#fff;">{{ description }}</t></p></div>
 <div id="result">
 </div>
 

@@ -5,18 +5,18 @@
 {% block title %} 排队 {% endblock %}
 
 {% block pager_js %}
-    <script type="text/javascript">
-        $(function () {
-            var btn = $('.dian3');
-//        btn.bind('click', function(){
-//           window.location.href = '/to_search'
-//        });
-            var queue = "{{ message }}";
-            if (queue != "") {
-                alert(queue);
-            }
-        });
-    </script>
+{#    <script type="text/javascript">#}
+{#        $(function () {#}
+{#            var btn = $('.dian3');#}
+{#//        btn.bind('click', function(){#}
+{#//           window.location.href = '/to_search'#}
+{#//        });#}
+{#            var queue = "{{ message }}";#}
+{#            if (queue != "") {#}
+{#                alert(queue);#}
+{#            }#}
+{#        });#}
+{#    </script>#}
 {% endblock %}
 
 {% block content %}
@@ -25,10 +25,10 @@
     <div id="des">
         <ul id="nav_des">
             <a href="#">
-                <li><b>我的排队</b></li>
+                <li style="background: #5AC3DC"><b>我的排队</b></li>
             </a>
             <a href="#">
-                <li><b>相关推荐</b></li>
+                <li style="background: #E9F4F7"><b>相关推荐</b></li>
             </a>
         </ul>
     </div>

@@ -90,7 +90,8 @@ def do_queue():
     stores_id = queue.stores_id
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
-    return render_template('reception/reservation.html',
+    return render_template('reception/reserv_success.html',
+                           queue=queue,
                            message=queue.message,
                            temp=temp,
                            stores=stores)
