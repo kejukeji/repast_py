@@ -23,4 +23,4 @@ class PushMessage():
                 else:
                     prompt_number = prompt_number - 1
         webChat = WebChat('1234', APPID, SECRET)
-        webChat.send_text_message(open_id, "很快就要到您呢， 请到餐厅等待。")
+        webChat.send_text_message(open_id, "english_no")
