@@ -230,7 +230,7 @@ def get_wait_number(table_type_id):
 def get_schedule_by_user_id(user_id):
     '''获得用户的进展'''
     args_time = get_date_time_str()
-    get_stores = Queue.query.filter(Queue.queue_time.like(args_time), Queue.user_id == user_id).first()
+    get_stores = Queue.query.filter(Queue.queue_time.like(args_time), Queue.user_id == user_id, Queue.status == 1).first()
     if get_stores:
         schedule_count = Queue.query.filter(Queue.queue_time.like(args_time), Queue.status == 1,Queue.user_id != user_id, Queue.stores_id == get_stores.stores_id).count()
         get_stores.schedule_count = schedule_count

@@ -37,5 +37,5 @@ menu = """
 """
 #webChat.delete_menu()
 # webChat.create_menu(menu)
-errmsg = webChat.send_text_message("oFmv0t8vPGGf5b7EKV5XOixs4mBA", "Say Hello")
+errmsg = webChat.send_text_message("oFmv0t53ZvwC5q327R3e5HjdzaPo", "中文字符")
 print errmsg
