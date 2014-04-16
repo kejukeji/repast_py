@@ -44,7 +44,7 @@ def to_home():
 
 def to_home_page(user_id):
     set_session_user(user_id)
-    return render_template('reception/home_page.html',
+    return render_template('reception/index.html',
                            user_id=user_id)
 
 def to_login():
