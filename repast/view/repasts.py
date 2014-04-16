@@ -101,6 +101,20 @@ def do_queue():
                            temp=temp,
                            stores=stores)
 
+
+def do_cancel_queue(queue_id):
+    '''取消队列'''
+    cancel(queue_id)
+    stores_id = request.args.get('stores_id')
+    temp = get_queue_by_stores_id(stores_id)
+    stores = get_stores_by_id(stores_id)
+    mark_queue = 0
+    return render_template('reception/reservation.html',
+                           temp=temp,
+                           stores=stores,
+                           mark_queue=mark_queue)
+
+
 def to_reservation():
     user_id = request.args.get('user_id')
     set_session_user(user_id)
