@@ -44,6 +44,8 @@ def to_home():
 
 def to_home_page(user_id):
     set_session_user(user_id)
+    mark_queue = request.args.get('mark_queue')
+    set_session_mark_queue(mark_queue)
     return render_template('reception/index.html',
                            user_id=user_id)
 
@@ -74,12 +76,15 @@ def to_my_queue(user_id):
 
 def to_queue(stores_id):
     user_id = request.args.get('user_id')
-    get_session_user()
+    set_session_user(user_id)
+    mark_queue = request.args.get('mark_queue')
+    set_session_mark_queue(mark_queue) # 设置用户是否排队
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     return render_template('reception/reservation.html',
                            temp=temp,
-                           stores=stores)
+                           stores=stores,
+                           mark_queue=mark_queue)
 
 def do_queue():
     '''排队'''
@@ -96,8 +101,21 @@ def do_queue():
                            temp=temp,
                            stores=stores)
 
+def to_reservation():
+    user_id = request.args.get('user_id')
+    set_session_user(user_id)
+    table_type_id = request.args.get('table_type_id')
+    queue = do_queue_format(table_type_id, request, user_id)
+    stores_id = request.args.get('stores_id')
+    stores = get_stores_by_id(stores_id)
+    return render_template('reception/reserv_success.html',
+                           queue=queue,
+                           stores=stores)
+
 def to_search():
     user_id = get_session_user()
+    mark_queue = get_session_mark_queue()
+    table_type_id = get_table_type_id_by_user(user_id)
     if user_id:
         latitude = get_user_by_id(user_id).latitude
         longitude = get_user_by_id(user_id).longitude
@@ -110,14 +128,42 @@ def to_search():
             return render_template('reception/search.html',
                                    latitude=latitude,
                                    longitude=longitude,
-                                   description=description)
+                                   description=description,
+                                   mark_queue=mark_queue,
+                                   user_id=user_id,
+                                   table_type_id=table_type_id)
         else:
-            return render_template('reception/search_copy.html')
+            return render_template('reception/search_copy.html',
+                                   mark_queue=mark_queue,
+                                   user_id=user_id,
+                                   table_type_id=table_type_id)
     else:
-        return render_template('reception/search_copy.html')
+        return render_template('reception/search_copy.html',
+                               mark_queue=mark_queue,
+                               user_id=user_id,
+                               table_type_id=table_type_id)
 
 def to_search_position():
-    return render_template('reception/search_copy.html')
+    mark_queue = get_session_mark_queue()
+    user_id = get_session_user()
+    table_type_id = get_table_type_id_by_user(user_id)
+    return render_template('reception/search_copy.html',
+                           mark_queue=mark_queue,
+                           user_id=user_id,
+                           table_type_id=table_type_id)
 
 def to_search_result():
-    return render_template('reception/search_result.html')
+    mark_queue = get_session_mark_queue()
+    user_id = get_session_user()
+    table_type_id = get_table_type_id_by_user(user_id)
+    return render_template('reception/search_result.html',
+                           mark_queue=mark_queue,
+                           user_id=user_id,
+                           table_type_id=table_type_id)
+
+def get_table_type_id_by_user(user_id):
+    schedule = get_schedule_by_user_id(user_id)
+    table_type_id = 0
+    if schedule:
+        table_type_id = schedule.queue_setting_id
+    return table_type_id

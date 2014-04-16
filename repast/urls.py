@@ -50,6 +50,7 @@ app.add_url_rule('/search','to_search', to_search, methods=('GET','POST'))
 app.add_url_rule('/search_result','to_search_result', to_search_result, methods=('GET','POST'))
 app.add_url_rule('/text',view_func=ToOrderDishes.as_view('text'))
 app.add_url_rule('/to_search_position','to_search_position',to_search_position,methods=('GET','POST'))
+app.add_url_rule('/to_reservation/', 'to_reservation', to_reservation, methods= ('GET', 'POST'))
 
 # 接口定义
 api = restful.Api(app)

@@ -161,9 +161,19 @@ def event_location(user_service, longitude, latitude, FromUserName, ToUserName):
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return reply_dict
 
+def get_schedule(user):
+    schedule = get_schedule_by_user_id(user.id)
+    mark_queue = 0
+    table_type_id = 0
+    if schedule:
+        mark_queue = schedule.stores_id
+        table_type_id = schedule.queue_setting_id
+    return mark_queue, table_type_id
+
 
 def event_click(FromUserName, ToUserName, user):
     '''响应click事件'''
+    mark_queue, table_type_id = get_schedule(user)
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
@@ -172,7 +182,7 @@ def event_click(FromUserName, ToUserName, user):
                 "Title": '微餐饮',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
-                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                "Url": '%s/home_page/%s?mark_queue=%s' %(BASE_URL, user.id, mark_queue)
             }]
     }
     return reply_dict
@@ -187,6 +197,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey, user):
     '''用户扫二维码未关注，点击关注后的事件'''
     stores_id = EventKey.split('_')[1]
     title, description, pic_url = get_stores_(stores_id)
+    mark_queue, table_type_id = get_schedule(user)
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
@@ -195,7 +206,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey, user):
                 "Title": title,
                 "Description": description,
                 "PicUrl": BASE_URL + pic_url,
-                "Url": '%s/queue/%s?user_id=%s' %(BASE_URL, stores_id, user.id)
+                "Url": '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
             }]
     }
     return reply_dict
@@ -217,6 +228,12 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
     '''用户扫二维码已关注'''
     stores_id = EventKey
     title, description, pic_url = get_stores_(stores_id)
+    mark_queue, table_type_id = get_schedule(user)
+    url = '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
+    if mark_queue != 0:
+        url = '%s/to_reservation/?user_id=%s&table_type_id=%s&stores_id=%s' %(BASE_URL, user.id, table_type_id, mark_queue)
+    else:
+        pass
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
@@ -225,7 +242,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
                 "Title": title,
                 "Description": description,
                 "PicUrl": BASE_URL + pic_url,
-                "Url": '%s/queue/%s?user_id=%s' %(BASE_URL, stores_id, user.id)
+                "Url": url
             }]
     }
     return reply_dict
