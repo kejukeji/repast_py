@@ -76,7 +76,10 @@ def to_my_queue(user_id):
 
 def to_queue(stores_id):
     user_id = request.args.get('user_id')
-    set_session_user(user_id)
+    if user_id:
+        set_session_user(user_id)
+    else:
+        user_id = get_session_user()
     mark_queue = request.args.get('mark_queue')
     set_session_mark_queue(mark_queue) # 设置用户是否排队
     temp = get_queue_by_stores_id(stores_id)
@@ -88,8 +91,8 @@ def to_queue(stores_id):
 
 def do_queue():
     '''排队'''
-    table_type_id = request.args.get('table_type_id') # 得到前端用户选择桌型
     user_id = get_session_user()
+    table_type_id = request.args.get('table_type_id') # 得到前端用户选择桌型
     #user_id = int(request.args.get('user_id'))
     queue = do_queue_format(table_type_id, request, user_id)
     stores_id = queue.stores_id
@@ -158,8 +161,8 @@ def to_search():
                                table_type_id=table_type_id)
 
 def to_search_position():
-    mark_queue = get_session_mark_queue()
     user_id = get_session_user()
+    mark_queue = get_session_mark_queue()
     table_type_id = get_table_type_id_by_user(user_id)
     return render_template('reception/search_copy.html',
                            mark_queue=mark_queue,
@@ -167,8 +170,8 @@ def to_search_position():
                            table_type_id=table_type_id)
 
 def to_search_result():
-    mark_queue = get_session_mark_queue()
     user_id = get_session_user()
+    mark_queue = get_session_mark_queue()
     table_type_id = get_table_type_id_by_user(user_id)
     return render_template('reception/search_result.html',
                            mark_queue=mark_queue,

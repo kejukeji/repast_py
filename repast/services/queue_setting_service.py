@@ -131,9 +131,12 @@ def do_queue_format(table_type_id, request, user_id):
         return queue
     else:
         queue = create_queue(user_id, stores_id, table_type_id)
-        message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
-        queue.queue_count = queue_count
-        queue.message = message
+        table_type = QueueSetting.query.filter(QueueSetting.id == table_type_id).first()
+        if queue and table_type:
+            message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
+            queue.queue_count = queue_count
+            queue.message = message
+            queue.table_type = table_type.type
         return queue
 
 
