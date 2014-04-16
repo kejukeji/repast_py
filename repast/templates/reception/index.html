@@ -1,0 +1,93 @@
+<!DOCTYPE HTML> 
+<html>
+<head>
+<title>微餐饮</title>
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/> 
+<link href='style.css' rel='stylesheet'/>
+<style>
+
+/* Swipe 2 required styles */
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+  overflow: hidden;
+  max-height: 231px;
+}
+
+/* END required styles */
+
+</style>
+
+</head>
+<body>
+
+<nav>
+<div id='mySwipe'  class='swipe'>
+  <div class='swipe-wrap'>
+    <div><img src="/static/images/img/zhuye_r1_c1_s1.jpg" width="100%" ></div>
+    <div><img src="/static/images/img/zhuye_r1_c1_s1.jpg" width="100%" ></div>
+    <div><img src="/static/images/img/zhuye_r1_c1_s1.jpg" width="100%" ></div>
+    <div><img src="/static/images/img/zhuye_r1_c1_s1.jpg" width="100%" ></div>
+    <div><img src="/static/images/img/zhuye_r1_c1_s1.jpg" width="100%" ></div>
+  </div>
+</div>
+</nav>
+
+
+{#<div style='text-align:center;padding-top:20px;'>#}
+{#  #}
+{#  <button onclick='mySwipe.prev()'>prev</button> #}
+{#  <button onclick='mySwipe.next()'>next</button>#}
+{##}
+{#</div>#}
+<section>
+<div style="width: 96%;margin: 0 auto;margin-top: 5%">
+
+<div style="width: 32%;float: left"><a href="#"><img src="/static/images/img/zhuye_r3_c2_s1.jpg" style="height: 100%;width: 100%"/></a></div>
+<div style="width: 32%;float: left;margin-left: 2%"><a href="/search?user_id={{ user_id }}"><img src="/static/images/img/zhuye_r3_c4_s1.jpg" style="height: 100%;width: 100%"/></a></div>
+<div style="width: 32%;float: left;margin-left: 2%"><a href="#"><img src="/static/images/img/zhuye_r3_c6_s1.jpg" style="height: 100%;width: 100%"/></a></div>
+</div>
+<div style="width: 96%;margin: 0 auto">
+<div style="width: 32%;float: left"><a href="#"><img src="/static/images/img/zhuye_r5_c2_s1.jpg" style="height: 100%;width: 100%"/></a></div>
+<div style="width: 32%;float: left;margin-left: 2%"><a href="#"><img src="/static/images/img/zhuye_r5_c4_s1.jpg" style="height: 100%;width: 100%"/></a></div>
+<div style="width: 32%;float: left;margin-left: 2%"><a href="#"><img src="/static/images/img/zhuye_r5_c6_s1.jpg" style="height: 100%;width: 100%"/></a></div>
+</div>
+
+</section>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src='/static/javascript/swipe.js'></script>
+<script>
+
+// pure JS
+var elem = document.getElementById('mySwipe');
+window.mySwipe = Swipe(elem, {
+  // startSlide: 4,
+   auto: 3000
+  // continuous: true,
+  // disableScroll: true,
+  // stopPropagation: true,
+  // callback: function(index, element) {},
+  // transitionEnd: function(index, element) {}
+});
+
+// with jQuery
+// window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
+
+</script>

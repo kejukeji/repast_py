@@ -40,7 +40,7 @@ def do_call_number(queue_id):
     return redirect(url_for('to_call_number', shop_assistant_id=shop_assistant_id))
 
 def to_home():
-    return render_template('reception/home.html')
+    return render_template('reception/index.html')
 
 def to_home_page(user_id):
     set_session_user(user_id)
