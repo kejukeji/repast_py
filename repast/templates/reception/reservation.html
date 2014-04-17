@@ -5,37 +5,38 @@
 {% block title %} 排队 {% endblock %}
 
 {% block pager_js %}
-{#    <script type="text/javascript">#}
-{#        $(function () {#}
-{#            var btn = $('.dian3');#}
-{#//        btn.bind('click', function(){#}
-{#//           window.location.href = '/to_search'#}
-{#//        });#}
-{#            var queue = "{{ message }}";#}
-{#            if (queue != "") {#}
-{#                alert(queue);#}
-{#            }#}
-{#        });#}
-{#    </script>#}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#tab1").click(function () {
+                $("#tab1").css("background", "#5AC3DC");
+                $("#tab2").css("background", "#E9F4F7");
+                $("#text1").css("display", "block");
+                $("#text2").css("display", "none");
+            });
+            $("#tab2").click(function () {
+                $("#tab1").css("background", "#E9F4F7");
+                $("#tab2").css("background", "#5AC3DC");
+                $("#text1").css("display", "none");
+                $("#text2").css("display", "block");
+            });
+        });
+    </script>
 {% endblock %}
 
 {% block content %}
-    <body style="background:#E9E9E9;">
-
-    <div id="des">
-        <ul id="nav_des">
-            <a href="#">
-                <li style="background: #5AC3DC"><b>我的排队</b></li>
-            </a>
-            <a href="#">
-                <li style="background: #E9F4F7"><b>相关推荐</b></li>
-            </a>
-        </ul>
+    <body style="background:#E9E9E9;;height: 100%;width: 100%"">
+    <div class="des">
+        <span id="tab1" class="nav_des"
+              style="background: #5AC3DC;float: left;margin-left: 1%"><b>我&nbsp;的&nbsp;排&nbsp;队</b></span>
+        <span id="tab2" class="nav_des" style="background: #E9F4F7;float: left"><b>相&nbsp;关&nbsp;推&nbsp;荐</b></span>
     </div>
+
     <div class="clear"></div>
     <div class="number2">12</div>
+
+    <div id="text1" class="content_list" style=" background:url(/static/images/img/topbg2_s1.jpg) repeat-x" >
     <div id="content">
-        <div class="content_list">
+        <div class="content_list" style="border: none; " >
             <form name="queueForm" action="/do_queue">
                 <input type="hidden" name="stores_id" value="{{ stores.id }}"/>
                 <input type="hidden" name="user_id" value="{{ user_id }}"/>
@@ -65,6 +66,80 @@
             </form>
         </div>
     </div>
+    </div>
+
+
+    <div id="text2" style="display: none">
+        <div class="content_list" style="background:none; border:none; width:99%; margin:auto; ">
+            <div class="tuijiancon">
+                <span class="tuijiant"
+                      style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; ">
+    <p>
+        <b>七折</b><br/>
+        上海泰妃阁美食餐厅<br/>
+        一次性消费100元享七折优惠<br/>
+        有效日期4月9日<br/>
+    </p></span>
+                <button class="tjbutton"
+                        style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">
+                    领<br/>取
+                </button>
+            </div>
+
+            <div class="tuijiancon">
+                <ul>
+                    <li><span class="tuijiant"
+                              style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; ">
+     <p>
+         <b>七折</b><br/>
+         上海泰妃阁美食餐厅<br/>
+         一次性消费100元享七折优惠<br/>
+         有效日期4月9日<br/>
+     </p></span>
+                        <button class="tjbutton"
+                                style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">
+                            领<br/>取
+                        </button>
+                    </li>
+
+
+                </ul>
+            </div>
+
+
+            <div class="tuijiancon">
+   <span class="tuijiant"
+         style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; ">
+     <p>
+         <b>七折</b><br/>
+         上海泰妃阁美食餐厅<br/>
+         一次性消费100元享七折优惠<br/>
+         有效日期4月9日<br/>
+     </p></span>
+                <button class="tjbutton"
+                        style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
+                    已<br/>领<br/>取
+                </button>
+            </div>
+
+            <div class="tuijianfoot">
+   <span class="tuijiant"
+         style="background:url(/static/images/img/over_s1.jpg) no-repeat; width:100%; background-size:100% 100px; ">
+     <p>
+         <b>七折</b><br/>
+         上海泰妃阁美食餐厅<br/>
+         一次性消费100元可以使用<br/>
+         有效日期4月9日<br/>
+     </p></span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
     </body>
 
 

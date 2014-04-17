@@ -63,9 +63,13 @@ b{ color:#666; padding-left:20px; font-family:"微软雅黑"; }
  .buttonb{ margin:auto; width:95%; height:50px;}
  .none{ width:100%; height:80px;}
 /*底部导航栏*/
-#homefoot{ width:100%; background:#EBFDFF; height:80px; position:fixed; bottom:0; left:0;}
-#homefoot ul{ width:98%; margin:auto; height:auto;}
-#homefoot li{ width:20%; float:left; height:80px;}
+.foot{width: 100%;background: #ebfdff;position: fixed;bottom: 0;left: 0}
+.footInner{width: 20%;float: left;height: auto;text-align: center}
+/*.foot ul{width: 100%;margin: auto;height: auto}*/
+/*.foot li{width: 18%;float: left;height: auto;margin: 0 auto}*/
+/*#homefoot{ width:100%; background:#EBFDFF; height:80px; position:fixed; bottom:0; left:0;}*/
+/*#homefoot ul{ width:98%; margin:auto; height:auto;}*/
+/*#homefoot li{ width:20%; float:left; height:80px;}*/
  .home1{ background:url(/static/images//static/images/img/home_r1_c1_s1.png) no-repeat center;}
  .home2{ background:url(/static/images//static/images/img/home_r1_c7_s1.png) no-repeat center;}
  .home3{ background:url(/static/images//static/images/img/home_r1_c5_s1.png) no-repeat center;}
@@ -258,19 +262,28 @@ b{ color:#666; padding-left:20px; font-family:"微软雅黑"; }
 .homeul2 img{ width:100%; margin:auto; }
 
 /*我的排队 相关推荐*/
-#des{ width:100%; margin-top:15px !important; margin:0 auto;}
-.nav_des{height:50px; width:98%; margin-left:2% !important; margin:0 auto;}
-.nav_des span{ width:49%; text-align:center; height:50px; background:#E8F4F8; display:block; border:1px solid #5AC2DD; float:left; line-height:50px;}
-.nav_des span:hover{ width:49%; text-align:center; height:50px; background:#5AC2DD; display:block; border:1px solid #5AC2DD; float:left; line-height:50px;}
-.nav_des span:visited{ width:49%; text-align:center; height:50px; background:#5AC2DD; display:block; border:1px solid #5AC2DD; float:left; line-height:50px;}
+.des{width: 100%;margin-top: 5%;text-align: center;height: 50px}
+.nav_des{height: 50px;width: 49%;text-align: center;border: 1px solid #5AC2DD;line-height: 50px}
+.nav_des b{color: #fff;font-family: "微软雅黑";font-size: 18px}
+#text1{ width: 98%; margin:0 auto; padding-bottom: 6%; background: url(/static/images/img/BGV.png); background-size: 100% 100%; padding-top:25px; margin-top: 2%;}
+.suc_con{width: 100%;}
+.suc_con_left{ font-family:"微软雅黑"; font-weight: bold; font-size:14px; height: 30px;width: 50%;text-align: right;line-height: 30px;border: 1 solid #E9E9E9;display: block;float: left}
+.suc_con_right{ font-size:14px; color:#f60;height: 30px;width: 50%;text-align: left;line-height: 30px;border: 1 solid #E9E9E9;display: block;float: left}
+.btn-primary { background: #5cc3d2 !important;}
+.desbotton{ width:100%; text-align: center;height: 50px}
+.des_button_sp{height: 50px;width: 50%;text-align: center;line-height: 50px;display: block;float: left;}
+/*#des{ width:100%; margin-top:15px !important; margin:0 auto;}*/
+/*.nav_des{height:50px; width:98%; margin-left:2% !important; margin:0 auto;}*/
+/*.nav_des span{ width:49%; text-align:center; height:50px; background:#E8F4F8; display:block; border:1px solid #5AC2DD; float:left; line-height:50px;}*/
+/*.nav_des span:hover{ width:49%; text-align:center; height:50px; background:#5AC2DD; display:block; border:1px solid #5AC2DD; float:left; line-height:50px;}*/
+/*.nav_des span:visited{ width:49%; text-align:center; height:50px; background:#5AC2DD; display:block; border:1px solid #5AC2DD; float:left; line-height:50px;}*/
 .number2{ background:url(/static/images/img/red.png); width:22px; height:22px; position:absolute; top:10px; right:30px; border:none; text-align:center; color:#fff;}
 
-.content_list{ border:1px solid #ccc; margin-top:10px !important; width:98%; margin:0 auto;  background:url(/static/images/img/topbg2_s1.jpg) repeat-x ;
-height:300px;}
+.content_list{ border: none;  margin-top:-5px !important; width:98%; margin:0 auto; height:300px;}
 #content{ width:98%; margin:0 auto;}
 .clear{ clear:both;}
-.destop b{ color:#fff; line-height:40px; font-family:"微软雅黑";}
-.destop{ height:40px; font-size:16px; text-align:center;}
+.destop b{ color:#fff; line-height:15px; font-family:"微软雅黑";}
+.destop{ height:30px; font-size:16px; text-align:center;}
 .zhuoxing{ width:98%; margin:0 auto; margin-top:25px; height:150px;}
 .zhuoxingul{ width:98%; margin:0 auto;}
 .zhuoxingul2 li{ float:left;height:30px; width:33%; text-align:center; margin:auto; font-size:13px; line-height:30px;}
@@ -281,9 +294,9 @@ height:300px;}
 .rightr{ background:url(/static/images/img/bg3.png) ; height:180px; width:20%; float:left;}
 .nan img{ width:100%; margin:0 auto; height:240px;}
 .pdcg{ width:99%; margin:auto; background:url(/static/images/img/BGV.png) no-repeat; background-size:100% 100%; padding-bottom:13% !important;}
-.nantext{ padding-left:10%; font-size:14px; color:#666; height:30px; line-height:30px;  margin:auto;}
+.nantext{font-family:"微软雅黑"; padding-left:10%; font-size:14px; color:#000; height:30px; line-height:30px;  margin:auto;}
 .nanp{ font-size:14px; color:#F60 !important;}
-.desbotton{ width:99%; margin:0 auto;}
+
 /*.desbutton button{ border:none; width:46%; margin-top:15px; height:50px; font-size:16px; color:#fff;}*/
 .content{ width:98%; margin:auto;}
 .tuijiancon{ width:98%; margin:0 auto; height:100px; margin-bottom:5px;}
@@ -338,12 +351,12 @@ height:300px;}
 /*#nav_des li.current{background:#5AC3DC;}*/
 #nav_des li b{ font-family:"微软雅黑"; font-size:16px; color:#666; line-height:50px; text-align:center;}
 #nav_des li b:hover{ color:#fff;}
-.content_list{ border:1px solid #ccc; margin-top:10px !important; width:98%; margin:0 auto;  background:url(/static/images//static/images/img/topbg2_s1.jpg) repeat-x ;
-height:300px;}
+/*.content_list{ border:1px solid #ccc; margin-top:10px !important; width:98%; margin:0 auto;  background:url(/static/images//static/images/img/topbg2_s1.jpg) repeat-x ;*/
+/*height:300px;}*/
 #content{ width:98%; margin:0 auto;}
 .clear{ clear:both;}
-.destop b{ color:#fff; line-height:40px; font-family:"微软雅黑";}
-.destop{ height:40px; font-size:16px; text-align:center;}
+/*.destop b{ color:#fff; line-height:40px; font-family:"微软雅黑";}*/
+/*.destop{ height:40px; font-size:16px; text-align:center;}*/
 .zhuoxing{ width:98%; margin:0 auto; margin-top:25px; height:150px;}
 .zhuoxingul{ width:98%; margin:0 auto;}
 .zhuoxingul2 li{ float:left;height:30px; width:33%; text-align:center; margin:auto; font-size:13px; line-height:30px;}
