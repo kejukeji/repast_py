@@ -12,15 +12,32 @@
     $(function(){
         function ajax_call_number(){
             var now_number = $('.now_number');
-            $.each(now_number, function(i, value){
-                var now_number_text = value.innerText;
-                if (now_number_text == '当前没有人排队'){
-                    window.location.reload();
+            $.ajax({
+                type: "GET",
+                url: "/restful/call_number/{{ stores.id }}",
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function(json){
+                    for(i = 0; i < json.length; i++){
+                        var d = json[i][0];
+                        var type = json[i][1];
+                        var htmlText = now_number[i].innerText;
+                        var parentEle = now_number[i].parentNode;
+                        var typeEle = $(parentEle).find('.type');
+                        var typeText = typeEle.text();
+                        if (d !== "当前没有人排队" && d.toString() !== htmlText && typeText == type){
+                            window.location.reload();
+                        }
+                    }
+                },
+                error: function(){
+
                 }
             })
         }
-        window.setTimeout(ajax_call_number, 5000)
-    })
+        window.setTimeout(ajax_call_number(), 5000)
+    });
 </script>
 <title>微餐饮</title>
 </head> 
@@ -47,7 +64,7 @@
 <ul style="width:96%; margin:auto;">
 	<li>
     <ul class="shuzi">
-	<li> {{ queue.type }}</li>
+	<li class="type"> {{ queue.type }}</li>
 	<li class="now_number">{{ queue.now_number }}</li>
 	<li>{{ queue.wait_number }}</li>
     </ul>
@@ -63,14 +80,7 @@
 </form>
 {% endfor %}
 {% else %}
-<div class="nav">
-<ul>
-<li> 餐桌类型</li>
-<li>排队号</li>
-<li>等待号</li>
-</ul>
 
-</div>
 {% endif %}
 </body>
 </html>

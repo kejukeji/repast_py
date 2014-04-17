@@ -64,7 +64,7 @@ class QueueService():
 def check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id):
     '''根据user_id,stores_id判断是否已经存在'''
     args_time = get_date_time_str()
-    queue = Queue.query.filter(Queue.user_id == user_id, Queue.stores_id == stores_id, Queue.queue_time.like(args_time)).first()
+    queue = Queue.query.filter(Queue.user_id == user_id, Queue.stores_id == stores_id, Queue.queue_time.like(args_time), Queue.status == 1).first()
     if queue:
         table_type = QueueSetting.query.filter(QueueSetting.id == queue.queue_setting_id).first()
         queue.table_type = ''
@@ -131,9 +131,12 @@ def do_queue_format(table_type_id, request, user_id):
         return queue
     else:
         queue = create_queue(user_id, stores_id, table_type_id)
-        message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
-        queue.queue_count = queue_count
-        queue.message = message
+        table_type = QueueSetting.query.filter(QueueSetting.id == table_type_id).first()
+        if queue and table_type:
+            message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
+            queue.queue_count = queue_count
+            queue.message = message
+            queue.table_type = table_type.type
         return queue
 
 
@@ -244,6 +247,8 @@ def get_table_type(table_type_id):
         return table_type.type
     return ''
 
+def get_queue_info_by_user_id_and_stores_id(user_id, stores_id):
+    temp = get_queue_by_stores_id(stores_id) # 前面还有几人
 
 
 def create_new_queue(model):

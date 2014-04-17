@@ -15,5 +15,6 @@ class AjaxCallNumber(restful.Resource):
         if stores_queue_info:
             for s in stores_queue_info:
                 message = s.now_number
-                json.append([message])
+                type = s.type
+                json.append([message, type])
         return json

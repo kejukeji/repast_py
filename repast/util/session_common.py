@@ -22,3 +22,12 @@ def set_session_user(value_name):
 
 def set_session_shop_user(value_name):
     session['shop_user'] = value_name
+
+
+def set_session_mark_queue(value):
+    session['mark_queue'] = value
+
+def get_session_mark_queue():
+    if session.has_key('mark_queue') and session['mark_queue']:
+        return session['mark_queue']
+    return None
