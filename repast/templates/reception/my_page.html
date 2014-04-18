@@ -1,37 +1,53 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
-<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
-<script type="text/javascript" src="./js/touch.js"></script>
- <script type="text/javascript" src="./js/zepto.extend.js"></script>
- <script type="text/javascript" src="./js/zepto.ui.js"></script>
- <script type="text/javascript" src="./js/slider.js"></script>
-  <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/css/bootstrap.min.css">
-
-    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.2/js/bootstrap.min.js"></script>
-<script src="/static/javascript/show_toolbar.js"></script>
-<title>微餐饮</title>
-</head>
-<style>
-.floor{ width:98%; margin:auto;}
-.floor img{ width:48%; }
-.floor li{ margin:10px 0; }
-</style> 
-<body style="background:#EFF2F5;">
-<div class="floor" >
-<ul style="width:99%; margin:auto;">
-<li ><a href="/to_queue"><img src="/static/images/stores/wode_r1.jpg" /></a>&nbsp;&nbsp;<a href="#"><img src="/static/images/stores/wode_r2.jpg" /></a></li>
-<li><a href="#"><img src="/static/images/stores/wode_r3.jpg" /></a>&nbsp;&nbsp;<a href="#"><img src="/static/images/stores/wode_r4.jpg" /></a></li>
-<li><a href="#"><img src="/static/images/stores/wode_r5.jpg" /></a>&nbsp;&nbsp;<a href="#"><img src="/static/images/stores/wode_r6.jpg" /></a></li>
-</ul>
-
-
-</ul>
+{% extends "reception/web_base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block title %}我的信息 {% endblock %}
+{% block pager_js %}
+{% endblock %}
+{% block content %}
+<body style="background:#efefef;">
+<div class="mybg">
+<div class="myimg">
+<center><img src="/static/images/img/jiacai_r3_c1_s1.jpg" alt="..." class="img-circle "></center>
+</div>
+<div class="mytext">
+<span style="border:none;"><p>优惠券</p><p>23</p></span>
+<span><p>积分</p><p>23</p></span>
+<span><p>金额</p><p>23</p></span>
 </div>
 </div>
+
+<div id="list">
+<ul class="list">
+<a href="#"><li class="lt"><img src="/static/images/img/xinxi_r3_c1_s1.jpg" />我的优惠券</li></a>
+<a href="#"><li class="lt"><img src="/static/images/img/xinxi_r5_c1_s1.jpg" />我的兑换</li></a>
+<a href="#"><li class="lt"><img src="/static/images/img/xinxi_r7_c1_s1.jpg" />我的菜单</li></a>
+<a href="#"><li class="lt"><img src="/static/images/img/xinxi_r9_c1_s1.jpg" />我的排队</li></a>
+<li  class="gt"><img src="/static/images/img/xinxi_r11_c1_s1.jpg" />完善个人信息 <button type="button" class="btn btn-primary btn-lg">管理</button>
+</li>
+<li class="gt"><img src="/static/images/img/xinxi_r13_c1_s1.jpg" />绑定手机号   <button type="button" class="btn btn-primary btn-lg">绑定新手机</button>
+</li>
+
+</ul>
+
+</div>
+
+<div class="none">
+</div>
+{#<div id="homefoot">#}
+{#<ul>#}
+{#<a href="#" ><li class="home1"></li></a>#}
+{#<a href="#" ><li class="home2"></li></a>#}
+{#<a href="#" ><li class="home3"></li></a>#}
+{#<a href="#" ><li class="home4"></li></a>#}
+{#<a href="#" ><li class="home5"></li></a>#}
+{#</ul>#}
+{##}
+{#</div>#}
+
 
 </body>
-</html>
+{% endblock %}
+
 

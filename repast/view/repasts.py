@@ -61,6 +61,8 @@ def do_assistant_login():
                                message='帐号或密码错误！')
 
 def to_my_page():
+    user_id = get_session_user()
+
     return render_template('reception/my_page.html')
 
 def to_order_dishes():
