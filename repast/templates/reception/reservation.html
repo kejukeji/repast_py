@@ -37,7 +37,7 @@
     <div id="text1" class="content_list" style=" background:url(/static/images/img/topbg2_s1.jpg) repeat-x" >
     <div id="content">
         <div class="content_list" style="border: none; " >
-            <form name="queueForm" action="/do_queue">
+            <form name="queueForm" action="/q/do_queue">
                 <input type="hidden" name="stores_id" value="{{ stores.id }}"/>
                 <input type="hidden" name="user_id" value="{{ user_id }}"/>
                 <div class="destop">
@@ -142,11 +142,5 @@
 
     </body>
 
-
-
-
-    {% block foot %}
-        {{ super() }}
-    {% endblock %}
 {% endblock %}
 

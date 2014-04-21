@@ -68,12 +68,12 @@ $(function () {
                     var mark_queue = "{{ mark_queue }}";
                     var prompt = '去排队';
                     $.each(j.stores, function (idx, item) {
-                        var url = '/queue/' + item.id;
+                        var url = '/q/queue/' + item.id;
                         if (mark_queue == item.id){
                             url = '/to_reservation/?user_id={{ user_id }}&table_type_id={{ table_type_id }}&stores_id='+item.id;
                             prompt = '排队信息'
                         }else{
-                            url = '/queue/' + item.id;
+                            url = '/q/queue/' + item.id;
                             prompt = '去排队'
                         }
                         $('#result').append(
@@ -268,8 +268,6 @@ $(function () {
 </div>
 
 </body>
-{% block foot %}
-    {{ super() }}
-{% endblock %}
+
 {% endblock %}
 

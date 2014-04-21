@@ -25,7 +25,7 @@
     <div class="number2">12</div>
     <div id="content">
         <div class="content_list">
-            <form name="queueForm" action="/do_queue">
+            <form name="queueForm" action="/q/do_queue">
                 <input type="hidden" name="stores_id" value="{{ stores.id }}"/>
                 <input type="hidden" name="user_id" value="{{ user_id }}"/>
 
@@ -60,8 +60,6 @@
 
 
 
-    {% block foot %}
-        {{ super() }}
-    {% endblock %}
+
 {% endblock %}
 
