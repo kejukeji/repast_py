@@ -149,7 +149,7 @@ def event_schedule(FromUserName, ToUserName, user):
     Content = ''
     if schedule:
         for s in schedule:
-            Content = Content + '当前餐厅:%s.桌型:%s.您的排队号数为%s号,前面有%s位等候者,请您耐心等候.\n' %(s.stores_name, s.table_type, s.now_queue_number, s.schedule_count)
+            Content = Content + '餐厅:%s.桌型:%s.\n您的排队号数为%s号.\n前面有%s位等候者,请您耐心等候.\n' %(s.stores_name, s.table_type, s.now_queue_number, s.schedule_count)
     else:
         Content = '您还没任何排队信息！'
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
@@ -183,8 +183,8 @@ def event_click(FromUserName, ToUserName, user):
             "ArticleCount": 1,
             "item": [{
                 "Title": '微餐饮',
-                "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Description": '环境幽雅，安静美丽，宁静舒适，是放松心情的好地方。你一定会喜欢这里的！',
+                "PicUrl": BASE_URL + '/static/images/home.jpeg',
                 "Url": '%s/home_page/%s?mark_queue=%s' %(BASE_URL, user.id, mark_queue)
             }]
     }
@@ -206,8 +206,8 @@ def event_subscribe(FromUserName, ToUserName, EventKey, user):
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": title,
-                "Description": description,
+                "Title": "去排队",
+                "Description": title +'\n'+ description,
                 "PicUrl": BASE_URL + pic_url,
                 "Url": '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
             }]
@@ -242,8 +242,8 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": title,
-                "Description": description,
+                "Title": "去排队",
+                "Description": title+ "\n" + description,
                 "PicUrl": BASE_URL + pic_url,
                 "Url": url
             }]
