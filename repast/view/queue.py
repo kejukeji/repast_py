@@ -11,13 +11,13 @@ def do_queue(table_type_id):
     user_id = 4
     #stores_id = request.args.get('stores_id') # 用户排队的餐厅
     stores_id = 6
-    queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
-    if queue:
-        message = '您已在队列中，当前号码为%s' %(queue.now_queue_number) # 如果存在队列中，提示
-        print message
-    else:
-        queue = create_queue(user_id, stores_id, table_type_id)
-        print queue.now_queue_number
+    #queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
+    #if queue:
+    #    message = '您已在队列中，当前号码为%s' %(queue.now_queue_number) # 如果存在队列中，提示
+    #    print message
+    #else:
+    queue = create_queue(user_id, stores_id, table_type_id)
+    print queue.now_queue_number
 
 
 def cancel_queue(queue_id):
@@ -44,7 +44,12 @@ def call_number_page(stores_id):
         print str(j.now_number) + ' ' + str(j.wait_number)
 
 if __name__ == '__main__':
-    do_queue(5)
+    #do_queue(5)
+    queue_info = get_schedule_by_user_id(4)
+    for queue in queue_info:
+        print '前面还有'+str(queue.schedule_count)
+        print queue.stores_name
+        print '当前号码'+str(queue.now_queue_number)
     #cancel(1)
     #shop_assistant_call_number(6)
     #queue_page(6)
