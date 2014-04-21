@@ -24,3 +24,22 @@ class Package(Base, InitUpdate):
     def update(self, **kwargs):
         args = ('name', 'group_id','group','brand_id','brand','dish_sort_id','dish_sort', 'suitable_number')
         self.update_value(args, kwargs)
+    @staticmethod
+    def get_package_by_brand(brand_id):
+        '''根据品牌获取套餐'''
+        temp = [] # 临时集合， 方便view层调用
+        package_count = Package.query.filter(Package.brand_id == brand_id).count()
+        if package_count > 1:
+            package = Package.query.filter(Package.brand_id == brand_id).all()
+            for p in package:
+                temp.append(p)
+        else:
+            package = Package.query.filter(Package.brand_id == brand_id).first()
+            if package:
+                temp.append(package)
+        return temp
+
+    @staticmethod
+    def get_package_by_id(package_id):
+        package = Package.query.filter(Package.id == package_id).first()
+        return package

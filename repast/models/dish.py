@@ -25,6 +25,11 @@ class DishSort(Base, InitUpdate):
         args = ('group', 'brand', 'name', 'group_id', 'brand_id')
         self.update_value(args, kwargs)
 
+    @staticmethod
+    def get_dish_sort_by_id(dish_sort_id):
+        dish_sort = DishSort.query.filter(DishSort.id == dish_sort_id).first()
+        return dish_sort
+
 
 class Dish(Base, InitUpdate):
     '''dish'''
@@ -35,6 +40,8 @@ class Dish(Base, InitUpdate):
     group = Column(String(50), nullable=False)
     brand = Column(String(50), nullable=False)
     brand_id = Column(String(50), nullable=False)
+    package = Column(String(50), nullable=False)
+    package_id = Column(Integer, nullable=False)
     dish_sort_id = Column(Integer, nullable=False)
     dish_sort = Column(String(500), nullable=False)
     list_price = Column(FLOAT, nullable=False)
@@ -44,9 +51,38 @@ class Dish(Base, InitUpdate):
     picture_name = Column(String(500), nullable=True)
 
     def __init__(self, **kwargs):
-        args = ('group_id', 'group', 'brand_id','brand', 'dish_sort_id', 'dish_sort', 'price', 'list_price', 'name', 'base_path', 'rel_path', 'picture_name')
+        args = ('group_id', 'group', 'brand_id','brand', 'dish_sort_id', 'dish_sort', 'price', 'list_price', 'name', 'base_path', 'rel_path', 'picture_name', 'package_id', 'package')
         self.init_value(args, kwargs)
 
     def update(self, **kwargs):
-        args = ('group_id', 'group', 'brand_id','brand', 'dish_sort_id', 'dish_sort', 'price', 'list_price', 'name','base_path', 'rel_path', 'picture_name')
+        args = ('group_id', 'group', 'brand_id','brand', 'dish_sort_id', 'dish_sort', 'price', 'list_price', 'name','base_path', 'rel_path', 'picture_name', 'package_id', 'package')
         self.update_value(args, kwargs)
+
+    @staticmethod
+    def get_dish_by_package(package):
+        temp = []
+        dish_count = Dish.query.filter(Dish.brand_id == package.brand_id, Dish.package_id == package.id).count()
+        if dish_count > 1:
+            dish = Dish.query.filter(Dish.brand_id == package.brand_id, Dish.package_id == package.id).all()
+            for d in dish:
+                temp.append(d)
+        else:
+            dish = Dish.query.filter(Dish.brand_id == package.brand_id, Dish.package_id == package.id).first()
+            if dish:
+                temp.append(dish)
+        return temp
+
+    @staticmethod
+    def get_dish_by_kind_and_brand(dish_sort_id, brand_id):
+        '''根据分类和品牌获取所有分类的菜品'''
+        temp = []
+        dish_count = Dish.query.filter(Dish.dish_sort_id == dish_sort_id, Dish.brand_id == brand_id).count()
+        if dish_count > 1:
+            dish = Dish.query.filter(Dish.dish_sort_id == dish_sort_id, Dish.brand_id == brand_id).all()
+            for d in dish:
+                temp.append(d)
+        else:
+            dish = Dish.query.filter(Dish.dish_sort_id == dish_sort_id, Dish.brand_id == brand_id).first()
+            if dish:
+                temp.append(dish)
+        return temp

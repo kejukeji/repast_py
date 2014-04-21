@@ -3,7 +3,8 @@ import os
 from base_service import *
 from werkzeug import secure_filename
 from repast.util.ex_file import *
-from repast.setting.server import *
+from repast.setting.wbb import *
+from repast.util.session_common import set_session_dish, get_session_dish
 
 class DishService(BaseService):
     '''菜品'''
@@ -95,8 +96,17 @@ class DishService(BaseService):
                     dictionary[str(arg)] = GetName._get_only_dish_sort_string(form_dict)
                 if arg == 'dish_sort_id':
                     dictionary[str(arg)] = GetName._get_only_dish_sort_id(form_dict)
+                if arg == 'package':
+                    dictionary[str(arg)] = GetName._get_package(form_dict)
 
         dictionary['base_path'] = base_path
         dictionary['rel_path'] = rel_path
         dictionary['picture_name'] = pic_name
         return dictionary
+
+def user_add_dish(dish_number, dish_id, package_id, dish_sort_id):
+    '''用户在基础套餐上添加菜品'''
+    dish = get_session_dish() # 得到所有菜品
+    for d in dish:
+        if (d.id == dish_id):
+            d.package_id = package_id
