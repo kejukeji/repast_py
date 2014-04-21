@@ -5,6 +5,7 @@ from ..models.brand import Brand
 from ..models.stores import Stores
 from ..models.location import *
 from ..models.dish import DishSort
+from ..models.package import Package
 from flask.ext import restful
 from ..util.session_common import *
 
@@ -62,9 +63,28 @@ class GetStores(restful.Resource):
 class GetDishSort(restful.Resource):
     '''获取菜品分类'''
     @staticmethod
+    def get(package_id):
+        package = Package.get_package_by_id(package_id)
+        temp = []
+        if package:
+            try:
+                dish_sort_id = package.dish_sort_id.split(',') # 得到套餐所有的分类id
+                for ds in dish_sort_id:
+                    dish_sort = DishSort.get_dish_sort_by_id(ds)
+                    temp.append(dish_sort)
+            except:
+                dish_sort_id = package.dish_sort_id
+                dish_sort = DishSort.get_dish_sort_by_id(dish_sort_id)
+                temp.append(dish_sort)
+        json = append_json(temp)
+        return json
+
+class GetPackage(restful.Resource):
+    '''获取套餐'''
+    @staticmethod
     def get(brand_id):
-        dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
-        json = append_json(dish_sort)
+        package = Package.query.filter(Package.brand_id == brand_id).all()
+        json = append_json(package)
         return json
 
 

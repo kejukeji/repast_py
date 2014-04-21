@@ -31,3 +31,11 @@ def get_session_mark_queue():
     if session.has_key('mark_queue') and session['mark_queue']:
         return session['mark_queue']
     return None
+
+def set_session_dish(dish):
+    session['dish'] = dish
+
+def get_session_dish():
+    if session.has_key('dish') and session['dish']:
+        return session['dish']
+    return None

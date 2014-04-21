@@ -122,22 +122,22 @@ def cancel(queue_id):
 def do_queue_format(table_type_id, request, user_id):
     '''用户排队'''
     stores_id = request.args.get('stores_id') # 用户排队的餐厅
-    queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
+    # queue = check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id) # 判断是否已经存在队列当中
     queue_q, queue_count = get_queue_by_table_type_id(table_type_id)
-    if queue:
-        message = '您已在队列中，当前桌型为%s,号码为%s,前面还有%s位' %(queue.table_type,queue.now_queue_number, queue_count) # 如果存在队列中，提示
+    #if queue:
+    #    message = '您已在队列中，当前桌型为%s,号码为%s,前面还有%s位' %(queue.table_type,queue.now_queue_number, queue_count) # 如果存在队列中，提示
+    #    queue.queue_count = queue_count
+    #    queue.message = message
+    #    return queue
+    #else:
+    queue = create_queue(user_id, stores_id, table_type_id)
+    table_type = QueueSetting.query.filter(QueueSetting.id == table_type_id).first()
+    if queue and table_type:
+        message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
         queue.queue_count = queue_count
         queue.message = message
-        return queue
-    else:
-        queue = create_queue(user_id, stores_id, table_type_id)
-        table_type = QueueSetting.query.filter(QueueSetting.id == table_type_id).first()
-        if queue and table_type:
-            message = '排队成功，当前号码为%s,前面还有%s位' %(queue.now_queue_number, queue_count)
-            queue.queue_count = queue_count
-            queue.message = message
-            queue.table_type = table_type.type
-        return queue
+        queue.table_type = table_type.type
+    return queue
 
 
 def get_table_type_by_stores_id(stores_id):
@@ -233,13 +233,28 @@ def get_wait_number(table_type_id):
 def get_schedule_by_user_id(user_id):
     '''获得用户的进展'''
     args_time = get_date_time_str()
-    get_stores = Queue.query.filter(Queue.queue_time.like(args_time), Queue.user_id == user_id, Queue.status == 1).first()
+    get_stores = Queue.query.filter(Queue.queue_time.like(args_time), Queue.user_id == user_id, Queue.status == 1).all()
+    # 用户可以重复排队，提醒进度时候需要自己也算进去。？
+    queue_count = Queue.query.filter(Queue.queue_time.like(args_time), Queue.user_id == user_id, Queue.status == 1).count()
     if get_stores:
-        schedule_count = Queue.query.filter(Queue.queue_time.like(args_time), Queue.status == 1,Queue.user_id != user_id, Queue.stores_id == get_stores.stores_id).count()
-        get_stores.schedule_count = schedule_count
-        get_stores.table_type = get_table_type(get_stores.queue_setting_id)
+        get_stores_info(get_stores, queue_count, user_id) # 格式化排队信息
         return get_stores
     return None
+
+def get_stores_info(queue_info, queue_count, user_id):
+    '''得到用户排队餐厅信息'''
+    args_time = get_date_time_str()
+    for queue in queue_info:
+        queue.table_type = get_table_type(queue.queue_setting_id) # 得到桌型
+        schedule_count = Queue.query.filter(Queue.queue_time.like(args_time), Queue.status == 1,Queue.user_id != user_id, Queue.stores_id == queue.stores_id).count()
+        queue.schedule_count = schedule_count # 用户排队前面还有几人
+        queue.table_type = get_table_type(queue.queue_setting_id) # 得到餐桌类型
+        stores = Stores.query.filter(Stores.id == queue.stores_id).first() # 得到排队餐厅
+        queue.stores_name = ''
+        if stores:
+            queue.stores_name = stores.name
+        if queue_count > 1:
+            queue.schedule_count = queue.schedule_count + (queue_count - 1) # 如果用户排了多个。前面几人自己也算一个
 
 def get_table_type(table_type_id):
     table_type = get_queue_by_id(table_type_id)

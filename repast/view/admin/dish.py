@@ -9,15 +9,15 @@ from repast.models.dish import Dish
 
 class DishView(ModelView):
     '''dish '''
-    ARGS = ('group_id', 'brand_id', 'dish_sort_id', 'price', 'list_price', 'name')
-    SPECIAL_ARGS = ('group','brand', 'dish_sort', 'base_path', 'rel_path', 'picture_name')
+    ARGS = ('group_id', 'brand_id', 'dish_sort_id', 'price', 'list_price', 'name', 'package_id')
+    SPECIAL_ARGS = ('group','brand', 'dish_sort', 'package', 'base_path', 'rel_path', 'picture_name')
     dish_service = DishService()
     page_size = 20
     can_create = True
     can_edit = True
 
-    column_exclude_list = ('group_id', 'brand_id', 'dish_sort_id','base_path', 'rel_path', 'picture_name',)
-    column_filters = ('group', 'brand', 'dish_sort',)
+    column_exclude_list = ('group_id', 'brand_id', 'dish_sort_id','base_path', 'rel_path', 'picture_name', 'package_id',)
+    column_filters = ('group', 'brand', 'dish_sort','package',)
     column_searchable_list = ('group','brand','dish_sort','name',)
 
     column_labels = dict(
@@ -25,6 +25,8 @@ class DishView(ModelView):
         group = u'集团',
         brand_id = u'品牌',
         brand = u'品牌',
+        package = u'套餐',
+        package_id = u'套餐',
         dish_sort_id = u'菜单类别',
         dish_sort = u'菜单类别',
         list_price = u'原价',
@@ -37,6 +39,8 @@ class DishView(ModelView):
         group = u'所属集团',
         brand_id = u'所属品牌',
         brand = u'所属品牌',
+        package = u'所属套餐',
+        package_id = u'所属套餐',
         dish_sort_id = u'所属菜单类别',
         dish_sort = u'所属菜单类别',
         list_price = u'菜品原价',
@@ -57,6 +61,7 @@ class DishView(ModelView):
         delattr(form_class, 'group')
         delattr(form_class, 'brand')
         delattr(form_class, 'dish_sort')
+        delattr(form_class, 'package')
         delattr(form_class, 'base_path')
         delattr(form_class, 'rel_path')
         delattr(form_class, 'picture_name')

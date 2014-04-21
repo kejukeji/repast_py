@@ -146,8 +146,10 @@ def event_my(FromUserName, ToUserName, user):
 def event_schedule(FromUserName, ToUserName, user):
     '''进度'''
     schedule = get_schedule_by_user_id(user.id)
+    Content = ''
     if schedule:
-        Content = '您的排队号数为%s号,前面有%s位等候者,请您耐心等候.' %(schedule.now_queue_number, schedule.schedule_count)
+        for s in schedule:
+            Content = Content + '餐厅:%s.桌型:%s.\n您的排队号数为%s号.\n前面有%s位等候者,请您耐心等候.\n' %(s.stores_name, s.table_type, s.now_queue_number, s.schedule_count)
     else:
         Content = '您还没任何排队信息！'
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
@@ -166,8 +168,9 @@ def get_schedule(user):
     mark_queue = 0
     table_type_id = 0
     if schedule:
-        mark_queue = schedule.stores_id
-        table_type_id = schedule.queue_setting_id
+        for s in schedule:
+            mark_queue = s.stores_id
+            table_type_id = s.queue_setting_id
     return mark_queue, table_type_id
 
 
@@ -180,8 +183,8 @@ def event_click(FromUserName, ToUserName, user):
             "ArticleCount": 1,
             "item": [{
                 "Title": '微餐饮',
-                "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/miaomiao.jpeg',
+                "Description": '环境幽雅，安静美丽，宁静舒适，是放松心情的好地方。你一定会喜欢这里的！',
+                "PicUrl": BASE_URL + '/static/images/home.jpeg',
                 "Url": '%s/home_page/%s?mark_queue=%s' %(BASE_URL, user.id, mark_queue)
             }]
     }
@@ -203,8 +206,8 @@ def event_subscribe(FromUserName, ToUserName, EventKey, user):
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": title,
-                "Description": description,
+                "Title": "去排队",
+                "Description": title +'\n'+ description,
                 "PicUrl": BASE_URL + pic_url,
                 "Url": '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
             }]
@@ -230,17 +233,13 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
     title, description, pic_url = get_stores_(stores_id)
     mark_queue, table_type_id = get_schedule(user)
     url = '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
-    if mark_queue != 0:
-        url = '%s/to_reservation/?user_id=%s&table_type_id=%s&stores_id=%s' %(BASE_URL, user.id, table_type_id, mark_queue)
-    else:
-        pass
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
             "ArticleCount": 1,
             "item": [{
-                "Title": title,
-                "Description": description,
+                "Title": "去排队",
+                "Description": title+ "\n" + description,
                 "PicUrl": BASE_URL + pic_url,
                 "Url": url
             }]

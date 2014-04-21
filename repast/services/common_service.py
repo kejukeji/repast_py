@@ -3,6 +3,7 @@ from repast.models.group import Group
 from repast.models.brand import Brand
 from repast.models.stores import Stores
 from repast.models.dish import DishSort
+from repast.models.package import Package
 
 class GetName():
     @staticmethod
@@ -78,3 +79,12 @@ class GetName():
     def _get_only_dish_sort_id(form_dict):
         dish_sort_id = form_dict['dish_sort_id']
         return dish_sort_id
+
+    @staticmethod
+    def _get_package(form_dict):
+        package_id = form_dict['package_id']
+        package = Package.get_package_by_id(package_id)
+        package_name = ''
+        if package:
+            package_name = package.name
+        return package_name
