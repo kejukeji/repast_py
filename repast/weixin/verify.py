@@ -233,10 +233,6 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
     title, description, pic_url = get_stores_(stores_id)
     mark_queue, table_type_id = get_schedule(user)
     url = '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
-    if mark_queue != 0:
-        url = '%s/to_reservation/?user_id=%s&table_type_id=%s&stores_id=%s' %(BASE_URL, user.id, table_type_id, mark_queue)
-    else:
-        pass
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
