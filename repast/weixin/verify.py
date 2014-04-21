@@ -168,8 +168,9 @@ def get_schedule(user):
     mark_queue = 0
     table_type_id = 0
     if schedule:
-        mark_queue = schedule.stores_id
-        table_type_id = schedule.queue_setting_id
+        for s in schedule:
+            mark_queue = s.stores_id
+            table_type_id = s.queue_setting_id
     return mark_queue, table_type_id
 
 
