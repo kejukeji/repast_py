@@ -7,15 +7,15 @@
 {% block pager_js %}
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#tab1").click(function () {
-                $("#tab1").css("background", "#5AC3DC");
-                $("#tab2").css("background", "#E9F4F7");
+           $("#tab1").click(function () {
+                $("#tab1").css("background", "#5AC3DC").children().css({color:"#e9f4f7"});
+                $("#tab2").css({background: "#E9F4F7"}).children().css({color:"#5ac3dc"});
                 $("#text1").css("display", "block");
                 $("#text2").css("display", "none");
             });
             $("#tab2").click(function () {
-                $("#tab1").css("background", "#E9F4F7");
-                $("#tab2").css("background", "#5AC3DC");
+                $("#tab1").css({background: "#E9F4F7"}).children().css({color:"#5ac3dc"});
+                $("#tab2").css("background", "#5AC3DC").children().css({color:"#e9f4f7"});
                 $("#text1").css("display", "none");
                 $("#text2").css("display", "block");
             });
@@ -34,7 +34,7 @@
         <div class="des">
             <span id="tab1" class="nav_des"
                   style="color:#fff; background: #5AC3DC;float: left;margin-left: 1%"><b>我&nbsp;的&nbsp;排&nbsp;队</b></span>
-            <span id="tab2" class="nav_des" style="background: #E9F4F7;float: left"><b style="color: #fff">相&nbsp;关&nbsp;推&nbsp;荐</b></span>
+            <span id="tab2" class="nav_des" style="background: #E9F4F7;float: left"><b style="color: #fff">等&nbsp;不&nbsp;及&nbsp;了</b></span>
 
         </div>
         <div id="text1">
