@@ -71,7 +71,8 @@ def to_order_dishes():
     return render_template('reception/order_dishes.html')
 
 def to_my_queue(user_id):
-    set_session_user(user_id)
+    if user_id:
+        set_session_user(user_id)
     user_schedule = get_schedule_by_user_id(user_id)
     stores = get_stores_by_id(user_schedule.stores_id)
     return render_template('reception/queue.html',
@@ -127,7 +128,8 @@ def do_cancel_queue(queue_id):
 
 def to_reservation():
     user_id = request.args.get('user_id')
-    set_session_user(user_id)
+    if user_id:
+        set_session_user(user_id)
     table_type_id = request.args.get('table_type_id')
     queue = do_queue_format(table_type_id, request, user_id)
     stores_id = request.args.get('stores_id')

@@ -1,6 +1,6 @@
 # coding: UTF-8
-from flask import Session, sessions
-session = Session()
+from flask import session
+#session = Session()
 
 def get_session_user():
     if session.has_key('user') and session['user']:
