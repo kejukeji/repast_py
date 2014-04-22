@@ -180,7 +180,7 @@ def event_click(FromUserName, ToUserName, user):
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
-            "ArticleCount": 4,
+            "ArticleCount": 3,
             "item": [{
                 "Title": '主页',
                 "Description": '微生活 | 微一切',
