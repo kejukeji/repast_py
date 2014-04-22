@@ -240,11 +240,12 @@ def to_meal_restaurant_list():
 
 def to_package_list():
     """点餐后进入套餐选择页面"""
-    return render_template('reception/package.html')
+    return render_template('reception/taocan.html')
 
 
 def to_meal_list():
     """菜品列表"""
+    return render_template('reception/food_list.html')
 
 
 def location():

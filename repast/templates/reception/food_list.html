@@ -1,7 +1,7 @@
 ﻿{% extends "reception/web_base.html" %}
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" type="text/css" href="/static/css/foot_list.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/food_list.css"/>
 {% endblock %}
 {% block title %} 菜品 {% endblock %}
 
@@ -48,8 +48,9 @@ $(function(){
 {% block content %}
 	<body style="margin:0; padding:0; font-family:'微软雅黑'; ">
 	<div style="height:90%;width:20%;position:fixed; top:0; left:0; float:left; background:#CDCDCD;border:1px solid #eee;">
-    	<div class="cd-left" id="cold_button">冷菜</div>
+
 		<div class="cd-left" id="hot_button">热菜</div>
+        <div class="cd-left" id="cold_button">冷菜</div>
         <div class="cd-left" id="food_button">主食</div>
 		<div class="cd-left" id="drink_button">饮料</div>
 		<div class="cd-left" id="cake_button">点心</div>
@@ -58,7 +59,7 @@ $(function(){
 		<div class="cd-left" id="discount_button">优惠</div>
 	</div>
 	<div style="position:absolute;width:79%;float:left;left:21%;" id="right">
-		<div id="hot" style="display:none">
+		<div id="hot" style="display:block">
 			<div class="hot-food">
            <ul>
            <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
