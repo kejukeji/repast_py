@@ -325,7 +325,7 @@ b{ color:#666; padding-left:20px; font-family:"微软雅黑"; }
 .list a{ color:#333;}
 .list li{ height:50px; border-bottom:1px solid #ccc; font-size:16px; line-height:50px;}
 .list li img{ width:40px; height:40px; margin:5px;}
-.list .lt{ background:url(/static/images/img/xinxi_r3_c5_s1.jpg) no-repeat right center; padding-right:10px;}
+/*.list .lt{ background:url(/static/images/img/xinxi_r3_c5_s1.jpg) no-repeat right center; padding-right:10px;}*/
 .list .gt button{ width:34%; float:right; border:none; height:40px; margin-top:5px; font-size:16px;}
 
 /*diancancss样式*/
@@ -399,7 +399,7 @@ b{ color:#666; padding-left:20px; font-family:"微软雅黑"; }
 .list a{ color:#333;}
 .list li{ height:50px; border-bottom:1px solid #ccc; font-size:16px; line-height:50px;}
 .list li img{ width:40px; height:40px; margin:5px;}
-.list .lt{ background:url(/static/images/img/xinxi_r3_c5_s1.jpg) no-repeat right center; padding-right:10px;}
+/*.list .lt{ background:url(/static/images/img/xinxi_r3_c5_s1.jpg) no-repeat right center; padding-right:10px;}*/
 .list .gt button{ width:34%; float:right; border:none; height:40px; margin-top:5px; font-size:16px;}
 
 /*diancancss样式*/
