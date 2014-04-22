@@ -195,7 +195,7 @@ def event_click(FromUserName, ToUserName, user):
                "Title": '去点餐',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/preferential.png',
-                "Url": '%s/f/meal/?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/f/meal_restaurant?user_id=%s' %(BASE_URL, user.id)
             }
             ]
     }

@@ -176,6 +176,15 @@ def to_search_position():
                            mark_queue=mark_queue,
                            user_id=user_id)
 
+
+def to_meal_search_position():
+    user_id = get_session_user()
+    mark_queue = get_session_mark_queue()
+    return render_template('reception/un_meal_list.html',
+                           mark_queue=mark_queue,
+                           user_id=user_id)
+
+
 def to_search_result():
     user_id = get_session_user()
     mark_queue = get_session_mark_queue()
@@ -196,5 +205,48 @@ def to_my_line_up():
                            my_line_up_info=my_line_up_info)
 
 
+def to_meal_restaurant_list():
+    """去点餐"""
+    user_id = request.args.get('user_id')
+    if user_id:
+        set_session_user(user_id)
+    else:
+        user_id = get_session_user()
+    mark_queue = get_session_mark_queue()
+    if user_id:
+        latitude = get_user_by_id(user_id).latitude
+        longitude = get_user_by_id(user_id).longitude
+        des = get_user_by_id(user_id).description
+        if des:
+            description = des[:-12]
+        else:
+            description = ''
+        if latitude and longitude:
+            return render_template('reception/meal_list.html',
+                                   latitude=latitude,
+                                   longitude=longitude,
+                                   description=description,
+                                   mark_queue=mark_queue,
+                                   user_id=user_id)
+        else:
+            return render_template('reception/un_meal_list.html',
+                                   mark_queue=mark_queue,
+                                   user_id=user_id)
+    else:
+        return render_template('reception/un_meal_list.html',
+                               mark_queue=mark_queue,
+                               user_id=user_id)
+
+
+def to_package_list():
+    """点餐后进入套餐选择页面"""
+    return render_template('reception/package.html')
+
+
+def to_meal_list():
+    """菜品列表"""
+
+
 def location():
+    """测试地图"""
     return render_template('reception/location.html')
