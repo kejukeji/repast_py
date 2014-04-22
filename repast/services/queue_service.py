@@ -25,10 +25,14 @@ def get_q_by_id(queue_id):
     queue = Queue.query.filter(Queue.id == queue_id).first()
     return queue
 
-def get_queue_by_now_number(now_number):
-    now_time = todayfstr() # 当前时间
-    str_time = str(now_time)[:10] # 截取当前时间。去掉时分秒
-    args_time = '%'+ str_time +'%'
-    queue = Queue.query.filter(Queue.now_queue_number == now_number, Queue.queue_time.like(args_time), Queue.status == 1).first()
+def get_queue_by_now_number(now_number, stores_id, table_type_id):
+    now_time = todayfstr()  # 当前时间
+    str_time = str(now_time)[:10]  # 截取当前时间。去掉时分秒
+    args_time = '%' + str_time + '%'
+    queue = Queue.query.filter(Queue.now_queue_number == now_number,
+                               Queue.queue_time.like(args_time),
+                               Queue.status == 1,
+                               Queue.stores_id == stores_id,
+                               Queue.queue_setting_id == table_type_id).first()
     return queue
 

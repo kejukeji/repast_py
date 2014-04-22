@@ -209,7 +209,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey, user):
                 "Title": "去排队",
                 "Description": title +'\n'+ description,
                 "PicUrl": BASE_URL + pic_url,
-                "Url": '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
+                "Url": '%s/q/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
             }]
     }
     return reply_dict
@@ -232,7 +232,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
     stores_id = EventKey
     title, description, pic_url = get_stores_(stores_id)
     mark_queue, table_type_id = get_schedule(user)
-    url = '%s/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
+    url = '%s/q/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,

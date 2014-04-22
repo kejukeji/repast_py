@@ -125,7 +125,7 @@ class WebChat(object):
         return message_url
 
     def send_text_message(self, openid, content):
-        body = '{"touser": "%s","msgtype":"text","text":{"content": "%s"}}' %(openid, content)
+        body = '{"touser": "'+openid+'","msgtype":"text","text":{"content": "There are positions up soon"}}'
         message_url = self.send_message_url()
         req = urllib2.Request(message_url) # 请求post请求
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
@@ -135,11 +135,11 @@ class WebChat(object):
         print json.loads(json_string)['errcode']
         return err_message
 
-    def transcoding(self, openid):
-        '''转换编码utf-8 > ascii'''
-        openid = openid.decode('utf-8')
-        openid = openid.encode('ascii')
-        return openid
+    def transcoding(self, content):
+        """转换编码utf-8 > ascii"""
+        content = content.decode('utf-8')
+        content = content.encode('ascii')
+        return content
 
 
     @staticmethod
