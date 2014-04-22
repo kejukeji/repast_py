@@ -251,8 +251,10 @@ def get_stores_info(queue_info, queue_count, user_id):
         queue.table_type = get_table_type(queue.queue_setting_id) # 得到餐桌类型
         stores = Stores.query.filter(Stores.id == queue.stores_id).first() # 得到排队餐厅
         queue.stores_name = ''
+        queue.address = ''
         if stores:
             queue.stores_name = stores.name
+            queue.address = stores.address
         if queue_count > 1:
             queue.schedule_count = queue.schedule_count + (queue_count - 1) # 如果用户排了多个。前面几人自己也算一个
 

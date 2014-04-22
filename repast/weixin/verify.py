@@ -121,22 +121,22 @@ def event_my(FromUserName, ToUserName, user):
                 "Title": '我的排队',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/queue.jpg',
-                "Url": '%s/my_queue/%s' %(BASE_URL, user.id)
+                "Url": '%s/m/my_line_up/?user_id=%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的预定',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/Customized.jpg',
-                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                "Url": '%s/home_page/?user_id=%s' %(BASE_URL, user.id)
             },{
                "Title": '我的优惠',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/preferential.png',
-                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                "Url": '%s/home_page/?user_id=%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的账单',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/bill.jpg',
-                "Url": '%s/home_page/%s' %(BASE_URL, user.id)
+                "Url": '%s/home_page/?user_id=%s' %(BASE_URL, user.id)
             }]
     }
     return reply_dict
@@ -185,7 +185,7 @@ def event_click(FromUserName, ToUserName, user):
                 "Title": '微餐饮',
                 "Description": '环境幽雅，安静美丽，宁静舒适，是放松心情的好地方。你一定会喜欢这里的！',
                 "PicUrl": BASE_URL + '/static/images/home.jpeg',
-                "Url": '%s/home_page/%s?mark_queue=%s' %(BASE_URL, user.id, mark_queue)
+                "Url": '%s/home_page/?user_id=%s&mark_queue=%s' %(BASE_URL, user.id, mark_queue)
             }]
     }
     return reply_dict

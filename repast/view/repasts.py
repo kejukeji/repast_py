@@ -42,8 +42,10 @@ def do_call_number(queue_id):
 def to_home():
     return render_template('reception/index.html')
 
-def to_home_page(user_id):
-    set_session_user(user_id)
+def to_home_page():
+    user_id = request.args.get('user_id')
+    if user_id:
+        set_session_user(user_id)
     mark_queue = request.args.get('mark_queue')
     set_session_mark_queue(mark_queue)
     return render_template('reception/index.html',
@@ -111,6 +113,9 @@ def do_cancel_queue(queue_id):
     '''取消队列'''
     cancel(queue_id)
     stores_id = request.args.get('stores_id')
+    my = request.args.get('my')
+    if my:
+        return redirect(url_for('to_my_line_up'))
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     mark_queue = 0
@@ -171,3 +176,14 @@ def to_search_result():
     return render_template('reception/search_result.html',
                            mark_queue=mark_queue,
                            user_id=user_id)
+
+
+def to_my_line_up():
+    user_id = request.args.get('user_id')
+    if user_id is None:
+        user_id = get_session_user()
+    else:
+        set_session_user(user_id)
+    my_line_up_info = get_schedule_by_user_id(user_id)
+    return render_template('reception/my_line_up.html',
+                           my_line_up_info=my_line_up_info)
