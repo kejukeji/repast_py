@@ -38,7 +38,7 @@ app.add_url_rule('/register/','login_register', register_view, methods=('GET','P
 app.add_url_rule('/call_number/<int:shop_assistant_id>','to_call_number', to_call_number, methods=('GET','POST'))
 app.add_url_rule('/do_call_number/<int:queue_id>','do_call_number', do_call_number, methods=('GET','POST'))
 app.add_url_rule('/home/','to_home', to_home, methods=('GET','POST'))
-app.add_url_rule('/home_page/<int:user_id>','to_home_page', to_home_page, methods=('GET','POST'))
+app.add_url_rule('/home_page/','to_home_page', to_home_page, methods=('GET','POST'))
 app.add_url_rule('/shop_assistant_login/','to_login', to_login, methods=('GET','POST'))
 app.add_url_rule('/do_assistant_login/', 'do_assistant_login', do_assistant_login, methods=('GET','POST'))
 app.add_url_rule('/m/my_page/','to_my_page', to_my_page, methods=('GET','POST'))
@@ -52,6 +52,7 @@ app.add_url_rule('/text/',view_func=ToOrderDishes.as_view('text'))
 app.add_url_rule('/q/to_search_position/','to_search_position',to_search_position,methods=('GET','POST'))
 app.add_url_rule('/to_reservation/', 'to_reservation', to_reservation, methods= ('GET', 'POST'))
 app.add_url_rule('/q/do_cancel_queue/<int:queue_id>', 'do_cancel_queue', do_cancel_queue, methods= ('GET', 'POST'))
+app.add_url_rule('/m/my_line_up', 'to_my_line_up', to_my_line_up, methods=('GET', 'POST'))
 
 # 接口定义
 api = restful.Api(app)
