@@ -13,7 +13,7 @@ class PushMessage():
             now_number = queue.now_queue_number
             prompt_number = now_number + 3
             while True:
-                prompt_queue = get_queue_by_now_number(prompt_number) # 得到当前号码后3位
+                prompt_queue = get_queue_by_now_number(prompt_number, queue.stores_id, queue.queue_setting_id) # 得到当前号码后3位
                 if prompt_queue:
                     user_id = prompt_queue.user_id
                     user = get_user_by_id(user_id)
@@ -22,5 +22,7 @@ class PushMessage():
                     break
                 else:
                     prompt_number = prompt_number - 1
+                if prompt_number < 1:
+                    break
         webChat = WebChat('1234', APPID, SECRET)
-        webChat.send_text_message(open_id, "english_no")
+        webChat.send_text_message(open_id, "快到您呢")

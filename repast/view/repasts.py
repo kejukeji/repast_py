@@ -34,9 +34,9 @@ def to_call_number(shop_assistant_id):
 def do_call_number(queue_id):
     '''叫号'''
     shop_assistant_id = get_session_shop_user()
-    call_success = call_number(queue_id)
     push_message_service = PushMessage()
     push_message_service.push_message(queue_id)
+    call_success = call_number(queue_id)
     return redirect(url_for('to_call_number', shop_assistant_id=shop_assistant_id))
 
 def to_home():

@@ -5,6 +5,8 @@ from flask.ext.restful import reqparse
 from repast.services.stores_service import *
 from repast.util.others import flatten
 from repast.util.get_distance import *
+
+
 class SearchStore(restful.Resource):
     @staticmethod
     def get():
