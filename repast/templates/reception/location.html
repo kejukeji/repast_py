@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>  
+<html>  
+<head>  
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no">  
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">  
+<title>Hello,world</title>  
+<style type="text/css">  
+html{height:100%}  
+body{height:100%;margin:0px;padding:0px}  
+#container{height:100%}  
+</style>  
+<script type="text/javascript"  
+src="http://webapi.amap.com/maps?v=1.2&key=dcdaf8533bd2fa8333b412d6f36dcfff">
+</script>  
+<script type="text/javascript">  
+function initialize(){  
+  var position=new AMap.LngLat(121.403277,31.150807);//创建中心点坐标
+  var mapObj=new AMap.Map("iCenter",{center:position});//创建地图实例
+  mapObj.setZoomAndCenter(17,position);
+  var marker = new AMap.Marker({ //自定义构造AMap.Marker对象
+      map:mapObj,
+      position: new AMap.LngLat(121.403277,31.150807),
+      offset: new AMap.Pixel(-10,-34),
+      icon: "http://webapi.amap.com/images/0.png"
+    });
+    var driving;
+    mapObj.plugin(["AMap.ToolBar"],function(){
+        toolBar = new AMap.ToolBar();
+        mapObj.addControl(toolBar);
+    });
+}  
+</script>  
+</head>  
+  
+<body onload="initialize()">  
+<div id="iCenter"></div>
+    <div style="padding:2px 0px 0px 5px;font-size:12px">
+        <input type="button" value="显示ToolBar" onClick="javascript:toolBar.show()"/>
+        <input type="button" value="显示方向键盘" onClick="javascript:toolBar.showDirection()"/>
+        <input type="button" value="显示标尺键盘" onClick="javascript:toolBar.showRuler()"/>
+    </div>
+    <div style="padding:2px 0px 0px 5px;font-size:12px">
+        <input type="button" value="隐藏ToolBar" onClick="javascript:toolBar.hide()"/>
+        <input type="button" value="隐藏方向键盘" onClick="javascript:toolBar.hideDirection()"/>
+        <input type="button" value="隐藏标尺键盘" onClick="javascript:toolBar.hideRuler()"/>
+    </div>
+</body>  
+</html>  

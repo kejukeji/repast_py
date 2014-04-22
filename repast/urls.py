@@ -53,6 +53,7 @@ app.add_url_rule('/q/to_search_position/','to_search_position',to_search_positio
 app.add_url_rule('/to_reservation/', 'to_reservation', to_reservation, methods= ('GET', 'POST'))
 app.add_url_rule('/q/do_cancel_queue/<int:queue_id>', 'do_cancel_queue', do_cancel_queue, methods= ('GET', 'POST'))
 app.add_url_rule('/m/my_line_up', 'to_my_line_up', to_my_line_up, methods=('GET', 'POST'))
+app.add_url_rule('/location', 'to_location', location, methods=('GET', 'POST'))
 
 # 接口定义
 api = restful.Api(app)
