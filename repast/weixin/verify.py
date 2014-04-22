@@ -121,7 +121,7 @@ def event_my(FromUserName, ToUserName, user):
                 "Title": '我的排队',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/queue.jpg',
-                "Url": '%s/m/my_line_up/?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/m/my_line_up?user_id=%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的预定',
                 "Description": '微生活 | 微一切',
