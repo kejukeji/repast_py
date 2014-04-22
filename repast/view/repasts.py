@@ -139,7 +139,11 @@ def to_reservation():
                            stores=stores)
 
 def to_search():
-    user_id = get_session_user()
+    user_id = request.args.get('user_id')
+    if user_id:
+        set_session_user(user_id)
+    else:
+        user_id = get_session_user()
     mark_queue = get_session_mark_queue()
     if user_id:
         latitude = get_user_by_id(user_id).latitude
