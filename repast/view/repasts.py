@@ -181,6 +181,7 @@ def to_search_result():
 
 
 def to_my_line_up():
+    """我的排队"""
     user_id = request.args.get('user_id')
     if user_id is None:
         user_id = get_session_user()
@@ -189,3 +190,7 @@ def to_my_line_up():
     my_line_up_info = get_schedule_by_user_id(user_id)
     return render_template('reception/my_line_up.html',
                            my_line_up_info=my_line_up_info)
+
+
+def location():
+    return render_template('reception/location.html')
