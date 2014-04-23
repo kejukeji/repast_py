@@ -108,7 +108,7 @@ $(document).ready(function(){
             success: function(json) {
                 $(".parentEle").empty();
                 $.each(json, function(i, value) {
-                    if (bool){
+                    if (bool == true){
                         var number_value = value[0].toString();
                         var index = dish_sort_array.indexOf(number_value);
                         if (index !== -1){
