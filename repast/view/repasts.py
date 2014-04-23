@@ -250,4 +250,9 @@ def to_meal_list():
 
 def location():
     """测试地图"""
-    return render_template('reception/location.html')
+    # 得到餐厅经纬度
+    longitude = request.args.get('longitude')
+    latitude = request.args.get('latitude')
+    return render_template('reception/location.html',
+                           longitude=longitude,
+                           latitude=latitude)
