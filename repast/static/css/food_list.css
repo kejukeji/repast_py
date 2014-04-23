@@ -7,7 +7,7 @@ a{ color:#FF9A62; font-size:16px;}
 	.hot-food ul{ margin:0; padding:0;}
 	.hot-food li{ float:left; height:110px;}
 	.hot-food p{line-height:60px; width:100%; font-size:16px; color:#666;}
-	.hot-zs{ margin-right:10%; width:35px; padding-left:10px !important; float:right; height:60px; background:url(/static/images/img/jiacai_r4_c3_s1.jpg) no-repeat center right; background-size:15px 25px; display:block;   }
+	.hot-zs{ margin-right:10%; width:35px; padding-left:20px !important; float:right; height:60px; background:url(/static/images/img/jiacai_r4_c3_s1.jpg) no-repeat center right; background-size:15px 25px; display:block;   }
 	.hot-money{ line-height:60px; float:right; margin-right:20%;}
 	.hot-food-img{ width:110px; height:110px;}
 	.hot-food-text{ height:110px; width:55%; margin:0; padding:0;}

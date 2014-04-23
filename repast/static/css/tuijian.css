@@ -1,0 +1,69 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+.tjc{ width:98%; margin:0 auto; height:110px;margin-top:1%;margin-bottom:1%;padding:0;}
+.tjc span{ float:left;}
+.tjc-limg{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl1.png) no-repeat top left; background-size:12px 110px;}
+.tjc-lt{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:100% 110px;}
+.tjc-lt span{ width:66%; padding-top:5px;}
+.tjc-lt span b{ font-size:16px; color:#fff; line-height:28px;}
+.tjc-lt span p{ font-size:13px; color:#fff; line-height:17px;}
+.tjc-lt img{ width:63px; height:110px; float:right;}
+.tjc-r{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:70% 110px;}
+.tjc-r a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
+.tjr-img{ width:16px; height:110px; float:right;}
+
+
+.tjc2{ width:98%; margin:0 auto; height:110px; margin-top:1%;margin-bottom:1%;}
+.tjc2 span{ float:left;}
+.tjc-limg2{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl2.png) no-repeat top left; background-size:12px 110px;}
+.tjc-lt2{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl22.png) repeat-x top left;background-size:100% 110px;}
+.tjc-lt2 span{ width:66%; padding-top:5px;}
+.tjc-lt2 span b{ font-size:16px; color:#fff; line-height:28px;}
+.tjc-lt2 span p{ font-size:13px; color:#fff; line-height:17px;}
+.tjc-lt2 img{ width:63px; height:110px; float:right;}
+.tjc-r2{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl22.png) repeat-x top left;background-size:80% 110px;}
+.tjc-r2 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
+.tjr-img2{ width:16px; height:109px; float:right;}
+
+.tjc-r0{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianr55.png) repeat-x top left;background-size:80% 109px;}
+.tjc-r0 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:10px !important; color:#F90; width:78%; }
+
+.tjc3{ width:98%; margin:0 auto; height:110px; margin-top:1%;margin-bottom:1%;}
+.tjc3 span{ float:left;}
+.tjc-limg3{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl3.png) no-repeat top left; background-size:12px 110px;}
+.tjc-lt3{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl33.png) repeat-x top left;background-size:100% 110px;}
+.tjc-lt3 span{ width:66%; padding-top:5px;}
+.tjc-lt3 span b{ font-size:16px; color:#fff; line-height:28px;}
+.tjc-lt3 span p{ font-size:13px; color:#fff; line-height:17px;}
+.tjc-lt3 img{ width:63px; height:110px; float:right;}
+.tjc-r3{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl33.png) repeat-x top left;background-size:80% 110px;}
+.tjc-r3 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
+.tjr-img3{ width:16px; height:110px; float:right;}
+
+
+.tjc4{ width:98%; margin:0 auto; height:110px; margin-top:1%;margin-bottom:1%;}
+.tjc4 span{ float:left;}
+.tjc-limg4{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl4.png) no-repeat top left; background-size:12px 110px;}
+.tjc-lt4{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl44.png) repeat-x top left;background-size:100% 110px;}
+.tjc-lt4 span{ width:66%; padding-top:5px;}
+.tjc-lt4 span b{ font-size:16px; color:#fff; line-height:28px;}
+.tjc-lt4 span p{ font-size:13px; color:#fff; line-height:17px;}
+.tjc-lt4 img{ width:63px; height:110px; float:right;}
+.tjc-r4{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl44.png) repeat-x top left;background-size:80% 110px;}
+.tjc-r4 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:10px !important; color:#fff; width:80%; }
+.tjr-img4{ width:16px; height:110px; float:right;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

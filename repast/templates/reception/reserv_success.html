@@ -1,6 +1,7 @@
 {% extends "reception/web_base.html" %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" href="/static/css/tuijian.css">
 {% endblock %}
 {% block title %} 排队 {% endblock %}
 
@@ -76,72 +77,59 @@
                 <div style="clear: both"></div>
             </div>
         </div>
-        <div id="text2" style="display: none">
-            <div class="content_list" style="background:none; border:none; width:99%; margin:auto; ">
-                <div class="tuijiancon">
-                    <span class="tuijiant"
-                          style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; ">
-        <p>
-            <b>七折</b><br/>
-            上海泰妃阁美食餐厅<br/>
-            一次性消费100元享七折优惠<br/>
-            有效日期4月9日<br/>
-        </p></span>
-                    <button class="tjbutton"
-                            style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">
-                        领<br/>取
-                    </button>
-                </div>
+        <div id="text2" style="display: none;margin-top: 15px">
+            <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
+	<div class="tuijiancon">
+   <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
+    <img src="/static/images/img/lbj_r1_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" /><p >
+    <b>七折</b><br />
+    上海泰妃阁美食餐厅<br />
+    一次性消费100元享七折优惠<br />
+    有效日期4月9日<br />
+    </p></span>
+    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">领<br />取</button>
+    </div>
 
-                <div class="tuijiancon">
-                    <ul>
-                        <li><span class="tuijiant"
-                                  style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; ">
-         <p>
-             <b>七折</b><br/>
-             上海泰妃阁美食餐厅<br/>
-             一次性消费100元享七折优惠<br/>
-             有效日期4月9日<br/>
-         </p></span>
-                            <button class="tjbutton"
-                                    style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">
-                                领<br/>取
-                            </button>
-                        </li>
+    <div class="tuijiancon">
+    <ul>
+    <li ><span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; " >
+   <img src="/static/images/img/lbj_r3_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:5px;  margin-top:5px;" />
+     <p style="width:98%;" >
+    <b  style="height:35px; text-align:center; line-height:25px;">点我就送&nbsp;&nbsp;<img src="/static/images/img/pz.png"  style="width:18px; height:36px;"/></b><br />
+
+    有效日期2014年4月9日<br />
+    </p></span>
+    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">领<br />取</button></li>
 
 
-                    </ul>
-                </div>
+    </ul>
+    </div>
 
 
-                <div class="tuijiancon">
-       <span class="tuijiant"
-             style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; ">
-         <p>
-             <b>七折</b><br/>
-             上海泰妃阁美食餐厅<br/>
-             一次性消费100元享七折优惠<br/>
-             有效日期4月9日<br/>
-         </p></span>
-                    <button class="tjbutton"
-                            style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
-                        已<br/>领<br/>取
-                    </button>
-                </div>
+    <div class="tuijianfoot">
+   <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; " >
+     <p style="font-family:'微软雅黑'; line-height:20px;" >
+    <b style="font-size:18px; font-family:'微软雅黑'; line-height:25px;">50积分</b><br />
 
-                <div class="tuijianfoot">
-       <span class="tuijiant"
-             style="background:url(/static/images/img/over_s1.jpg) no-repeat; width:100%; background-size:100% 100px; ">
-         <p>
-             <b>七折</b><br/>
-             上海泰妃阁美食餐厅<br/>
-             一次性消费100元可以使用<br/>
-             有效日期4月9日<br/>
-         </p></span>
+    一次性消费100元享七折优惠<br />
+    有效日期至2014年4月9日<br />
+    </p></span>
+    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#FBAB2E; display:block;">已<br />领<br />取</button>
+    </div>
 
-                </div>
+ <div class="tuijianfoot" >
+   <span class="tuijiant" style="background:url(/static/images/img/over_s1.jpg) no-repeat; width:80%; background-size:100% 100px; " >
+     <p >
+    <b>七折</b><br />
+    上海泰妃阁美食餐厅<br />
+    一次性消费100元可以使用<br />
+    有效日期4月9日<br />
+    </p></span>
+   <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/over_s2.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">抢<br />光<br />了</button>
+    </div>
 
-            </div>
+</div>
+
 
 
         </div>
