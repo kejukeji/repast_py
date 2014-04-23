@@ -202,6 +202,9 @@ def to_my_line_up():
     else:
         set_session_user(user_id)
     my_line_up_info = get_schedule_by_user_id(user_id)
+    if my_line_up_info:
+        for m in my_line_up_info:
+            m.queue_time = str(m.queue_time)[:10]
     return render_template('reception/my_line_up.html',
                            my_line_up_info=my_line_up_info)
 
