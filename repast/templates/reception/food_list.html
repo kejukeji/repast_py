@@ -8,253 +8,287 @@
 {% block pager_js %}
 
 
-<script>
-$(function(){
-	var t = $("#num");
-	$("#reduce").click(function(){		
-		t.val(parseInt(t.val())-1)
-		setTotal();
-	})
-	$("#add").click(function(){
-		t.val(parseInt(t.val())+1)
-		setTotal();
-	})
-	function setTotal(){
-		$("#total").html((parseInt(t.val())*16).toFixed(2));
-	}
-	setTotal();
-})
-</script>
+{#    <script>#}
+{#        $(function () {#}
+{#            var t = $("#num");#}
+{#            $("#reduce").click(function () {#}
+{#                t.val(parseInt(t.val()) - 1)#}
+{#                setTotal();#}
+{#            })#}
+{#            $("#add").click(function () {#}
+{#                t.val(parseInt(t.val()) + 1)#}
+{#                setTotal();#}
+{#            })#}
+{#            function setTotal() {#}
+{#                $("#total").html((parseInt(t.val()) * 16).toFixed(2));#}
+{#            }#}
+{##}
+{#            setTotal();#}
+{#        })#}
+{#    </script>#}
 
-	<script>
-	$(document).ready(function(){
-			choose("hot");
-			choose("cold");
-			choose("sweet");
-			choose("food");
-			choose("drink");
-			choose("cake");
-			choose("soup");
-			choose("discount");
-			function choose(str){
-				$("#"+str+"_button").click(function(){	
-					$("#right").children().css({display:"none"});
-					$("#"+str).css({display:"block"});
-				});
-			}
-		});
-	</script>
+    <script>
+        $(document).ready(function () {
+            choose("hot");
+            choose("cold");
+            choose("sweet");
+            choose("food");
+            choose("drink");
+            choose("cake");
+            choose("soup");
+            choose("discount");
+            function choose(str) {
+                $("#" + str + "_button").click(function () {
+                    $("#right").children().css({display: "none"});
+                    $("#" + str).css({display: "block"});
+                });
+            }
+
+            var allTotalPrice = 0;
+            $("#right").find("div.hot-food").each(function(){
+                var totalPrice = 0;
+                var t = $(this).find("input.num");
+                var num = parseInt(t.val());
+                $(this).find("input.add").click(function(){
+                    num = num+1;
+                    $(this).parent().find(".num").val(num);
+                    if($(this).parent().parent().find("m").length>0){
+                    totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
+                    }else{
+                        totalPrice = parseInt($(this).parent().find("n").html());
+                    }
+                    allTotalPrice = allTotalPrice + totalPrice;
+                    $("#all_total_price").val(allTotalPrice);
+                });
+                $(this).find("input.reduce").click(function(){
+                    if (num>0){
+                        num = num -1;
+                    }else {
+                        num = 0;
+                    }
+                    $(this).parent().find(".num").val(num);
+                    if($(this).parent().parent().find("m").length>0){
+                    totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
+                    }else{
+                        totalPrice = parseInt($(this).parent().find("n").html());
+                    }
+
+                    allTotalPrice = allTotalPrice - totalPrice;
+                    $("#all_total_price").val(allTotalPrice);
+                });
+            });
+
+        });
+    </script>
 {% endblock %}
 {% block content %}
-	<body style="margin:0; padding:0; font-family:'微软雅黑'; ">
-	<div style="height:90%;width:20%;position:fixed; top:0; left:0; float:left; background:#CDCDCD;border:1px solid #eee;">
+    <body style="margin:0; padding:0; font-family:'微软雅黑'; ">
+    <div style="height:90%;width:20%;position:fixed; top:0; left:0; float:left; background:#CDCDCD;border:1px solid #eee;">
 
-		<div class="cd-left" id="hot_button">热菜</div>
+        <div class="cd-left" id="hot_button">热菜</div>
         <div class="cd-left" id="cold_button">冷菜</div>
         <div class="cd-left" id="food_button">主食</div>
-		<div class="cd-left" id="drink_button">饮料</div>
-		<div class="cd-left" id="cake_button">点心</div>
-		<div class="cd-left" id="sweet_button">甜品</div>
-		<div class="cd-left" id="soup_button">汤羹</div>
-		<div class="cd-left" id="discount_button">优惠</div>
-	</div>
-	<div style="position:absolute;width:79%;float:left;left:21%;" id="right">
-		<div id="hot" style="display:block">
-			<div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>红烧肉<a class="hot-zs"> 送</a></p>
-           <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
-           </span>
-           </li>
-           </ul>
-            </div>
-            
+        <div class="cd-left" id="drink_button">饮料</div>
+        <div class="cd-left" id="cake_button">点心</div>
+        <div class="cd-left" id="sweet_button">甜品</div>
+        <div class="cd-left" id="soup_button">汤羹</div>
+        <div class="cd-left" id="discount_button">优惠</div>
+    </div>
+    <div style="position:absolute;width:79%;float:left;left:21%;" id="right">
+        <div id="hot" style="display:block">
             <div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>捞汁<a class="hot-money"> 优惠五元</a></p>
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>红烧肉<a class="hot-zs"> 送</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-			
-		</div>
-		<div id="cold" style="display:none">
-			            
+
             <div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>捞汁<a class="hot-money"> 优惠五元</a></p>
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-			
-		</div>
-		<div id="sweet" style="display:none">
-			<div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>红烧肉<a class="hot-zs"> 送</a></p>
-           <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-		<input id="num" type="text" value="4" />
-		<input id="reduce" type="button" name="reduce" />
-           </span>
-           </li>
-           </ul>
-            </div>
-            
+
+        </div>
+        <div id="cold" style="display:none">
+
             <div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>特色时蔬<a > 优惠五元</a></p>
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-		<input id="num" type="text" value="4" />
-		<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-			
-		</div>
-		<div id="food" style="display:none">
-			<div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>红烧肉<a class="hot-zs"> 送</a></p>
-           <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
-           </span>
-           </li>
-           </ul>
-            </div>
-            
-           
-			
-		</div>
-		<div id="drink" style="display:none">
-			
-            
+
+        </div>
+        <div id="sweet" style="display:none">
             <div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>捞汁<a class="hot-money"> 优惠五元</a></p>
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>红烧肉<a class="hot-zs"> 送</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+		<input class="num" type="text" value="0"/>
+		<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-			
-		</div>
-		<div id="cake" style="display:none">
-			<div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>红烧肉<a class="hot-zs"> 送</a></p>
-           <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
-           </span>
-           </li>
-           </ul>
-            </div>
-            
+
             <div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>捞汁<a class="hot-money"> 优惠五元</a></p>
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>特色时蔬<a class="hot-money"> 优惠<m>5</m>元</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-		<input id="num" type="text" value="4" />
-		<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+		<input class="num" type="text" value="0"/>
+		<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-			
-		</div>
-		<div id="soup" style="display:none">
-			<div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>红烧肉<a class="hot-zs"> 送</a></p>
+
+        </div>
+        <div id="food" style="display:none">
+            <div class="hot-food">
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg" style="width: 90px;height: 90px;margin: 10px"></li>
+                    <li class="hot-food-text">
+                        <p>红烧肉<a class="hot-zs"> 送</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-            
-           
-			
-		</div>
-		<div id="discount" style="display:none">
-			<div class="hot-food">
-           <ul>
-           <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-           <li class="hot-food-text">
-           <p>捞汁<a class="hot-money"> 优惠五元</a></p>
+
+
+        </div>
+        <div id="drink" style="display:none">
+
+
+            <div class="hot-food">
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
            <span>
-           <a style="line-height:30px;">￥16</a>
-           <input id="add" type="button" name="add" />
-			<input id="num" type="text" value="4" />
-			<input id="reduce" type="button" name="reduce" />
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
            </span>
-           </li>
-           </ul>
+                    </li>
+                </ul>
             </div>
-			
-		</div>
-	</div>
-    
+
+        </div>
+        <div id="cake" style="display:none">
+            <div class="hot-food">
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+           <span>
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
+           </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="hot-food">
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+           <span>
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+		<input class="num" type="text" value="0"/>
+		<input class="reduce" type="button" name="reduce"/>
+           </span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div id="soup" style="display:none">
+            <div class="hot-food">
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+           <span>
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
+           </span>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <div id="discount" style="display:none">
+            <div class="hot-food">
+                <ul>
+                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
+                    <li class="hot-food-text">
+                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+           <span>
+           <a style="line-height:30px;">￥<n>16</n></a>
+           <input class="add" type="button" name="add"/>
+			<input class="num" type="text" value="0"/>
+			<input class="reduce" type="button" name="reduce"/>
+           </span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
     <div class="checkout">
-    <a>套餐名称：<a>午时十人套餐</a></a><br>
-    <a>总额：￥116</a>
-    <button type="submit">确定</button>
+        <a>套餐名称：<a>午时十人套餐</a></a><br>
+        <a>总额：￥<input id ="all_total_price" value="0" type="text"></a>
+        <button type="submit">确定</button>
     </div>
 
 
-	</body>
+    </body>
 {% endblock %}

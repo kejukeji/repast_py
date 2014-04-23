@@ -13,9 +13,9 @@ a{ color:#FF9A62; font-size:16px;}
 	.hot-food-text{ height:110px; width:55%; margin:0; padding:0;}
 	.hot-food-text input{ margin-top:5px; width:30px; float:right; height:30px; margin:0 1%; text-align:center; color:#999; font-weight:bold;}
 	.hot-food-img img{ width:90px; height:90px; margin:10px; }
-	#add{ background:url(/static/images/img/caidan_r4_c7_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
-	#num{ background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; background-size:100% 100%; border:none; height:30px;}
-	#reduce{ background:url(/static/images/img/caidan_r4_c11_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
+    .add{ background:url(/static/images/img/caidan_r4_c7_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
+	.num{ background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; background-size:100% 100%; border:none; height:30px;}
+	.reduce{ background:url(/static/images/img/caidan_r4_c11_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
 	.checkout{ width:70%; position:fixed; left:25%; bottom:80px; height:80px;}
 	.checkout button{ border:#5FC3CF; width:100%; margin:0 auto; height:40px; color:#fff; margin-top:5px;}
 	.checkout a{ line-height:25px;}
