@@ -47,11 +47,15 @@ $(function(){
 <span class="taocspan">套餐选择</span></div>
 <div class="taoc-ul">
 <ul>
-<li><a  href="#">午时2人套餐</a></li>
-<li><a  href="#">午时4人套餐</a></li>
-<li><a  href="#">午时6人套餐</a></li>
-<li><a  href="#">午时8人套餐</a></li>
-<li><a  href="#">午时10人套餐</a></li>
+  {% if package_count ==0 %}
+
+  {% elif package_count ==1 %}
+    <li><a  href="#">{{ brands.name}}</a></li>
+   {% else %}
+     {%  for br in brands %}
+       <li><a  href="#">{{ br.name}}</a></li>
+       {% endfor %}
+    {% endif %}
 </ul>
 </div>
 <div class="clear"></div>

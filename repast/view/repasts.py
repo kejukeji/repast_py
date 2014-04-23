@@ -8,6 +8,7 @@ from repast.services.shop_assistant import *
 from repast.services.user_service import *
 from repast.util.session_common import *
 from ..services.call_number_service import PushMessage
+from repast.models.package import Package
 
 
 def to_repast_by_stores_id(stores_id):
@@ -240,7 +241,11 @@ def to_meal_restaurant_list():
 
 def to_package_list():
     """点餐后进入套餐选择页面"""
-    return render_template('reception/taocan.html')
+    brand_id = request.args.get('brand_id')   #传入品牌id
+    package_count = Package.query.filter(Package.brand_id == brand_id).count()
+    brands = Package.get_package_by_brand(brand_id)
+    return render_template('reception/taocan.html',brands=brands,
+                                                        package_count = package_count)
 
 
 def to_meal_list():
