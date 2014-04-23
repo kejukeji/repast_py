@@ -261,3 +261,7 @@ def location():
     return render_template('reception/location.html',
                            longitude=longitude,
                            latitude=latitude)
+
+def to_favorable():
+    """优惠页面"""
+    return render_template('reception/youhui.html')

@@ -61,7 +61,8 @@ app.add_url_rule('/f/meal_restaurant', 'to_meal_restaurant', to_meal_restaurant_
 app.add_url_rule('/f/package', 'to_package', to_package_list, methods=('GET', 'POST'))
 app.add_url_rule('/f/meal_list', 'to_meal_list', to_meal_list, methods=('GET', 'POST'))
 app.add_url_rule('/f/meal_search_position', 'to_meal_search_position', to_meal_search_position, methods=('GET', 'POST'))
-
+# 优惠
+app.add_url_rule('/y/favorable','to_favorable',to_favorable,methods=('GET', 'POST'))
 # 接口定义
 api = restful.Api(app)
 api.add_resource(GetGroup, '/restful/group')
