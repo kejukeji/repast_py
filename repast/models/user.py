@@ -4,7 +4,7 @@ from .base_class import InitUpdate
 from .group import Group
 from .stores import Stores
 from .brand import Brand
-from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey, FLOAT
 from sqlalchemy.dialects.mysql import DOUBLE
 
 USER = 'user'
@@ -19,8 +19,8 @@ class User(Base, InitUpdate):
     password = Column(String(20), nullable=False, server_default='888888')
     openid = Column(String(200), nullable=False)
     picture_url = Column(String(500), nullable=True)
-    longitude = Column(DOUBLE, nullable=True)
-    latitude = Column(DOUBLE, nullable=True)
+    longitude = Column(FLOAT, nullable=True)
+    latitude = Column(FLOAT, nullable=True)
     description = Column(String(200), nullable=True)
 
     def __init__(self, **kwargs):

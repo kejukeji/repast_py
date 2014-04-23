@@ -3,7 +3,7 @@
 <head>  
 <meta name="viewport" content="initial-scale=1.0,user-scalable=no">  
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8">  
-<title>Hello,world</title>  
+<title>地图</title>
 <style type="text/css">  
 html{height:100%}  
 body{height:100%;margin:0px;padding:0px}  
@@ -12,23 +12,32 @@ body{height:100%;margin:0px;padding:0px}
 <script type="text/javascript"  
 src="http://webapi.amap.com/maps?v=1.2&key=dcdaf8533bd2fa8333b412d6f36dcfff">
 </script>  
-<script type="text/javascript">  
-function initialize(){  
-  var position=new AMap.LngLat(121.403277,31.150807);//创建中心点坐标
-  var mapObj=new AMap.Map("iCenter",{center:position});//创建地图实例
-  mapObj.setZoomAndCenter(17,position);
-  var marker = new AMap.Marker({ //自定义构造AMap.Marker对象
-      map:mapObj,
-      position: new AMap.LngLat(121.403277,31.150807),
-      offset: new AMap.Pixel(-10,-34),
-      icon: "http://webapi.amap.com/images/0.png"
-    });
-    var driving;
-    mapObj.plugin(["AMap.ToolBar"],function(){
-        toolBar = new AMap.ToolBar();
-        mapObj.addControl(toolBar);
-    });
-}  
+<script type="text/javascript">
+    function initialize() {
+        var longitude = '{{ longitude }}';
+        var latitude = '{{ latitude }}';
+        try{
+            longitude = parseInt(longitude);
+            latitude = parseInt(latitude);
+        }catch(error){
+            longitude = 121.403277;
+            latitude = 31.150807;
+        }
+        var position = new AMap.LngLat(longitude, latitude);//创建中心点坐标
+        var mapObj = new AMap.Map("iCenter", {center: position});//创建地图实例
+        mapObj.setZoomAndCenter(17, position);
+        var marker = new AMap.Marker({ //自定义构造AMap.Marker对象
+            map: mapObj,
+            position: new AMap.LngLat(longitude, latitude),
+            offset: new AMap.Pixel(-10, -34),
+            icon: "http://webapi.amap.com/images/0.png"
+        });
+        var driving;
+        mapObj.plugin(["AMap.ToolBar"], function () {
+            toolBar = new AMap.ToolBar();
+            mapObj.addControl(toolBar);
+        });
+    }
 </script>  
 </head>  
   

@@ -2,7 +2,7 @@
 
 from .database import Base
 from .base_class import InitUpdate
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DATETIME, FLOAT
 from sqlalchemy.dialects.mysql import DOUBLE
 from repast.util.ex_time import *
 from .group import Group
@@ -31,8 +31,8 @@ class Stores(Base, InitUpdate):
     tel = Column(String(20), nullable=False)
     stars = Column(Integer, nullable=False)
     hours = Column(DATETIME, nullable=True)
-    longitude = Column(DOUBLE, nullable=False)
-    latitude = Column(DOUBLE, nullable=False)
+    longitude = Column(FLOAT, nullable=False)
+    latitude = Column(FLOAT, nullable=False)
 
     def __init__(self, **kwargs):
         '''初始化'''

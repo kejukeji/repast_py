@@ -3,7 +3,7 @@ import os
 from base_service import *
 from repast.models.stores import StoresInfo
 from repast.util.ex_file import *
-from repast.setting.server import *
+from repast.setting.wbb import *
 from werkzeug import secure_filename
 
 class StoresAdminService(BaseService):
@@ -102,6 +102,7 @@ class StoresAdminService(BaseService):
                         except:
                             pass
                     session.commit()
+                    return True
                 else:
                     try:
                         stores_info = StoresInfo(stores_id=stores.id,base_path=base_path, rel_path=rel_path,picture_name = pic_name)
@@ -117,3 +118,4 @@ class StoresAdminService(BaseService):
                     flash(gettext('更新餐厅失败.找不到路径 %(error)s', error=str(ex)), 'error')
                     return False
                 return True
+        return True

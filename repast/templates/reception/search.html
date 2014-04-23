@@ -87,7 +87,7 @@ $(function () {
                                             '<li class="fl" style="padding-left:5px; width:63%;">' +
                                             '<ul class="right">' +
                                             '<li><a href="###" class="name">' + item.name + '</a></li>' +
-                                            '<li class="dizhi">地点：' + item.address + '</li>' +
+                                            '<a href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'"><li class="dizhi">地点：' + item.address + '</li></a>' +
                                             '<li class="lu">' + item.distance + '米</li>' +
                                             '</ul>' +
 
@@ -263,7 +263,7 @@ $(function () {
         </span>
     </div>
 </div>
-<div class="topps"><p>您现在的位置是：<t style=" font-size:14px; color:#fff;">{{ description }}</t></p></div>
+<div class="topps"><p style=" font-size:14px; color:#fff;">您现在的位置是：<t style=" font-size:14px; color:#fff;">{{ description }}</t></p></div>
 <div id="result">
 </div>
 
