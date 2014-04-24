@@ -91,7 +91,7 @@ def create_queue(user_id, stores_id, table_type_id):
         new_queue = get_queue(user_id,stores_id,table_type_id,next_number)
         create_new_queue(new_queue)
     elif queue_count > 1:
-        queue = Queue.query.filter(Queue.queue_time.like(args_time), Queue.queue_setting_id == table_type_id).order_by(Queue.queue_time.desc()).first()# 得到已经存在的队列
+        queue = Queue.query.filter(Queue.queue_time.like(args_time), Queue.queue_setting_id == table_type_id).order_by(Queue.now_queue_number.desc()).first()# 得到已经存在的队列
         next_number = queue.now_queue_number + 1 # 得到下一个队列号
         new_queue = get_queue(user_id,stores_id,table_type_id,next_number)
         create_new_queue(new_queue)

@@ -47,6 +47,8 @@ def to_home_page():
     user_id = request.args.get('user_id')
     if user_id:
         set_session_user(user_id)
+    else:
+        user_id = get_session_user()
     mark_queue = request.args.get('mark_queue')
     set_session_mark_queue(mark_queue)
     return render_template('reception/index.html',
@@ -244,11 +246,10 @@ def to_meal_restaurant_list():
 
 def to_package_list():
     """点餐后进入套餐选择页面"""
-    brand_id = request.args.get('brand_id')   #传入品牌id
-    package_count = Package.query.filter(Package.brand_id == brand_id).count()
-    brands = Package.get_package_by_brand(brand_id)
-    return render_template('reception/taocan.html',brands=brands,
-                                                        package_count = package_count)
+    #brand_id = request.args.get('brand_id')   #传入品牌id
+    #package_count = Package.query.filter(Package.brand_id == brand_id).count()
+    #brands = Package.get_package_by_brand(brand_id)
+    return render_template('reception/taocan.html')
 
 
 def to_meal_list():
