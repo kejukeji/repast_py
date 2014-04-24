@@ -63,15 +63,17 @@
                 $(this).find("input.reduce").click(function(){
                     if (num>0){
                         num = num -1;
-                    }else {
-                        num = 0;
-                    }
-                    $(this).parent().find(".num").val(num);
-                    if($(this).parent().parent().find("m").length>0){
+                        if($(this).parent().parent().find("m").length>0){
                     totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
                     }else{
                         totalPrice = parseInt($(this).parent().find("n").html());
                     }
+                    }else {
+                        num = 0;
+                        totalPrice = 0;
+                    }
+                    $(this).parent().find(".num").val(num);
+
 
                     allTotalPrice = allTotalPrice - totalPrice;
                     $("#all_total_price").val(allTotalPrice);
@@ -100,7 +102,8 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+                        <p>
+                            <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -115,7 +118,7 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -133,7 +136,7 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -150,7 +153,8 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
+
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -165,7 +169,8 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>特色时蔬<a class="hot-money"> 优惠<m>5</m>元</a></p>
+                                                <p><ul><li>特色时蔬</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
+
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -182,7 +187,8 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg" style="width: 90px;height: 90px;margin: 10px"></li>
                     <li class="hot-food-text">
-                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
+
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -202,7 +208,7 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -219,7 +225,8 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
+
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -234,7 +241,7 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -251,7 +258,8 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>红烧肉<a class="hot-zs"> 送</a></p>
+                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
+
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
@@ -269,7 +277,7 @@
                 <ul>
                     <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
                     <li class="hot-food-text">
-                        <p>捞汁<a class="hot-money"> 优惠<m>5</m>元</a></p>
+                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
            <span>
            <a style="line-height:30px;">￥<n>16</n></a>
            <input class="add" type="button" name="add"/>
