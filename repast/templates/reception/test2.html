@@ -2,6 +2,7 @@
 	<html>
 	<head>
 	<title> new document </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 	<meta name="generator" content="editplus">
 	<meta name="author" content="">
 	<meta name="keywords" content="">
@@ -204,7 +205,7 @@
 	        ctx.fillStyle = "#f00";
 	        ctx.font = 'bold 20px Arial';
 	        ctx.fillText("Press space key to start...",can.width/2,can.height/2);
-	        document.touchend=function(e){
+	        document.touchleave = function(e){
 	            if(e.keyCode != 32){
 	                return;
 	            }
