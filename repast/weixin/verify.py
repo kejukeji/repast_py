@@ -189,12 +189,12 @@ def event_click(FromUserName, ToUserName, user):
             },{
                 "Title": '去排队',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/image_meal.jpg',
+                "PicUrl": BASE_URL + '/static/images/image_queue.jpg',
                 "Url": '%s/q/search/?user_id=%s' %(BASE_URL, user.id)
             },{
                "Title": '去点餐',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/image_queue.jpg',
+                "PicUrl": BASE_URL + '/static/images/image_meal.jpg',
                 "Url": '%s/f/meal_restaurant?user_id=%s' %(BASE_URL, user.id)
             }
             ]
