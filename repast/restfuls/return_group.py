@@ -63,19 +63,12 @@ class GetStores(restful.Resource):
 class GetDishSort(restful.Resource):
     '''获取菜品分类'''
     @staticmethod
-    def get(package_id):
-        package = Package.get_package_by_id(package_id)
+    def get(brand_id):
+        dish_sort = DishSort.get_dish_sort_by_brand(brand_id)
         temp = []
-        if package:
-            try:
-                dish_sort_id = package.dish_sort_id.split(',') # 得到套餐所有的分类id
-                for ds in dish_sort_id:
-                    dish_sort = DishSort.get_dish_sort_by_id(ds)
-                    temp.append(dish_sort)
-            except:
-                dish_sort_id = package.dish_sort_id
-                dish_sort = DishSort.get_dish_sort_by_id(dish_sort_id)
-                temp.append(dish_sort)
+        if dish_sort:
+            for d in dish_sort:
+                temp.append(d)
         json = append_json(temp)
         return json
 

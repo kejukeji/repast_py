@@ -25,7 +25,7 @@ src="http://webapi.amap.com/maps?v=1.2&key=dcdaf8533bd2fa8333b412d6f36dcfff">
         }
         var position = new AMap.LngLat(longitude, latitude);//创建中心点坐标
         var mapObj = new AMap.Map("iCenter", {center: position});//创建地图实例
-        mapObj.setZoomAndCenter(17, position);
+        mapObj.setZoomAndCenter(14, position);
         var marker = new AMap.Marker({ //自定义构造AMap.Marker对象
             map: mapObj,
             position: new AMap.LngLat(longitude, latitude),
