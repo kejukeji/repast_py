@@ -120,7 +120,7 @@ def event_my(FromUserName, ToUserName, user):
             "item": [{
                 "Title": '我的排队',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/stores/queue.jpg',
+                "PicUrl": BASE_URL + '/static/images/image_queue.jpg',
                 "Url": '%s/m/my_line_up?user_id=%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的预定',
@@ -184,17 +184,17 @@ def event_click(FromUserName, ToUserName, user):
             "item": [{
                 "Title": '主页',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/stores/queue.jpg',
+                "PicUrl": BASE_URL + '/static/images/image_home.jpg',
                 "Url": '%s/home_page/?user_id=%s&mark_queue=%s' %(BASE_URL, user.id, mark_queue)
             },{
                 "Title": '去排队',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/stores/Customized.jpg',
+                "PicUrl": BASE_URL + '/static/images/image_meal.jpg',
                 "Url": '%s/q/search/?user_id=%s' %(BASE_URL, user.id)
             },{
                "Title": '去点餐',
                 "Description": '微生活 | 微一切',
-                "PicUrl": BASE_URL + '/static/images/stores/preferential.png',
+                "PicUrl": BASE_URL + '/static/images/image_queue.jpg',
                 "Url": '%s/f/meal_restaurant?user_id=%s' %(BASE_URL, user.id)
             }
             ]
