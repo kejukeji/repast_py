@@ -47,6 +47,8 @@ def to_home_page():
     user_id = request.args.get('user_id')
     if user_id:
         set_session_user(user_id)
+    else:
+        user_id = get_session_user()
     mark_queue = request.args.get('mark_queue')
     set_session_mark_queue(mark_queue)
     return render_template('reception/index.html',
