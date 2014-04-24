@@ -1,6 +1,7 @@
 {% extends "reception/web_base.html" %}
 {% block head %}
     {{ super() }}
+    <link rel="stylesheet" href="/static/css/tuijian.css">
 {% endblock %}
 {% block title %} 排队 {% endblock %}
 
@@ -39,9 +40,9 @@
             <div>
                 <div class="suc_con">
                     <span class="suc_con_left"
-                          style=" font-size: 16px; font-weight: bold; color: #666;"><b>{{ my_line_up.stores_name }}&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                          style=" font-size: 16px; font-weight: bold; color: #666; height: 45px;line-height: 25px;"><b>{{ my_line_up.stores_name }}&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                     <span class="suc_con_right"
-                          style="font-size: 13px; color: #666;"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.queue_time }}</b></span>
+                          style="font-size: 13px; color: #666;height: 45px;"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.queue_time }}</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>餐桌类型：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>

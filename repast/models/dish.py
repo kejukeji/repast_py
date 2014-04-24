@@ -30,6 +30,11 @@ class DishSort(Base, InitUpdate):
         dish_sort = DishSort.query.filter(DishSort.id == dish_sort_id).first()
         return dish_sort
 
+    @staticmethod
+    def get_dish_sort_by_brand(brand_id):
+        dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
+        return dish_sort
+
 
 class Dish(Base, InitUpdate):
     '''dish'''
