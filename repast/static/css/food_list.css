@@ -12,7 +12,7 @@ a{ color:#FF9A62; font-size:16px;}
 	.hot-food-img{ width:110px; height:110px;}
 	/*.hot-food-text{ height:110px; width:55%; margin:0; padding:0;}*/
 	/*.hot-food-text input{ margin-top:5px; width:30px; float:right; height:30px; margin:0 1%; text-align:center; color:#999; font-weight:bold;}*/
-	.hot-food-img img{ width:90px; height:90px; margin:10px; }
+	.hot-food-img img{ width:88px; height:90px; margin:10px; }
     .add{ background:url(/static/images/img/caidan_r4_c7_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
 	.num{ background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; background-size:100% 100%; border:none; height:30px;}
 	.reduce{ background:url(/static/images/img/caidan_r4_c11_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
@@ -30,4 +30,4 @@ a{ color:#FF9A62; font-size:16px;}
 	.hot-food-text p{ width:100%; margin:0; padding:0;}
 	.hot-food-text li{ font-size:15px; height:50px; width:50%; float:left; margin-top:3%;}
 	.food-name{ line-height:20px;}
-	.hot-food-text input{ margin-top:5px; width:30px; float:right; height:30px; margin:0 1%; text-align:center; color:#999; font-weight:bold;}
+	.hot-food-text input{ margin-top:5px; width:26px; float:right; height:26px; margin:0 1%; text-align:center; color:#999; font-weight:bold;}
