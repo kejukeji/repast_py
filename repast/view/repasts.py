@@ -269,3 +269,6 @@ def location():
 def to_favorable():
     """优惠页面"""
     return render_template('reception/youhui.html')
+
+def to_game():
+    return  render_template('reception/test2.html')
