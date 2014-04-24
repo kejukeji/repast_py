@@ -159,14 +159,14 @@
 	            me.speed = speed;
 	            me.hero = new Hero((me.canvas.width - heroImg.width)/2,me.canvas.height - heroImg.height,heroImg);
 	            if(this.timer != null) me.gameOver();
-	            me.canvas.touchmove = function(e){
+	            me.addEventListener('touchmove',function(e){
 	                e = window.event || e;
 	                var x = e.clientX - me.canvas.offsetLeft - me.hero.width/2;
 	                 
 	                if(x > 0 && x < me.canvas.width - me.hero.width){
 	                    me.hero.x = x;
 	                }
-	            }
+	            })
 	            me.timer = setInterval(me.loop,me.speed * 10);
 	        },
 	        // ��ͣ��Ϸ
@@ -205,7 +205,7 @@
 	        ctx.fillStyle = "#f00";
 	        ctx.font = 'bold 20px Arial';
 	        ctx.fillText("Press space key to start...",can.width/2,can.height/2);
-	        document.touchleave = function(e){
+	        can.addEventListener('touchend',function(e){
 	            if(e.keyCode != 32){
 	                return;
 	            }
@@ -216,7 +216,7 @@
 	            }else{
 	                App.gamePause("canvas",6);
 	            }
-	        }
+	        })
 	    }
 	    function $(id){
 	        return document.getElementById(id);
@@ -224,7 +224,7 @@
 	//-->
 	</SCRIPT>
 	<body>
-	<canvas width=480px height=640px id="canvas" style="border:1px solid #ccc;background:url('/static/images/bg.jpg')">
+	<canvas width=320px height=480px id="canvas" style="border:1px solid #ccc;background:url('/static/images/bg.jpg')">
 	</canvas>
 	</body>
 	</html>
