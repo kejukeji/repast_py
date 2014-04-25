@@ -5,7 +5,9 @@ a{ color:#FF9A62; font-size:16px;}
 	.cd-left{ height:10%; background:url(/static/images/img/caidan_r1_c1_s1.jpg); background-size:100% 100%; font-size:16px; color:#666; line-height:50px; font-family:"微软雅黑"; text-align:center; }
 	.hot-food{ height:110px; width:100%; display:block; background:url(/static/images/img/caidan_r1_c5_s1.jpg) repeat-x left top; background-size:100% 100%; margin:0; padding:0; }
 	.hot-food ul{ margin:0; padding:0;}
+	.hot-food span{ width:100%;}
 	.hot-food li{ float:left; height:110px;}
+	.money{ line-height:30px; width:55px; float:left; height:50px;}
 	.hot-food p{line-height:60px; width:100%; font-size:16px; color:#666;}
 	/*.hot-zs{ margin-right:10%; width:35px; padding-left:20px !important; float:right; height:60px; background:url(/static/images/img/jiacai_r4_c3_s1.jpg) no-repeat center right; background-size:15px 25px; display:block;   }*/
 	/*.hot-money{ line-height:60px; float:right; margin-right:20%;}*/
