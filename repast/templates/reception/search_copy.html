@@ -54,7 +54,7 @@ $(function () {
             }
         });
     });
-        function positonStore() {
+        function positionStore() {
             var province = $('#province_id').val();
             var city = $('#city_id').val();
             var county = $('#county_id').val();
@@ -97,7 +97,7 @@ $(function () {
                                         '<p><a href="#">' + item.description + '</a></p>' +
                                         '</div>' +
                                         '<div class="button">' +
-                                        '<a href="/q/queue/'+item.id+'" type="butoon" class="btn btn-primary btn-lg btn-block">'+' 去排队 '+'</a>' +
+                                        '<a href="/q/queue/'+item.id+'" type="button" class="btn btn-primary btn-lg btn-block">'+' 去排队 '+'</a>' +
                                         '<div class="img"></div>' +
                                         '</div>' +
                                         '</div>');
@@ -115,17 +115,17 @@ $(function () {
             get_city(province, province_val, '', '');
             var city_val = $("#city_id");
             get_county(province, city_val, city_val.val(), "");
-            positonStore();
+            positionStore();
         });
-        //定义城市cahnge事件
+        //定义城市change事件
         var city = $("#city_id");
         city.bind('change', function () {
             get_county(province, city, city.val(), "");
-            positonStore();
+            positionStore();
         });
         var county = $("#county_id");
         county.bind('change', function () {
-            positonStore();
+            positionStore();
         });
 
         function init_location(init_province, init_city, init_county) {
@@ -195,7 +195,7 @@ $(function () {
         }
 
         function get_county(province, city, init_city, init_county) {
-            var county = $('#county_id');
+            var country = $('#county_id');
             $.ajax({
                 type: "GET",
                 url: "/restful/county/" + init_city,
@@ -203,20 +203,20 @@ $(function () {
                 async: false,
                 cache: false,
                 success: function (json) {
-                    county.empty().append($("<option>").text('区').attr('value', '0').attr('selected', 'selected'));
+                    country.empty().append($("<option>").text('区').attr('value', '0').attr('selected', 'selected'));
                     if (json.length == 0) {
                         $("#county_id").append($("<option>").text("").attr('value', "0"));
                     } else {
                         $.each(json, function (i, value) {
                             if (g_belong_county_id == value[0]) {
-                                $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                                $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]));
                             } else {
-                                $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                                $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]));
                             }
                         });
-                        if (init_county != "") {
-                            county.val(init_county);
-                            g_belong_county_id = init_county;
+                        if (init_country != "") {
+                            county.val(init_country);
+                            g_belong_country_id = init_country;
                         }
                     }
                 },

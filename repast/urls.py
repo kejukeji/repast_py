@@ -25,6 +25,7 @@ from .view.admin.dish import *
 from .view.admin.package import PackageView
 from .view.admin.dish_sort import DishSortView
 from restfuls.queue import AjaxCallNumber
+from services.food_list_service import GetDishes
 
 # 用户管理路径
 # app.add_url_rule('url','method_name', method_name, method=('GET','POST'))
@@ -71,16 +72,16 @@ api.add_resource(GetGroup, '/restful/group')
 api.add_resource(GetBrand, '/restful/brand/<int:group_id>')
 api.add_resource(GetProvince, '/restful/province')
 api.add_resource(GetCity, '/restful/city/<int:province_id>')
-api.add_resource(GetCounty, '/restful/county/<int:city_id>')
+api.add_resource(GetCounty, '/restful/country/<int:city_id>')
 api.add_resource(GetStores, '/restful/stores/<int:brand_id>')
 api.add_resource(SearchStore,'/restful/searchStore')
-api.add_resource(PositonStore,'/restful/positionStore')
-api.add_resource(PositonStoreXY,'/restful/positionStoreXY')
+api.add_resource(PositionStore,'/restful/positionStore')
+api.add_resource(PositionStoreXY,'/restful/positionStoreXY')
 api.add_resource(GetDishSort, '/restful/dish_sort/<int:brand_id>')
 api.add_resource(GetPackage, '/restful/package/<int:brand_id>')
 
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
-
+api.add_resource(GetDishes,'/services/get_foods/<int:dish_sort_id>')
 
 # 后台管理路径
 admin = Admin(name=u'Home', index_view=HomeView())

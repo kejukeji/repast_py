@@ -31,7 +31,7 @@ class SearchStore(restful.Resource):
         return  dicts
 
 
-class PositonStore(restful.Resource):
+class PositionStore(restful.Resource):
     @staticmethod
     def get():
         para = reqparse.RequestParser()
@@ -64,7 +64,7 @@ class PositonStore(restful.Resource):
         print(dicts)
         return  dicts
 
-class PositonStoreXY(restful.Resource):
+class PositionStoreXY(restful.Resource):
     @staticmethod
     def get():
         para = reqparse.RequestParser()
