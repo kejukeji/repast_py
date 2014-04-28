@@ -218,7 +218,7 @@ def event_subscribe(FromUserName, ToUserName, EventKey, user):
             "ArticleCount": 1,
             "item": [{
                 "Title": title,
-                "Description": title +'\n'+ description,
+                "Description": title +'\n'+ "去排队",
                 "PicUrl": BASE_URL + pic_url,
                 "Url": '%s/q/queue/%s?user_id=%s&mark_queue=%s' %(BASE_URL, stores_id, user.id, mark_queue)
             }]
@@ -250,7 +250,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
             "ArticleCount": 1,
             "item": [{
                 "Title": title,
-                "Description": title+ "\n" + description,
+                "Description": title+ "\n" +"去排队",
                 "PicUrl": BASE_URL + pic_url,
                 "Url": url
             }]
