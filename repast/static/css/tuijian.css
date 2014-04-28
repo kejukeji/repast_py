@@ -58,6 +58,29 @@
 
 
 
+.reveal-modal-bg {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,.8);
+	z-index: 100;
+	display: none;
+	overflow:height;
+	top: 0;
+	right: 0;
+	}
+
+.reveal-modal {
+	visibility: hidden;
+	overflow:auto;
+	top: 5px;
+	right: 2%;
+	width: 200px;
+	height:138px;
+	background: url(modal-gloss.png) no-repeat;
+	position:fixed;
+	z-index: 9999;
+	}
 
 
 

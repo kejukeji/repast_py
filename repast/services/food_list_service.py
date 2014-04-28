@@ -11,3 +11,10 @@ class GetDishes(restful.Resource):
         json = append_json(dishes)
         return json
 
+def append_json(model):
+     json = []
+     if model:
+        for i in range(len(model)):
+            json.append([model[i].id, model[i].name])
+     return json
+

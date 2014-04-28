@@ -2,6 +2,10 @@
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="/static/css/tuijian.css">
+        <script type="text/javascript" src="/static/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/javascript/jquery.reveal.js"></script>
+
 {% endblock %}
 {% block title %} 排队 {% endblock %}
 
@@ -27,6 +31,7 @@
             });
         });
     </script>
+
 {% endblock %}
 
 {% block content %}
@@ -77,6 +82,13 @@
                 <div style="clear: both">
 
                 </div>
+
+                <a href="" data-reveal-id="myModa2"  style="width:92%; margin:0 auto; display:block; height:45px; margin-left:4%; text-align:center; line-height:45px; font-size:16px; color:#06F; border-radius:3px; font-weight:bold; background:#eee; border:1px solid #fff; margin-top:10px !important;" >分享给吃货们</a>
+	<div id="myModa2" class="reveal-modal" >
+                <img src="/static/images/img/guide.png" style="width:200px; height:138px;">
+        </div>
+
+
             </div>
         </div>
          <div id="text2" style="display: none;margin-top: 10px !important">
