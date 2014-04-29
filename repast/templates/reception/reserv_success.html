@@ -2,6 +2,9 @@
 {% block head %}
     {{ super() }}
     <link rel="stylesheet" href="/static/css/tuijian.css">
+<script type="text/javascript" src="/static/javascript/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="/static/javascript/jquery.reveal.js"></script>
+
 {% endblock %}
 {% block title %} 排队 {% endblock %}
 
@@ -27,6 +30,7 @@
             });
         });
     </script>
+
 {% endblock %}
 
 {% block content %}
@@ -34,7 +38,7 @@
 
         <div class="des">
             <span id="tab1" class="nav_des"
-                  style="color:#fff; background: #5AC3DC;float: left;margin-left: 1%"><b>我&nbsp;的&nbsp;排&nbsp;队</b></span>
+                  style="color:#fff; background: #5AC3DC;float: left;margin-left: 1%"><b>去&nbsp;排&nbsp;队&nbsp;咯</b></span>
             <span id="tab2" class="nav_des" style="background: #E9F4F7;float: left"><b style="color: #5AC3DC">等&nbsp;不&nbsp;及&nbsp;了</b></span>
 
         </div>
@@ -74,21 +78,30 @@
                 <span class="des_button_sp"> <a href="/f/package" type="button" class="btn btn-primary btn-lg"
                                                 style=" border:none;width: 80%">去点菜</a></span>
 
-                <div style="clear: both"></div>
+                <div style="clear: both">
+
+                </div>
+
+                <a href="" data-reveal-id="myModa2"  style="width:92%; margin:0 auto; display:block; height:45px; margin-left:4%; text-align:center; line-height:45px; font-size:16px; color:#06F; border-radius:3px; font-weight:bold; background:#eee; border:2px solid #fff; margin-top:10px !important;" >分享给吃货们</a>
+	<div id="myModa2" class="reveal-modal" >
+                <img src="/static/images/img/guide.png" style="width:200px; height:138px;">
+        </div>
+
+
             </div>
         </div>
-        <div id="text2" style="display: none;margin-top: 15px">
-            <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
+         <div id="text2" style="display: none;margin-top: 10px !important">
+        <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
 	<div class="tuijiancon">
    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
     <img src="/static/images/img/lbj_r1_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
     <p style="line-height: 17px;width: 95%">
-    <b style="line-height: 15px">七折</b><br />
-    上海泰妃阁美食餐厅<br />
-    一次性消费100元享七折优惠<br />
-    有效日期4月9日<br />
+    <b style="line-height: 14px; margin-left:0; padding-left:0;">上海泰妃阁美食餐厅</b><br />
+       距离餐厅300米<br />
+      小肥羊品牌<br />
+            人均消费100元
     </p></span>
-    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">领<br />取</button>
+    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</button>
     </div>
 
     <div class="tuijiancon">
@@ -106,8 +119,7 @@
     </ul>
     </div>
 
-
-    <div class="tuijianfoot">
+    <div class="tuijianfoot" >
    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; " >
      <p style="font-family:'微软雅黑'; line-height:20px;" >
     <b style="font-size:18px; font-family:'微软雅黑'; line-height:25px;">50积分</b><br />
@@ -118,7 +130,7 @@
     <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#FBAB2E; display:block;">已<br />领<br />取</button>
     </div>
 
- <div class="tuijianfoot" >
+ <div class="tuijianfoot" style="margin-top:10px !important;" >
    <span class="tuijiant" style="background:url(/static/images/img/over_s1.jpg) no-repeat; width:80%; background-size:100% 100px; " >
      <p >
     <b>七折</b><br />
@@ -130,6 +142,10 @@
     </div>
 
 </div>
+
+
+
+    </div>
 
 
 

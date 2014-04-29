@@ -7,7 +7,7 @@
 .tjc-lt{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:100% 110px;}
 .tjc-lt span{ width:66%; padding-top:5px;}
 .tjc-lt span b{ font-size:16px; color:#fff; line-height:28px;}
-.tjc-lt span p{ font-size:13px; color:#fff; line-height:10px;}
+.tjc-lt span p{ font-size:13px; color:#fff; line-height:16px;}
 .tjc-lt img{ width:63px; height:110px; float:right;}
 .tjc-r{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:70% 110px;}
 .tjc-r a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
@@ -20,7 +20,7 @@
 .tjc-lt2{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl22.png) repeat-x top left;background-size:100% 110px;}
 .tjc-lt2 span{ width:66%; padding-top:5px;}
 .tjc-lt2 span b{ font-size:16px; color:#fff; line-height:28px;}
-.tjc-lt2 span p{ font-size:13px; color:#fff; line-height:10px;}
+.tjc-lt2 span p{ font-size:13px; color:#fff; line-height:16px;}
 .tjc-lt2 img{ width:63px; height:110px; float:right;}
 .tjc-r2{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl22.png) repeat-x top left;background-size:80% 110px;}
 .tjc-r2 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
@@ -35,7 +35,7 @@
 .tjc-lt3{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl33.png) repeat-x top left;background-size:100% 110px;}
 .tjc-lt3 span{ width:66%; padding-top:5px;}
 .tjc-lt3 span b{ font-size:16px; color:#fff; line-height:28px;}
-.tjc-lt3 span p{ font-size:13px; color:#fff; line-height:10px;}
+.tjc-lt3 span p{ font-size:13px; color:#fff; line-height:16px;}
 .tjc-lt3 img{ width:63px; height:110px; float:right;}
 .tjc-r3{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl33.png) repeat-x top left;background-size:80% 110px;}
 .tjc-r3 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
@@ -48,7 +48,7 @@
 .tjc-lt4{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl44.png) repeat-x top left;background-size:100% 110px;}
 .tjc-lt4 span{ width:66%; padding-top:5px;}
 .tjc-lt4 span b{ font-size:16px; color:#fff; line-height:28px;}
-.tjc-lt4 span p{ font-size:13px; color:#fff; line-height:10px;}
+.tjc-lt4 span p{ font-size:13px; color:#fff; line-height:16px;}
 .tjc-lt4 img{ width:63px; height:110px; float:right;}
 .tjc-r4{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl44.png) repeat-x top left;background-size:80% 110px;}
 .tjc-r4 a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:10px !important; color:#fff; width:80%; }
@@ -58,6 +58,28 @@
 
 
 
+.reveal-modal-bg {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	background: rgba(0,0,0,.8);
+	z-index: 100;
+	display: none;
+	overflow:height;
+	top: 0;
+	right: 0;
+	}
+
+.reveal-modal {
+	visibility: hidden;
+	overflow:auto;
+	top: 1%;
+	right: 2%;
+
+	background: url(modal-gloss.png) no-repeat;
+	position:fixed;
+	z-index: 9999;
+	}
 
 
 
