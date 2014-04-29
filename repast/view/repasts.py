@@ -271,4 +271,4 @@ def to_favorable():
     return render_template('reception/youhui.html')
 
 def to_game():
-    return  render_template('reception/test2.html')
+    return  render_template('reception/snake.html')
