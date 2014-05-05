@@ -130,7 +130,7 @@ $(document).ready(function(){
         // 获取brand的json
         $.ajax({
             type: "GET",
-            url: "/restful/dish_sort/"+ packageVal,
+            url: "/restful/sort/"+ packageVal,
             dataType: "json",
             async: false,
             cache: false,

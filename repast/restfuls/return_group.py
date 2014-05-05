@@ -72,6 +72,25 @@ class GetDishSort(restful.Resource):
         json = append_json(temp)
         return json
 
+
+class GetDishSortDish(restful.Resource):
+    '''获取菜品分类'''
+    @staticmethod
+    def get(package_id):
+        package = Package.get_package_by_id(package_id)
+        array_sort = []
+        temp = []
+        if package and len(package.dish_sort_id) > 1:
+            array_sort = package.dish_sort_id.split(',')
+        else:
+            array_sort = package.dish_sort_id
+        for sort in array_sort:
+            dish_sort = DishSort.get_dish_sort_by_id(sort)
+            temp.append(dish_sort)
+        json = append_json(temp)
+        return json
+
+
 class GetPackage(restful.Resource):
     '''获取套餐'''
     @staticmethod
