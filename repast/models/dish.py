@@ -32,8 +32,18 @@ class DishSort(Base, InitUpdate):
 
     @staticmethod
     def get_dish_sort_by_brand(brand_id):
-        dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
-        return dish_sort
+        temp = []
+        dish_sort_count = DishSort.query.filter(DishSort.brand_id == brand_id).count()
+        if dish_sort_count >1:
+           dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
+           for d in dish_sort:
+               temp.append(d)
+        else:
+            dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).first()
+            temp.append(dish_sort)
+
+
+        return temp
 
 
 class Dish(Base, InitUpdate):
@@ -91,3 +101,34 @@ class Dish(Base, InitUpdate):
             if dish:
                 temp.append(dish)
         return temp
+
+    @staticmethod
+    def get_dish_by_kind_and_package(dish_sort_id, package_id):
+        '''根据分类和套餐获取所有的菜品'''
+        temp = []
+        dish_count = Dish.query.filter(Dish.dish_sort_id == dish_sort_id, Dish.package_id == package_id).count()
+        if dish_count > 1:
+            dish = Dish.query.filter(Dish.dish_sort_id == dish_sort_id, Dish.package_id == package_id).all()
+            for d in dish:
+                temp.append(d)
+        else:
+            dish = Dish.query.filter(Dish.dish_sort_id == dish_sort_id, Dish.package_id == package_id).first()
+            if dish:
+                temp.append(dish)
+        return temp
+
+    @staticmethod
+    def get_dish_by_kind_and_brand(dish_sort_id):
+        '''根据菜品分类的id获得的菜品'''
+        temp = []
+        dish_count = Dish.query.filter(Dish.dish_sort_id == dish_sort_id).count()
+        if dish_count > 1:
+            dish = Dish.query.filter(Dish.dish_sort_id == dish_sort_id).all()
+            for d in dish:
+                temp.append(d)
+        else:
+            dish = Dish.query.filter(Dish.dish_sort_id == dish_sort_id).first()
+            if dish:
+                temp.append(dish)
+        return temp
+

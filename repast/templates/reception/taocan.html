@@ -24,7 +24,7 @@ $(function(){
 	}
 	setTotal();
     $("#to_food_list").click(function(){
-        window.location.href="/f/meal_list";
+        window.location.href="/f/meal_list?brand_id = {{brand_id}}";
     });
 })
 </script>
@@ -47,19 +47,17 @@ $(function(){
 <span class="taocspan">套餐选择</span></div>
 <div class="taoc-ul">
 <ul>
-  <!--{% if package_count ==0 %}-->
+  {% if package_count ==0 %}
 
-  <!--{% elif package_count ==1 %}-->
-    <!--<li><a  href="#">{{ brands.name}}</a></li>-->
-   <!--{% else %}-->
-     <!--{%  for br in brands %}-->
-       <!--<li><a  href="#">{{ br.name}}</a></li>-->
-       <!--{% endfor %}-->
-    <!--{% endif %}-->
-     <li><a  href="/f/meal_list">午时二人套餐</a></li>
-     <li><a  href="/f/meal_list">午时四人套餐</a></li>
-     <li><a  href="/f/meal_list">午时六人套餐</a></li>
-    <li><a  href="/f/meal_list">午时八人套餐</a></li>
+   {% else %}
+     {%  for br in package %}
+       <li><a  href="/f/meal_list?package_id={{br.id}}&brand_id = {{brand_id}}">{{br.name}}{{ br.suitable_number}}人套餐</a></li>
+       {% endfor %}
+    {% endif %}
+     <!--<li><a  href="/f/meal_list">午时二人套餐</a></li>-->
+     <!--<li><a  href="/f/meal_list">午时四人套餐</a></li>-->
+     <!--<li><a  href="/f/meal_list">午时六人套餐</a></li>-->
+    <!--<li><a  href="/f/meal_list">午时八人套餐</a></li>-->
 </ul>
 </div>
 <div class="clear"></div>

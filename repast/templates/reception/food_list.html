@@ -7,26 +7,92 @@
 {% block pager_js %}
 
 
-{#    <script>#}
-{#        $(function () {#}
-{#            var t = $("#num");#}
-{#            $("#reduce").click(function () {#}
-{#                t.val(parseInt(t.val()) - 1)#}
-{#                setTotal();#}
-{#            })#}
-{#            $("#add").click(function () {#}
-{#                t.val(parseInt(t.val()) + 1)#}
-{#                setTotal();#}
-{#            })#}
-{#            function setTotal() {#}
-{#                $("#total").html((parseInt(t.val()) * 16).toFixed(2));#}
-{#            }#}
-{##}
-{#            setTotal();#}
-{#        })#}
-{#    </script>#}
+<script type="text/javascript">
+       $(function(){
+           function init_dish(){
+                var right = $('#hot')
+                var kind_id = $(".cd-left").next().val()
+                 $.ajax({
+                 type: 'get',
+                url: '/services/get_foods/'+ kind_id,
+                dataType: 'json',
+                success:function(data){
+                    right.empty();
+                    $.each(data.dish,function(i,value){
+                        right.append(
+                            '<div class="hot-food">'+
+                                '<ul>'+
+                                '<li class="hot-food-img"><img src="'+value.base_path+'/'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                '<li class="hot-food-text">'+
+                                '<p>'+
+                                '<ul>'+
+                                '<li class="food-name">'+value.name+'</li>'+
+                                '<li><a class="hot-zs"> 送</a></li>'+
+                                '</ul>'+
+                                '</p>'+
+                             ' <div class="clear"></div>'+
+                           '<span>'+
+                          '<a class="money">￥<n>'+value.price+'</n></a>'+
+                           '<input class="add" type="button" name="add"/>'+
+                            '<input class="num" type="text" value="0"/>'+
+                            '<input class="reduce" type="button" name="reduce"/>'+
+                           '</span>'+
+                                    '</li>'+
+                                '</ul>'+
+                           ' </div>');
+                 });
+                 }
+                })
+            }
+            init_dish();
+             $(".cd-left").bind("click", function(){
+             var this_id = $(this).next().val()
+             var package = '{{ package }}'
+             var food_url =  '/services/get_foods/'+ this_id
+             if (!package){
+                food_url =  '/services/get_foods/'+ this_id
+             }else{
+                food_url =  '/services/get_foods/'+ this_id+'?package_id={{ package.id }}'
+             }
+            var right = $('#hot')
+            $.ajax({
+             type: 'get',
+            url: food_url,
+            dataType: 'json',
+            success:function(data){
+                right.empty();
+                $.each(data.dish,function(i,value){
+                    right.append(
+                        '<div class="hot-food">'+
+                            '<ul>'+
+                            '<li class="hot-food-img"><img src="'+value.base_path+'/'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                            '<li class="hot-food-text">'+
+                            '<p>'+
+                            '<ul>'+
+                            '<li class="food-name">'+value.name+'</li>'+
+                            '<li><a class="hot-zs"> 送</a></li>'+
+                            '</ul>'+
+                            '</p>'+
+                         ' <div class="clear"></div>'+
+                       '<span>'+
+                      '<a class="money">￥<n>'+value.price+'</n></a>'+
+                       '<input class="add" type="button" name="add"/>'+
+                        '<input class="num" type="text" value="0"/>'+
+                        '<input class="reduce" type="button" name="reduce"/>'+
+                       '</span>'+
+                                '</li>'+
+                            '</ul>'+
+                       ' </div>');
+             });
+             }
+            })
+            });
 
-    <script>
+       })
+
+</script>
+
+ <script>
         $(document).ready(function () {
             choose("hot");
             choose("cold");
@@ -44,11 +110,12 @@
             }
 
             var allTotalPrice = 0;
-            $("#right").find("div.hot-food").each(function(){
+
+            $(".hot-food").each(function(){
                 var totalPrice = 0;
                 var t = $(this).find("input.num");
                 var num = parseInt(t.val());
-                $(this).find("input.add").click(function(){
+                $(this).find("input.add").live('click',function(){
                     num = num+1;
                     $(this).parent().find(".num").val(num);
                     if($(this).parent().parent().find("m").length>0){
@@ -85,236 +152,45 @@
 {% block content %}
     <body style="margin:0; padding:0; font-family:'微软雅黑'; ">
     <div style="height:90%;width:20%;position:fixed; top:0; left:0; float:left; background:#CDCDCD;border:1px solid #eee;">
+        {% if dish_sort %}
+          {% for dis in dish_sort %}
+          <div class="cd-left">{{dis.name}}</div>
+          <input type="hidden" value="{{dis.id}}" name="id"/>
+          {% endfor %}
+        {% else %}
+         <div class="cd-left" id="none_button">暂无分类</div>
+        {% endif %}
 
-        <div class="cd-left" id="hot_button">热菜</div>
-        <div class="cd-left" id="cold_button">冷菜</div>
-        <div class="cd-left" id="food_button">主食</div>
-        <div class="cd-left" id="drink_button">饮料</div>
-        <div class="cd-left" id="cake_button">点心</div>
-        <div class="cd-left" id="sweet_button">甜品</div>
-        <div class="cd-left" id="soup_button">汤羹</div>
-        <div class="cd-left" id="discount_button">优惠</div>
+        <!--<div class="cd-left" id="cold_button">冷菜</div>-->
+        <!--<div class="cd-left" id="food_button">主食</div>-->
+        <!--<div class="cd-left" id="drink_button">饮料</div>-->
+        <!--<div class="cd-left" id="cake_button">点心</div>-->
+        <!--<div class="cd-left" id="sweet_button">甜品</div>-->
+        <!--<div class="cd-left" id="soup_button">汤羹</div>-->
+        <!--<div class="cd-left" id="discount_button">优惠</div>-->
     </div>
     <div style="position:absolute;width:79%;float:left;left:21%;" id="right">
         <div id="hot" style="display:block">
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                        <p>
-                            <ul>
-                            <li class="food-name">红烧肉</li>
-                            <li><a class="hot-zs"> 送</a></li>
-                           </ul>
-                        </p>
-        <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
-            <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        <div id="cold" style="display:none">
-
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
-           <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div id="mainfood" style="display:none">
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg" ></li>
-                    <li class="hot-food-text">
-                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
- <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
 
 
-        </div>
 
-        <div id="drink" style="display:none">
-
-
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
-          <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-        <div id="cake" style="display:none">
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
-
-          <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
-           <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-		<input class="num" type="text" value="0"/>
-		<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div id="sweet" style="display:none">
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
-
-           <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-		<input class="num" type="text" value="0"/>
-		<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                                                <p><ul><li>特色时蔬</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
-
-           <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-		<input class="num" type="text" value="0"/>
-		<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-
-        <div id="soup" style="display:none">
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r2_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                           <p> <ul><li class="food-name">红烧肉</li><li><a class="hot-zs"> 送</a></li></ul></p>
-
-            <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
-
-
-        </div>
-        <div id="discount" style="display:none">
-            <div class="hot-food">
-                <ul>
-                    <li class="hot-food-img"><img src="/static/images/img/caidan_r8_c3_s1.jpg"></li>
-                    <li class="hot-food-text">
-                        <p><ul><li>捞汁</li><li><a class="hot-money"> 优惠<m>5</m>元</a></li></ul></p>
-           <div class="clear"></div>
-          <span>
-          <a class="money">￥<n>16</n></a>
-           <input class="add" type="button" name="add"/>
-			<input class="num" type="text" value="0"/>
-			<input class="reduce" type="button" name="reduce"/>
-           </span>
-                    </li>
-                </ul>
-            </div>
 
         </div>
     </div>
 
+
     <div class="checkout">
-        <a>套餐名称：<a>午时十人套餐</a></a><br>
+        {% if package %}
+        <a>套餐名称：<a>{{package.name}}</a></a><br>
+        {% else %}
+        <a>套餐名称：<a>非套餐</a></a><br>
+        {% endif %}
+
         <a>总额：￥<input id ="all_total_price" value="0" type="text" style="background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; text-align: center; color:#FF9A62; width:60px; margin-left:6px; background-size:100% 100%; border:none; height:30px;" readOnly></a>
         <button type="submit">确定</button>
     </div>
 
 
     </body>
+
 {% endblock %}

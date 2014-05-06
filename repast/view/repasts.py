@@ -9,6 +9,8 @@ from repast.services.user_service import *
 from repast.util.session_common import *
 from ..services.call_number_service import PushMessage
 from repast.models.package import Package
+from repast.models.dish import Dish
+from repast.services.order_dish_service import PackageServiceView
 
 
 def to_repast_by_stores_id(stores_id):
@@ -246,15 +248,33 @@ def to_meal_restaurant_list():
 
 def to_package_list():
     """点餐后进入套餐选择页面"""
-    #brand_id = request.args.get('brand_id')   #传入品牌id
-    #package_count = Package.query.filter(Package.brand_id == brand_id).count()
-    #brands = Package.get_package_by_brand(brand_id)
-    return render_template('reception/taocan.html')
+    brand_id = request.args.get('brand_id')   #传入品牌id
+    package_count = Package.query.filter(Package.brand_id == brand_id).count()
+    package = Package.get_package_by_brand(brand_id)
+    return render_template('reception/taocan.html',
+                              package_count = package_count,
+                              package = package,
+                              brand_id= brand_id)
 
 
 def to_meal_list():
     """菜品列表"""
-    return render_template('reception/food_list.html')
+    package_id = request.args.get('package_id')
+    brand_id = request.args.get('brand_id')
+    if package_id:
+        package = Package.get_package_by_id(package_id)
+        #dish = PackageServiceView.get_dish_by_brand_id(package)
+        dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
+    else:
+        dish_sort = DishSort.get_dish_sort_by_brand(brand_id)
+
+    if package:
+        return render_template('reception/food_list.html',
+                               dish_sort = dish_sort,
+                               package = package)
+    else:
+        return render_template('reception/food_list.html',
+                               dish_sort =  dish_sort)
 
 
 def location():
