@@ -44,84 +44,86 @@
                $("#all_total_price").val(allTotalPrice);
            });
            function init_dish(){
-                var right = $('#hot')
-                var kind_id = $(".cd-left").next().val()
-                 $.ajax({
-                 type: 'get',
-                url: '/services/get_foods/'+ kind_id,
-                dataType: 'json',
-                success:function(data){
-                    right.empty();
-                    $.each(data.dish,function(i,value){
-                        right.append(
-                            '<div class="hot-food">'+
-                                '<ul>'+
-                                '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
-                                '<li class="hot-food-text">'+
-                                '<p>'+
-                                '<ul>'+
-                                '<li class="food-name">'+value.name+'</li>'+
-                                '<li><a class="hot-zs"> 送</a></li>'+
-                                '</ul>'+
-                                '</p>'+
-                             ' <div class="clear"></div>'+
-                           '<span>'+
-                          '<a class="money">￥<n>'+value.price+'</n></a>'+
-                           '<input class="add" type="button" name="add"/>'+
-                            '<input class="num" type="text" value="0"/>'+
-                            '<input class="reduce" type="button" name="reduce"/>'+
-                           '</span>'+
-                                    '</li>'+
-                                '</ul>'+
-                           ' </div>');
-                 });
-                 }
-                })
-            }
+               var right = $('#hot')
+               var kind_id = $(".cd-left").next().val()
+               $.ajax({
+                   type: 'get',
+                   url: '/services/get_foods/'+ kind_id,
+                   dataType: 'json',
+                   success:function(data){
+                       right.empty();
+                       $.each(data.dish,function(i,value){
+                           right.append(
+                                   '<div class="hot-food">'+
+                                           '<ul>'+
+                                           '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                           '<li class="hot-food-text">'+
+                                           '<p>'+
+                                           '<ul>'+
+                                           '<li class="food-name">'+value.name+'</li>'+
+                                           '<li><a class="hot-zs"> 送</a></li>'+
+                                           '</ul>'+
+                                           '</p>'+
+                                           ' <div class="clear"></div>'+
+                                           '<span>'+
+                                           '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                           '<input class="add" type="button" name="add"/>'+
+                                           '<input class="num" type="text" value="0"/>'+
+                                           '<input class="reduce" type="button" name="reduce"/>'+
+                                           '</span>'+
+                                           '</li>'+
+                                           '</ul>'+
+                                           ' </div>');
+                       });
+                   }
+               })
+           }
             init_dish();
              $(".cd-left").bind("click", function(){
-             var this_id = $(this).next().val()
-             var package = '{{ package }}'
-             var food_url =  '/services/get_foods/'+ this_id
-             if (!package){
-                food_url =  '/services/get_foods/'+ this_id
-             }else{
-                food_url =  '/services/get_foods/'+ this_id+'?package_id={{ package.id }}'
-             }
-            var right = $('#hot')
-            $.ajax({
-             type: 'get',
-            url: food_url,
-            dataType: 'json',
-            success:function(data){
-                right.empty();
-                $.each(data.dish,function(i,value){
-                    right.append(
-                        '<div class="hot-food">'+
-                            '<ul>'+
-                            '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
-                            '<li class="hot-food-text">'+
-                            '<p>'+
-                            '<ul>'+
-                            '<li class="food-name">'+value.name+'</li>'+
-                            '<li><a class="hot-zs"> 送</a></li>'+
-                            '</ul>'+
-                            '</p>'+
-                         ' <div class="clear"></div>'+
-                       '<span>'+
-                      '<a class="money">￥<n>'+value.price+'</n></a>'+
-                       '<input class="add" type="button" name="add"/>'+
-                        '<input class="num" type="text" value="0"/>'+
-                        '<input class="reduce" type="button" name="reduce"/>'+
-                       '</span>'+
-                                '</li>'+
-                            '</ul>'+
-                       ' </div>');
+                 $(this).prevAll().removeClass('cd_click');
+                 $(this).addClass('cd_click');
+                 $(this).nextAll().removeClass('cd_click');
+                 var this_id = $(this).next().val();
+                 var package = '{{ package }}';
+                 var food_url =  '/services/get_foods/'+ this_id;
+                 if (!package){
+                     food_url =  '/services/get_foods/'+ this_id
+                 }else{
+                     food_url =  '/services/get_foods/'+ this_id+'?package_id={{ package.id }}'
+                 }
+                 var right = $('#hot');
+                 $.ajax({
+                     type: 'get',
+                     url: food_url,
+                     dataType: 'json',
+                     success:function(data){
+                         right.empty();
+                         $.each(data.dish,function(i,value){
+                             right.append(
+                                     '<div class="hot-food">'+
+                                             '<ul>'+
+                                             '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                             '<li class="hot-food-text">'+
+                                             '<p>'+
+                                             '<ul>'+
+                                             '<li class="food-name">'+value.name+'</li>'+
+                                             '<li><a class="hot-zs"> 送</a></li>'+
+                                             '</ul>'+
+                                             '</p>'+
+                                             ' <div class="clear"></div>'+
+                                             '<span>'+
+                                             '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                             '<input class="add" type="button" name="add"/>'+
+                                             '<input class="num" type="text" value="0"/>'+
+                                             '<input class="reduce" type="button" name="reduce"/>'+
+                                             '</span>'+
+                                             '</li>'+
+                                             '</ul>'+
+                                             ' </div>');
+                         });
+                     }
+                 })
              });
-             }
-            })
-            });
-
        })
 
 </script>
@@ -189,8 +191,14 @@
     <body style="margin:0; padding:0; font-family:'微软雅黑'; ">
     <div style="height:90%;width:20%;position:fixed; top:0; left:0; float:left; background:#CDCDCD;border:1px solid #eee;">
         {% if dish_sort %}
+        {% set count = 1 %}
           {% for dis in dish_sort %}
+        {% if count == 1 %}
+          <div class="cd-left cd_click">{{dis.name}}</div>
+        {% else %}
           <div class="cd-left">{{dis.name}}</div>
+        {% endif %}
+        {% set count = count + 1 %}
           <input type="hidden" value="{{dis.id}}" name="id"/>
           {% endfor %}
         {% else %}
