@@ -188,13 +188,13 @@
     <!--</script>-->
 {% endblock %}
 {% block content %}
-    <body style="margin:0; padding:0; font-family:'微软雅黑'; ">
+    <body style=" margin-bottom:60px;margin:0; padding:0; font-family:'微软雅黑'; ">
     <div style="height:90%;width:20%;position:fixed; top:0; left:0; float:left; background:#CDCDCD;border:1px solid #eee;">
         {% if dish_sort %}
         {% set count = 1 %}
           {% for dis in dish_sort %}
         {% if count == 1 %}
-          <div class="cd-left cd_click">{{dis.name}}</div>
+          <div class=" cd_click cd-left">{{dis.name}}</div>
         {% else %}
           <div class="cd-left">{{dis.name}}</div>
         {% endif %}
