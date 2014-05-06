@@ -267,6 +267,7 @@ def to_meal_list():
         dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
     else:
         dish_sort = DishSort.get_dish_sort_by_brand(brand_id)
+        package = None
 
     if package:
         return render_template('reception/food_list.html',
@@ -274,7 +275,8 @@ def to_meal_list():
                                package = package)
     else:
         return render_template('reception/food_list.html',
-                               dish_sort =  dish_sort)
+                               dish_sort =  dish_sort,
+                               package='')
 
 
 def location():

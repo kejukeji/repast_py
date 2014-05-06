@@ -86,7 +86,7 @@
                  var this_id = $(this).next().val();
                  var package = '{{ package }}';
                  var food_url =  '/services/get_foods/'+ this_id;
-                 if (!package){
+                 if (package == ''){
                      food_url =  '/services/get_foods/'+ this_id
                  }else{
                      food_url =  '/services/get_foods/'+ this_id+'?package_id={{ package.id }}'
