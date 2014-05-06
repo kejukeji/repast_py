@@ -213,17 +213,14 @@
         <!--<div class="cd-left" id="soup_button">汤羹</div>-->
         <!--<div class="cd-left" id="discount_button">优惠</div>-->
     </div>
-    <div style="position:absolute;width:79%;float:left;left:21%;" id="right">
+    <div style="position:absolute;width:79%;float:left;left:21%; margin-bottom:150px;" id="right">
         <div id="hot" style="display:block">
 
 
 
 
         </div>
-    </div>
-
-
-    <div class="checkout">
+          <div class="checkout">
         {% if package %}
         <a>套餐名称：<a>{{package.name}}</a></a><br>
         {% else %}
@@ -231,8 +228,14 @@
         {% endif %}
 
         <a>总额：￥<input id ="all_total_price" value="0" type="text" style="background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; text-align: center; color:#FF9A62; width:60px; margin-left:6px; background-size:100% 100%; border:none; height:30px;" readOnly></a>
+       <div class="clear"></div>
         <button type="submit">确定</button>
     </div>
+
+    </div>
+
+
+
 
 
     </body>

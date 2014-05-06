@@ -19,9 +19,10 @@ a{ color:#FF9A62; font-size:16px;}
     .add{ background:url(/static/images/img/caidan_r4_c7_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
 	.num{ background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; background-size:100% 100%; border:none; height:30px;}
 	.reduce{ background:url(/static/images/img/caidan_r4_c11_s1.jpg) no-repeat; background-size:100% 100%; border:none;}
-	.checkout{ width:70%; position:fixed; left:25%; bottom:80px; height:80px;}
-	.checkout button{ border:#5FC3CF; width:100%; margin:0 auto; height:40px; color:#fff; margin-top:5px;}
+	.checkout{ width:100%; position:fixed; left:21%; bottom:55px; height:auto; background:#fff; padding-left:5%;}
+	.checkout button{ border:#5FC3CF; width:70%; margin:0 auto; height:40px; color:#fff; margin-top:5px; margin-bottom:5px;}
 	.checkout a{ line-height:25px;}
+
 	
 	
 
