@@ -9,6 +9,40 @@
 
 <script type="text/javascript">
        $(function(){
+            var allTotalPrice = 0;
+            $(".add").live("click", function(){
+                var totalPrice = 0;
+                var t = $(this).parent().find('.num')
+                var num = parseInt(t.val())
+                num = num + 1;
+                t.val(num)
+                if($(this).parent().parent().find("m").length>0){
+                    totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
+                }else{
+                    totalPrice = parseInt($(this).parent().find("n").html());
+                }
+                allTotalPrice = allTotalPrice + totalPrice;
+                $("#all_total_price").val(allTotalPrice);
+            });
+           $(".reduce").live("click", function(){
+               var totalPrice = 0;
+               var t = $(this).parent().find('.num')
+               var num = parseInt(t.val())
+               if (num>0){
+                   num = num -1;
+                   if($(this).parent().parent().find("m").length>0){
+                       totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
+                   }else{
+                       totalPrice = parseInt($(this).parent().find("n").html());
+                   }
+               }else {
+                   num = 0;
+                   totalPrice = 0;
+               }
+               t.val(num)
+               allTotalPrice = allTotalPrice - totalPrice;
+               $("#all_total_price").val(allTotalPrice);
+           });
            function init_dish(){
                 var right = $('#hot')
                 var kind_id = $(".cd-left").next().val()
@@ -92,62 +126,64 @@
 
 </script>
 
- <script>
-        $(document).ready(function () {
-            choose("hot");
-            choose("cold");
-            choose("sweet");
-            choose("mainfood");
-            choose("drink");
-            choose("cake");
-            choose("soup");
-            choose("discount");
-            function choose(str) {
-                $("#" + str + "_button").click(function () {
-                    $("#right").children().css({display: "none"});
-                    $("#" + str).css({display: "block"});
-                });
-            }
+ <!--<script>-->
+        <!--$(document).ready(function () {-->
+            <!--choose("hot");-->
+            <!--choose("cold");-->
+            <!--choose("sweet");-->
+            <!--choose("mainfood");-->
+            <!--choose("drink");-->
+            <!--choose("cake");-->
+            <!--choose("soup");-->
+            <!--choose("discount");-->
+            <!--function choose(str) {-->
+                <!--$("#" + str + "_button").click(function () {-->
+                    <!--$("#right").children().css({display: "none"});-->
+                    <!--$("#" + str).css({display: "block"});-->
+                <!--});-->
+            <!--}-->
 
-            var allTotalPrice = 0;
-
-            $(".hot-food").each(function(){
-                var totalPrice = 0;
-                var t = $(this).find("input.num");
-                var num = parseInt(t.val());
-                $(this).find("input.add").live('click',function(){
-                    num = num+1;
-                    $(this).parent().find(".num").val(num);
-                    if($(this).parent().parent().find("m").length>0){
-                    totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
-                    }else{
-                        totalPrice = parseInt($(this).parent().find("n").html());
-                    }
-                    allTotalPrice = allTotalPrice + totalPrice;
-                    $("#all_total_price").val(allTotalPrice);
-                });
-                $(this).find("input.reduce").click(function(){
-                    if (num>0){
-                        num = num -1;
-                        if($(this).parent().parent().find("m").length>0){
-                    totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
-                    }else{
-                        totalPrice = parseInt($(this).parent().find("n").html());
-                    }
-                    }else {
-                        num = 0;
-                        totalPrice = 0;
-                    }
-                    $(this).parent().find(".num").val(num);
+            <!--var allTotalPrice = 0;-->
 
 
-                    allTotalPrice = allTotalPrice - totalPrice;
-                    $("#all_total_price").val(allTotalPrice);
-                });
-            });
 
-        });
-    </script>
+            <!--$(".hot-food").each(function(){-->
+                <!--var totalPrice = 0;-->
+                <!--var t = $(this).find("input.num");-->
+                <!--var num = parseInt(t.val());-->
+                <!--$(this).find("input.add").live('click',function(){-->
+                    <!--num = num+1;-->
+                    <!--$(this).parent().find(".num").val(num);-->
+                    <!--if($(this).parent().parent().find("m").length>0){-->
+                    <!--totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));-->
+                    <!--}else{-->
+                        <!--totalPrice = parseInt($(this).parent().find("n").html());-->
+                    <!--}-->
+                    <!--allTotalPrice = allTotalPrice + totalPrice;-->
+                    <!--$("#all_total_price").val(allTotalPrice);-->
+                <!--});-->
+                <!--$(this).find("input.reduce").click(function(){-->
+                    <!--if (num>0){-->
+                        <!--num = num -1;-->
+                        <!--if($(this).parent().parent().find("m").length>0){-->
+                    <!--totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));-->
+                    <!--}else{-->
+                        <!--totalPrice = parseInt($(this).parent().find("n").html());-->
+                    <!--}-->
+                    <!--}else {-->
+                        <!--num = 0;-->
+                        <!--totalPrice = 0;-->
+                    <!--}-->
+                    <!--$(this).parent().find(".num").val(num);-->
+
+
+                    <!--allTotalPrice = allTotalPrice - totalPrice;-->
+                    <!--$("#all_total_price").val(allTotalPrice);-->
+                <!--});-->
+            <!--});-->
+
+        <!--});-->
+    <!--</script>-->
 {% endblock %}
 {% block content %}
     <body style="margin:0; padding:0; font-family:'微软雅黑'; ">
@@ -192,5 +228,7 @@
 
 
     </body>
+<script>
 
+</script>
 {% endblock %}
