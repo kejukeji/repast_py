@@ -9,3 +9,4 @@ from .location import *
 from .queue import *
 from .dish import *
 from .package import *
+from .coupons import *

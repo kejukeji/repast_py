@@ -3,7 +3,7 @@
 from repast.models.user import User
 from repast.models.database import db
 from repast.services.base_service import BaseService
-
+from repast.models.coupons import Coupons
 
 class UserService():
     '''用户'''
@@ -33,7 +33,18 @@ class UserService():
             user = self.create_user(nickname, openid, picture_url)
             return user
 
+    def get_user_by_id(self,user_id):
+        user=User.query.filter(User.id == user_id).first()
+        return user
 
+
+    def update_user_coupons(self,user_id,coupons_id):
+        user=self.get_user_by_id(user_id)
+        if user.coupons_id:
+            user.coupons_id = user.coupons_id + ',' + str(coupons_id)
+        else:
+            user.coupons_id = str(coupons_id)
+        db.commit()
 
     def get_location_and_save(self, openid, longitude, latitude, description):
         '''获取用户地址位置，并且保存'''

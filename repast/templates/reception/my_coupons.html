@@ -1,0 +1,37 @@
+﻿{% extends "reception/web_base.html" %}
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" type="text/css" href="/static/css/tuijian.css"/>
+{% endblock %}
+{% block title %} 优惠 {% endblock %}
+
+{% block pager_js %}
+{%endblock %}
+{% block content %}
+    <body style="margin-bottom: 60px; background:#e2f3ef;">
+    <div style="width:99%; margin:auto; margin-left:1%;">
+{% for a in arr %}
+    <div class="tjc">
+     <span class="tjc-limg" ></span>
+    <span class="tjc-lt">
+    <span>
+         <p>{{ a.name }}<br>
+            {{ a.dish_name }}<br>
+            原价{{ a.price }}元<br>
+            现价{{ a.cou_price }}元<br>
+            有效日期至{{ a.end_time }}</p>
+    
+    </span>
+    <img src="/static/images/img/tuijianc.png">
+    </span>
+    <span class="tjc-r">
+   <img src="/static/images/img/tuijianr1.JPG" class="tjr-img">
+    </span>
+   
+    </div>
+{% endfor %}
+<div class="clear"></div>
+
+    
+</body>
+{% endblock %}

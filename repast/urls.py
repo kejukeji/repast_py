@@ -26,6 +26,8 @@ from .view.admin.package import PackageView
 from .view.admin.dish_sort import DishSortView
 from restfuls.queue import AjaxCallNumber
 from services.food_list_service import GetDishes
+from .view.order_dishes.my_coupons import *
+from .restfuls.coupons import *
 
 # 用户管理路径
 # app.add_url_rule('url','method_name', method_name, method=('GET','POST'))
@@ -55,6 +57,7 @@ app.add_url_rule('/to_reservation/', 'to_reservation', to_reservation, methods= 
 app.add_url_rule('/q/do_cancel_queue/<int:queue_id>', 'do_cancel_queue', do_cancel_queue, methods= ('GET', 'POST'))
 # 我的
 app.add_url_rule('/m/my_page/','to_my_page', to_my_page, methods=('GET','POST'))
+app.add_url_rule('/m/my_coupons/', 'deal_coupons',deal_coupons, methods=('GET', 'POST'))
 app.add_url_rule('/m/my_line_up', 'to_my_line_up', to_my_line_up, methods=('GET', 'POST'))
 app.add_url_rule('/location', 'to_location', location, methods=('GET', 'POST'))
 # 点餐
@@ -63,7 +66,7 @@ app.add_url_rule('/f/package', 'to_package', to_package_list, methods=('GET', 'P
 app.add_url_rule('/f/meal_list', 'to_meal_list', to_meal_list, methods=('GET', 'POST'))
 app.add_url_rule('/f/meal_search_position', 'to_meal_search_position', to_meal_search_position, methods=('GET', 'POST'))
 # 优惠
-app.add_url_rule('/y/favorable','to_favorable',to_favorable,methods=('GET', 'POST'))
+app.add_url_rule('/y/on_sale','on_sale',on_sale,methods=('GET', 'POST'))
 #游戏
 app.add_url_rule('/to_game','to_game',to_game,methods=('GET', 'POST'))
 app.add_url_rule('/to_dish_selected','dish_selected',dish_selected,methods=('GET','POST'))
@@ -80,10 +83,10 @@ api.add_resource(PositionStore,'/restful/positionStore')
 api.add_resource(PositionStoreXY,'/restful/positionStoreXY')
 api.add_resource(GetDishSort, '/restful/dish_sort/<int:brand_id>')
 api.add_resource(GetPackage, '/restful/package/<int:brand_id>')
-api.add_resource(GetDishSortDish, '/restful/sort/<int:package_id>')
 
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 api.add_resource(GetDishes,'/services/get_foods/<int:dish_sort_id>')
+api.add_resource(UpdateUserCoupons,'/restful/coupons_id/<int:coupons_id>')
 
 
 # 后台管理路径
