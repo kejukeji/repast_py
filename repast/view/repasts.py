@@ -11,7 +11,7 @@ from ..services.call_number_service import PushMessage
 from repast.models.package import Package
 from repast.models.dish import Dish
 from repast.services.order_dish_service import PackageServiceView
-
+from repast.services.do_coupons import DoCoupons
 
 def to_repast_by_stores_id(stores_id):
     '''根据id到餐厅页面'''
@@ -94,10 +94,14 @@ def to_queue(stores_id):
     set_session_mark_queue(mark_queue) # 设置用户是否排队
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
+    another_stores=not_wait(stores.brand_id,stores_id)
+    coupons_name=DoCoupons.do_coupons(stores_id)
     return render_template('reception/reservation.html',
                            temp=temp,
                            stores=stores,
-                           mark_queue=mark_queue)
+                           mark_queue=mark_queue,
+                           another_stores=another_stores,
+                           coupons_name=coupons_name)
 
 def do_queue():
     '''排队'''
@@ -108,12 +112,19 @@ def do_queue():
     stores_id = queue.stores_id
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
+    coupons_name=DoCoupons.do_coupons(stores_id)
     return render_template('reception/reserv_success.html',
                            queue=queue,
                            message=queue.message,
                            temp=temp,
-                           stores=stores)
+                           stores=stores,
+                           coupons_name=coupons_name)
 
+
+def not_wait(brand_id,stores_id):
+    another_stores=Stores.query.filter(Stores.brand_id == brand_id,Stores.id != stores_id).first() #查找同品牌的店信息
+    #another_stores[0]
+    return another_stores
 
 def do_cancel_queue(queue_id):
     '''取消队列'''
