@@ -1,0 +1,85 @@
+﻿ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+<link rel="stylesheet" type="text/css" href="/static/css/wdcaidan.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+ <script type="text/javascript" src="/static/javascript/jquery-1.7.1.min.js"></script>
+ <script type="text/javascript" src="/static/javascript/t186.js"></script>
+ <script type="text/javascript" src="/static/javascript/jquery.reveal.js"></script>
+<title>微餐饮</title>
+</head>
+<script type="text/javascript">
+    var total_price = 0
+    var pay_price = 0
+
+
+</script>
+
+<body style="background:#E9E9E9; margin-bottom:60px;">
+
+<!--排队成功-->   
+
+	<div class="wdcaidan">
+	<div class="cdname" >上海泰妃阁美食餐饮</span><span style="font-size:12px; color:#999; float:right;">2014.4.11</span></div>
+	<ul>
+    <li>
+    <ul class="wdcd3ul">
+    <li>名称</li>
+    <li>原价</li>
+    <li>现价</li>
+    <li>数量</li>
+    </ul>
+
+    </li>
+        {% for d in dish %}
+
+    <li>
+        <ul class="wdcd3ul">
+    <li>{{d['name']}}</li>
+    <li>{{d['list_price']}}</li>
+    <li>{{d['price']}}</li>
+    <li>{{d['number']}}</li>
+    </ul>
+        {% endfor %}
+
+    
+    <div class="clear"></div>
+    
+<div class="zong" >
+<p>金额：&nbsp;&nbsp;<a style="color:#F3732C;">￥116</a></p>
+<p class="song">获得积分120分</p>
+<p class="song">赠送一个凉拌菜</p>
+</div>
+</div>
+
+</div>
+
+
+
+
+<div class="wdcdbutton">
+   <button type="submit" class="fl" style="background:#5cc3d2;" >取消</button>
+   <button type="submit" class="fr" style="background:#5cc3d2;" >支付</button>
+</div>
+<div style="clear:both;"></div>
+
+  <a href="" data-reveal-id="myModa2"  style="width:94%; margin:0 auto; display:block; height:45px; margin-left:3%; text-align:center; line-height:45px; font-size:16px; color:#fff; border-radius:3px; font-weight:bold; background:#f90; margin-top:10px !important;" >分享给吃货们</a>
+	<div id="myModa2" class="reveal-modal" >
+                <img src="/static/images/img/guide.png" style="width:200px; height:138px;">
+        </div>
+
+
+<div class="foot">
+<div class="footInner"><a href="#" class="footInner-a1"></a></div>
+<div class="footInner"><a href="#" class="footInner-a2"></a></div>
+<div class="footInner"><a href="#" class="footInner-a3"></a></div>
+<div class="footInner"><a href="#" class="footInner-a4"></a></div>
+<div class="footInneron"><a href="#" class="footInner-a5on"></a></div>
+</div>
+
+</body>
+</html>
+

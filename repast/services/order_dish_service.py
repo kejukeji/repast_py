@@ -2,6 +2,7 @@
 from repast.models.package import Package
 from repast.models.dish import DishSort, Dish
 from repast.util.session_common import set_session_dish, get_session_dish
+from ..util.others import flatten
 
 class PackageServiceView():
     '''套餐前台业务逻辑'''
@@ -22,9 +23,17 @@ class PackageServiceView():
         dish_sort_array = PackageServiceView.get_dish_sort_array(package)
         dish_sort = PackageServiceView.get_dish_sort(dish_sort_array)
         dish = get_session_dish() # 得到session中的dish
-        if dish:
+        temp = []
+        if dish is None:
             dish = PackageServiceView.get_dish_by_brand_id(package)
-            set_session_dish(dish)
+        for d in dish:
+            try:
+                d.number = 1
+            except:
+                d['number'] = 1
+            d_pic = flatten(d)
+            temp.append(d_pic)
+        set_session_dish(temp)
         return dish_sort, dish
 
     @staticmethod

@@ -53,7 +53,7 @@ $(function(){
 
    {% else %}
      {%  for br in package %}
-       <li><a  href="/f/meal_list?package_id={{br.id}}&brand_id = {{brand_id}}">{{br.name}}{{ br.suitable_number}}人套餐</a></li>
+       <li><a  href="/f/meal_list?package_id={{br.id}}&brand_id={{brand_id}}">{{br.name}}{{ br.suitable_number}}人套餐</a></li>
        {% endfor %}
     {% endif %}
      <!--<li><a  href="/f/meal_list">午时二人套餐</a></li>-->
