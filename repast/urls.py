@@ -69,7 +69,7 @@ app.add_url_rule('/f/meal_search_position', 'to_meal_search_position', to_meal_s
 app.add_url_rule('/y/on_sale','on_sale',on_sale,methods=('GET', 'POST'))
 #游戏
 app.add_url_rule('/to_game','to_game',to_game,methods=('GET', 'POST'))
-app.add_url_rule('/to_dish_selected','dish_selected',dish_selected,methods=('GET','POST'))
+app.add_url_rule('/f/to_dish_selected','dish_selected',dish_selected,methods=('GET','POST'))
 # 接口定义
 api = restful.Api(app)
 api.add_resource(GetGroup, '/restful/group')
