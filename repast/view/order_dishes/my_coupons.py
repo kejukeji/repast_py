@@ -7,6 +7,7 @@ from ...services.user_service import  get_user_by_id
 
 
 
+
 def deal_coupons():
     coupons_id = request.args.get('coupons_id')
     if coupons_id:
@@ -34,3 +35,4 @@ def on_sale():
         a.sale=sale
     return render_template('reception/on_sale.html',
                            all_coupons=all_coupons)
+

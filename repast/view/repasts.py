@@ -12,6 +12,7 @@ from repast.models.package import Package
 from repast.models.dish import Dish
 from repast.services.order_dish_service import PackageServiceView
 from repast.services.do_coupons import DoCoupons
+from repast.models.stores import  StoresInfo
 
 def to_repast_by_stores_id(stores_id):
     '''根据id到餐厅页面'''
@@ -96,6 +97,12 @@ def to_queue(stores_id):
     stores = get_stores_by_id(stores_id)
     another_stores=not_wait(stores.brand_id,stores_id)
     coupons_name=DoCoupons.do_coupons(stores_id)
+    for a in coupons_name:
+        sale=int(10*a.cou_price/a.price)
+        a.sale=sale
+    stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
+    picture_url = stores_info.rel_path+'/'+stores_info.picture_name
+    stores.picture_url=picture_url
     return render_template('reception/reservation.html',
                            temp=temp,
                            stores=stores,
@@ -123,7 +130,9 @@ def do_queue():
 
 def not_wait(brand_id,stores_id):
     another_stores=Stores.query.filter(Stores.brand_id == brand_id,Stores.id != stores_id).first() #查找同品牌的店信息
-    #another_stores[0]
+    a=[]
+    a=another_stores.description.split('，')
+    another_stores.description=a[0]+','+a[-1]
     return another_stores
 
 def do_cancel_queue(queue_id):

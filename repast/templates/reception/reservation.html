@@ -75,11 +75,11 @@
         <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
 	<div class="tuijiancon">
     <li><span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
-    <img src="/static/images/img/lbj_r1_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
+    <img src={{  stores.picture_url  }}  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
     <p style="line-height: 17px;width: 95%">
     {% if another_stores %}
     <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ another_stores.name }}</b><br />
-       距离餐厅500米<br />
+       {{ another_stores.description }}<br />
     {{ another_stores.brand }}<br />
             人均消费100元
     </p></span>
@@ -92,13 +92,12 @@
     {% if coupons_name %}
     {% for c in coupons_name %}
     <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
-    <img src="/static/images/img/lbj_r3_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
+
     <p style="line-height: 17px;width: 95%">
-    <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.name }}</b><br />
+    <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
       <!--种类:{{ c.description }}<br />-->
-      菜品:{{ c.dish_name }}<br />
-      原价:￥{{ c.price }}<br />
-      现价:￥{{ c.cou_price }}</br>
+      {{ c.name }}<br />
+      一次性消费100元享{{ c.sale }}折优惠<br>
       有效日期至:{{c.end_time}}
     </p></span>
      {% if c.total == 0 %}
