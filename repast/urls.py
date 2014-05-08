@@ -20,7 +20,7 @@ from .view.admin.queue_setting import QueueSettingView
 from .view.admin.admin_login import *
 from .view.admin.shop_assistant import ShopAssistantView
 from .view.repasts import *
-from .view.order_dishes.a_la_carte import ToOrderDishes
+from .view.order_dishes.a_la_carte import ToOrderDishes,dish_selected
 from .view.admin.dish import *
 from .view.admin.package import PackageView
 from .view.admin.dish_sort import DishSortView
@@ -69,6 +69,7 @@ app.add_url_rule('/f/meal_search_position', 'to_meal_search_position', to_meal_s
 app.add_url_rule('/y/on_sale','on_sale',on_sale,methods=('GET', 'POST'))
 #游戏
 app.add_url_rule('/to_game','to_game',to_game,methods=('GET', 'POST'))
+app.add_url_rule('/f/to_dish_selected','dish_selected',dish_selected,methods=('GET','POST'))
 # 接口定义
 api = restful.Api(app)
 api.add_resource(GetGroup, '/restful/group')
@@ -86,6 +87,7 @@ api.add_resource(GetPackage, '/restful/package/<int:brand_id>')
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 api.add_resource(GetDishes,'/services/get_foods/<int:dish_sort_id>')
 api.add_resource(UpdateUserCoupons,'/restful/coupons_id/<int:coupons_id>')
+
 
 # 后台管理路径
 admin = Admin(name=u'Home', index_view=HomeView())

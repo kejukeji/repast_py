@@ -70,8 +70,9 @@ def do_assistant_login():
 
 def to_my_page():
     user_id = get_session_user()
-
-    return render_template('reception/my_page.html')
+    user = get_user_by_id(user_id)
+    return render_template('reception/my_page.html',
+                           user=user)
 
 def to_order_dishes():
     return render_template('reception/order_dishes.html')
