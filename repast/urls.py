@@ -29,6 +29,7 @@ from services.food_list_service import GetDishes
 from .view.order_dishes.my_coupons import *
 from .restfuls.coupons import *
 
+
 # 用户管理路径
 # app.add_url_rule('url','method_name', method_name, method=('GET','POST'))
 app.add_url_rule('/weixin', 'weixin', weixin, methods=('GET','POST'))
