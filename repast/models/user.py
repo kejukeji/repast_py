@@ -22,7 +22,7 @@ class User(Base, InitUpdate):
     longitude = Column(FLOAT, nullable=True)
     latitude = Column(FLOAT, nullable=True)
     description = Column(String(200), nullable=True)
-    coupons_id = Column(Integer, nullable=False)
+    coupons_id = Column(String(50), nullable=False)
 
     def __init__(self, **kwargs):
         args = ('nick_name','openid','picture_url')
