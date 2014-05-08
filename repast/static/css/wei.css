@@ -6,7 +6,7 @@
   }
 *{margin:0px;padding:0px; }
  body{font-family:"微软雅黑"; background:#E9E9E9;}
-  .mt10{ margin-top:10px;}  
+  .mt10{ margin-top:10px;}
 a{text-decoration:none !important;}
 ul,li{list-style:none;}
 img{border:0 none;}
@@ -35,7 +35,7 @@ img{border:0 none;}
    top:15px;
 left:20px;
  z-index:99; }
- 
+
 #bg{
 	margin-top:1% !important;
 	margin:0 auto;
@@ -44,7 +44,7 @@ left:20px;
 	height:40%;
 	background:#FFF;
 	border:1px solid #CCC;
-	
+
 	 }
 .toptitle{ height:45px; width:100%; background:#eee; text-align:center; font-family:'微软雅黑';}
 .toptitle b{ font-size:16px; line-height:45px;  color:#09C; }
