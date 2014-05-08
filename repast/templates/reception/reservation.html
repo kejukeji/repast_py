@@ -74,9 +74,9 @@
     <div id="text2" style="display: none;margin-top: 10px !important">
         <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
 	<div class="tuijiancon">
-    <li><span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
-    <img src={{  stores.picture_url  }}  style="width:50px; height:50px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
-    <p style="line-height: 17px;width: 95%">
+    <li><span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; margin-bottom:5px; " >
+    <img src={{  stores.picture_url  }}  style="width:50px; height:50px; float:left; margin-left:4%; margin-right:3px;  margin-top:15px;" />
+    <p style="line-height: 17px;width: 73%; float:right; ">
     {% if another_stores %}
     <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ another_stores.name }}</b><br />
        {{ another_stores.description }}<br />
@@ -84,16 +84,16 @@
             人均消费100元
     </p></span>
 
-    <a class="tjbutton"  href="{{ another_stores.id }}" style="float:right; border:none;text-align:center;padding: 15px; background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">去<br />排<br />队</a></li>
+    <a class="tjbutton"  href="{{ another_stores.id }}" style="float:right; border:none;text-align:center;padding: 15px; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">去<br />排<br />队</a></li>
    {% else %}
         <b style="line-height: 14px; margin-left:0; padding-left:0;">没有同类餐厅</b><br /></li>
     {% endif %}
 
     {% if coupons_name %}
     {% for c in coupons_name %}
-    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
+    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat;  background-size:100% 100px; margin-bottom:5px; " >
 
-    <p style="line-height: 17px;width: 95%">
+    <p style="line-height: 17px;width: 90%">
     <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
       <!--种类:{{ c.description }}<br />-->
       {{ c.name }}<br />
@@ -103,7 +103,7 @@
      {% if c.total == 0 %}
         <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">已<br />领<br />完</a>
      {% else%}
-        <a  href="/m/my_coupons/?coupons_id={{ c.id }}" class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</a>
+        <a  href="/m/my_coupons/?coupons_id={{ c.id }}" class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</a>
     {% endif %}
     {% endfor %}
     {% else %}
