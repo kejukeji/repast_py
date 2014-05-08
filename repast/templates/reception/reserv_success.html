@@ -39,7 +39,7 @@
         <div class="des">
             <span id="tab1" class="nav_des"
                   style="color:#fff; background: #5AC3DC;float: left;margin-left: 1%"><b>去&nbsp;排&nbsp;队&nbsp;咯</b></span>
-            <span id="tab2" class="nav_des" style="background: #E9F4F7;float: left"><b style="color: #5AC3DC">等&nbsp;不&nbsp;及&nbsp;了</b></span>
+            <span id="tab2" class="nav_des" style="background: #E9F4F7;float: left"><b style="color: #5AC3DC">优&nbsp;惠&nbsp;券</b></span>
 
         </div>
         <div id="text1">
@@ -82,7 +82,7 @@
 
                 </div>
 
-                <a href="" data-reveal-id="myModa2"  style="width:92%; margin:0 auto; display:block; height:45px; margin-left:4%; text-align:center; line-height:45px; font-size:16px; color:#06F; border-radius:3px; font-weight:bold; background:#eee; border:2px solid #fff; margin-top:10px !important;" >分享给吃货们</a>
+                <a href="" data-reveal-id="myModa2"  style="width:92%; margin:0 auto; display:block; height:45px; margin-left:4%; text-align:center; line-height:45px; font-size:16px; color:#FFF; border-radius:3px; font-weight:bold; background:#F90; margin-top:10px !important;" >分享给吃货们</a>
 	<div id="myModa2" class="reveal-modal" >
                 <img src="/static/images/img/guide.png" style="width:200px; height:138px;">
         </div>
@@ -93,67 +93,29 @@
          <div id="text2" style="display: none;margin-top: 10px !important">
         <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
 	<div class="tuijiancon">
+     {% if coupons_name %}
+    {% for c in coupons_name %}
    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
     <img src="/static/images/img/lbj_r1_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
     <p style="line-height: 17px;width: 95%">
-    <b style="line-height: 14px; margin-left:0; padding-left:0;">上海泰妃阁美食餐厅</b><br />
-       距离餐厅300米<br />
-      小肥羊品牌<br />
-            人均消费100元
+    <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.name }}</b><br />
+      <!--种类:{{ c.description }}<br />-->
+      菜品:{{ c.dish_name }}<br />
+      原价:￥{{ c.price }}<br />
+      现价:￥{{ c.cou_price }}</br>
+      有效日期至:{{c.end_time}}
     </p></span>
-    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</button>
+     {% if c.total == 0 %}
+        <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">已<br />领<br />完</a>
+     {% else%}
+    <a  href="/m/my_coupons/?coupons_id={{ c.id }}" class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</a>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+        <b style="line-height: 14px; margin-left:0; padding-left:0;">优惠券被抢空了！</b><br />
+    {% endif %}
     </div>
 
-    <div class="tuijiancon">
-    <ul>
-    <li ><span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; " >
-   <img src="/static/images/img/lbj_r3_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:5px;  margin-top:5px;" />
-     <p style="width:98%;" >
-    <b  style="height:35px; text-align:center; line-height:25px;">点我就送&nbsp;&nbsp;<img src="/static/images/img/pz.png"  style="width:18px; height:36px;"/></b><br />
-
-    有效日期2014年4月9日<br />
-    </p></span>
-    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">领<br />取</button></li>
-
-
-    </ul>
-    </div>
-
-    <div class="tuijianfoot" >
-   <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat; background-size:100% 100px; " >
-     <p style="font-family:'微软雅黑'; line-height:20px;" >
-    <b style="font-size:18px; font-family:'微软雅黑'; line-height:25px;">50积分</b><br />
-
-    一次性消费100元享七折优惠<br />
-    有效日期至2014年4月9日<br />
-    </p></span>
-    <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#FBAB2E; display:block;">已<br />领<br />取</button>
-    </div>
-
- <div class="tuijianfoot" style="margin-top:10px !important;" >
-   <span class="tuijiant" style="background:url(/static/images/img/over_s1.jpg) no-repeat; width:80%; background-size:100% 100px; " >
-     <p >
-    <b>七折</b><br />
-    上海泰妃阁美食餐厅<br />
-    一次性消费100元可以使用<br />
-    有效日期4月9日<br />
-    </p></span>
-   <button class="tjbutton" style="float:right; border:none; background:url(/static/images/img/over_s2.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">抢<br />光<br />了</button>
-    </div>
-
-</div>
-
-
-
-    </div>
-
-
-
-        </div>
-        <div style="height: 80px">
-            &nbsp;
-        </div>
     </body>
-
     {% endblock %}
 
