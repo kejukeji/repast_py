@@ -292,8 +292,8 @@ def to_meal_list():
     if package_id:
         package = Package.get_package_by_id(package_id)
         #dish = PackageServiceView.get_dish_by_brand_id(package)
-        #dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
-        dish_sort = DishSort.get_dish_sort_by_brand(brand_id, package_id)
+        dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
+        dish_sort = DishSort.get_dish_sort_by_brand(brand_id,package_id)
     if package:
         return render_template('reception/food_list.html',
                                dish_sort = dish_sort,

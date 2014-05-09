@@ -132,7 +132,7 @@
                          var total = data.total;
                          var id_array = data.dish_by_package;
                          $.each(data.dish,function(i,value){
-                             if (id_array.indexOf(value.id)){
+                             if (id_array.indexOf(value.id) != -1){
                                right.append(
                                    '<div class="hot-food">'+
                                            '<ul>'+
