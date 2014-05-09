@@ -55,8 +55,33 @@
                    dataType: 'json',
                    success:function(data){
                        right.empty();
+                       var total = data.total;
+                       var id_array = data.dish_by_package;
                        $.each(data.dish,function(i,value){
-                           right.append(
+                           if (id_array.indexOf(value.id)){
+                               right.append(
+                                   '<div class="hot-food">'+
+                                           '<ul>'+
+                                           '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                           '<li class="hot-food-text">'+
+                                           '<p>'+
+                                           '<ul>'+
+                                           '<li class="food-name">'+value.name+'</li>'+
+                                           '<li><a class="hot-zs"> 送</a></li>'+
+                                           '</ul>'+
+                                           '</p>'+
+                                           ' <div class="clear"></div>'+
+                                           '<span>'+
+                                           '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                           '<input class="add" type="button" name="add"/>'+
+                                           '<input class="num" type="text" value="1"/>'+
+                                           '<input class="reduce" type="button" name="reduce"/>'+
+                                           '</span>'+
+                                           '</li>'+
+                                           '</ul>'+
+                                           ' </div>');
+                           }else{
+                               right.append(
                                    '<div class="hot-food">'+
                                            '<ul>'+
                                            '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
@@ -77,7 +102,10 @@
                                            '</li>'+
                                            '</ul>'+
                                            ' </div>');
+                           }
+
                        });
+                       $("#all_total_price").val(total)
                    }
                })
            }
@@ -101,28 +129,54 @@
                      dataType: 'json',
                      success:function(data){
                          right.empty();
+                         var total = data.total;
+                         var id_array = data.dish_by_package;
                          $.each(data.dish,function(i,value){
-                             right.append(
-                                     '<div class="hot-food">'+
-                                             '<ul>'+
-                                             '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
-                                             '<li class="hot-food-text">'+
-                                             '<p>'+
-                                             '<ul>'+
-                                             '<li class="food-name">'+value.name+'</li>'+
-                                             '<li><a class="hot-zs"> 送</a></li>'+
-                                             '</ul>'+
-                                             '</p>'+
-                                             ' <div class="clear"></div>'+
-                                             '<span>'+
-                                             '<a class="money">￥<n>'+value.price+'</n></a>'+
-                                             '<input class="add" type="button" name="add"/>'+
-                                             '<input class="num" type="text" value="0"/>'+
-                                             '<input class="reduce" type="button" name="reduce"/>'+
-                                             '</span>'+
-                                             '</li>'+
-                                             '</ul>'+
-                                             ' </div>');
+                             if (id_array.indexOf(value.id)){
+                               right.append(
+                                   '<div class="hot-food">'+
+                                           '<ul>'+
+                                           '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                           '<li class="hot-food-text">'+
+                                           '<p>'+
+                                           '<ul>'+
+                                           '<li class="food-name">'+value.name+'</li>'+
+                                           '<li><a class="hot-zs"> 送</a></li>'+
+                                           '</ul>'+
+                                           '</p>'+
+                                           ' <div class="clear"></div>'+
+                                           '<span>'+
+                                           '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                           '<input class="add" type="button" name="add"/>'+
+                                           '<input class="num" type="text" value="1"/>'+
+                                           '<input class="reduce" type="button" name="reduce"/>'+
+                                           '</span>'+
+                                           '</li>'+
+                                           '</ul>'+
+                                           ' </div>');
+                           }else{
+                               right.append(
+                                   '<div class="hot-food">'+
+                                           '<ul>'+
+                                           '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                           '<li class="hot-food-text">'+
+                                           '<p>'+
+                                           '<ul>'+
+                                           '<li class="food-name">'+value.name+'</li>'+
+                                           '<li><a class="hot-zs"> 送</a></li>'+
+                                           '</ul>'+
+                                           '</p>'+
+                                           ' <div class="clear"></div>'+
+                                           '<span>'+
+                                           '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                           '<input class="add" type="button" name="add"/>'+
+                                           '<input class="num" type="text" value="0"/>'+
+                                           '<input class="reduce" type="button" name="reduce"/>'+
+                                           '</span>'+
+                                           '</li>'+
+                                           '</ul>'+
+                                           ' </div>');
+                           }
                          });
                      }
                  })
