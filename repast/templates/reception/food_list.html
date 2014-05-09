@@ -9,8 +9,6 @@
 
 <script type="text/javascript">
        $(function(){
-
-
             $(".add").live("click", function(){
                 var sureBtn = $("#sure-to-submit");
                 sureBtn.removeAttr("disabled");
@@ -295,13 +293,14 @@
         <!--<div class="cd-left" id="soup_button">汤羹</div>-->
         <!--<div class="cd-left" id="discount_button">优惠</div>-->
     </div>
-    <div style="width:79%;float:left;margin-left:21%; margin-bottom:160px;" id="right">
+    <div style="width:79%;float:left;margin-left:21%;" id="right">
         <div id="hot" style="display:block">
 
 
 
 
         </div>
+        <div style="height:160px;"></div>
           <div class="checkout">
         {% if package %}
         <a>套餐名称：<a>{{package.name}}</a></a><br>
