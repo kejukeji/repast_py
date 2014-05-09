@@ -12,22 +12,24 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 <title>微餐饮</title>
 </head>
 <script type="text/javascript">
-    $function(){
-    var total_price = 0
-    var prefer_price = 0
-    var pay_price = 0
-    var list_price =  parseInt($(this).parent().find('.list'))
-    var price = parseInt($(this).parent().find('.price'))
-    var number = parseInt($(this).parent().find('.number'))
-    total_price = total_price + list_price
-    pay_price = pay_price + price
-    prefer_price = total_price - pay_price
+    $(function sum(){
+    var totalprice = 0;
+    var preferprice = 0;
+    var payprice = 0;
+    var l = $(this).parent().find('.list');
+    var list_price =  parseInt(l.val());
+    var p =  $(this).parent().find('.price');
+    var price = parseInt(p.val());
+    var n = $(this).parent().find('.number');
+    var number = parseInt(n.val());
+    totalprice = totalprice + list_price * number;
+    payprice = payprice + price * number;
+    preferprice = totalprice - payprice ;
 
-    $("#total_price").val(total_price)
-    $("#perfer_price").val(prefer_price)
-    $("#pay_price").val(pay_price)
-    }
-
+    $("#total_price").val(totalprice);
+    $("#perfer_price").val(preferprice);
+    $("#pay_price").val(payprice);
+    });
 </script>
 
 <body style="background:#E9E9E9; margin-bottom:60px;">
@@ -48,7 +50,7 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
         {% for d in dish %}
 
     <li>
-        <ul class="wdcd3ul">
+    <ul class="wdcd3ul">
     <li>{{d['name']}}</li>
     <li>{{d['list_price']}}</li>
     <input class="list" type="hidden" value="{{d['list_price']}}"/>
@@ -60,9 +62,9 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
         {% endfor %}
     <div class="clear"></div>
 <div class="zong" >
-<p>点餐总价：&nbsp;&nbsp;<a><input id ="total-price"  type="text" style="color:#F3732C;" value="0" readonly/></a></p>
-<p>优惠：&nbsp;&nbsp;<a><input id ="prefer-price"  type="text" style="color:#F3732C;"  value="0" readonly/></a></p>
-<p>应付价：&nbsp;&nbsp;<a><input id ="pay-price"  type="text" style="color:#F3732C;" value="0" readonly/></a></p>
+<p>总价：&nbsp;&nbsp;<a><input id ="total-price" class="price" type="text" style="color:#F3732C;" value="0" readonly/></a></p>
+<p>优惠：&nbsp;&nbsp;<a><input id ="prefer-price"  class="price" type="text" style="color:#F3732C;"  value="0" readonly/></a></p>
+<p>应付：&nbsp;&nbsp;<a><input id ="pay-price"  class="price" type="text" style="color:#F3732C;" value="0" readonly/></a></p>
 <p class="song">获得积分120分</p>
 <p class="song">赠送一个凉拌菜</p>
 </div>
