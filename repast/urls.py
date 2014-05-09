@@ -47,18 +47,18 @@ app.add_url_rule('/shop_assistant_login/','to_login', to_login, methods=('GET','
 app.add_url_rule('/do_assistant_login/', 'do_assistant_login', do_assistant_login, methods=('GET','POST'))
 app.add_url_rule('/order_dishes/','to_order_dishes', to_order_dishes, methods=('GET','POST'))
 # 排队
-app.add_url_rule('/q/my_queue/<int:user_id>','to_my_queue', to_my_queue, methods=('GET','POST'))
-app.add_url_rule('/q/queue/<int:stores_id>','to_queue', to_queue, methods=('GET','POST'))
+app.add_url_rule('/q/my_queue/<int:user_id>', 'to_my_queue', to_my_queue, methods=('GET','POST'))
+app.add_url_rule('/q/queue/<int:stores_id>', 'to_queue', to_queue, methods=('GET','POST'))
 app.add_url_rule('/q/do_queue/','do_queue', do_queue, methods=('GET','POST'))
 app.add_url_rule('/q/search/','to_search', to_search, methods=('GET','POST'))
-app.add_url_rule('/q/search_result/','to_search_result', to_search_result, methods=('GET','POST'))
-app.add_url_rule('/text/',view_func=ToOrderDishes.as_view('text'))
-app.add_url_rule('/q/to_search_position/','to_search_position',to_search_position,methods=('GET','POST'))
+app.add_url_rule('/q/search_result/', 'to_search_result', to_search_result, methods=('GET','POST'))
+app.add_url_rule('/text/', view_func=ToOrderDishes.as_view('text'))
+app.add_url_rule('/q/to_search_position/', 'to_search_position',to_search_position,methods=('GET','POST'))
 app.add_url_rule('/to_reservation/', 'to_reservation', to_reservation, methods= ('GET', 'POST'))
 app.add_url_rule('/q/do_cancel_queue/<int:queue_id>', 'do_cancel_queue', do_cancel_queue, methods= ('GET', 'POST'))
 # 我的
-app.add_url_rule('/m/my_page/','to_my_page', to_my_page, methods=('GET','POST'))
-app.add_url_rule('/m/my_coupons/', 'deal_coupons',deal_coupons, methods=('GET', 'POST'))
+app.add_url_rule('/m/my_page/', 'to_my_page', to_my_page, methods=('GET','POST'))
+app.add_url_rule('/m/my_coupons/', 'deal_coupons', deal_coupons, methods=('GET', 'POST'))
 app.add_url_rule('/m/my_line_up', 'to_my_line_up', to_my_line_up, methods=('GET', 'POST'))
 app.add_url_rule('/location', 'to_location', location, methods=('GET', 'POST'))
 # 点餐
@@ -69,8 +69,8 @@ app.add_url_rule('/f/meal_search_position', 'to_meal_search_position', to_meal_s
 # 优惠
 app.add_url_rule('/y/on_sale','on_sale',on_sale,methods=('GET', 'POST'))
 #游戏
-app.add_url_rule('/to_game','to_game',to_game,methods=('GET', 'POST'))
-app.add_url_rule('/f/to_dish_selected','dish_selected',dish_selected,methods=('GET','POST'))
+app.add_url_rule('/to_game','to_game', to_game,methods=('GET', 'POST'))
+app.add_url_rule('/f/to_dish_selected', 'dish_selected', dish_selected, methods=('GET','POST'))
 # 接口定义
 api = restful.Api(app)
 api.add_resource(GetGroup, '/restful/group')

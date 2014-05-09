@@ -11,10 +11,10 @@ class GetDishes(restful.Resource):
     @staticmethod
     def get(dish_sort_id):
         package_id = request.args.get('package_id')
-        if package_id:
-            dishes = Dish.get_dish_by_kind_and_package(dish_sort_id, package_id)
-        else:
-            dishes = Dish.get_dish_by_kind_and_brand(dish_sort_id)
+        #if package_id:
+        #    dishes = Dish.get_dish_by_kind_and_package(dish_sort_id)
+        #else:
+        dishes = Dish.get_dish_by_kind_and_brand(dish_sort_id)
         json = append_json(dishes)
         return json
 
