@@ -11,9 +11,9 @@
        $(function(){
 
 
-
-
             $(".add").live("click", function(){
+                var sureBtn = $("#sure-to-submit");
+                sureBtn.removeAttr("disabled");
                 var allTotalPrice = parseInt($("#all_total_price").val());
                 var totalPrice = 0;
                 var t = $(this).parent().find('.num')
@@ -29,11 +29,13 @@
                 $("#all_total_price").val(allTotalPrice);
             });
            $(".reduce").live("click", function(){
+               var sureBtn = $("#sure-to-submit");
                var allTotalPrice = parseInt($("#all_total_price").val());
                var totalPrice = 0;
                var t = $(this).parent().find('.num')
                var num = parseInt(t.val())
                if (num>0){
+                   sureBtn.removeAttr("disabled");
                    num = num -1;
                    if($(this).parent().parent().find("m").length>0){
                        totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
@@ -44,11 +46,15 @@
                    num = 0;
                    totalPrice = 0;
                }
+               if (num == 0){
+                   sureBtn.attr("disabled","disabled");
+               }
                t.val(num)
                allTotalPrice = allTotalPrice - totalPrice;
                $("#all_total_price").val(allTotalPrice);
            });
            function init_dish(){
+
                var right = $('#hot')
                var kind_id = $(".cd-left").next().val()
                $.ajax({
@@ -76,6 +82,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" id="id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="1"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
@@ -98,6 +105,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" id="id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="0"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
@@ -108,6 +116,13 @@
 
                        });
                        $("#all_total_price").val(total)
+                       var submitBtn = $("#all_total_price").val();
+                       var sureBtn = $("#sure-to-submit");
+                       if (submitBtn == 0){
+                           sureBtn.attr("disabled", "disabled")
+                       }else{
+                           sureBtn.removeAttr("disabled");
+                       }
                    }
                })
            }
@@ -150,6 +165,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" id="id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="1"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
@@ -172,6 +188,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" id="id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="0"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+

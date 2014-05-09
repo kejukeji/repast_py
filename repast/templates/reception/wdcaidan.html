@@ -45,6 +45,7 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
     </ul>
 
     </li>
+        {% if dish %}
         {% for d in dish %}
 
     <li>
@@ -58,6 +59,9 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
     <input class="number" type="hidden" value="{{d['number']}}"/>
     </ul>
         {% endfor %}
+        {% else %}
+
+        {% endif %}
     <div class="clear"></div>
 <div class="zong" >
 <p>点餐总价：&nbsp;&nbsp;<a><input id ="total-price"  type="text" style="color:#F3732C;" value="0" readonly/></a></p>
