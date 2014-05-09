@@ -101,15 +101,18 @@ def to_queue(stores_id):
     for a in coupons_name:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
+
     stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
     picture_url = stores_info.rel_path+'/'+stores_info.picture_name
     stores.picture_url=picture_url
+    count = len(coupons_name)+1         #优惠券个数+推荐餐厅个数(1)
     return render_template('reception/reservation.html',
                            temp=temp,
                            stores=stores,
                            mark_queue=mark_queue,
                            another_stores=another_stores,
-                           coupons_name=coupons_name)
+                           coupons_name=coupons_name,
+                           count=count)
 
 def do_queue():
     '''排队'''
@@ -121,6 +124,10 @@ def do_queue():
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     coupons_name=DoCoupons.do_coupons(stores_id)
+    for a in coupons_name:
+        sale=int(10*a.cou_price/a.price)
+        a.sale=sale
+
     return render_template('reception/reserv_success.html',
                            queue=queue,
                            message=queue.message,
@@ -133,7 +140,7 @@ def not_wait(brand_id,stores_id):
     another_stores=Stores.query.filter(Stores.brand_id == brand_id,Stores.id != stores_id).first() #查找同品牌的店信息
     a=[]
     a=another_stores.description.split('，')
-    another_stores.description=a[0]+','+a[-1]
+    another_stores.description=a[0]
     return another_stores
 
 def do_cancel_queue(queue_id):

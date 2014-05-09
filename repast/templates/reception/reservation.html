@@ -34,7 +34,7 @@
     </div>
 
     <div class="clear"></div>
-    <div class="number2">3</div>
+    <div class="number2">{{ count  }}</div>
 
     <div id="text1" class="content_list" style=" margin-top: 5px !important;background:url(/static/images/img/topbg2_s1.jpg);display:block;background-position: initial initial;background-repeat: repeat no-repeat" >
     <div id="content">
@@ -95,7 +95,6 @@
 
     <p style="line-height: 17px;width: 90%">
     <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
-      <!--种类:{{ c.description }}<br />-->
       {{ c.name }}<br />
       一次性消费100元享{{ c.sale }}折优惠<br>
       有效日期至:{{c.end_time}}
@@ -120,4 +119,3 @@
      </body>
 
 {% endblock %}
-
