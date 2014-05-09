@@ -12,24 +12,32 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 <title>微餐饮</title>
 </head>
 <script type="text/javascript">
-    $(function sum(){
-    var totalprice = 0;
-    var preferprice = 0;
-    var payprice = 0;
-    var l = $(this).parent().find('.list');
-    var list_price =  parseInt(l.val());
-    var p =  $(this).parent().find('.price');
-    var price = parseInt(p.val());
-    var n = $(this).parent().find('.number');
-    var number = parseInt(n.val());
-    totalprice = totalprice + list_price * number;
-    payprice = payprice + price * number;
-    preferprice = totalprice - payprice ;
+    $(function(){
+     function sum(){
+    var totalprice = 0
+    var preferprice = 0
+    var payprice = 0
+    var l = $("#list").val()
+    var list_price =  parseInt(l)
+    var p =  $("#price").val()
+    var price = parseInt(p)
+    var n = $("#number").val()
+    var number = parseInt(n)
+    totalprice = totalprice + list_price * number
+    payprice = payprice + price * number
+    preferprice = totalprice - payprice
+    var total-price = parseInt($("#total-price").val())
+    var prefer-price = parseInt($("#prefer-price").val())
+    var pay-price = parseInt($("#pay-price").val())
 
-    $("#total_price").val(totalprice);
-    $("#perfer_price").val(preferprice);
-    $("#pay_price").val(payprice);
-    });
+    $("#total-price").val(totalprice);
+    $("#perfer-price").val(preferprice);
+    $("#pay-price").val(payprice);
+    }
+    sum();
+    })
+
+
 </script>
 
 <body style="background:#E9E9E9; margin-bottom:60px;">
@@ -40,38 +48,35 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 	<ul>
     <li>
     <ul class="wdcd3ul">
-    <li>名称</li>
-    <li>原价</li>
-    <li>现价</li>
-    <li>数量</li>
+    <li class="wdcd3ul-name">名称</li>
+    <li class="wdcd3ul-money">原价</li>
+    <li class="wdcd3ul-price">现价</li>
+    <li class="wdcd3ul-num">数量</li>
     </ul>
 
     </li>
+    </ul>
         {% for d in dish %}
 
     <li>
     <ul class="wdcd3ul">
-    <li>{{d['name']}}</li>
-    <li>{{d['list_price']}}</li>
-    <input class="list" type="hidden" value="{{d['list_price']}}"/>
-    <li>{{d['price']}}</li>
-    <input  class="price" type="hidden" value="{{d['price']}}"/>
-    <li>{{d['number']}}</li>
-    <input class="number" type="hidden" value="{{d['number']}}"/>
+    <li  class="wdcd3ul-name">{{d['name']}}</li>
+    <li  class="wdcd3ul-money">{{d['list_price']}}</li>
+    <input class="list"  id ="list" type="hidden" value="{{ d['list_price'] }}"/>
+    <li  class="wdcd3ul-price">{{d['price']}}</li>
+    <input  class="price"  id="price" type="hidden" value="{{ d['price'] }}"/>
+    <li  class="wdcd3ul-num">{{d['number']}}</li>
+    <input class="number" type="hidden" id="number" value="{{ d['number'] }}"/>
     </ul>
         {% endfor %}
-    <div class="clear"></div>
+ <div class="clear"></div>
 <div class="zong" >
 <p>总价：&nbsp;&nbsp;<a><input id ="total-price" class="price" type="text" style="color:#F3732C;" value="0" readonly/></a></p>
 <p>优惠：&nbsp;&nbsp;<a><input id ="prefer-price"  class="price" type="text" style="color:#F3732C;"  value="0" readonly/></a></p>
 <p>应付：&nbsp;&nbsp;<a><input id ="pay-price"  class="price" type="text" style="color:#F3732C;" value="0" readonly/></a></p>
 <p class="song">获得积分120分</p>
 <p class="song">赠送一个凉拌菜</p>
-</div>
-</div>
-
-</div>
-
+    </div>
 
 
 
@@ -94,7 +99,7 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 <div class="footInner"><a href="#" class="footInner-a4"></a></div>
 <div class="footInneron"><a href="#" class="footInner-a5on"></a></div>
 </div>
-
+</div>
 </body>
 </html>
 
