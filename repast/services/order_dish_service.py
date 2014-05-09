@@ -22,18 +22,17 @@ class PackageServiceView():
         package = Package.get_package_by_id(package_id)
         dish_sort_array = PackageServiceView.get_dish_sort_array(package)
         dish_sort = PackageServiceView.get_dish_sort(dish_sort_array)
-        dish = get_session_dish() # 得到session中的dish
 
         temp = []
-        if dish is None:
-            dish = PackageServiceView.get_dish_by_brand_id(package)
-        for d in dish:
-            try:
-                d.number = 1
-            except:
-                d['number'] = 1
-            d_pic = flatten(d)
-            temp.append(d_pic)
+        dish = PackageServiceView.get_dish_by_brand_id(package)
+        if dish:
+            for d in dish:
+                try:
+                    d.number = 1
+                except:
+                    d['number'] = 1
+                d_pic = flatten(d)
+                temp.append(d_pic)
         set_session_dish(temp)
         return dish_sort, dish
 

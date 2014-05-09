@@ -33,7 +33,7 @@ def append_json(model):
         temp_total = 0
         for d in dish:
             temp_total = temp_total + d['price']
-            json['dish_by_package'].append([d['id']])
+            json['dish_by_package'].append(d['id'])
         json['total'] = temp_total
     return json
 
