@@ -3,7 +3,9 @@ from sqlalchemy import Column, Integer, String
 from sqlalchemy.dialects.mysql import DOUBLE, FLOAT
 from database import Base
 from base_class import InitUpdate
-
+from repast.util.session_common import get_session_dish,set_session_dish
+from ..util.others import flatten
+from repast.models.package import Package
 DISH_SORT = 'dish_sort'
 DISH = 'dish'
 
@@ -31,9 +33,12 @@ class DishSort(Base, InitUpdate):
         return dish_sort
 
     @staticmethod
-    def get_dish_sort_by_brand(brand_id):
+    def get_dish_sort_by_brand(brand_id,package_id):
         temp = []
+        dishes = []
         dish_sort_count = DishSort.query.filter(DishSort.brand_id == brand_id).count()
+        package = Package.get_package_by_id(package_id)
+        dish = Dish.get_dish_by_package(package)
         if dish_sort_count >1:
            dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
            for d in dish_sort:
@@ -41,8 +46,14 @@ class DishSort(Base, InitUpdate):
         else:
             dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).first()
             temp.append(dish_sort)
-
-
+        for di in dish:
+            try:
+                di.number = 1
+            except:
+                di['number'] = 1
+            d_pic = flatten(di)
+            dishes.append(d_pic)
+        set_session_dish(dishes)
         return temp
 
 
@@ -131,4 +142,17 @@ class Dish(Base, InitUpdate):
             if dish:
                 temp.append(dish)
         return temp
-
+    @staticmethod
+    def get_dish_by_brand(brand_id):
+        '''根据品牌获取所有的菜品'''
+        temp = []
+        dish_count = Dish.query.filter(Dish.brand_id == brand_id).count()
+        if dish_count > 1:
+            dish = Dish.query.filter(Dish.brand_id == brand_id).all()
+            for d in dish:
+                temp.append(d)
+        else:
+            dish = Dish.query.filter(Dish.brand_id == brand_id).first()
+            if dish:
+                temp.append(dish)
+        return temp

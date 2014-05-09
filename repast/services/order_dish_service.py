@@ -23,6 +23,7 @@ class PackageServiceView():
         dish_sort_array = PackageServiceView.get_dish_sort_array(package)
         dish_sort = PackageServiceView.get_dish_sort(dish_sort_array)
         dish = get_session_dish() # 得到session中的dish
+
         temp = []
         if dish is None:
             dish = PackageServiceView.get_dish_by_brand_id(package)

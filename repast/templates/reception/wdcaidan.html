@@ -1,37 +1,39 @@
-﻿{% extends "reception/web_base.html" %}
-{% block head %}
-    {{ super() }}
-        <link rel="stylesheet" type="text/css" href="/static/css/wdcaidan.css"/>
-        <script type="text/javascript" src="/static/javascript/jquery.reveal.js"></script>
-{% endblock %}
-{% block title %}菜单 {% endblock %}
-{% block pager_js %}
-{% endblock %}
- <!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
-<!--<meta name="viewport"-->
-<!--content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">-->
-<!--<link rel="stylesheet" type="text/css" href="/static/css/wdcaidan.css"/>-->
-<!--<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>-->
- <!--<script type="text/javascript" src="/static/javascript/jquery-1.7.1.min.js"></script>-->
- <!--<script type="text/javascript" src="/static/javascript/t186.js"></script>-->
- <!--<script type="text/javascript" src="/static/javascript/jquery.reveal.js"></script>-->
-<!--<title>微餐饮</title>-->
-<!--</head>-->
+﻿ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+<link rel="stylesheet" type="text/css" href="/static/css/wdcaidan.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+ <script type="text/javascript" src="/static/javascript/jquery-1.7.1.min.js"></script>
+ <script type="text/javascript" src="/static/javascript/t186.js"></script>
+ <script type="text/javascript" src="/static/javascript/jquery.reveal.js"></script>
+<title>微餐饮</title>
+</head>
 <script type="text/javascript">
+    $function(){
     var total_price = 0
+    var prefer_price = 0
     var pay_price = 0
+    var list_price =  parseInt($(this).parent().find('.list'))
+    var price = parseInt($(this).parent().find('.price'))
+    var number = parseInt($(this).parent().find('.number'))
+    total_price = total_price + list_price
+    pay_price = pay_price + price
+    prefer_price = total_price - pay_price
 
+    $("#total_price").val(total_price)
+    $("#perfer_price").val(prefer_price)
+    $("#pay_price").val(pay_price)
+    }
 
 </script>
-{% block content %}
+
 <body style="background:#E9E9E9; margin-bottom:60px;">
 
-<!--排队成功-->   
-
-	<div class="wdcaidan">
+<!--排队成功-->
+<div class="wdcaidan">
 	<div class="cdname" >上海泰妃阁美食餐饮</span><span style="font-size:12px; color:#999; float:right;">2014.4.11</span></div>
 	<ul>
     <li>
@@ -49,16 +51,18 @@
         <ul class="wdcd3ul">
     <li>{{d['name']}}</li>
     <li>{{d['list_price']}}</li>
+    <input class="list" type="hidden" value="{{d['list_price']}}"/>
     <li>{{d['price']}}</li>
+    <input  class="price" type="hidden" value="{{d['price']}}"/>
     <li>{{d['number']}}</li>
+    <input class="number" type="hidden" value="{{d['number']}}"/>
     </ul>
         {% endfor %}
-
-    
     <div class="clear"></div>
-    
 <div class="zong" >
-<p>金额：&nbsp;&nbsp;<a style="color:#F3732C;">￥116</a></p>
+<p>点餐总价：&nbsp;&nbsp;<a><input id ="total-price"  type="text" style="color:#F3732C;" value="0" readonly/></a></p>
+<p>优惠：&nbsp;&nbsp;<a><input id ="prefer-price"  type="text" style="color:#F3732C;"  value="0" readonly/></a></p>
+<p>应付价：&nbsp;&nbsp;<a><input id ="pay-price"  type="text" style="color:#F3732C;" value="0" readonly/></a></p>
 <p class="song">获得积分120分</p>
 <p class="song">赠送一个凉拌菜</p>
 </div>
@@ -80,6 +84,15 @@
                 <img src="/static/images/img/guide.png" style="width:200px; height:138px;">
         </div>
 
+
+<div class="foot">
+<div class="footInner"><a href="#" class="footInner-a1"></a></div>
+<div class="footInner"><a href="#" class="footInner-a2"></a></div>
+<div class="footInner"><a href="#" class="footInner-a3"></a></div>
+<div class="footInner"><a href="#" class="footInner-a4"></a></div>
+<div class="footInneron"><a href="#" class="footInner-a5on"></a></div>
+</div>
+
 </body>
-{% endblock %}
+</html>
 
