@@ -5,12 +5,12 @@
 .tjc span{ float:left;}
 .tjc-limg{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl1.png) no-repeat top left; background-size:12px 110px;}
 .tjc-lt{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:100% 110px;}
-.tjc-lt span{ width:66%; padding-top:5px;}
-.tjc-lt span b{ font-size:16px; color:#fff; line-height:28px;}
-.tjc-lt span p{ font-size:13px; color:#fff; line-height:16px;}
+.tjc-lt span{ width:67%; padding-top:3px;}
+.tjc-lt span b{ font-size:16px; color:#fff; line-height:20px;}
+.tjc-lt span p{ font-size:13px; color:#fff; line-height:14px;}
 .tjc-lt img{ width:63px; height:110px; float:right;}
 .tjc-r{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:70% 110px;}
-.tjc-r a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:25px !important; color:#fff; width:80%; }
+.tjc-r a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:40px !important; color:#fff; width:80%; }
 .tjr-img{ width:16px; height:110px; float:right;}
 
 

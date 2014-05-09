@@ -46,21 +46,25 @@
             <div>
                 <div class="suc_con">
                     <span class="suc_con_left"
-                          style=" font-size: 16px; font-weight: bold; color: #666; line-height:20px; height:45px;"><b>{{ stores.name }}&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                          style=" font-size: 16px;  line-height:20px; height:45px; "><b>{{ stores.name }}&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                     <span class="suc_con_right"
-                          style="font-size: 13px; color: #666; height:45px;"><b>&nbsp;&nbsp;&nbsp;&nbsp;2014/4/11</b></span>
+                          style="font-size: 13px; height:45px; "><b>&nbsp;&nbsp;&nbsp;&nbsp;2014/4/11</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>餐桌类型：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                    <span class="suc_con_right"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ queue.table_type }}</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;{{ queue.table_type }}</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>前面还有：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                    <span class="suc_con_right"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ queue.queue_count }}人</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;{{ queue.queue_count }}人</b></span>
+                </div>
+                 <div class="suc_con">
+                    <span class="suc_con_left"><b>预计时间：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;10分钟</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>排队号：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                    <span class="suc_con_right"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ queue.now_queue_number }}号</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;{{ queue.now_queue_number }}号</b></span>
                 </div>
 
                 <div class="suc_con" style="width: 85%; margin:0 auto; padding:0; ">
@@ -70,7 +74,7 @@
 
 
             </div>
-            <br>
+
 
             <div class="desbutton">
                 <span class="des_button_sp"> <a id="cancelButton" type="button" class="btn btn-primary btn-lg"
@@ -95,7 +99,7 @@
 	<div class="tuijiancon">
      {% if coupons_name %}
     {% for c in coupons_name %}
-   <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
+   <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; margin-bottom:5px; " >
 
     <p style="line-height: 17px;width: 95%">
     <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
@@ -113,6 +117,8 @@
         <b style="line-height: 14px; margin-left:0; padding-left:0;">优惠券被抢空了！</b><br />
     {% endif %}
     </div>
+            </div>
+             </div>
 
     </body>
     {% endblock %}
