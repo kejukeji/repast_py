@@ -109,9 +109,9 @@ def to_queue(stores_id):
     for a in coupons_name:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
-        message = "领取"
+        message = 0     #默认未领取
         if str(a.id) in id:
-            message = "已领取"
+            message = 1 #已领取
         a.message = message
     stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
     picture_url = stores_info.rel_path+'/'+stores_info.picture_name
