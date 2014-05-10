@@ -2,7 +2,7 @@
 /* CSS Document */
 
 a{ color:#FF9A62; font-size:16px;}
-	.cd-left{ height:10%; background:url(/static/images/img/caidan_r1_c1_s1.jpg); background-size:100% 100%; font-size:16px; color:#666; line-height:50px; font-family:"微软雅黑"; text-align:center; }
+	.cd-left{ height:50px; background:url(/static/images/img/caidan_r1_c1_s1.jpg); background-size:100% 100%; font-size:16px; color:#666; line-height:50px; font-family:"微软雅黑"; text-align:center; }
     .cd_click{ background: url(/static/images/img/caidan_r4_c9_s1.jpg); background-size: 100% 100%;}
 	.hot-food{ height:110px; width:100%; display:block; background:url(/static/images/img/caidan_r1_c5_s1.jpg) repeat-x left top; background-size:100% 100%; margin:0; padding:0; }
 	.hot-food ul{ margin:0; padding:0;}
