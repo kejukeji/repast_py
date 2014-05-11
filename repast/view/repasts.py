@@ -277,6 +277,8 @@ def to_meal_restaurant_list():
 def to_package_list():
     """点餐后进入套餐选择页面"""
     brand_id = request.args.get('brand_id')   #传入品牌id
+    stores_id = request.args.get('stores_id') # 当前餐厅
+    set_session_value('stores_id', stores_id)
     package_count = Package.query.filter(Package.brand_id == brand_id).count()
     package = Package.get_package_by_brand(brand_id)
     return render_template('reception/taocan.html',

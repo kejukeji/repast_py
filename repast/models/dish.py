@@ -161,3 +161,9 @@ class Dish(Base, InitUpdate):
             if dish:
                 temp.append(dish)
         return temp
+
+    @staticmethod
+    def get_dish_by_id(dish_id):
+        """根据id得到菜品"""
+        dish = Dish.query.filter(Dish.id == dish_id).first()
+        return dish
