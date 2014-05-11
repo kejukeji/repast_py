@@ -14,6 +14,7 @@ from repast.services.order_dish_service import PackageServiceView
 from repast.services.do_coupons import DoCoupons
 from repast.models.stores import  StoresInfo
 
+
 def to_repast_by_stores_id(stores_id):
     '''根据id到餐厅页面'''
     if stores_id == 1:
@@ -71,6 +72,8 @@ def do_assistant_login():
 def to_my_page():
     user_id = get_session_user()
     user = get_user_by_id(user_id)
+    lens=user.coupons_id.split(',')
+    user.count=len(lens)        #用户优惠券数量
     return render_template('reception/my_page.html',
                            user=user)
 
@@ -98,10 +101,20 @@ def to_queue(stores_id):
     stores = get_stores_by_id(stores_id)
     another_stores=not_wait(stores.brand_id,stores_id)
     coupons_name=DoCoupons.do_coupons(stores_id)
+    user=get_user_by_id(user_id)
+
+    id = []
+    if user.coupons_id:
+        id=user.coupons_id
+        id=id.split(',')
+
     for a in coupons_name:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
-
+        message = 0     #默认未领取
+        if str(a.id) in id:
+            message = 1 #已领取
+        a.message = message
     stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
     picture_url = stores_info.rel_path+'/'+stores_info.picture_name
     stores.picture_url=picture_url
