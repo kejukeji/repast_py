@@ -1,7 +1,7 @@
 # coding: UTF-8
 from .database import Base
 from .base_class import InitUpdate
-from sqlalchemy import Column, Integer, String, ForeignKey, DATETIME
+from sqlalchemy import Column, Integer, String, ForeignKey, DATE
 
 
 COUPONS='coupons'
@@ -17,8 +17,8 @@ class Coupons(Base,InitUpdate):
     present=Column(String(100), nullable=True)
     price = Column(Integer, nullable=False)
     cou_price = Column(Integer, nullable=False)
-    begin_time = Column(DATETIME, nullable=False)
-    end_time = Column(DATETIME, nullable=False)
+    begin_time = Column(DATE, nullable=False)
+    end_time = Column(DATE, nullable=False)
     total = Column(Integer,nullable=True)
 
     def __init__(self, **kwargs):
