@@ -15,11 +15,16 @@
      <span class="tjc-limg" ></span>
     <span class="tjc-lt">
     <span>
+        {% if a.present %}
+           <b>{{ a.name}}</b><br>
+           <p> 买{{ a.dish_name }}送{{ a.present }}<br>
+            有效日期至{{ a.end_time }}</p>
+        {% else %}
          <b>{{ a.sale}}折</b><br>
            <p> {{ a.name }}<br>
             一次性消费100元享{{ a.sale }}折优惠<br>
             有效日期至{{ a.end_time }}</p>
-    
+    {% endif %}
     </span>
     <img src="/static/images/img/tuijianc.png">
     </span>
