@@ -93,11 +93,11 @@
     {% for c in coupons_name %}
     <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat;  background-size:100% 100px; margin-bottom:5px; " >
 
-    <p style="line-height: 17px;width: 90%">
+    <p style="line-height: 25px;width: 90%">
      {% if c.present %}
-    <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.name }}</b><br />
-         <br>
-      买{{ c.dish_name }}送{{ c.present }}<br><br>
+    <b style="line-height: 25px; margin-left:0; padding-left:0;">{{ c.name }}</b><br />
+
+      买{{ c.dish_name }}送{{ c.present }}<br>
         {% else %}
         <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
         {{ c.name }}<br>
