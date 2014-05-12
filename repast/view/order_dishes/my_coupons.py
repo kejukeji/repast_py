@@ -4,7 +4,7 @@ from flask import render_template, request
 from ...models.coupons import Coupons
 from ...util.session_common import get_session_user
 from ...services.user_service import  get_user_by_id
-
+import time
 
 
 
@@ -18,6 +18,8 @@ def deal_coupons():
     for a in arr:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
+        message=time_do(a.end_time)
+        a.message=message
 
     return  render_template('reception/my_coupons.html',
                             arr=arr)
@@ -40,3 +42,14 @@ def on_sale():
     return render_template('reception/on_sale.html',
                            all_coupons=all_coupons)
 
+def time_do(t):
+    s=str(t).split('-')
+    month = time.strftime("%m",time.localtime(time.time()))
+    day=time.strftime("%d",time.localtime(time.time()))
+    if s[1]<month:
+        return "已过期"
+    else:
+        if s[2]<day:
+            return "已过期"
+        else:
+            return "去使用"
