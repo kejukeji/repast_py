@@ -39,3 +39,12 @@ def get_session_dish():
     if session.has_key('dish') and session['dish']:
         return session['dish']
     return None
+
+def set_session_value(key, value):
+    session[str(key)] = value
+
+
+def get_session_value(key):
+    if session.has_key(str(key)) and session[str(key)]:
+        return session[str(key)]
+    return None

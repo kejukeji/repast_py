@@ -9,10 +9,11 @@ from repast.services.user_service import *
 from repast.util.session_common import *
 from ..services.call_number_service import PushMessage
 from repast.models.package import Package
-from repast.models.dish import Dish
+from repast.models.dish import Dish, flatten
 from repast.services.order_dish_service import PackageServiceView
 from repast.services.do_coupons import DoCoupons
 from repast.models.stores import  StoresInfo
+
 
 def to_repast_by_stores_id(stores_id):
     '''根据id到餐厅页面'''
@@ -71,6 +72,8 @@ def do_assistant_login():
 def to_my_page():
     user_id = get_session_user()
     user = get_user_by_id(user_id)
+    lens=user.coupons_id.split(',')
+    user.count=len(lens)        #用户优惠券数量
     return render_template('reception/my_page.html',
                            user=user)
 
@@ -98,10 +101,20 @@ def to_queue(stores_id):
     stores = get_stores_by_id(stores_id)
     another_stores=not_wait(stores.brand_id,stores_id)
     coupons_name=DoCoupons.do_coupons(stores_id)
+    user=get_user_by_id(user_id)
+
+    id = []
+    if user.coupons_id:
+        id=user.coupons_id
+        id=id.split(',')
+
     for a in coupons_name:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
-
+        message = 0     #默认未领取
+        if str(a.id) in id:
+            message = 1 #已领取
+        a.message = message
     stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
     picture_url = stores_info.rel_path+'/'+stores_info.picture_name
     stores.picture_url=picture_url
@@ -277,6 +290,8 @@ def to_meal_restaurant_list():
 def to_package_list():
     """点餐后进入套餐选择页面"""
     brand_id = request.args.get('brand_id')   #传入品牌id
+    stores_id = request.args.get('stores_id') # 当前餐厅
+    set_session_value('stores_id', stores_id)
     package_count = Package.query.filter(Package.brand_id == brand_id).count()
     package = Package.get_package_by_brand(brand_id)
     return render_template('reception/taocan.html',
@@ -289,16 +304,27 @@ def to_meal_list():
     """菜品列表"""
     package_id = request.args.get('package_id')
     brand_id = request.args.get('brand_id')
+    package = None
     if package_id:
         package = Package.get_package_by_id(package_id)
         #dish = PackageServiceView.get_dish_by_brand_id(package)
         dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
         dish_sort = DishSort.get_dish_sort_by_brand(brand_id,package_id)
     if package:
+        set_session_value('yes', None)
         return render_template('reception/food_list.html',
                                dish_sort = dish_sort,
                                package = package)
     else:
+        dish_sort = DishSort.get_dish_sort_by_brand_id(brand_id)
+        dish = Dish.get_dish_by_brand(brand_id)
+        temp = []
+        for d in dish:
+            d.number = 0
+            d_pic = flatten(d)
+            temp.append(d_pic)
+        set_session_dish(temp)
+        set_session_value('yes', 'yes')
         return render_template('reception/food_list.html',
                                dish_sort =  dish_sort,
                                package='')

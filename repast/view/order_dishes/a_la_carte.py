@@ -2,8 +2,8 @@
 # coding: utf-8
 from flask import render_template
 from flask.views import View, MethodView
-from repast.util.session_common import set_session_dish,get_session_dish
-from repast.services.order_dish_service import PackageServiceView
+from repast.util.session_common import set_session_dish,get_session_dish, get_session_value
+from ...services.stores_service import get_stores_by_id
 
 class ToOrderDishes(View):
     '''to order dishes page'''
@@ -21,5 +21,8 @@ class ToOrderDishes(View):
 
 def dish_selected():
     dish = get_session_dish()
+    stores_id = get_session_value('stores_id') # 当前餐厅
+    stores = get_stores_by_id(stores_id)
     return render_template('reception/wdcaidan.html',
-                           dish=dish)
+                           dish=dish,
+                           stores=stores)

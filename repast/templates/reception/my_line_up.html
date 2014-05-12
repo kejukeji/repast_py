@@ -37,28 +37,32 @@
     {% if my_line_up_info %}
       {% for my_line_up in my_line_up_info %}
         <div id="text1">
-            <div>
+             <div>
                 <div class="suc_con">
                     <span class="suc_con_left"
-                          style=" font-size: 16px; font-weight: bold; color: #666; height: 45px;line-height: 25px;"><b>{{ my_line_up.stores_name }}&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                          style=" font-size: 16px;  line-height:20px; height:45px; "><b>{{ my_line_up.stores_name }}&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
                     <span class="suc_con_right"
-                          style="font-size: 13px; color: #666;height: 45px;"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.queue_time }}</b></span>
+                          style="font-size: 13px; height:45px; "><b>&nbsp;&nbsp;&nbsp;&nbsp;2014/4/11</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>餐桌类型：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                    <span class="suc_con_right"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.table_type }}</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.table_type }}</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>前面还有：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                    <span class="suc_con_right"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.schedule_count }}人</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.schedule_count }}人</b></span>
+                </div>
+                 <div class="suc_con">
+                    <span class="suc_con_left"><b>预计时间：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;10分钟</b></span>
                 </div>
                 <div class="suc_con">
                     <span class="suc_con_left"><b>排队号：&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
-                    <span class="suc_con_right"><b>&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.now_queue_number }}号</b></span>
+                    <span class="suc_con_right"><b class="suc_con_right-b">&nbsp;&nbsp;&nbsp;&nbsp;{{ my_line_up.now_queue_number }}号</b></span>
                 </div>
 
                 <div class="suc_con" style="width: 85%; margin:0 auto; padding:0; ">
-                <span style="background:url(/static/images/img/id.png) no-repeat left top;text-align:left; width:90%; font-size: 15px; background-size: 18px 18px; margin:auto; line-height: 50px; height:60px; padding-left: 20px;">
+                <span style="background:url(/static/images/img/id.png) no-repeat left top;text-align:left; width:90%; font-size: 15px; background-size: 18px 18px; margin:auto; line-height: 50px; height:60px; padding-left:3px;">
                     <b>{{ my_line_up.address }}</b></span>
                 </div>
 

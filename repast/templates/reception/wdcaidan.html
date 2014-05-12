@@ -43,7 +43,7 @@
 
 <!--排队成功-->
 <div class="wdcaidan">
-	<div class="cdname" >上海泰妃阁美食餐饮</span><span style="font-size:12px; color:#999; float:right;">2014.4.11</span></div>
+	<div class="cdname" >{{ stores.name }}</span><span style="font-size:12px; color:#999; float:right;">2014.4.11</span></div>
 	<ul>
     <li>
     <ul class="wdcd3ul">
@@ -54,6 +54,7 @@
     </ul>
 
     </li>
+        {% if dish %}
     </ul>
         {% for d in dish %}
 
@@ -68,7 +69,11 @@
     <input class="number" type="hidden" id="number" value="{{ d['number'] }}"/>
     </ul>
         {% endfor %}
+        {% else %}
+
+        {% endif %}
  <div class="clear"></div>
+
 <div class="zong" >
 <p>总价：&nbsp;&nbsp;<a><input id ="total-price" class="price" type="text" style="color:#F3732C;" value="0" readonly/></a></p>
 <p>优惠：&nbsp;&nbsp;<a><input id ="prefer-price"  class="price" type="text" style="color:#F3732C;"  value="0" readonly/></a></p>

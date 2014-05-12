@@ -9,15 +9,16 @@
 
 <script type="text/javascript">
        $(function(){
-       var allTotalPrice = 0;
-
             $(".add").live("click", function(){
+                var sureBtn = $("#sure-to-submit");
+                var dish_id = $(this).next().val();
+                sureBtn.removeAttr("disabled");
                 var allTotalPrice = parseInt($("#all_total_price").val());
                 var totalPrice = 0;
-                var t = $(this).parent().find('.num')
-                var num = parseInt(t.val())
+                var t = $(this).parent().find('.num');
+                var num = parseInt(t.val());
                 num = num + 1;
-                t.val(num)
+                t.val(num);
                 if($(this).parent().parent().find("m").length>0){
                     totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
                 }else{
@@ -25,13 +26,26 @@
                 }
                 allTotalPrice = allTotalPrice + totalPrice;
                 $("#all_total_price").val(allTotalPrice);
+                $.ajax({
+                    type: "GET",
+                    url: "/restful/add/dish?dish_id="+dish_id+"&operate=add",
+                    dataType: "text",
+                    success: function(){
+
+                    },
+                    error: function(){
+
+                    }
+                })
             });
            $(".reduce").live("click", function(){
+               var sureBtn = $("#sure-to-submit");
                var allTotalPrice = parseInt($("#all_total_price").val());
                var totalPrice = 0;
                var t = $(this).parent().find('.num')
                var num = parseInt(t.val())
                if (num>0){
+                   sureBtn.removeAttr("disabled");
                    num = num -1;
                    if($(this).parent().parent().find("m").length>0){
                        totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));
@@ -42,11 +56,29 @@
                    num = 0;
                    totalPrice = 0;
                }
+               if (num == 0 && allTotalPrice <= 0){
+                   sureBtn.attr("disabled","disabled");
+               }
+               var dish_id = $(this).prev().prev()
+               if (num != 0){
+                   $.ajax({
+                    type: "GET",
+                    url: "/restful/add/dish?dish_id="+dish_id+"&operate=add",
+                    dataType: "text",
+                    success: function(){
+
+                    },
+                    error: function(){
+
+                    }
+                })
+               }
                t.val(num)
                allTotalPrice = allTotalPrice - totalPrice;
                $("#all_total_price").val(allTotalPrice);
            });
            function init_dish(){
+
                var right = $('#hot')
                var kind_id = $(".cd-left").next().val()
                $.ajax({
@@ -74,6 +106,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="1"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
@@ -96,6 +129,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="0"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
@@ -106,6 +140,13 @@
 
                        });
                        $("#all_total_price").val(total)
+                       var submitBtn = $("#all_total_price").val();
+                       var sureBtn = $("#sure-to-submit");
+                       if (submitBtn == 0){
+                           sureBtn.attr("disabled", "disabled")
+                       }else{
+                           sureBtn.removeAttr("disabled");
+                       }
                    }
                })
            }
@@ -148,7 +189,8 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
-                                           '<input class="num" type="text" value="0"/>'+
+                                           '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
+                                           '<input class="num" type="text" value="1"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
                                            '</li>'+
@@ -170,6 +212,7 @@
                                            '<span>'+
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
                                            '<input class="num" type="text" value="0"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+

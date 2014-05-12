@@ -56,6 +56,11 @@ class DishSort(Base, InitUpdate):
         set_session_dish(dishes)
         return temp
 
+    @staticmethod
+    def get_dish_sort_by_brand_id(brand_id):
+        dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
+        return dish_sort
+
 
 class Dish(Base, InitUpdate):
     '''dish'''
@@ -156,3 +161,9 @@ class Dish(Base, InitUpdate):
             if dish:
                 temp.append(dish)
         return temp
+
+    @staticmethod
+    def get_dish_by_id(dish_id):
+        """根据id得到菜品"""
+        dish = Dish.query.filter(Dish.id == dish_id).first()
+        return dish

@@ -3,7 +3,7 @@ from repast.models.dish import *
 from flask.ext import restful
 from repast.util.others import flatten
 from flask import request, render_template, redirect, url_for
-from ..util.session_common import get_session_dish
+from ..util.session_common import get_session_dish, get_session_value, set_session_value
 
 
 class GetDishes(restful.Resource):
@@ -25,15 +25,20 @@ def append_json(model):
     json['dish_by_package'] = []
     json['total'] = 0
     dish = get_session_dish()
+    yes = get_session_value('yes')
     if model:
         for i in range(len(model)):
             model_pic = flatten(model[i])
             json['dish'].append(model_pic)
-    if dish:
-        temp_total = 0
-        for d in dish:
-            temp_total = temp_total + d['price']
-            json['dish_by_package'].append(d['id'])
-        json['total'] = temp_total
+    if yes is None:
+        if dish:
+            temp_total = 0
+            for d in dish:
+                temp_total = temp_total + d['price']
+                json['dish_by_package'].append(d['id'])
+            json['total'] = temp_total
+        set_session_value('yes', None)
+    else:
+        set_session_dish(None)
     return json
 
