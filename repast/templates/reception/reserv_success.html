@@ -102,11 +102,17 @@
    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; margin-bottom:5px; " >
 
     <p style="line-height: 17px;width: 95%">
-    <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
-      {{ c.name }}<br />
-      一次性消费100元享{{ c.sale }}折优惠<br>
-      有效日期至:{{c.end_time}}
+     {% if c.present %}
+    <b style="line-height: 25px; margin-left:0; padding-left:0;">{{ c.name }}</b><br />
+
+      买<b style="padding-left:2px;">{{ c.dish_name }}</b>送<b style="padding-left:2px;">{{ c.present }}</b><br>
+        {% else %}
+        <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
+        <b style="padding-left:0;">{{ c.name }}</b><br>
+        {% endif %}
+              有效日期至:{{c.end_time}}
     </p></span>
+
      {% if c.total == 0 %}
         <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">已<br />领<br />完</a>
      {% else%}
