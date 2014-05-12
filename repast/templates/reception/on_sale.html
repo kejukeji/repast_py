@@ -42,9 +42,6 @@
     <div style="width:99%; margin:auto; margin-left:1%; margin-top:2%;">
        {% for a in all_coupons %}
     <div class="tjc">
-
-    <span class="tjc-limg" ></span>
-
     <span class="tjc-lt">
     <span>
       {% if a.present %}
@@ -53,17 +50,17 @@
             有效日期至{{ a.end_time }}</p>
         {% else %}
          <b style="font-size:17px;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ a.sale}}折</b><br>
-           <p> {{ a.name }}<br>
+           <p class=""><b> {{ a.name }}</b><br>
             一次性消费100元享{{ a.sale }}折优惠<br>
             有效日期至{{ a.end_time }}</p>
         {% endif %}
     </span>
-    <img src="/static/images/img/tuijianc.png" >
+
     </span>
     <span class="tjc-r">
     <a href="#">{{ a.message }}</a>
     <input type="hidden" name="id" value="{{ a.id }}"/>
-   <img src="/static/images/img/tuijianr1.JPG" class="tjr-img">
+
     </span>
     </div>
             {% endfor %}
