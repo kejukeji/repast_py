@@ -97,10 +97,10 @@
      {% if c.present %}
     <b style="line-height: 25px; margin-left:0; padding-left:0;">{{ c.name }}</b><br />
 
-      买{{ c.dish_name }}送{{ c.present }}<br>
+      买<b style="padding-left:2px;">{{ c.dish_name }}</b>送<b style="padding-left:2px;">{{ c.present }}</b><br>
         {% else %}
         <b style="line-height: 14px; margin-left:0; padding-left:0;">{{ c.sale }}折</b><br />
-        {{ c.name }}<br>
+        <b style="padding-left:0;">{{ c.name }}</b><br>
         {% endif %}
               有效日期至:{{c.end_time}}
     </p></span>
