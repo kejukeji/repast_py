@@ -34,7 +34,7 @@
 .reveal-modal {
 	visibility: hidden;
 	overflow:auto;
-	top: 5px; 
+	top: 2px;
 	right: 2%;
 	width: 200px;
 	height:138px;
