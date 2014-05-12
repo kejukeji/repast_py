@@ -28,6 +28,7 @@ from restfuls.queue import AjaxCallNumber
 from services.food_list_service import GetDishes
 from .view.order_dishes.my_coupons import *
 from .restfuls.coupons import *
+from .restfuls.dish import AddDish
 
 
 # 用户管理路径
@@ -88,6 +89,7 @@ api.add_resource(GetPackage, '/restful/package/<int:brand_id>')
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 api.add_resource(GetDishes,'/services/get_foods/<int:dish_sort_id>')
 api.add_resource(UpdateUserCoupons,'/restful/coupons_id/<int:coupons_id>')
+api.add_resource(AddDish, '/restful/add/dish')
 
 
 # 后台管理路径
