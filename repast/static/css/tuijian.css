@@ -1,13 +1,13 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-
-.tjc{ width:98%; margin:0 auto; height:110px;margin-top:1%;margin-bottom:1%;padding:0;}
+.on-sale-top{font-family:"宋体"; width:100%; background:#F90; font-size:18px; line-height:40px; height:40px; text-align:center; color:#fff; font-weight:bold; letter-spacing:2px;}
+.tjc{ width:98%; margin:0 auto; height:110px;margin-top:0.5%;margin-bottom:0.5%;padding:0;}
 .tjc span{ float:left;}
 .tjc-limg{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl1.png) no-repeat top left; background-size:12px 110px;}
 .tjc-lt{width:66%; height:110px; padding-left:0.5%; display:block; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:100% 110px;}
 .tjc-lt span{ width:67%; padding-top:3px;}
-.tjc-lt span b{ font-size:16px; color:#fff; line-height:20px;}
-.tjc-lt span p{ font-size:13px; color:#fff; line-height:14px;}
+.tjc-lt span b{ padding-left:0; font-size:16px; color:#fff; line-height:22px;letter-spacing:2px; }
+.tjc-lt span p{ font-size:13px; color:#fff; line-height:17px;}
 .tjc-lt img{ width:63px; height:110px; float:right;}
 .tjc-r{ width:29%; height:110px; display:block; text-align:center; background:url(/static/images/img/tuijianl11.png) repeat-x top left;background-size:70% 110px;}
 .tjc-r a{ float:left; height:110px; line-height:30px; font-size:18px;padding-top:40px !important; color:#fff; width:80%; }
