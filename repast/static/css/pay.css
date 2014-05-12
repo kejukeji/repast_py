@@ -1,0 +1,17 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.pay-top{ background:url(../img/paytop.png) repeat-x; background-size:100% 100%; height:40px; width:100%; text-align:center; color:#fff; line-height:40px; font-size:16px;}
+.red{ color:#F60 !important;}
+.ftw{ font-weight:bold; font-size:15px !important;}
+.pay-con{ width:96%; margin-top:6px !important; border:1px solid #eee; border-radius:5px; height:auto; margin:auto;  }
+.pay-con-top{ width:100%; border-bottom:1px dashed #ccc; line-height:35px; font-size:16px; font-weight:bold; color:#666; font-family:"微软雅黑"; margin-bottom:5px;}
+.pay-con-t{ width:100%;height:40px;}
+.pay-con-t span{ float:left;margin:3px ; font-size:14px;}
+.pay-con-tl{ background:#5cc3d2; height:30px; color:#fff; width:80px; display:block; text-align:center;line-height:30px;}
+.pay-con-tr{ line-height:30px; color:#666;}
+select{ width:90%; height:35px; border-radius:5px; border-color:#CCC; font-size:16px; color:#666; margin-left:5% !important;margin-bottom:5px !important;}
+.pay-num{ width:90%; margin:auto; font-size:16px; color:#666; margin-top:3px; margin-bottom:3px;}
+.pay-num input{ width:68%; border-radius:3px; height:30px; border:1px solid #ccc;}
+.pay-button{ margin-left:5% !important; width:90%; margin:auto; margin-top:10px; height:40px; background:#5cc3d2; color:#fff; font-size:18px;}
+
+
