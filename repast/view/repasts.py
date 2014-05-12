@@ -166,10 +166,8 @@ def do_cancel_queue(queue_id):
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     mark_queue = 0
-    return render_template('reception/reservation.html',
-                           temp=temp,
-                           stores=stores,
-                           mark_queue=mark_queue)
+    return redirect(url_for("to_queue",stores_id=stores_id))
+
 
 
 def to_reservation():
