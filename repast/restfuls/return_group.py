@@ -64,7 +64,7 @@ class GetDishSort(restful.Resource):
     '''获取菜品分类'''
     @staticmethod
     def get(brand_id):
-        dish_sort = DishSort.get_dish_sort_by_brand(brand_id)
+        dish_sort = DishSort.get_dish_sort_by_brand_id(brand_id)
         temp = []
         if dish_sort:
             for d in dish_sort:

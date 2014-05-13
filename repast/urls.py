@@ -85,6 +85,7 @@ api.add_resource(PositionStore,'/restful/positionStore')
 api.add_resource(PositionStoreXY,'/restful/positionStoreXY')
 api.add_resource(GetDishSort, '/restful/dish_sort/<int:brand_id>')
 api.add_resource(GetPackage, '/restful/package/<int:brand_id>')
+api.add_resource(GetDishSortDish, '/restful/sort/<int:package_id>')
 
 api.add_resource(AjaxCallNumber, '/restful/call_number/<int:shop_assistant_id>')
 api.add_resource(GetDishes,'/services/get_foods/<int:dish_sort_id>')
