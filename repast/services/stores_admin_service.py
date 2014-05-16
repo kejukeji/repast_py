@@ -3,7 +3,7 @@ import os
 from base_service import *
 from repast.models.stores import StoresInfo
 from repast.util.ex_file import *
-from repast.setting.wbb import *
+from repast.setting.server import *
 from werkzeug import secure_filename
 
 class StoresAdminService(BaseService):
