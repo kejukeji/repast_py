@@ -19,7 +19,7 @@ class Stores(Base, InitUpdate):
     name = Column(String(20), nullable=True)
     province_id = Column(Integer, nullable=False)
     city_id = Column(Integer, nullable=False)
-    county_id = Column(Integer, nullable=False)
+    country_id = Column(Integer, nullable=False)
     address = Column(String(100), nullable=False)
     description = Column(String(200), nullable=True)
     group_id = Column(Integer, nullable=False)
