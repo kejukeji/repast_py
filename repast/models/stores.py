@@ -37,12 +37,12 @@ class Stores(Base, InitUpdate):
     def __init__(self, **kwargs):
         '''初始化'''
         args = ('name','address', 'description','longitude','latitude','brand_id','brand','manager',
-        'tel','group_id','group','province_id','city_id','county_id','stars')
+        'tel','group_id','group','province_id','city_id','country_id','stars')
         self.init_value(args, kwargs)
 
     def update(self, **kwargs):
         args = ('name','address','description','longitude','latitude','brand_id','brand','recommend','manager',
-        'tel','group_id','group','province_id','city_id','county_id', 'stars')
+        'tel','group_id','group','province_id','city_id','country_id', 'stars')
         self.update_value(args, kwargs)
 
 class StoresInfo(Base,InitUpdate):
