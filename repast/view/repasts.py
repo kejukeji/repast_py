@@ -137,9 +137,20 @@ def do_queue():
     temp = get_queue_by_stores_id(stores_id)
     stores = get_stores_by_id(stores_id)
     coupons_name=DoCoupons.do_coupons(stores_id)
+    user=get_user_by_id(user_id)
+
+    id = []
+    if user.coupons_id:
+        id=user.coupons_id
+        id=id.split(',')
+
     for a in coupons_name:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
+        message = 0     #默认未领取
+        if str(a.id) in id:
+            message = 1 #已领取
+        a.message = message
 
     return render_template('reception/reserv_success.html',
                            queue=queue,
