@@ -19,7 +19,7 @@ class Stores(Base, InitUpdate):
     name = Column(String(20), nullable=True)
     province_id = Column(Integer, nullable=False)
     city_id = Column(Integer, nullable=False)
-    county_id = Column(Integer, nullable=False)
+    country_id = Column(Integer, nullable=False)
     address = Column(String(100), nullable=False)
     description = Column(String(200), nullable=True)
     group_id = Column(Integer, nullable=False)
@@ -37,12 +37,12 @@ class Stores(Base, InitUpdate):
     def __init__(self, **kwargs):
         '''初始化'''
         args = ('name','address', 'description','longitude','latitude','brand_id','brand','manager',
-        'tel','group_id','group','province_id','city_id','county_id','stars')
+        'tel','group_id','group','province_id','city_id','country_id','stars')
         self.init_value(args, kwargs)
 
     def update(self, **kwargs):
         args = ('name','address','description','longitude','latitude','brand_id','brand','recommend','manager',
-        'tel','group_id','group','province_id','city_id','county_id', 'stars')
+        'tel','group_id','group','province_id','city_id','country_id', 'stars')
         self.update_value(args, kwargs)
 
 class StoresInfo(Base,InitUpdate):

@@ -17,7 +17,7 @@ log = logging.getLogger("flask-admin.sqla")
 class StoresView(ModelView):
     '''品牌'''
     ARGS = ('name','address', 'description','longitude','latitude','brand_id','manager',
-        'tel','group_id','province_id','city_id','county_id','stars')
+        'tel','group_id','province_id','city_id','country_id','stars')
     SPECIAL_ARGS = ('brand','group')
     stores_admin_service = StoresAdminService()
     page_size = 20 # 每页条数
@@ -27,7 +27,7 @@ class StoresView(ModelView):
 
     #column_display_all_relations = ('id','group_id', True)
     column_searchable_list = ('name','description','group',)
-    column_exclude_list = ('group_id','brand_id','province_id','city_id','county_id','longitude','latitude','recommend','description','id','hours',)
+    column_exclude_list = ('group_id','brand_id','province_id','city_id','country_id','longitude','latitude','recommend','description','id','hours',)
     column_filters = ('group','brand',)
 
     create_template = 'admin_page/stores_create.html'
@@ -44,7 +44,7 @@ class StoresView(ModelView):
         brand = u'品牌',
         province_id = u'省份',
         city_id = u'市',
-        county_id = u'区',
+        country_id = u'区',
         manager = u'负责人',
         tel = u'电话',
         stars = u'星级'
@@ -61,7 +61,7 @@ class StoresView(ModelView):
         brand = u'所属品牌',
         province_id = u'所属省份',
         city_id = u'所属市',
-        county_id = u'所属区',
+        country_id = u'所属区',
         manager = u'负责人',
         tel = u'电话电话',
         stars = u'餐厅级别(1-5)'

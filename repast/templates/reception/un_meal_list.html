@@ -10,7 +10,7 @@
 $(function () {
     var g_belong_province_id = 9;
     var g_belong_city_id ='';
-    var g_belong_county_id ='';
+    var g_belong_country_id ='';
     var block = $('.btn-block');
     block.bind('click', function () {
         window.location.href = '/reservation'
@@ -57,7 +57,7 @@ $(function () {
         function positonStore() {
             var province = $('#province_id').val();
             var city = $('#city_id').val();
-            var county = $('#county_id').val();
+            var county = $('#country_id').val();
             $.ajax({
                 type: 'get',
                 url: '/restful/positionStore?province=' + province + '&city=' + city + '&county=' + county,
@@ -123,7 +123,7 @@ $(function () {
             get_county(province, city, city.val(), "");
             positonStore();
         });
-        var county = $("#county_id");
+        var county = $("#country_id");
         county.bind('change', function () {
             positonStore();
         });
@@ -159,7 +159,7 @@ $(function () {
         // 如果是新建的话，这几个id是不存在的，无法获取，使用默认参数
 
         if (g_belong_province_id != "") {
-            init_location(g_belong_province_id, g_belong_city_id, g_belong_county_id)
+            init_location(g_belong_province_id, g_belong_city_id, g_belong_country_id)
         } else {
             init_location("9", "", "")
         }
@@ -195,7 +195,7 @@ $(function () {
         }
 
         function get_county(province, city, init_city, init_county) {
-            var county = $('#county_id');
+            var county = $('#country_id');
             $.ajax({
                 type: "GET",
                 url: "/restful/county/" + init_city,
@@ -205,18 +205,18 @@ $(function () {
                 success: function (json) {
                     county.empty().append($("<option>").text('区').attr('value', '0').attr('selected', 'selected'));
                     if (json.length == 0) {
-                        $("#county_id").append($("<option>").text("").attr('value', "0"));
+                        $("#country_id").append($("<option>").text("").attr('value', "0"));
                     } else {
                         $.each(json, function (i, value) {
-                            if (g_belong_county_id == value[0]) {
-                                $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                            if (g_belong_country_id == value[0]) {
+                                $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]));
                             } else {
-                                $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                                $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]));
                             }
                         });
                         if (init_county != "") {
                             county.val(init_county);
-                            g_belong_county_id = init_county;
+                            g_belong_country_id = init_county;
                         }
                     }
                 },
@@ -250,7 +250,7 @@ $(function () {
              <select name='city_id' id='city_id' style="width: 30%">
                  <option value=0 selected>市/县</option>
              </select>
-             <select name='county_id' id='county_id' style="width: 30%">
+             <select name='country_id' id='country_id' style="width: 30%">
                  <option value=0 selected>区</option>
              </select>
         </span>

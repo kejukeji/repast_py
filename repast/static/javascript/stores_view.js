@@ -24,9 +24,9 @@ $(document).ready(function(){
         g_belong_city_id = city.val();
         city.replaceWith(city_select);
         //替换所有区
-        var county = $("#county_id");
-        var county_select = $.parseHTML("<select name='county_id' id='county_id'></select>");
-        g_belong_county_id = county.val();
+        var county = $("#country_id");
+        var county_select = $.parseHTML("<select name='country_id' id='country_id'></select>");
+        g_belong_country_id = county.val();
         county.replaceWith(county_select);
         // 添加百度地图
 		$("#latitude").parent().parent().parent().after("<div id='baidumap' style='width:800px; height:500px; margin-bottom:20px;'></div>");
@@ -123,7 +123,7 @@ $(document).ready(function(){
         init_group("1");
     }
     if (g_belong_province_id != ""){
-        init_location(g_belong_province_id, g_belong_city_id, g_belong_county_id)
+        init_location(g_belong_province_id, g_belong_city_id, g_belong_country_id)
     }else{
         init_location("9","75","794")
     }
@@ -156,7 +156,7 @@ $(document).ready(function(){
         get_county(province, city, init_city, init_county)
     }
     function get_county(province, city, init_city, init_county){
-        var county = $('#county_id');
+        var county = $('#country_id');
         $.ajax({
             type: "GET",
             url: "/restful/county/" + init_city,
@@ -166,18 +166,18 @@ $(document).ready(function(){
             success: function(json) {
                 county.empty();
                 if (json.length == 0){
-                     $("#county_id").append($("<option>").text("").attr('value', "0"));
+                     $("#country_id").append($("<option>").text("").attr('value', "0"));
                 }else{
                     $.each(json, function(i, value) {
-                        if (g_belong_county_id == value[0]){
-                            $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
+                        if (g_belong_country_id == value[0]){
+                            $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]).attr('selected','selected'));
                         }else{
-                            $("#county_id").append($("<option>").text(value[1]).attr('value', value[0]));
+                            $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]));
                         }
                     });
                     if (init_county != ""){
                         county.val(init_county);
-                        g_belong_county_id = init_county;
+                        g_belong_country_id = init_county;
                     }
                 }
             },
