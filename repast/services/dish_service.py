@@ -110,3 +110,13 @@ def user_add_dish(dish_number, dish_id, package_id, dish_sort_id):
     for d in dish:
         if (d.id == dish_id):
             d.package_id = package_id
+
+
+def get_total_price(dishs):
+    """获得点菜的总价"""
+    price = 0
+    if dishs:
+        for d in dishs:
+            number = int(d['number'])
+            price = price + (int(d['price']) * number)
+    return price

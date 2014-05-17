@@ -91,6 +91,7 @@
                        var id_array = data.dish_by_package;
                        $.each(data.dish,function(i,value){
                            if (id_array.indexOf(value.id) != -1){
+                                var number = value.number;
                                right.append(
                                    '<div class="hot-food">'+
                                            '<ul>'+
@@ -107,7 +108,7 @@
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
                                            '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
-                                           '<input class="num" type="text" value="1"/>'+
+                                           '<input class="num" type="text" value="'+number+'"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
                                            '</li>'+
@@ -174,6 +175,7 @@
                          var id_array = data.dish_by_package;
                          $.each(data.dish,function(i,value){
                              if (id_array.indexOf(value.id) != -1){
+                                 var number = value.number;
                                right.append(
                                    '<div class="hot-food">'+
                                            '<ul>'+
@@ -190,7 +192,7 @@
                                            '<a class="money">￥<n>'+value.price+'</n></a>'+
                                            '<input class="add" type="button" name="add"/>'+
                                            '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
-                                           '<input class="num" type="text" value="1"/>'+
+                                           '<input class="num" type="text" value="'+number+'"/>'+
                                            '<input class="reduce" type="button" name="reduce"/>'+
                                            '</span>'+
                                            '</li>'+

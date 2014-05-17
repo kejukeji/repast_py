@@ -28,9 +28,15 @@ class PackageServiceView():
         if dish:
             for d in dish:
                 try:
-                    d.number = 1
+                    if d.package_id == package_id:
+                        d.number = 1
+                    else:
+                        d.number = 0
                 except:
-                    d['number'] = 1
+                    if int(d['package_id']) == package_id:
+                        d['number'] = 1
+                    else:
+                        d['numbre'] = 0
                 d_pic = flatten(d)
                 temp.append(d_pic)
             set_session_dish(temp)
