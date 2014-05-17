@@ -152,8 +152,10 @@ def do_queue():
 def not_wait(brand_id,stores_id):
     another_stores=Stores.query.filter(Stores.brand_id == brand_id,Stores.id != stores_id).first() #查找同品牌的店信息
     a=[]
-    a=another_stores.description.split('，')
-    another_stores.description=a[0]
+    if another_stores:
+        a=another_stores.description.split('，')
+        another_stores.description=a[0]
+
     return another_stores
 
 def do_cancel_queue(queue_id):
