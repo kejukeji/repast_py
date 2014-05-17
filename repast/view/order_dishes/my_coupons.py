@@ -15,11 +15,13 @@ def deal_coupons():
         DoCoupons.update_coupons_total(coupons_id)
 
     arr=DoCoupons.get_coupons()
-    for a in arr:
-        sale=int(10*a.cou_price/a.price)
-        a.sale=sale
-        message=time_do(a.end_time)
-        a.message=message
+    if arr:
+        for a in arr:
+            if a:
+                sale=int(10*a.cou_price/a.price)
+                a.sale=sale
+                message=time_do(a.end_time)
+                a.message=message
 
     return  render_template('reception/my_coupons.html',
                             arr=arr)

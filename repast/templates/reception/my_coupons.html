@@ -13,6 +13,7 @@
       我领取的优惠券</div>
 
     <div style="width:99%; margin:auto; margin-left:1%;">
+        {% if arr %}
 {% for a in arr %}
     <div class="tjc">
 
@@ -39,6 +40,9 @@
    
     </div>
 {% endfor %}
+        {% else %}
+        <h1>您当前没有优惠卷</h1>
+        {% endif %}
 <div class="clear"></div>
 
     
