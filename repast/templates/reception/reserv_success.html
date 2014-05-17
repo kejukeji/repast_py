@@ -116,15 +116,24 @@
      {% if c.total == 0 %}
         <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">已<br />领<br />完</a>
      {% else%}
-    <a  href="/m/my_coupons/?coupons_id={{ c.id }}" class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</a>
+         {% if c.message == 0 %}
+        <a  href="/m/my_coupons/?coupons_id={{ c.id }}" class="tjbutton" style="float:right;border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</a>
+             {% else %}
+             <a  class="tjbutton" style="float:right;border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">已<br />领<br />取</a>
+              {% endif %}
     {% endif %}
     {% endfor %}
     {% else %}
-        <b style="line-height: 14px; margin-left:0; padding-left:0;">优惠券被抢空了！</b><br />
+        <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
+    <img src="/static/images/img/lbj_r3_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
+            </span>
+    <p style="line-height: 17px;width: 95%">
+    <b style="line-height: 14px; margin-left:0; padding-left:0;">优惠券被抢空了！</b><br />
     {% endif %}
     </div>
-            </div>
-             </div>
+</div>
+        </div>
 
-    </body>
-    {% endblock %}
+     </body>
+
+{% endblock %}
