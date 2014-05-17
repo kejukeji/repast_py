@@ -32,8 +32,10 @@ class AddDish(restful.Resource):
         dishes = get_session_dish()
         has_dish = True # 判断用户添加的菜品是否在此套餐中
         if dishes:
+            temp_bool = False
             for d in dishes:
                 if dish_id == d['id']:
+                    dish = None
                     has_dish = False
                     if operate == "add":
                         d['number'] = int(d['number']) + 1
@@ -41,6 +43,14 @@ class AddDish(restful.Resource):
                         dishes.remove(d)
                     if operate == "reduce":
                         d['number'] = int(d['number']) - 1
+                else:
+                    temp_bool = True
+            if temp_bool:
+                dish = Dish.get_dish_by_id(dish_id)
+                dish.number = 1
+            if dish:
+                dish_pic = flatten(dish)
+                dishes.append(dish_pic)
         else:
             dishes = []
             if has_dish and operate == "add":

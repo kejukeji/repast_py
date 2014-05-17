@@ -38,7 +38,9 @@ class DishSort(Base, InitUpdate):
         dishes = []
         dish_sort_count = DishSort.query.filter(DishSort.brand_id == brand_id).count()
         package = Package.get_package_by_id(package_id)
-        dish = Dish.get_dish_by_package(package)
+        dish = get_session_dish()
+        if dish is None:
+            dish = Dish.get_dish_by_package(package)
         if dish_sort_count >1:
            dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
            for d in dish_sort:
