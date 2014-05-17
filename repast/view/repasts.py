@@ -325,7 +325,8 @@ def to_meal_list():
         if temp != 'None':
             package = Package.get_package_by_id(package_id)
             #dish = PackageServiceView.get_dish_by_brand_id(package)
-            dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
+            if dish is None:
+                dish_sort, dish = PackageServiceView.get_dish_sort_by_package(package_id)
             dish_sort = DishSort.get_dish_sort_by_brand(brand_id,package_id)
     if package:
         set_session_value('yes', None)
@@ -336,7 +337,8 @@ def to_meal_list():
                                brand_id=brand_id)
     else:
         dish_sort = DishSort.get_dish_sort_by_brand_id(brand_id)
-        dish = Dish.get_dish_by_brand(brand_id)
+        if dish is None:
+            dish = Dish.get_dish_by_brand(brand_id)
         temp = []
         for d in dish:
             d.number = 0

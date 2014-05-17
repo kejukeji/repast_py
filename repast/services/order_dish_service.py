@@ -33,7 +33,7 @@ class PackageServiceView():
                     d['number'] = 1
                 d_pic = flatten(d)
                 temp.append(d_pic)
-        set_session_dish(temp)
+            set_session_dish(temp)
         return dish_sort, dish
 
     @staticmethod
