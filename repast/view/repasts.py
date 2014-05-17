@@ -368,3 +368,9 @@ def to_favorable():
 
 def to_game():
     return  render_template('reception/snake.html')
+
+def to_pay():
+    return render_template('reception/pay.html')
+
+def to_pay_success():
+    return render_template('reception/pay-success.html')
