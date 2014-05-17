@@ -39,8 +39,10 @@ class DishSort(Base, InitUpdate):
         dish_sort_count = DishSort.query.filter(DishSort.brand_id == brand_id).count()
         package = Package.get_package_by_id(package_id)
         dish = get_session_dish()
+        temp_bool = False # 判断是否是第一次
         if dish is None:
             dish = Dish.get_dish_by_package(package)
+            temp_bool = True
         if dish_sort_count >1:
            dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).all()
            for d in dish_sort:
@@ -49,10 +51,11 @@ class DishSort(Base, InitUpdate):
             dish_sort = DishSort.query.filter(DishSort.brand_id == brand_id).first()
             temp.append(dish_sort)
         for di in dish:
-            try:
-                di.number = 1
-            except:
-                di['number'] = 1
+            if temp_bool:
+                try:
+                    di.number = 1
+                except:
+                    di['number'] = 1
             d_pic = flatten(di)
             dishes.append(d_pic)
         set_session_dish(dishes)

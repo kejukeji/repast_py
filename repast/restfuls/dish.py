@@ -39,7 +39,7 @@ class AddDish(restful.Resource):
                     has_dish = False
                     if operate == "add":
                         d['number'] = int(d['number']) + 1
-                    if d.number < 1:
+                    if int(d['number']) < 1:
                         dishes.remove(d)
                     if operate == "reduce":
                         d['number'] = int(d['number']) - 1
