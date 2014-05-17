@@ -1,10 +1,10 @@
 # coding: utf-8
 
 """
-    province city county数据库表的定义，本模块定义了Province City County类。
+    province city country数据库表的定义，本模块定义了Province City Country类。
     Province: Province类，省份和直辖市。
     City: City类，省下面的事，直辖市的设置标记
-    County: County类，市下面的区县或者是直辖市的区县
+    Country: Country类，市下面的区县或者是直辖市的区县
 """
 
 from sqlalchemy import Column, Integer, String
@@ -13,7 +13,7 @@ from .database import Base
 
 PROVINCE_TABLE = 'province'
 CITY_TABLE = 'city'
-COUNTY_TABLE = 'county'
+COUNTRY_TABLE = 'country'
 
 
 class Province(Base):
@@ -74,7 +74,7 @@ class City(Base):
         return '<City(name: %s)>' % self.name
 
 
-class County(Base):
+class Country(Base):
     """city表对应的类
     id
     name 市名
@@ -82,7 +82,7 @@ class County(Base):
     province_id 上级省
     """
 
-    __tablename__ = COUNTY_TABLE
+    __tablename__ = COUNTRY_TABLE
 
     __table_args__ = {
         'mysql_engine': 'InnoDB',
@@ -100,4 +100,4 @@ class County(Base):
         self.city_id = city_id
 
     def __repr__(self):
-        return '<County(name: %s)>' % self.name
+        return '<Country(name: %s)>' % self.name

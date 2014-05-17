@@ -7,7 +7,7 @@ from sqlalchemy.dialects.mysql import DOUBLE
 from repast.util.ex_time import *
 from .group import Group
 from .brand import Brand
-from .location import Province, City, County
+from .location import Province, City, Country
 
 STORES = 'stores'
 STORES_INFO = 'stores_info'

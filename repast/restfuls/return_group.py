@@ -43,12 +43,12 @@ class GetCity(restful.Resource):
         json = append_json(city)
         return json
 
-class GetCounty(restful.Resource):
+class GetCountry(restful.Resource):
     '''获取区'''
     @staticmethod
     def get(city_id):
-        county = County.query.filter(County.city_id == city_id).all()
-        json = append_json(county)
+        country = Country.query.filter(Country.city_id == city_id).all()
+        json = append_json(country)
         return json
 
 

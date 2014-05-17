@@ -152,8 +152,9 @@ def do_queue():
 def not_wait(brand_id,stores_id):
     another_stores=Stores.query.filter(Stores.brand_id == brand_id,Stores.id != stores_id).first() #查找同品牌的店信息
     a=[]
-    a=another_stores.description.split('，')
-    another_stores.description=a[0]
+    if another_stores:
+        a=another_stores.description.split('，')
+        another_stores.description=a[0]
     return another_stores
 
 def do_cancel_queue(queue_id):
@@ -248,7 +249,9 @@ def to_my_line_up():
     my_line_up_info = get_schedule_by_user_id(user_id)
     if my_line_up_info:
         for m in my_line_up_info:
+            stores = get_stores_by_id(m.stores_id)
             m.queue_time = str(m.queue_time)[:10]
+            m.brand_id = stores.brand_id
     return render_template('reception/my_line_up.html',
                            my_line_up_info=my_line_up_info)
 

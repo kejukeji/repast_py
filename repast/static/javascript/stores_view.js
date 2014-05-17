@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by K on 3/19/14.
  */
 $(document).ready(function(){
@@ -24,10 +24,10 @@ $(document).ready(function(){
         g_belong_city_id = city.val();
         city.replaceWith(city_select);
         //替换所有区
-        var county = $("#country_id");
-        var county_select = $.parseHTML("<select name='country_id' id='country_id'></select>");
-        g_belong_country_id = county.val();
-        county.replaceWith(county_select);
+        var country = $("#country_id");
+        var country_select = $.parseHTML("<select name='country_id' id='country_id'></select>");
+        g_belong_country_id = country.val();
+        country.replaceWith(country_select);
         // 添加百度地图
 		$("#latitude").parent().parent().parent().after("<div id='baidumap' style='width:800px; height:500px; margin-bottom:20px;'></div>");
 		// 添加地图搜索
@@ -89,7 +89,7 @@ $(document).ready(function(){
             }
         });
     }
-    function init_location(init_province, init_city, init_county){
+    function init_location(init_province, init_city, init_country){
         var province = $('#province_id')
         $.ajax({
             type: "GET",
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 alert("获取省资料失败，请刷新网页！");
             }
         });
-        get_city(province, init_province, init_city, init_county)
+        get_city(province, init_province, init_city, init_country)
 
     }
     // 如果是新建的话，这几个id是不存在的，无法获取，使用默认参数
@@ -128,7 +128,7 @@ $(document).ready(function(){
         init_location("9","75","794")
     }
 
-    function get_city(province, init_province, init_city, init_county){
+    function get_city(province, init_province, init_city, init_country){
         var city = $('#city_id');
         $.ajax({
             type: "GET",
@@ -153,18 +153,18 @@ $(document).ready(function(){
                 alert("获取市资料失败，请刷新网页！");
             }
         });
-        get_county(province, city, init_city, init_county)
+        get_country(province, city, init_city, init_country)
     }
-    function get_county(province, city, init_city, init_county){
-        var county = $('#country_id');
+    function get_country(province, city, init_city, init_country){
+        var country = $('#country_id');
         $.ajax({
             type: "GET",
-            url: "/restful/county/" + init_city,
+            url: "/restful/country/" + init_city,
             dataType: "json",
             async: false,
             cache: false,
             success: function(json) {
-                county.empty();
+                country.empty();
                 if (json.length == 0){
                      $("#country_id").append($("<option>").text("").attr('value', "0"));
                 }else{
@@ -175,9 +175,9 @@ $(document).ready(function(){
                             $("#country_id").append($("<option>").text(value[1]).attr('value', value[0]));
                         }
                     });
-                    if (init_county != ""){
-                        county.val(init_county);
-                        g_belong_country_id = init_county;
+                    if (init_country != ""){
+                        country.val(init_country);
+                        g_belong_country_id = init_country;
                     }
                 }
             },
@@ -189,9 +189,9 @@ $(document).ready(function(){
         var temp_city = city.find('option:selected').text();
         var temp_address = "";
         if (temp_city == '市辖区'){
-            temp_address = province.find('option:selected').text() + county.find('option:selected').text();
+            temp_address = province.find('option:selected').text() + country.find('option:selected').text();
         }else{
-            temp_address = province.find('option:selected').text() + city.find('option:selected').text() + county.find('option:selected').text();
+            temp_address = province.find('option:selected').text() + city.find('option:selected').text() + country.find('option:selected').text();
         }
         address.val(temp_address)
     }
@@ -215,12 +215,12 @@ $(document).ready(function(){
         var province_val = province.val();
         get_city(province, province_val);
         var city_val = $("#city_id");
-        get_county(province, city_val, city_val.val(), "")
+        get_country(province, city_val, city_val.val(), "")
     });
     //定义城市cahnge事件
     var city = $("#city_id");
     city.bind('change',function(){
-        get_county(province, city, city.val(), "")
+        get_country(province, city, city.val(), "")
     });
 
 	function init_map() {

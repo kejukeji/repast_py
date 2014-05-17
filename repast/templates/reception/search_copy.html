@@ -57,10 +57,10 @@ $(function () {
         function positionStore() {
             var province = $('#province_id').val();
             var city = $('#city_id').val();
-            var county = $('#country_id').val();
+            var country = $('#country_id').val();
             $.ajax({
                 type: 'get',
-                url: '/restful/positionStore?province=' + province + '&city=' + city + '&county=' + county,
+                url: '/restful/positionStore?province=' + province + '&city=' + city + '&country=' + country,
                 dataType: 'json',
                 success: function (data) {
                     var j = data;
@@ -114,21 +114,21 @@ $(function () {
             var province_val = province.val();
             get_city(province, province_val, '', '');
             var city_val = $("#city_id");
-            get_county(province, city_val, city_val.val(), "");
+            get_country(province, city_val, city_val.val(), "");
             positionStore();
         });
         //定义城市change事件
         var city = $("#city_id");
         city.bind('change', function () {
-            get_county(province, city, city.val(), "");
+            get_country(province, city, city.val(), "");
             positionStore();
         });
-        var county = $("#country_id");
-        county.bind('change', function () {
+        var country = $("#country_id");
+        country.bind('change', function () {
             positionStore();
         });
 
-        function init_location(init_province, init_city, init_county) {
+        function init_location(init_province, init_city, init_country) {
             var province = $('#province_id');
             $.ajax({
                 type: "GET",
@@ -152,7 +152,7 @@ $(function () {
                     {#                alert("获取省资料失败，请刷新网页！");#}
                 }
             });
-            get_city(province, init_province, init_city, init_county)
+            get_city(province, init_province, init_city, init_country)
 
         }
 
@@ -164,7 +164,7 @@ $(function () {
             init_location("9", "", "")
         }
         positionStore();
-        function get_city(province, init_province, init_city, init_county) {
+        function get_city(province, init_province, init_city, init_country) {
             var city = $('#city_id');
             $.ajax({
                 type: "GET",
@@ -191,14 +191,14 @@ $(function () {
 {#                    alert("获取市资料失败，请刷新网页！");#}
                 }
             });
-            get_county(province, city, init_city, init_county)
+            get_country(province, city, init_city, init_country)
         }
 
-        function get_county(province, city, init_city, init_county) {
+        function get_country(province, city, init_city, init_country) {
             var country = $('#country_id');
             $.ajax({
                 type: "GET",
-                url: "/restful/county/" + init_city,
+                url: "/restful/country/" + init_city,
                 dataType: "json",
                 async: false,
                 cache: false,
@@ -215,7 +215,7 @@ $(function () {
                             }
                         });
                         if (init_country != "") {
-                            county.val(init_country);
+                            country.val(init_country);
                             g_belong_country_id = init_country;
                         }
                     }

@@ -37,14 +37,14 @@ class PositionStore(restful.Resource):
         para = reqparse.RequestParser()
         para.add_argument('province', type=int, required=False)
         para.add_argument('city', type=int, required=False)
-        para.add_argument('county', type=int, required=False)
+        para.add_argument('country', type=int, required=False)
 
         args = para.parse_args()
         province = args.get('province')
         city = args.get('city')
-        county = args.get('county')
-        count = get_store_by_position_count(province,city,county)
-        stores = get_store_by_position(province,city,county)
+        country = args.get('country')
+        count = get_store_by_position_count(province,city,country)
+        stores = get_store_by_position(province,city,country)
         dicts = {}
         dicts['stores'] = []
         if type(stores) is list:
@@ -70,17 +70,17 @@ class PositionStoreXY(restful.Resource):
         para = reqparse.RequestParser()
         para.add_argument('province', type=int, required=False)
         para.add_argument('city', type=int, required=False)
-        para.add_argument('county', type=int, required=False)
+        para.add_argument('country', type=int, required=False)
         para.add_argument('latitude', type=float, required=False)
         para.add_argument('longitude', type=float, required=False)
         args = para.parse_args()
         province = args.get('province')
         city = args.get('city')
-        county = args.get('county')
+        country = args.get('country')
         latitude = args.get('latitude')
         longitude = args.get('longitude')
-        count = get_store_by_position_count(province,city,county)
-        stores = get_store_by_position(province,city,county)
+        count = get_store_by_position_count(province,city,country)
+        stores = get_store_by_position(province,city,country)
         dicts = {}
         dicts['stores'] = []
 
