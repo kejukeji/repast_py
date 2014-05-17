@@ -31,18 +31,21 @@ class AddDish(restful.Resource):
         #用户点菜加减数量操作处理
         dishes = get_session_dish()
         has_dish = True # 判断用户添加的菜品是否在此套餐中
-        for d in dishes:
-            if dish_id == d['id']:
-                has_dish = False
-                if operate == "add":
-                    d['number'] = int(d['number']) + 1
-                if d.number < 1:
-                    dishes.remove(d)
-                if operate == "reduce":
-                    d['number'] = int(d['number']) - 1
-        if has_dish and operate == "add":
-            dish = Dish.get_dish_by_id(dish_id)
-            dish.number = 1
-            d_pic = flatten(dish)
-            dishes.append(d_pic)
+        if dishes:
+            for d in dishes:
+                if dish_id == d['id']:
+                    has_dish = False
+                    if operate == "add":
+                        d['number'] = int(d['number']) + 1
+                    if d.number < 1:
+                        dishes.remove(d)
+                    if operate == "reduce":
+                        d['number'] = int(d['number']) - 1
+        else:
+            dishes = []
+            if has_dish and operate == "add":
+                dish = Dish.get_dish_by_id(dish_id)
+                dish.number = 1
+                d_pic = flatten(dish)
+                dishes.append(d_pic)
         set_session_dish(dishes)

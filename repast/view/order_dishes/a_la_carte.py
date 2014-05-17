@@ -1,6 +1,6 @@
 #! /usr/bin/python
 # coding: utf-8
-from flask import render_template
+from flask import render_template, request
 from flask.views import View, MethodView
 from repast.util.session_common import set_session_dish,get_session_dish, get_session_value
 from ...services.stores_service import get_stores_by_id
@@ -21,8 +21,12 @@ class ToOrderDishes(View):
 
 def dish_selected():
     dish = get_session_dish()
+    package_id = request.args.get('package_id') # 当前套餐
+    brand_id = request.args.get('brand_id') # 当前品牌
     stores_id = get_session_value('stores_id') # 当前餐厅
     stores = get_stores_by_id(stores_id)
     return render_template('reception/wdcaidan.html',
                            dish=dish,
-                           stores=stores)
+                           stores=stores,
+                           package_id=package_id,
+                           brand_id=brand_id)
