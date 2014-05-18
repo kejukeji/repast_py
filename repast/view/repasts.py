@@ -341,7 +341,10 @@ def to_meal_list():
             dish = Dish.get_dish_by_brand(brand_id)
         temp = []
         for d in dish:
-            d.number = 0
+            try:
+                d.number = 0
+            except:
+                d['number'] = 0
             d_pic = flatten(d)
             temp.append(d_pic)
         set_session_dish(temp)
