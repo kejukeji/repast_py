@@ -112,10 +112,15 @@
              {% else %}
              <a  class="tjbutton" style="float:right;border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">已<br />领<br />取</a>
               {% endif %}
+         {% endif %}
+    {% else %}
     <b style="line-height: 14px; margin-left:0; padding-left:0;">优惠券被抢空了！</b><br />
-    {% endif %}
+
+       {% endfor %}
+        {% endif %}
     </div>
 </div>
+
         </div>
 <div class="clear"></div>
      </body>
