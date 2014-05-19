@@ -377,3 +377,9 @@ def to_pay():
 
 def to_pay_success():
     return render_template('reception/pay-success.html')
+
+def to_introduce():
+    return render_template('reception/introduce.html')
+
+def to_food():
+    return render_template('reception/food.html')
