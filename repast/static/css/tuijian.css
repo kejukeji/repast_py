@@ -1,6 +1,6 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-.coupons-top{font-family:"宋体"; margin-bottom:3px; width:100%; background:#F90; font-size:18px; line-height:40px; height:40px; text-align:center; color:#fff; font-weight:bold; letter-spacing:2px;}
+.on-sale-top{font-family:"宋体"; margin-bottom:3px; width:100%; background:#F90; font-size:18px; line-height:40px; height:40px; text-align:center; color:#fff; font-weight:bold; letter-spacing:2px;}
 .tjc{ width:99%; margin:0 auto; height:110px;margin-top:0.5%;margin-bottom:0.5%;padding:0;}
 .tjc span{ float:left;}
 .tjc-limg{width:12px; height:110px; display:block; background:url(/static/images/img/tuijianl1.png) no-repeat top left; background-size:12px 110px;}

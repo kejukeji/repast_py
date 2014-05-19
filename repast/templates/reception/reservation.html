@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block content %}
-    <body style="background:#E9E9E9;height: 100%;width: 100%;margin-bottom: 60px !important;">
+    <body style="background:#E9E9E9; height: 100%; width:100%; margin-bottom:60px !important;">
     <div class="des">
         <span id="tab1" class="nav_des"
               style="background: #5AC3DC;float: left;margin-left: 1%"><b>去&nbsp;排&nbsp;队&nbsp;咯</b></span>
@@ -53,7 +53,7 @@
                                     <li><label><input name="table_type_id" type="radio" value="{{ t.id }}" checked/>&nbsp;{{ t.type }}
                                     </label></li>
                                     <li>前面还有<a style=" color:#f90; font-size:15px;">{{ t.queue_number }}</a>位</li>
-                                    <li>预计时间<a style=" color:#f90; font-size:15px;">90</a>分钟</li>
+                                    <li>预计等<a style=" color:#f90; font-size:15px;">9</a>分钟</li>
                                 </ul>
                             </li>
                         {% endfor %}
@@ -112,19 +112,12 @@
              {% else %}
              <a  class="tjbutton" style="float:right;border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">已<br />领<br />取</a>
               {% endif %}
-    {% endif %}
-    {% endfor %}
-    {% else %}
-        <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r3_c1_s1.jpg) no-repeat;  background-size:100% 100px; " >
-    <img src="/static/images/img/lbj_r3_c1_s1.jpg"  style="width:90px; height:90px; float:left; margin-left:4%; margin-right:10px;  margin-top:5px;" />
-            </span>
-    <p style="line-height: 17px;width: 95%">
     <b style="line-height: 14px; margin-left:0; padding-left:0;">优惠券被抢空了！</b><br />
     {% endif %}
     </div>
 </div>
         </div>
-
+<div class="clear"></div>
      </body>
 
 {% endblock %}
