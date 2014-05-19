@@ -72,7 +72,9 @@ app.add_url_rule('/y/on_sale','on_sale',on_sale,methods=('GET', 'POST'))
 #支付
 app.add_url_rule('/toPay','to_pay',to_pay,methods=('GET', 'POST'))
 app.add_url_rule('/toPaySuccess','to_pay_success',to_pay_success,methods=('GET', 'POST'))
-
+#首页
+app.add_url_rule('/introduce','to_introduce',to_introduce,methods=('GET','POST'))
+app.add_url_rule('/food','to_food',to_food,methods=('GET','POST'))
 #游戏
 app.add_url_rule('/to_game','to_game', to_game,methods=('GET', 'POST'))
 app.add_url_rule('/f/to_dish_selected', 'dish_selected', dish_selected, methods=('GET','POST'))
