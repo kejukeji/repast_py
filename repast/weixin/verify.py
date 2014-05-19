@@ -250,7 +250,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
             "ArticleCount": 1,
             "item": [{
                 "Title": title,
-                "Description": "<h3>"+title+ "</h3>\n<h4 style='color:blue'>" +"去排队</h4>",
+                "Description": title+ "\n" +"去排队",
                 "PicUrl": BASE_URL + pic_url,
                 "Url": url
             }]
