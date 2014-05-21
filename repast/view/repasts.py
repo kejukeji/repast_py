@@ -361,9 +361,11 @@ def location():
     # 得到餐厅经纬度
     longitude = request.args.get('longitude')
     latitude = request.args.get('latitude')
+    name = request.args.get('name')
     return render_template('reception/location.html',
                            longitude=longitude,
-                           latitude=latitude)
+                           latitude=latitude,
+                           name=name)
 
 def to_favorable():
     """优惠页面"""
