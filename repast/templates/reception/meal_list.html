@@ -87,8 +87,9 @@ $(function () {
                                             '<li class="fl" style="padding-left:5px; width:63%;">' +
                                             '<ul class="right">' +
                                             '<li><a href="###" class="name">' + item.name + '</a></li>' +
-                                            '<a href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'"><li class="dizhi">地点：' + item.address + '</li></a>' +
+                                            '<a href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'&name='+item.name+'"><li class="dizhi">地点：' + item.address + '</li></a>' +
                                             '<li class="lu">' + item.distance + '米</li>' +
+                                            '<li class="telphone"><a href="###" class="telname">电话：' + item.tel + '</a></li>' +
                                             '</ul>' +
 
                                             '</li>' +
@@ -96,9 +97,6 @@ $(function () {
 
                                             '</div>' +
                                             '<div class="clear"></div>' +
-                                            '<div class="text">' +
-                                            '<p><a href="#">' + item.description + '</a></p>' +
-                                            '</div>' +
                                             '<div class="button">' +
 
                                             '<a href="/f/package?brand_id='+ item.brand_id+'&stores_id='+item.id+'"  type="button" class="btn btn-primary btn-lg btn-block">'+' 去点菜 '+'</a>' +
