@@ -97,6 +97,32 @@
          <div id="text2" style="display: none;margin-top: 10px !important">
         <div class="content_list" style="background:none; height:auto; border:none; width:98%; margin:auto; margin-top:5px; " >
 	<div class="tuijiancon">
+        <script type="text/javascript">
+        $(function(){
+            var click_func = $(".tjbutton").find("a");
+            click_func.bind("click",function(){
+                var coupons_id = $(this).next().val();
+                var html_text = $(this).html();
+                if (html_text == "已领取"){
+
+                }else{
+                    var b = false;
+                    $.ajax({
+                        type: "GET",
+                        url: "/restful/coupons_id/"+coupons_id,
+                        dataType: "json",
+                        success: function (data){
+                            b = true;
+                        },
+                        error: function(){
+                            alert('error')
+                        }
+                    });
+                }
+                $(this).html("已领取")
+            })
+        })
+    </script>
      {% if coupons_name %}
     {% for c in coupons_name %}
    <span class="tuijiant" style="background:url(/static/images/img/tuijiana_r1_c1_s1.jpg) no-repeat;  background-size:100% 100px; margin-bottom:5px; " >
@@ -114,13 +140,19 @@
     </p></span>
 
      {% if c.total == 0 %}
-        <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">已<br />领<br />完</a>
+        <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c3_s1.png) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">已领完</a>
      {% else%}
-         {% if c.message == 0 %}
-        <a  href="/m/my_coupons/?coupons_id={{ c.id }}" class="tjbutton" style="float:right;border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">去<br />领<br />取</a>
-             {% else %}
-             <a  class="tjbutton" style="float:right;border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; text-align:center; padding-top:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">已<br />领<br />取</a>
-              {% endif %}
+         {% if c.message == '去领取' %}
+         <span class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
+             <a href="#">{{ c.message }}</a>
+        <input type="hidden" name="id" value="{{ c.id }}"/>
+        </span>
+        {% else %}
+            <span class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
+             <a>{{ c.message }}</a>
+            <input type="hidden" name="id" value="{{ c.id }}"/>
+                </span>
+                {% endif %}
     {% endif %}
     {% endfor %}
     {% else %}

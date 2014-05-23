@@ -109,12 +109,12 @@ def to_queue(stores_id):
         id=id.split(',')
 
     for a in coupons_name:
-        sale=int(10*a.cou_price/a.price)
-        a.sale=sale
-        message = 0     #默认未领取
+        message = "去领取"
         if str(a.id) in id:
-            message = 1 #已领取
+            message = "已领取"
         a.message = message
+        sale= int((10*a.cou_price / a.price))
+        a.sale=sale
     stores_info = StoresInfo.query.filter(StoresInfo.stores_id == stores_id).first()
     picture_url = stores_info.rel_path+'/'+stores_info.picture_name
     stores.picture_url=picture_url
@@ -151,9 +151,9 @@ def do_queue():
     for a in coupons_name:
         sale=int(10*a.cou_price/a.price)
         a.sale=sale
-        message = 0     #默认未领取
+        message = '去领取'    #默认未领取
         if str(a.id) in id:
-            message = 1 #已领取
+            message = '已领取' #已领取
         a.message = message
 
     return render_template('reception/reserv_success.html',
