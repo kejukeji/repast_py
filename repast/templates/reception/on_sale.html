@@ -47,9 +47,9 @@
            <p> 买<b>{{ a.dish_name }}</b>送<b>{{ a.present }}</b><br>
             有效日期至{{ a.end_time }}</p>
         {% else %}
-         <b style="font-size:17px;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ a.sale}}折</b><br>
-           <p class=""><b> {{ a.name }}</b><br>
-            一次性消费100元享{{ a.sale }}折优惠<br>
+         <b >{{ a.name}}</b><br>
+           <p class="">
+            一次性消费100元享<b style="font-size: 20px">{{ a.sale }}</b>折优惠<br>
             有效日期至{{ a.end_time }}</p>
         {% endif %}
     </span>

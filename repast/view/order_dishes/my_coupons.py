@@ -35,7 +35,7 @@ def on_sale():
         id=user.coupons_id
         id=id.split(',')
     for a in all_coupons:
-        message = "领取"
+        message = "去领取"
         if str(a.id) in id:
             message = "已领取"
         a.message = message
