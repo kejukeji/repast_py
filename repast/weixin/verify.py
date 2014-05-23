@@ -126,17 +126,17 @@ def event_my(FromUserName, ToUserName, user):
                 "Title": '我的预定',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/Customized.jpg',
-                "Url": '%s/home_page/?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/m/my_page/?user_id=%s' %(BASE_URL, user.id)
             },{
                "Title": '我的优惠',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/preferential.png',
-                "Url": '%s/home_page/?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/m/my_coupons/?user_id=%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的账单',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/bill.jpg',
-                "Url": '%s/home_page/?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/m/my_page/?user_id=%s' %(BASE_URL, user.id)
             }]
     }
     return reply_dict

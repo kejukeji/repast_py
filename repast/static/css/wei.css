@@ -50,7 +50,7 @@ left:20px;
 .toptitle b{ font-size:16px; line-height:45px;  color:#09C; }
 .dizhi{color:#5CC4D3; font-size:14px;  line-height:20px;  background:url(/static/images/img/img_r1_c4.png) no-repeat; padding-left:20px;}
 .lu{color:#5CC4D3; font-size:14px;  line-height:20px; background:url(/static/images/img/img_r3_c4.png) no-repeat;  padding-left:20px;}
-.telphone a{margin-top:20px;color:#5CC3D2; font-size:14px; font-weight: bold; line-height:20x;font-family:"微软雅黑"; background:url(/static/images/img/tel.png) no-repeat left bottom;  padding-left:22px;}
+.telphone a{margin-top:20px;color:#000066; font-size:14px; font-weight: bold; line-height:20x;font-family:"微软雅黑"; background:url(/static/images/img/tel.png) no-repeat left bottom;  padding-left:22px;}
 
 .right li{ margin-top:2px; }
 .right li.dizhi{ margin-top:2px; height: 60px}
