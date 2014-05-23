@@ -99,7 +99,7 @@
             人均消费100元
     </p></span>
 
-    <a class="tjbutton"  href="{{ not_brand.id }}" style="float:right; border:none;text-align:center;padding: 15px; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">去排队</a></li>
+    <a class="tjbutton"  href="{{ not_brand.id }}" style="float:right; border:none;text-align:center;padding: 18px; background:url(/static/images/img/tuijiana_r1_c2_s1.jpg) no-repeat; background-size:100% 100px; width:20%; height:100px; display:block;">去排队</a></li>
     {% endif %}
 
     <script type="text/javascript">
@@ -144,16 +144,16 @@
               有效日期至:{{c.end_time}}
     </p></span>
      {% if c.total == 0 %}
-        <a class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c3_s1.png) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">已领完</a>
+        <a  class="tjbutton" style="float:right; border:none; letter-spacing: 20px; padding-left: 15px; background:url(/static/images/img/tuijiana_r5_c3_s1.png) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">已领完</a>
      {% else%}
         {% if c.message == '去领取' %}
-         <span class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
-             <a href="#">{{ c.message }}</a>
+         <span class="tjbutton" style="float:right; border:none; padding-left: 15px; background:url(/static/images/img/tuijiana_r3_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#fff; display:block;">
+             <a style="letter-spacing: 20px; color: #fff;"  href="#">{{ c.message }}</a>
         <input type="hidden" name="id" value="{{ c.id }}"/>
         </span>
         {% else %}
-            <span class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
-             <a>{{ c.message }}</a>
+            <span class="tjbutton" style="float:right; border:none; background:url(/static/images/img/tuijiana_r5_c2_s1.jpg) no-repeat; padding-left: 15px; TEXT-ALIGN: CENTER; PADDING-TOP:15PX; background-size:100% 100px; width:20%; height:100px; color:#666; display:block;">
+             <a style="letter-spacing: 20px;" >{{ c.message }}</a>
             <input type="hidden" name="id" value="{{ c.id }}"/>
                 </span>
                 {% endif %}
