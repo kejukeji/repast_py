@@ -136,7 +136,7 @@ def event_my(FromUserName, ToUserName, user):
                 "Title": '我的账单',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/bill.jpg',
-                "Url": '%s/m/my_page/?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/f/to_dish_selected' %(BASE_URL)
             }]
     }
     return reply_dict
