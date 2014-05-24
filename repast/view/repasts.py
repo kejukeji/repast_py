@@ -326,6 +326,8 @@ def to_meal_list():
     """菜品列表"""
     package_id = request.args.get('package_id')
     brand_id = request.args.get('brand_id')
+    set_session_dish(None)
+   # user_id = request.args.get('user_id')
     dish = get_session_dish()
     package = None
     if package_id:
