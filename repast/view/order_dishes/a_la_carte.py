@@ -24,6 +24,8 @@ def dish_selected():
     dish = get_session_dish()
     if dish is None:
         user_id = get_session_user()
+        if user_id is None:
+            user_id = request.args.get('user_id')
         dish = get_session_value(str(user_id))
     price = get_total_price(dish)
     package_id = request.args.get('package_id') # 当前套餐
