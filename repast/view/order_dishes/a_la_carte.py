@@ -33,7 +33,7 @@ def dish_selected():
     brand_id = request.args.get('brand_id') # 当前品牌
     stores_id = get_session_value('stores_id') # 当前餐厅
     stores = get_stores_by_id(stores_id)
-    today = time.strftime("%Y-%m-%d",time.localtime(time.time()))
+    today = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     return render_template('reception/wdcaidan.html',
                            dish=dish,
                            stores=stores,
