@@ -385,6 +385,10 @@ def to_game():
     return  render_template('reception/snake.html')
 
 def to_pay():
+    dish = get_session_dish()
+    user_id = get_session_user()
+    set_session_value(str(user_id), dish)
+    set_session_dish(None)
     return render_template('reception/pay.html')
 
 def to_pay_success():

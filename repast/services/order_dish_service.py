@@ -28,12 +28,12 @@ class PackageServiceView():
         if dish:
             for d in dish:
                 try:
-                    if d.package_id == package_id:
+                    if d.package_id == int(package_id):
                         d.number = 1
                     else:
                         d.number = 0
                 except:
-                    if int(d['package_id']) == package_id:
+                    if int(d['package_id']) == int(package_id):
                         d['number'] = 1
                     else:
                         d['numbre'] = 0
