@@ -37,6 +37,11 @@ def set_session_dish(dish):
 
 def get_session_dish():
     if session.has_key('dish') and session['dish']:
+        dishes=session['dish']
+        for d in dishes:
+            if d['number'] == 0:
+                return None
+
         return session['dish']
     return None
 
