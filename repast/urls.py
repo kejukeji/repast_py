@@ -29,6 +29,7 @@ from services.food_list_service import GetDishes
 from .view.order_dishes.my_coupons import *
 from .restfuls.coupons import *
 from .restfuls.dish import AddDish
+from .view.order_dishes.static import *
 
 
 # 用户管理路径
@@ -72,6 +73,11 @@ app.add_url_rule('/y/on_sale','on_sale',on_sale,methods=('GET', 'POST'))
 #支付
 app.add_url_rule('/toPay','to_pay',to_pay,methods=('GET', 'POST'))
 app.add_url_rule('/toPaySuccess','to_pay_success',to_pay_success,methods=('GET', 'POST'))
+app.add_url_rule('/toPay1', 'to_pay_1', pay1, methods=('GET', 'POST'))
+app.add_url_rule('/toPay2', 'to_pay_2', pay2, methods=('GET', 'POST'))
+app.add_url_rule('/toPay3', 'to_pay_3', pay3, methods=('GET', 'POST'))
+app.add_url_rule('/toPay4', 'to_pay_4', pay4, methods=('GET', 'POST'))
+app.add_url_rule('/toPay5', 'to_pay_5', pay5, methods=('GET', 'POST'))
 #首页
 app.add_url_rule('/introduce','to_introduce',to_introduce,methods=('GET','POST'))
 app.add_url_rule('/food','to_food',to_food,methods=('GET','POST'))

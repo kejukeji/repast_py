@@ -1,0 +1,46 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/static/css/pay.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+ <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+<title>微餐饮支付</title>
+</head> 
+<body>
+<div class="pay-top">
+请选择银行卡类型
+</div>
+<div class="pay-kx">
+卡类型 <select name="" >
+                      <option value="1">储蓄卡</option>
+                      <option value="2">信用卡</option>
+                      <option value="3">------------------------------------------------</option>
+                      <option value="4">工商银行</option>
+                      <option value="5">招商银行</option>
+                      <option value="6">邮政储蓄</option>
+                      <option value="7">中国银行</option>
+                      <option value="8">建设银行</option>
+                      <option value="9">交通银行</option>
+                      <option value="10">农业银行</option>
+                </select>
+                
+
+</div>
+<div class="pay-top2">
+请填写银行预留信息
+</div>
+<div class="pay-con">
+
+姓&nbsp;&nbsp;&nbsp;名：<input type="text" class="payk" name="textfield" onfocus="if (value =='请输入持卡人姓名'){value =''}"onblur="if (value ==''){value='请输入持卡人姓名'}"value="请输入持卡人姓名" /><br />
+<p >证&nbsp;&nbsp;&nbsp;件  :  &nbsp;&nbsp;&nbsp; 身份证</p>
+证件号：<input type="text" class="payk" name="textfield" onfocus="if (value =='请输入证件号'){value =''}"onblur="if (value ==''){value='请输入证件号'}"value="请输入证件号" /><br /><br />
+
+手机号：<input type="text" class="payk" name="textfield" onfocus="if (value =='请输入手机号'){value =''}"onblur="if (value ==''){value='请输入手机号'}"value="请输入手机号" /><br />
+<a>提醒：后续只能绑定改持卡人的银行卡</a>
+</div>
+<input type="button" value="下一步" name="" onclick="javascript:window.location.href='/toPay4'" class="payb" />
+
+</body>
+</html>
+
