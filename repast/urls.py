@@ -63,6 +63,8 @@ app.add_url_rule('/m/my_page/', 'to_my_page', to_my_page, methods=('GET','POST')
 app.add_url_rule('/m/my_coupons/', 'deal_coupons', deal_coupons, methods=('GET', 'POST'))
 app.add_url_rule('/m/my_line_up', 'to_my_line_up', to_my_line_up, methods=('GET', 'POST'))
 app.add_url_rule('/location', 'to_location', location, methods=('GET', 'POST'))
+app.add_url_rule('/m/mytel', 'to_mytel', myTel, methods=('GET', 'POST'))
+app.add_url_rule('/m/my', 'to_my', my, methods=('GET', 'POST'))
 # 点餐
 app.add_url_rule('/f/meal_restaurant', 'to_meal_restaurant', to_meal_restaurant_list, methods=('GET', 'POST'))
 app.add_url_rule('/f/package', 'to_package', to_package_list, methods=('GET', 'POST'))
