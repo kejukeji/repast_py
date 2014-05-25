@@ -61,7 +61,6 @@ class PositionStore(restful.Resource):
                 stores.picture_name = store_info.picture_name
                 stores_pic = flatten(stores)
                 dicts['stores'].append(stores_pic)
-        print(dicts)
         return  dicts
 
 class PositionStoreXY(restful.Resource):

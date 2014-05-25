@@ -1,6 +1,16 @@
 {% extends "reception/web_base.html" %}
 {% block head %}
         {{ super() }}
+        <style>
+            .search-con{ width:97%; margin:1%; border:1px solid #eee !important; background-color:#fff;}
+        .search-conl{ float:left; width:30%; margin: 1% 1% 1% 2%;}
+        .search-conr{ float:right; margin:1%; width:65%;}
+        .search-conr-name{ font-size:16px; font-family:"微软雅黑"; color:#F90; line-height:25px; }
+        .search-conr-name2{ font-size:16px; font-family:"微软雅黑"; color:#666; }
+        .search-conr-dizhi{ color:#5cc3d2; font-size:14px; font-family:"微软雅黑"; background:url(img/img_r1_c4.png) no-repeat ; padding-left:20px;}
+        .search-conr-telphone{ color:#5cc3d2;  font-size:14px; font-family:"微软雅黑"; background:url(img/tel.png) no-repeat; padding-left:20px;}
+        .search-button{ width:96%; height:45px; margin:auto; border-radius:3px;  color:#FFF; font-size:18px; line-height:45px; margin:1% 2% 2% 2%;}
+        </style>
 {% endblock %}
 {% block title %} 餐厅列表 {% endblock %}
 {% block pager_js %}
@@ -13,45 +23,13 @@ $(function () {
     block.bind('click', function () {
         window.location.href = '/reservation'
     });
-    $('#searchButton').click(function () {
-        str = $('#text').val();
-        $.ajax({
-            type: 'get',
-            url: '/restful/searchStore?keyword=' + str,
-            dataType: 'json',
-            success: function (data) {
-                var j = data;
-                $.each(j.stores, function (idx, item) {
-                    $('#result').append(
-                            '<div id="bg">' +
-                                    '<div class="xinxi">' +
-                                    '<ul style="width:98%; margin:auto; padding-top:5px;">' +
-                                    '<li class="fl"><img src="/static/images/stores/img.jpg" width="100px" height="100px"/></li>' +
-                                    '<li class="fl" style="padding-left:5px; width:63%;">' +
-                                    '<ul class="right">' +
-                                    '<li><a href="###" class="name">' + item.name + '</a></li>' +
-
-                                    '<a href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'"><li style="font-size:12px; font-family:"黑体"; color:#999;">地点：' + item.address + '</li></a>' +
-                                    '<li class="dizhi">300m</li>' +
-                                    '</ul>' +
-
-                                    '</li>' +
-                                    '</ul>' +
-
-                                    '</div>' +
-                                    '<div class="clear"></div>' +
-                                    '<div class="text">' +
-                                    '<p><a href="#">' + item.description + '</a></p>' +
-                                    '</div>' +
-                                    '<div class="button">' +
-                                    '<button type="submit" class="btn btn-primary btn-lg btn-block">去排队</button>' +
-                                    '<div class="img"></div>' +
-                                    '</div>' +
-                                    '</div>');
-                });
-            }
-        });
+    var searchBtn = $(".search-button");
+    searchBtn.live('click', function(){
+       var idS = $(this).next().val() // 得到下一个元素的值，餐厅id
+       var brand_id = $(idS).next().val();
+       window.location.href = '/f/package?brand_id='+ brand_id+'&stores_id='+idS;
     });
+
     function positonStore() {
         var province = $('#province_id').val();
         var city = $('#city_id').val();
@@ -80,35 +58,39 @@ $(function () {
                             prompt = '去排队'
                         }
                             $('#result').append(
-                                    '<div id="bg">' +
-                                            '<div class="xinxi">' +
-                                            '<ul style="width:98%; margin:auto; padding-top:5px;">' +
-                                            '<li class="fl"><img src="' + item.rel_path + '/' + item.picture_name + '" width="100px" height="100px"/></li>' +
-                                            '<li class="fl" style="padding-left:5px; width:63%;">' +
-                                            '<ul class="right">' +
-                                            '<li><a href="###" class="name">' + item.name + '</a></li>' +
-                                            '<a href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'&name='+item.name+'"><li class="dizhi">地点：' + item.address + '</li></a>' +
-                                            '<li class="lu">' + item.distance + '米</li>' +
-                                            '<li class="telphone"><a href="tel:'+item.tel+'" class="telname">电话：' + item.tel + '</a></li>' +
-                                            '</ul>' +
+                                    '<div class="search-con">' +
+                                    '<span class="search-conl"><img src="img/caidan_r2_c3_s1.jpg" width="100%"  /></span>' +
+                                    '<span class="search-conr">' +
+                                    '<b class="search-conr-name">' +item.name+ '</b>' +
+                                    '<p class="search-conr-dizhi"><a class="search-conr-name2">地址：</a>'+ item.address +'</p>' +
+                                    '<p class="search-conr-telphone"><a class="search-conr-name2">号码：</a>'+item.tel+'</p>' +
+                                    '</span>' +
 
-                                            '</li>' +
-                                            '</ul>' +
+                                    '<button type="button" class="search-button">去排队</button>' +
+                                    '</div>' +
+                                    '</ul>' +
 
-                                            '</div>' +
-                                            '<div class="clear"></div>' +
-                                            '<div class="button">' +
+                                    '</li>' +
+                                    '</ul>' +
 
-                                            '<a href="/f/package?brand_id='+ item.brand_id+'&stores_id='+item.id+'"  type="button" class="btn btn-primary btn-lg btn-block">'+' 去点菜 '+'</a>' +
-                                            '<div class="img"></div>' +
-                                            '</div>' +
-                                            '</div>');
+                                    '</div>' +
+                                    '<div style="clear:both;"></div>"' +
+                                    '<div class="text">' +
+                                    '<p><a href="#">' + item.description + '</a></p>' +
+                                    '</div>' +
+                                    '<div class="button">' +
+                                    '<button type="submit" class="btn btn-primary btn-lg btn-block">去点餐</button>' +
+                                    '<input type="hidden" name="idS" value="'+item.id+'"/>'+
+                                    '<input type="hidden" name="barnd" value="'+item.brand_id+'"/>'+
+                                    '<div class="img"></div>' +
+                                    '</div>' +
+                                    '</div>');
 
                     });
 
                 }
             }
-        });
+        })
 
     }
 

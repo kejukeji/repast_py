@@ -237,64 +237,7 @@
 
 </script>
 
- <!--<script>-->
-        <!--$(document).ready(function () {-->
-            <!--choose("hot");-->
-            <!--choose("cold");-->
-            <!--choose("sweet");-->
-            <!--choose("mainfood");-->
-            <!--choose("drink");-->
-            <!--choose("cake");-->
-            <!--choose("soup");-->
-            <!--choose("discount");-->
-            <!--function choose(str) {-->
-                <!--$("#" + str + "_button").click(function () {-->
-                    <!--$("#right").children().css({display: "none"});-->
-                    <!--$("#" + str).css({display: "block"});-->
-                <!--});-->
-            <!--}-->
 
-            <!--var allTotalPrice = 0;-->
-
-
-
-            <!--$(".hot-food").each(function(){-->
-                <!--var totalPrice = 0;-->
-                <!--var t = $(this).find("input.num");-->
-                <!--var num = parseInt(t.val());-->
-                <!--$(this).find("input.add").live('click',function(){-->
-                    <!--num = num+1;-->
-                    <!--$(this).parent().find(".num").val(num);-->
-                    <!--if($(this).parent().parent().find("m").length>0){-->
-                    <!--totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));-->
-                    <!--}else{-->
-                        <!--totalPrice = parseInt($(this).parent().find("n").html());-->
-                    <!--}-->
-                    <!--allTotalPrice = allTotalPrice + totalPrice;-->
-                    <!--$("#all_total_price").val(allTotalPrice);-->
-                <!--});-->
-                <!--$(this).find("input.reduce").click(function(){-->
-                    <!--if (num>0){-->
-                        <!--num = num -1;-->
-                        <!--if($(this).parent().parent().find("m").length>0){-->
-                    <!--totalPrice = (parseInt($(this).parent().find("n").html())-parseInt($(this).parent().parent().find("m").html()));-->
-                    <!--}else{-->
-                        <!--totalPrice = parseInt($(this).parent().find("n").html());-->
-                    <!--}-->
-                    <!--}else {-->
-                        <!--num = 0;-->
-                        <!--totalPrice = 0;-->
-                    <!--}-->
-                    <!--$(this).parent().find(".num").val(num);-->
-
-
-                    <!--allTotalPrice = allTotalPrice - totalPrice;-->
-                    <!--$("#all_total_price").val(allTotalPrice);-->
-                <!--});-->
-            <!--});-->
-
-        <!--});-->
-    <!--</script>-->
 {% endblock %}
 {% block content %}
     <body style=" margin-bottom:60px;margin:0; padding:0; font-family:'微软雅黑'; ">
