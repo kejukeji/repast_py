@@ -5,6 +5,7 @@ from flask.views import View, MethodView
 from repast.util.session_common import set_session_dish,get_session_dish, get_session_value, get_session_user
 from ...services.stores_service import get_stores_by_id
 from ...services.dish_service import get_total_price
+import time
 
 class ToOrderDishes(View):
     '''to order dishes page'''
@@ -32,9 +33,11 @@ def dish_selected():
     brand_id = request.args.get('brand_id') # 当前品牌
     stores_id = get_session_value('stores_id') # 当前餐厅
     stores = get_stores_by_id(stores_id)
+    today = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     return render_template('reception/wdcaidan.html',
                            dish=dish,
                            stores=stores,
                            package_id=package_id,
                            brand_id=brand_id,
-                           price=price)
+                           price=price,
+                           today=today)

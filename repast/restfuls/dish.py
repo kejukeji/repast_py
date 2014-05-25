@@ -14,6 +14,9 @@ class AddDish(restful.Resource):
     """
     @staticmethod
     def get():
+       # set_session_dish(None)
+       # dishes = get_session_dish()
+      
         parse = reqparse.RequestParser()
         parse.add_argument('dish_number', type=str, required=False)
         parse.add_argument('dish_id', type=int, required=True)
@@ -58,4 +61,5 @@ class AddDish(restful.Resource):
                 dish.number = 1
                 d_pic = flatten(dish)
                 dishes.append(d_pic)
+
         set_session_dish(dishes)
