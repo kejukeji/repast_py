@@ -7,8 +7,8 @@
         .search-conr{ float:right; margin:1%; width:65%;}
         .search-conr-name{ font-size:16px; font-family:"微软雅黑"; color:#F90; line-height:25px; }
         .search-conr-name2{ font-size:16px; font-family:"微软雅黑"; color:#666; }
-        .search-conr-dizhi{ color:#5cc3d2; font-size:14px; font-family:"微软雅黑"; background:url(img/img_r1_c4.png) no-repeat ; padding-left:20px;}
-        .search-conr-telphone{ color:#5cc3d2;  font-size:14px; font-family:"微软雅黑"; background:url(img/tel.png) no-repeat; padding-left:20px;}
+        .search-conr-dizhi{ color:#5cc3d2; font-size:14px; font-family:"微软雅黑"; background:url(/static/images/img/img_r1_c4.png) no-repeat ; padding-left:20px;}
+        .search-conr-telphone{ color:#5cc3d2;  font-size:14px; font-family:"微软雅黑"; background:url(/static/images/img/tel.png) no-repeat; padding-left:20px;}
         .search-button{ width:96%; height:45px; margin:auto; border-radius:3px;  color:#FFF; font-size:18px; line-height:45px; margin:1% 2% 2% 2%;}
         </style>
 {% endblock %}
@@ -58,7 +58,7 @@ $(function () {
                         }
                             $('#result').append(
                                     '<div class="search-con">' +
-                                    '<span class="search-conl"><img src="img/caidan_r2_c3_s1.jpg" width="100%"  /></span>' +
+                                    '<span class="search-conl"><img src="/static/images/img/caidan_r2_c3_s1.jpg" width="100%"  /></span>' +
                                     '<span class="search-conr">' +
                                     '<b class="search-conr-name">' +item.name+ '</b>' +
                                     '<p class="search-conr-dizhi"><a class="search-conr-name2" href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'">地址：'+ item.address +'</a></p>' +
