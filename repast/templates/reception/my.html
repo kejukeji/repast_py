@@ -5,7 +5,7 @@
 {% endblock %}
 {% block title %} 我的信息 {% endblock %}
 {% block content %}
-<body>
+<body style="margin-bottom:60px !important; background:#eee;">
 <div class="mytop">
 我的个人信息
 </div>
@@ -14,12 +14,13 @@
         <div class="myxx-input"><input type="text" name="textfield" onfocus="if (value =='请输入用户名'){value =''}"onblur="if (value ==''){value='请输入用户名'}"value="请输入用户名" /></div>
         <div class="myxx-input"><input type="text"onfocus="if (value =='请输入手机号'){value =''}"onblur="if (value ==''){value='请输入手机号'}" value="请输入手机号"/></div>
         <div class="myxx-input"><input type="text" onfocus="if (value =='请输入邮箱'){value =''}"onblur="if (value ==''){value='请输入邮箱'}"value="请输入邮箱"/></div>
-        <label class="myxx-radio"><input name="Fruit" type="radio" value="" />男 </label> 
-        <label class="myxx-radio"><input name="Fruit" type="radio" value="" />女 </label> 
-               <p class="age">您的年龄： </p><label class="myxx-radio"><input name="Fruit" type="radio" value="" />小孩 </label> 
-        <label class="myxx-radio"><input name="age" type="radio" value="" />青年</label> 
-        <label class="myxx-radio"><input name="age" type="radio" value="" />成人 </label> 
-        <label class="myxx-radio"><input name="age" type="radio" value="" />老人 </label> 
+       <span  class="myxx-radio" ><input name="age" type="radio" value=""  />男</span>
+     <span  class="myxx-radio" ><input name="age" type="radio" value=""  />女</span>
+               <p class="age">您的年龄： </p>
+   <span  class="myxx-radio" ><input name="age" type="radio" value=""  />小孩</span>
+    <span  class="myxx-radio" ><input name="age" type="radio" value=""  />青年</span>
+       <span  class="myxx-radio" ><input name="age" type="radio" value=""  />成人</span>
+     <span  class="myxx-radio" ><input name="age" type="radio" value=""  />老人</span>
 
 </div>
 
@@ -41,10 +42,9 @@
                 </select>
                 
        <p class="age">爱辣程度： </p>         
-        <label class="myxx-radio"><input name="la" type="radio" value="" />微辣 </label> 
-        <label class="myxx-radio"><input name="la" type="radio" value="" />中辣 </label> 
-        <label class="myxx-radio"><input name="la" type="radio" value="" />变态辣 </label> <br />
-         
+      <span  class="myxx-radio" ><input name="age" type="radio" value=""  />微辣</span>
+     <span  class="myxx-radio" ><input name="age" type="radio" value=""  />中辣</span>
+     <span  class="myxx-radio" ><input name="age" type="radio" value=""  />变态辣</span>
  
 </div>
 
