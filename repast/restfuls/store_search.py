@@ -92,11 +92,15 @@ class PositionStoreXY(restful.Resource):
                 s.rel_path = store_info.rel_path
                 s.picture_name = store_info.picture_name
                 distance = get_distance(latitude,longitude,s.latitude,s.longitude)
+                distance_2 = "%.2f" % distance
+                print distance_2
                 dis = int(distance*1000)
                 s.distance =  dis
-                if dis < 500:
+                s.distance2 = distance_2
+                if dis < 2000:
                     stores_pic = flatten(s)
                     dicts['stores'].append(stores_pic)
+
         else:
             if stores:
                 lat = stores.latitude
@@ -107,7 +111,7 @@ class PositionStoreXY(restful.Resource):
                 stores.rel_path = store_info.rel_path
                 stores.picture_name = store_info.picture_name
                 stores.distance = dis
-                if dis < 100:
+                if dis < 2000:
                     stores_pic = flatten(stores)
                     dicts['stores'].append(stores_pic)
         print(dicts)
