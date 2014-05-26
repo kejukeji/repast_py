@@ -13,6 +13,7 @@ from repast.models.dish import Dish, flatten
 from repast.services.order_dish_service import PackageServiceView
 from repast.services.do_coupons import DoCoupons
 from repast.models.stores import  StoresInfo
+from repast.util.get_distance import *
 
 
 def to_repast_by_stores_id(stores_id):
@@ -129,7 +130,8 @@ def to_queue(stores_id):
                            another_stores=another_stores,
                            coupons_name=coupons_name,
                            count=count,
-                           not_brand=not_brand)
+                           not_brand=not_brand,
+                           distance=distance)
 
 def do_queue():
     '''排队'''
@@ -399,3 +401,5 @@ def to_introduce():
 
 def to_food():
     return render_template('reception/food.html')
+
+

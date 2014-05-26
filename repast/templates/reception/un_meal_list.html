@@ -9,7 +9,7 @@
         .search-conr-name{ font-size:15px; font-family:"微软雅黑"; color:#F90; line-height:25px; }
         .search-conr-name2{ font-size:14px; font-family:"微软雅黑"; color:#5CC3D2; }
         .search-conr-dizhi{ color:#5cc3d2; font-size:14px; font-family:"微软雅黑"; background:url(/static/images/img/img_r1_c4.png) no-repeat ; padding-left:20px !IMPORTANT;}
-        .search-conr-telphone{ color:#5cc3d2;  font-size:14px; font-family:"微软雅黑"; background:url(/static/images/img/tel.png) no-repeat; BACKGROUND-SIZE:18PX 20PX;  padding-left:20px !IMPORTANT;}
+        .search-conr-telphone{ color:#5cc3d2;  font-size:14px; font-family:"微软雅黑"; background:url(/static/images/img/tel.png) no-repeat; background-size:16px 20px; padding-left:16px !important;}
         .search-button{ width:96%; height:45px; margin:auto; border-radius:3px;  color:#FFF; font-size:18px; line-height:45px; margin:1% 2% 2% 2%;}
         </style>
 {% endblock %}
@@ -60,17 +60,11 @@ $(function () {
                                     '<span class="search-conr">' +
                                     '<b class="search-conr-name">' +item.name+ '</b>' +
                                     '<p class="search-conr-dizhi"><a class="search-conr-name2" href="/location?longitude='+item.longitude+'&latitude='+item.latitude+'">地址：'+ item.address +'</a></p>' +
-                                    '<p class="search-conr-telphone"><a class="search-conr-name2" href="tel:'+item.tel+'">号码：'+item.tel+'</a></p>' +
+                                    '<p class="search-conr-telphone"><a class="search-conr-name2" href="tel:'+item.tel+'">电话：'+item.tel+'</a></p>' +
                                     '</span>' +
                                     '<button type="button" class="search-button">去点餐</button>' +
                                     '<input type="hidden" name="idS" value="'+item.id+'"/>'+
                                     '<input type="hidden" name="barnd" value="'+item.brand_id+'"/>'+
-                                    '</div>' +
-                                    '</ul>' +
-
-                                    '</li>' +
-                                    '</ul>' +
-
                                     '</div>' +
                                     '<div style="clear:both;"></div>');
                     });
