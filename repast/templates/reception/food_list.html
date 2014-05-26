@@ -289,6 +289,63 @@
     </div>
 
 
+<style>
+.myfoodbtn{ width:60px; height:40px; background:#f90; color:#fff; border:none; position:fixed; border-radius:50%; bottom:15%; left:0; line-height:40px; text-align:center;}
+	.myfood-con{ width:80%;  background:#FFF; position:fixed; top:0; left:20%; }
+	.myfood-con p{ font-size:15px; color:#f90; line-height:30px; font-family:"微软雅黑"; text-align:center; }
+	.myfood-con p b{ font-size:15px; color:#999; line-height:30px; font-family:"微软雅黑" ; }
+</style>
+
+<script type="text/javascript">
+    $(function(){
+    $btn.bind("click",function(){
+    var top = $('#hot');
+    $.ajax({
+                   type: 'get',
+                   url: '/restful/show/dish',
+                   dataType: 'json',
+                   success:function(data){
+                         $.each(data.dish,function(i,value){
+                         top.empty();
+                         top.append(
+                                   '<div class="myfood-con" id="box" style="display:none";>'+
+                                   '<p>'+value.name+'</p>'+
+                                   '<p>￥'+value.price+'</p>'+
+                                   '<p>'+value.number+'</p></div>'
+                                    );
+                         })
+                   }
+                   });
+     })
+    })
+    </script>
+<div class="myfood-con" id="box" style="display:none";>
+     <p>fafadfadfdafdfd</p>
+    <p>fafadfadfdafdfd</p>
+    <p>fafadfadfdafdfd</p>
+    <p>fafadfadfdafdfd</p>
+
+    </div>
+<input name="" type="button"  value="已选"  id="btn"  onclick="btn()"  class="myfoodbtn" >
+
+
+
+ <script type="text/javascript">
+            var btn1=document.getElementById('btn');
+            var box1=document.getElementById('box');
+
+            function btn(){
+                if(btn1.value=="已选"){
+                    box1.style.display='';
+                    btn1.value="隐藏";
+	            }
+                else{
+                    box1.style.display='none';
+                    btn1.value="已选";
+            }
+            }
+</script>
+
 
 
 

@@ -161,6 +161,8 @@ def event_location(user_service, longitude, latitude, FromUserName, ToUserName):
     user_service.get_location_and_save(FromUserName, longitude, latitude)
     Content = "longitude" + str(longitude)
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
+    user_service=UserService()
+    user_service.get_location_and_save(FromUserName, longitude, latitude,'')
     return reply_dict
 
 def get_schedule(user):
