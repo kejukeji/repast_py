@@ -130,8 +130,7 @@ def to_queue(stores_id):
                            another_stores=another_stores,
                            coupons_name=coupons_name,
                            count=count,
-                           not_brand=not_brand,
-                           distance=distance)
+                           not_brand=not_brand)
 
 def do_queue():
     '''排队'''
