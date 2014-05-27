@@ -64,7 +64,7 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 <p class="song">获得积分120分</p>
 <p class="song">赠送一个凉拌菜</p>
 
-          <button type="submit" id="addDish" class="addcai" >+加菜</button>
+          <button type="submit" id="addDish" class="addcai" >换个菜</button>
 
 
     </div>
@@ -73,8 +73,14 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 <div class="clear"></div>
 <div class="wdcdbutton">
    <a href="/toPay"><button type="submit" class="fl" style="background:#5cc3d2;" >支付</button></a>
-       <a href="/f/meal_list"><button class="fr" style="background:#5cc3d2;" >返回</button></a>
+       <a ><button class="fr" onclick=my_id() style="background:#5cc3d2;" >下单</button></a>
 </div>
+<script text="javascript">
+    function my_id(){
+        num=Math.floor(Math.random()*300+100)
+        alert("您的号码为A"+num+"，请将号码给服务员下单")
+    }
+    </script>
 <div style="clear:both;"></div>
 
    <a href="" data-reveal-id="myModa2"  style="width:92%; margin:0 auto; display:block; height:45px; margin-left:4%; text-align:center; line-height:45px; font-size:16px; color:#FFF; border-radius:3px; font-weight:bold; background:#F90; margin-top:10px !important;" >分享给吃货们</a>
