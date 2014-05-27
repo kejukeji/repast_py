@@ -118,22 +118,22 @@ def event_my(FromUserName, ToUserName, user):
             "FromUserName": ToUserName,
             "ArticleCount": 4,
             "item": [{
-                "Title": '我的排队',
+                "Title": '我的账户',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/image_queue.jpg',
                 "Url": '%s/m/my_line_up?user_id=%s' %(BASE_URL, user.id)
             },{
-                "Title": '我的预定',
+                "Title": '我的排队',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/Customized.jpg',
-                "Url": '%s/m/my_page/?user_id=%s' %(BASE_URL, user.id)
+                "Url":  '%s/m/my_line_up?user_id=%s' %(BASE_URL, user.id)
             },{
                "Title": '我的优惠',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/preferential.png',
                 "Url": '%s/m/my_coupons/?user_id=%s' %(BASE_URL, user.id)
             },{
-                "Title": '我的账单',
+                "Title": '我的菜单',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/stores/bill.jpg',
                 "Url": '%s/f/to_dish_selected' %(BASE_URL)
