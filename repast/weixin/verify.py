@@ -139,6 +139,10 @@ def event_my(FromUserName, ToUserName, user):
                 "Url": '%s/f/to_dish_selected' %(BASE_URL)
             }]
     }
+    web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
+    msg = u'欢迎使用微餐饮'
+    open_id = "oFmv0t6ixCu5Hn_DT0iypHxy6zPQ"
+    web_chat.send_text_message(open_id,msg)
     return reply_dict
 
 
