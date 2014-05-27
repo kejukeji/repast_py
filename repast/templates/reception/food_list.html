@@ -232,12 +232,114 @@
         window.location.href="/f/to_dish_selected?package_id={{ package_id }}&brand_id={{ brand_id }}";
 
     });
+           var btn = $("#btn");
+           btn.bind("click", function () {
+               var thisVal = $(this).val(); //当前值
+               var top = $('#hot');
+               if (thisVal == "已选"){
+                   $.ajax({
+                       type: 'get',
+                       url: '/restful/show/dish',
+                       dataType: 'json',
+                       success: function (data) {
+                           top.empty();
+                           $.each(data, function (i, value) {
+                               top.empty();
+                               top.append(
+                                       '<div class="hot-food">'+
+                                               '<ul>'+
+                                               '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                               '<li class="hot-food-text">'+
+                                               '<p>'+
+                                               '<ul>'+
+                                               '<li class="food-name">'+value.name+'</li>'+
+                                               '<li><a class="hot-zs"> 送</a></li>'+
+                                               '</ul>'+
+                                               '</p>'+
+                                               ' <div class="clear"></div>'+
+                                               '<span>'+
+                                               '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                               '<input class="add" type="button" name="add"/>'+
+                                               '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
+                                               '<input class="num" type="text" value="'+value.number+'"/>'+
+                                               '<input class="reduce" type="button" name="reduce"/>'+
+                                               '</span>'+
+                                               '</li>'+
+                                               '</ul>'+
+                                               ' </div>');
+                           })
+                       }
+                   });
+                   $(this).val("隐藏");
+               } else {
+                   $(this).val("已选");
+                   top.empty();
+                   var kind_id = $(".cd-left").next().val();
+                   $.ajax({
+                   type: 'get',
+                   url: '/services/get_foods/'+ kind_id,
+                   dataType: 'json',
+                   success:function(data){
+                       top.empty();
+                       var total = data.total;
+                       var id_array = data.dish_by_package;
+                       $.each(data.dish,function(i,value){
+                           if (id_array.indexOf(value.id) != -1){
+                                var number = value.number;
+                               top.append(
+                                   '<div class="hot-food">'+
+                                           '<ul>'+
+                                           '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                           '<li class="hot-food-text">'+
+                                           '<p>'+
+                                           '<ul>'+
+                                           '<li class="food-name">'+value.name+'</li>'+
+                                           '<li><a class="hot-zs"> 送</a></li>'+
+                                           '</ul>'+
+                                           '</p>'+
+                                           ' <div class="clear"></div>'+
+                                           '<span>'+
+                                           '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                           '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
+                                           '<input class="num" type="text" value="'+number+'"/>'+
+                                           '<input class="reduce" type="button" name="reduce"/>'+
+                                           '</span>'+
+                                           '</li>'+
+                                           '</ul>'+
+                                           ' </div>');
+                           }else{
+                               top.append(
+                                   '<div class="hot-food">'+
+                                           '<ul>'+
+                                           '<li class="hot-food-img"><img src="'+value.rel_path+'/'+value.picture_name+'"></li>'+
+                                           '<li class="hot-food-text">'+
+                                           '<p>'+
+                                           '<ul>'+
+                                           '<li class="food-name">'+value.name+'</li>'+
+                                           '<li><a class="hot-zs"> 送</a></li>'+
+                                           '</ul>'+
+                                           '</p>'+
+                                           ' <div class="clear"></div>'+
+                                           '<span>'+
+                                           '<a class="money">￥<n>'+value.price+'</n></a>'+
+                                           '<input class="add" type="button" name="add"/>'+
+                                           '<input type="hidden" name="id" class="dish_id" value="'+value.id+'"/>'+
+                                           '<input class="num" type="text" value="0"/>'+
+                                           '<input class="reduce" type="button" name="reduce"/>'+
+                                           '</span>'+
+                                           '</li>'+
+                                           '</ul>'+
+                                           ' </div>');
+                           }
+
+                       });
+                   }
+               })
+                 }
+           })
        })
-
-
 </script>
-
-
 {% endblock %}
 {% block content %}
     <body style=" margin-bottom:60px;margin:0; padding:0; font-family:'微软雅黑'; ">
@@ -256,22 +358,9 @@
         {% else %}
          <div class="cd-left" id="none_button">暂无分类</div>
         {% endif %}
-        <!--<div class="cd-left" id="cold_button">冷菜</div>-->
-        <!--<div class="cd-left" id="food_button">主食</div>-->
-        <!--<div class="cd-left" id="drink_button">饮料</div>-->
-        <!--<div class="cd-left" id="cake_button">点心</div>-->
-        <!--<div class="cd-left" id="sweet_button">甜品</div>-->
-        <!--<div class="cd-left" id="soup_button">汤羹</div>-->
-        <!--<div class="cd-left" id="discount_button">优惠</div>-->
-
-             </div></div>
-
+        </div></div>
     <div style="width:79%;float:left;margin-left:21%;" id="right">
         <div id="hot" style="display:block">
-
-
-
-
         </div>
         <div style="height:160px;"></div>
           <div class="checkout">
@@ -280,7 +369,6 @@
         {% else %}
         <a>套餐名称：<a>非套餐</a></a><br>
         {% endif %}
-
         <a>总额：￥<input id ="all_total_price" value="0" type="text" style="background:url(/static/images/img/caidan_r4_c9_s1.jpg) no-repeat; text-align: center; color:#FF9A62; width:60px; margin-left:6px; background-size:100% 100%; border:none; height:30px;" readOnly></a>
        <div class="clear"></div>
         <button type="submit" id="sure-to-submit" class="sure-to-submit">确定</button>
@@ -296,29 +384,6 @@
 	.myfood-con p b{ font-size:15px; color:#999; line-height:30px; font-family:"微软雅黑" ; }
 </style>
 
-<script type="text/javascript">
-    $(function(){
-    $btn.bind("click",function(){
-    var top = $('#hot');
-    $.ajax({
-                   type: 'get',
-                   url: '/restful/show/dish',
-                   dataType: 'json',
-                   success:function(data){
-                         $.each(data.dish,function(i,value){
-                         top.empty();
-                         top.append(
-                                   '<div class="myfood-con" id="box" style="display:none";>'+
-                                   '<p>'+value.name+'</p>'+
-                                   '<p>￥'+value.price+'</p>'+
-                                   '<p>'+value.number+'</p></div>'
-                                    );
-                         })
-                   }
-                   });
-     })
-    })
-    </script>
 <div class="myfood-con" id="box" style="display:none";>
      <p>fafadfadfdafdfd</p>
     <p>fafadfadfdafdfd</p>
@@ -326,29 +391,7 @@
     <p>fafadfadfdafdfd</p>
 
     </div>
-<input name="" type="button"  value="已选"  id="btn"  onclick="btn()"  class="myfoodbtn" >
-
-
-
- <script type="text/javascript">
-            var btn1=document.getElementById('btn');
-            var box1=document.getElementById('box');
-
-            function btn(){
-                if(btn1.value=="已选"){
-                    box1.style.display='';
-                    btn1.value="隐藏";
-	            }
-                else{
-                    box1.style.display='none';
-                    btn1.value="已选";
-            }
-            }
-</script>
-
-
-
-
+<input name="" type="button"  value="已选"  id="btn"  class="myfoodbtn" >
     </body>
 <script>
 

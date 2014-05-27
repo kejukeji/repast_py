@@ -63,8 +63,9 @@ class AddDish(restful.Resource):
 
         set_session_dish(dishes)
 
+
 class ShowDish(restful.Resource):
     @staticmethod
-    def show():
-        dishes=get_session_dish()
+    def get():
+        dishes = get_session_dish()
         return dishes
