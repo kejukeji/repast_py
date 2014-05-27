@@ -1,11 +1,8 @@
 # coding: utf-8
-import urllib
-import urllib2
-from urllib import urlencode
-import json
+
 import sys
 from repast.weixin.webchat import WebChat
-from repast.setting.wbb import BASE_URL
+
 
 reload(sys)
 sys.setdefaultencoding('UTF-8')
@@ -37,5 +34,7 @@ menu = """
 """
 #webChat.delete_menu()
 # webChat.create_menu(menu)
-errmsg = webChat.send_text_message("oFmv0t53ZvwC5q327R3e5HjdzaPo", "中文字符")
+msg = u'欢迎使用微餐饮'
+open_id = "oFmv0t6ixCu5Hn_DT0iypHxy6zPQ"
+errmsg = webChat.send_text_message(open_id,msg)
 print errmsg
