@@ -292,8 +292,12 @@
 <style>
 .myfoodbtn{ width:60px; height:40px; background:#f90; color:#fff; border:none; position:fixed; border-radius:50%; bottom:15%; left:0; line-height:40px; text-align:center;}
 	.myfood-con{ width:80%;  background:#FFF; position:fixed; top:0; left:20%; }
-	.myfood-con p{ font-size:15px; color:#f90; line-height:30px; font-family:"微软雅黑"; text-align:center; }
-	.myfood-con p b{ font-size:15px; color:#999; line-height:30px; font-family:"微软雅黑" ; }
+	.myfood-con ul{ width:100%;}
+    .myfood-con ul li{ float:left; line-height:20px; margin:10px 0;  color:#f90;font-size:18px; }
+    .myfood-span1{ width:50%;  text-align:center;}
+    .myfood-span2{ width:25%;  text-align:center;}
+     .myfood-span3{ width:25%;  text-align:center;}
+    .color0{ color:#000 !important;}
 </style>
 
 <script type="text/javascript">
@@ -320,14 +324,28 @@
     })
     </script>
 <div class="myfood-con" id="box" style="display:none";>
-     <p>菜名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         价钱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         数量</p>
-     <p>外婆红烧肉&nbsp;&nbsp;&nbsp; 120 &nbsp;&nbsp;&nbsp;1</p>
-     <p>外婆红烧肉&nbsp;&nbsp;&nbsp; 120 &nbsp;&nbsp;&nbsp;1</p>
-     <p>外婆红烧肉&nbsp;&nbsp;&nbsp; 120 &nbsp;&nbsp;&nbsp;1</p>
+   <ul>
+       <li class="myfood-span1 color0" >菜名</li>
+        <li class="myfood-span2 color0" >价格</li>
+        <li class="myfood-span3 color0" >数量</li>
+   </ul>
+ <ul>
+       <li class="myfood-span1" >外婆红烧肉</li>
+        <li class="myfood-span2" >￥120</li>
+        <li class="myfood-span3" >1</li>
+   </ul>
 
+     <ul>
+       <li class="myfood-span1" >外婆红烧肉</li>
+        <li class="myfood-span2" >￥120</li>
+        <li class="myfood-span3" >1</li>
+   </ul>
 
+     <ul>
+       <li class="myfood-span1" >外婆红烧肉</li>
+        <li class="myfood-span2" >￥120</li>
+        <li class="myfood-span3" >1</li>
+   </ul>
     </div>
 <input name="" type="button"  value="已选"  id="btn"  onclick="btn()"  class="myfoodbtn" >
 
