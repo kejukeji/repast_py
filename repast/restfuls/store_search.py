@@ -91,6 +91,7 @@ class PositionStoreXY(restful.Resource):
                 store_info = find_info_by_storeId(s.id)
                 s.rel_path = store_info.rel_path
                 s.picture_name = store_info.picture_name
+                s.picture_name = s.rel_path+s.picture_name
                 distance = get_distance(latitude,longitude,s.latitude,s.longitude)
                 distance_2 = "%.2f" % distance
                 print distance_2
@@ -110,6 +111,7 @@ class PositionStoreXY(restful.Resource):
                 store_info = find_info_by_storeId(stores.id)
                 stores.rel_path = store_info.rel_path
                 stores.picture_name = store_info.picture_name
+                stores.picture_name = stores.rel_path+stores.picture_name
                 stores.distance = dis
                 if dis < 2000:
                     stores_pic = flatten(stores)
