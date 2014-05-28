@@ -154,6 +154,7 @@ def event_schedule(FromUserName, ToUserName, user):
     if schedule:
         for s in schedule:
             Content = Content + '%s。%s。您的排队号数为%s号。前面有%s位等候者,请您耐心等候。' %(s.stores_name, s.table_type, s.now_queue_number, s.schedule_count)
+            Content = Content + '\n'
     else:
         Content = '您还没任何排队信息！'
     reply_dict = response_event_message(FromUserName, ToUserName, Content)

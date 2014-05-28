@@ -41,3 +41,15 @@ def dish_selected():
                            brand_id=brand_id,
                            price=price,
                            today=today)
+
+def to_pay_1():
+    dish=get_session_dish()
+    price=get_total_price(dish)
+    return render_template('reception/pay1.html',
+                           price = price)
+
+def to_pay_5():
+    dish=get_session_dish()
+    price=get_total_price(dish)
+    return render_template('reception/pay5.html',
+                           price = price)
