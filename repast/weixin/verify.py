@@ -121,7 +121,7 @@ def event_my(FromUserName, ToUserName, user):
                 "Title": '我的账户',
                 "Description": '微生活 | 微一切',
                 "PicUrl": BASE_URL + '/static/images/image_queue.jpg',
-                "Url": '%s/m/my_line_up?user_id=%s' %(BASE_URL, user.id)
+                "Url": '%s/m/my_page/?user_id=%s' %(BASE_URL, user.id)
             },{
                 "Title": '我的排队',
                 "Description": '微生活 | 微一切',
@@ -153,7 +153,7 @@ def event_schedule(FromUserName, ToUserName, user):
     Content = ''
     if schedule:
         for s in schedule:
-            Content = Content + '%s。%s。您的排队号数为%s号。前面有%s位等候者,请您耐心等候。' %(s.stores_name, s.table_type, s.now_queue_number, s.schedule_count)
+            Content = Content + '%s。%s。您的排队号数为%s号。前面有%s位等候者,请您耐心等候。(过号作废)' %(s.stores_name, s.table_type, s.now_queue_number, s.schedule_count)
             Content = Content + '\n'
     else:
         Content = '您还没任何排队信息！'
