@@ -52,6 +52,7 @@ class PositionStore(restful.Resource):
                 store_info = find_info_by_storeId(s.id)
                 s.rel_path = store_info.rel_path
                 s.picture_name = store_info.picture_name
+                s.picture_name = s.rel_path+'/'+s.picture_name
                 stores_pic = flatten(s)
                 dicts['stores'].append(stores_pic)
         else:
@@ -59,6 +60,7 @@ class PositionStore(restful.Resource):
                 store_info = find_info_by_storeId(stores.id)
                 stores.rel_path = store_info.rel_path
                 stores.picture_name = store_info.picture_name
+                stores.picture_name = stores.rel_path+'/'+stores.picture_name
                 stores_pic = flatten(stores)
                 dicts['stores'].append(stores_pic)
         return  dicts
