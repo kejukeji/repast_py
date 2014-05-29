@@ -125,7 +125,7 @@ class WebChat(object):
         return message_url
 
     def send_text_message(self, openid, content):
-        body = '{"touser": "'+openid+'","msgtype":"text","text":{"content": content}}'
+        body = '{"touser": "'+openid+'","msgtype":"text","text":{"content":"'+content+'"}}'
         message_url = self.send_message_url()
         req = urllib2.Request(message_url) # 请求post请求
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())

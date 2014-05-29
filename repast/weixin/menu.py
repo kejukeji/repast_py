@@ -34,7 +34,7 @@ menu = """
 """
 #webChat.delete_menu()
 # webChat.create_menu(menu)
-msg = u'欢迎使用微餐饮'
-open_id = "oFmv0t6ixCu5Hn_DT0iypHxy6zPQ"
-errmsg = webChat.send_text_message(open_id,msg)
-print errmsg
+#msg = "你好"
+#open_id = "oFmv0t6ixCu5Hn_DT0iypHxy6zPQ"
+#errmsg = webChat.send_text_message(open_id,msg)
+#print errmsg
