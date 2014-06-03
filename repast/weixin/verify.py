@@ -53,11 +53,11 @@ def loop_message(openid,web_chat):
     #openid = xml_recv.find("FromUserName").text
     user_service = UserService()
     user = user_service.get_user_by_openid(openid)
-    content = '发的发的!'
+    content = 'hello!'
     schedule = get_schedule_by_user_id(user.id)
     if schedule:
             web_chat.send_text_message(openid,content)
-            print content
+            #print content
 
 def response_location(xml_recv, web_chat):
     '''用户手动发送地理位置'''
