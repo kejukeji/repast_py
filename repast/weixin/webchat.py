@@ -124,6 +124,7 @@ class WebChat(object):
         message_url = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s" %(access_token)
         return message_url
 
+
     def send_text_message(self, openid, content):
         body = '{"touser": "'+openid+'","msgtype":"text","text":{"content":"'+content+'"}}'
         message_url = self.send_message_url()

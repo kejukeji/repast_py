@@ -13,8 +13,6 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
 </head>
 <script type="text/javascript">
     $(function(){
-
-
         $("#addDish").bind("click", function(){
             window.location.href = "/f/meal_list?package_id={{ package_id }}&brand_id={{ brand_id }}"
         })
@@ -75,18 +73,15 @@ content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=
    <a href="/toPay"><button type="submit" class="fl" style="background:#5cc3d2;" >支付</button></a>
        <a ><button class="fr" id="sub"  style="background:#5cc3d2;" >下单</button></a>
 </div>
-<script text="javascript">
-
-$("#sub").click(function(){
-    //让button无法再次点击
-    $(this).attr("disabled","disabled");
-    $(this).css("background","#999");
-    num=Math.floor(Math.random()*300+100)
-    alert("您的号码为A"+num+"，请将号码给服务员下单")
-
-});
-
-    </script>
+<script type="text/javascript">
+    $("#sub").click(function(){
+        //让button无法再次点击,变为灰色
+        $(this).attr("disabled","disabled");
+        $(this).css("background","#999");
+        num=Math.floor(Math.random()*300+100)
+        alert("您的号码为A"+num+"，请将号码给服务员下单")
+    });
+</script>
 <div style="clear:both;"></div>
 
    <a href="" data-reveal-id="myModa2"  style="width:92%; margin:0 auto; display:block; height:45px; margin-left:4%; text-align:center; line-height:45px; font-size:16px; color:#FFF; border-radius:3px; font-weight:bold; background:#F90; margin-top:10px !important;" >分享给吃货们</a>
