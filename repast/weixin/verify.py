@@ -23,7 +23,7 @@ def weixin():
             for q in queue:
                 user = User.query.filter(User.id == q.user_id).first()
                 loop_message(user.openid,web_chat)
-    num+=1
+
 
     if request.method == "GET":
         if web_chat.validate(**parse_request(request.args, ("timestamp", "nonce", "signature"))):
@@ -44,6 +44,7 @@ def weixin():
         if MsgType == 'location':
             return response_location(xml_recv, web_chat)
 
+    num+=1
 
 
 num=1
