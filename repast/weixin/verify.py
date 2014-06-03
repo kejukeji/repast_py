@@ -21,7 +21,7 @@ def weixin():
     queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '').all()
     if queue:
         for q in queue:
-            user = User.query.filter(User.id == q.user_id).all()
+            user = User.query.filter(User.id == q.user_id).first()
             loop_message(user.openid,web_chat)
 
     if request.method == "GET":
