@@ -38,7 +38,7 @@ def weixin():
 
 
 def loop_message(xml_recv,web_chat):
-    openid = xml_recv.find("FromUserName")
+    openid = xml_recv.find("FromUserName").text
     user_service = UserService()
     user = user_service.get_user_by_openid(openid)
     content = 'Close to you!'
