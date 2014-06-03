@@ -17,7 +17,7 @@ def weixin():
     web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
     args_time = get_date_time_str()
     global num
-    if num % 300 == 0 :
+    if num % 180 == 0 :
         queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '').all()
         if queue:
             for q in queue:
@@ -47,7 +47,7 @@ def weixin():
     num+=1
 
 
-num=1
+num=2
 
 def loop_message(openid,web_chat):
     #openid = xml_recv.find("FromUserName").text
