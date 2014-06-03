@@ -17,7 +17,7 @@ def loop_message(openid,web_chat,content):
 
 def loop_time(web_chat):
     args_time = get_date_time_str()
-    queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '').all()
+    queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '',Queue.status == 1).all()
     if queue:
             for q in queue:
                 num = q.now_queue_number-1
