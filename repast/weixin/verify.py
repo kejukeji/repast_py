@@ -47,7 +47,7 @@ def weixin():
     num+=1
 
 
-num=2
+num=0
 
 def loop_message(openid,web_chat):
     #openid = xml_recv.find("FromUserName").text
