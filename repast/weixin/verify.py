@@ -18,10 +18,10 @@ from repast.services.queue_setting_service import *
 def weixin():
     web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
     args_time = get_date_time_str()
-    queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '')
-    if queue :
+    queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '').all()
+    if queue:
         for q in queue:
-            user = User.query.filter(User.id == q.user_id)
+            user = User.query.filter(User.id == q.user_id).all()
             loop_message(user.openid,web_chat)
 
     if request.method == "GET":
