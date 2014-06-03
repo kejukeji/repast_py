@@ -11,10 +11,19 @@ from repast.services.user_service import *
 from repast.services.stores_service import get_stores_by_id
 from repast.services.queue_setting_service import get_schedule_by_user_id
 import time
-
+from repast.models.queue import *
+from repast.models.user import *
+from repast.services.queue_setting_service import *
 
 def weixin():
     web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
+    args_time = get_date_time_str()
+    queue = Queue.query.filter(Queue.queue_time.like(args_time),Queue.user_id != '')
+    if queue :
+        for q in queue:
+            user = User.query.filter(User.user_id == q.user_id)
+            loop_message(user.openid,web_chat)
+
     if request.method == "GET":
         if web_chat.validate(**parse_request(request.args, ("timestamp", "nonce", "signature"))):
             return make_response(request.args.get("echostr"))
@@ -24,7 +33,6 @@ def weixin():
         # 这里需要验证 #todo
         xml_recv = ET.fromstring(request.data)
         MsgType = xml_recv.find("MsgType").text
-        loop_message(xml_recv,web_chat)
 
         if MsgType == "event":
             return response_event(xml_recv, web_chat)
@@ -37,8 +45,8 @@ def weixin():
 
 
 
-def loop_message(xml_recv,web_chat):
-    openid = xml_recv.find("FromUserName").text
+def loop_message(openid,web_chat):
+    #openid = xml_recv.find("FromUserName").text
     user_service = UserService()
     user = user_service.get_user_by_openid(openid)
     content = 'Close to you!'
