@@ -43,9 +43,9 @@ def loop_message(xml_recv,web_chat):
     openid = xml_recv.find("FromUserName")
     user_service = UserService()
     user = user_service.get_user_by_openid(openid)
-    schedule = get_schedule_by_user_id(user.id)
     content = 'Close to you!'
     while True:
+            schedule = get_schedule_by_user_id(user.id)
             if schedule:
                 web_chat.send_text_message(openid,content)
                 time.sleep(180)
