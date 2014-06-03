@@ -45,10 +45,12 @@ def loop_message(xml_recv,web_chat):
     user = user_service.get_user_by_openid(openid)
     schedule = get_schedule_by_user_id(user.id)
     content = 'Close to you!'
-    if schedule:
-        while True:
-            web_chat.send_text_message(openid,content)
-            time.sleep(180)
+    while True:
+            if schedule:
+                web_chat.send_text_message(openid,content)
+                time.sleep(180)
+            else:
+                break
 
 def response_location(xml_recv, web_chat):
     '''用户手动发送地理位置'''
