@@ -10,7 +10,7 @@ from repast.util.session_common import *
 from repast.services.user_service import *
 from repast.services.stores_service import get_stores_by_id
 from repast.services.queue_setting_service import get_schedule_by_user_id
-
+import time
 import datetime
 
 import string
@@ -36,6 +36,19 @@ def weixin():
         if MsgType == 'location':
             return response_location(xml_recv, web_chat)
 
+        loop_message(xml_recv,web_chat)
+
+
+def loop_message(xml_recv,web_chat):
+    openid = xml_recv.find("FromUserName")
+    user_service = UserService()
+    user = user_service.get_user_by_openid(openid)
+    schedule = get_schedule_by_user_id(user.id)
+    content = 'Close to you!'
+    if schedule:
+        while True:
+            web_chat.send_text_message(openid,content)
+            time.sleep(180)
 
 def response_location(xml_recv, web_chat):
     '''用户手动发送地理位置'''
@@ -139,10 +152,7 @@ def event_my(FromUserName, ToUserName, user):
                 "Url": '%s/f/to_dish_selected' %(BASE_URL)
             }]
     }
-    web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
-    msg = u'欢迎使用微餐饮'
-    open_id = "oFmv0t6ixCu5Hn_DT0iypHxy6zPQ"
-    web_chat.send_text_message(open_id,msg)
+
     return reply_dict
 
 
