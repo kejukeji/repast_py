@@ -300,71 +300,45 @@
     .color0{ color:#000 !important;}
 </style>
 
-<script type="text/javascript">
-    $(function(){
-    $btn.bind("click",function(){
-    var top = $('#hot');
-    $.ajax({
-                   type: 'get',
-                   url: '/restful/show/dish',
-                   dataType: 'json',
-                   success:function(data){
-                         $.each(data.dish,function(i,value){
-                         top.empty();
-                         top.append(
-                                   '<div class="myfood-con" id="box" style="display:none";>'+
-                                   '<p>'+value.name+'</p>'+
-                                   '<p>￥'+value.price+'</p>'+
-                                   '<p>'+value.number+'</p></div>'
-                                    );
-                         })
-                   }
-                   });
-     })
-    })
-    </script>
-<div class="myfood-con" id="box" style="display:none";>
+<div class="myfood-con" id="box" style="display:none">
    <ul>
        <li class="myfood-span1 color0" >菜名</li>
         <li class="myfood-span2 color0" >价格</li>
         <li class="myfood-span3 color0" >数量</li>
    </ul>
- <ul>
-       <li class="myfood-span1" >外婆红烧肉</li>
-        <li class="myfood-span2" >￥120</li>
-        <li class="myfood-span3" >1</li>
-   </ul>
-
-     <ul>
-       <li class="myfood-span1" >外婆红烧肉</li>
-        <li class="myfood-span2" >￥120</li>
-        <li class="myfood-span3" >1</li>
-   </ul>
-
-     <ul>
-       <li class="myfood-span1" >外婆红烧肉</li>
-        <li class="myfood-span2" >￥120</li>
-        <li class="myfood-span3" >1</li>
-   </ul>
     </div>
-<input name="" type="button"  value="已选"  id="btn"  onclick="btn()"  class="myfoodbtn" >
+<input name="" type="button"  value="已选"  id="btn"  class="myfoodbtn" >
 
 
 
  <script type="text/javascript">
-            var btn1=document.getElementById('btn');
-            var box1=document.getElementById('box');
-
-            function btn(){
-                if(btn1.value=="已选"){
-                    box1.style.display='';
-                    btn1.value="隐藏";
-	            }
-                else{
-                    box1.style.display='none';
-                    btn1.value="已选";
-            }
-            }
+     var btn=$('#btn');
+     var box1=$('#box');
+     btn.bind("click", function(){
+         var thisVal = $(this).val();
+         if (thisVal == "已选"){
+             $.ajax({
+                 type: "get",
+                 url: "/restful/get/choose/dish",
+                 dataType: "json",
+                 success: function(data){
+                     box1.empty();
+                     $.each(data, function(i, value){
+                         box1.append('<ul>' +
+                             '<li class="myfood-span1" >'+ value.name +'</li>' +
+                             ' <li class="myfood-span2" >'+ value.price +'</li>' +
+                             '<li class="myfood-span3" >'+ value.number +'</li>' +
+                             '</ul>')
+                     });
+                 }
+             });
+             box1.show();
+             $(this).val("隐藏");
+         } else {
+             box1.hide();
+             $(this).val("已选");
+         }
+     });
 </script>
 
 
