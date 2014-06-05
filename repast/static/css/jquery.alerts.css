@@ -1,25 +1,23 @@
 #popup_container {
 	font-family: Arial, sans-serif;
-	font-size: 12px;
-	min-width: 200px; /* Dialog will be no smaller than this */
-	max-width: 300px; /* Dialog will wrap after this width */
+	font-size: 14px;
+	width:60%;
 	background: #FFF;
-	border: solid 5px #999;
+	border: solid 1px #999;
 	color: #000;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
-
 #popup_title {
 	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
-	line-height: 1.75em;
+	line-height: 1.8em;
 	color: #666;
 	background: #CCC url(images/title.gif) top repeat-x;
-	border: solid 1px #FFF;
-	border-bottom: solid 1px #999;
+
+	border-bottom: solid 2px #999;
 	cursor: default;
 	padding: 0em;
 	margin: 0em;
