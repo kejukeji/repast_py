@@ -45,6 +45,8 @@ class AddDish(restful.Resource):
                         dishes.remove(d)
                     if operate == "reduce":
                         d['number'] = int(d['number']) - 1
+                    temp_bool = False
+                    break
                 else:
                     temp_bool = True
             if temp_bool:

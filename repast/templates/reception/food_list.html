@@ -59,11 +59,11 @@
                if (num == 0 && allTotalPrice <= 0){
                    sureBtn.attr("disabled","disabled");
                }
-               var dish_id = $(this).prev().prev()
+               var dish_id = $(this).prev().prev().val();
                if (num != 0){
                    $.ajax({
                     type: "GET",
-                    url: "/restful/add/dish?dish_id="+dish_id+"&operate=add",
+                    url: "/restful/add/dish?dish_id="+dish_id+"&operate=reduce",
                     dataType: "text",
                     success: function(){
 
