@@ -28,15 +28,10 @@ def append_json(model):
     dish = get_session_dish()
     yes = get_session_value('yes')
     if yes is None:
-        if dish:
-            temp_total = 0
-            for d in dish:
-                temp_total = temp_total + int(d['price'] * int(d['number']))
-                json['dish_by_package'].append(d['id'])
-                dish_id[str(d['id'])] = d['number']
-            json['total'] = temp_total
+        dish_format(dish, json, dish_id)
         set_session_value('yes', None)
     if model:
+        dish_format(dish, json, dish_id)
         for i in range(len(model)):
             if dish_id.has_key(str(model[i].id)):
                 model[i].number = dish_id.get(str(model[i].id))
@@ -45,6 +40,16 @@ def append_json(model):
             model_pic = flatten(model[i])
             json['dish'].append(model_pic)
     else:
-        pass#set_session_dish(None)
+        pass
     return json
+
+
+def dish_format(dish, json, dish_id):
+    if dish:
+        temp_total = 0
+        for d in dish:
+            temp_total = temp_total + int(d['price'] * int(d['number']))
+            json['dish_by_package'].append(d['id'])
+            dish_id[str(d['id'])] = d['number']
+        json['total'] = temp_total
 

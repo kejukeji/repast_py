@@ -350,15 +350,15 @@ def to_meal_list():
         dish_sort = DishSort.get_dish_sort_by_brand_id(brand_id)
         if dish is None:
             dish = Dish.get_dish_by_brand(brand_id)
-        temp = []
-        for d in dish:
-            try:
-                d.number = 0
-            except:
-                d['number'] = 0
-            d_pic = flatten(d)
-            temp.append(d_pic)
-        set_session_dish(temp)
+            temp = []
+            for d in dish:
+                try:
+                    d.number = 0
+                except:
+                    d['number'] = 0
+                d_pic = flatten(d)
+                temp.append(d_pic)
+            set_session_dish(temp)
         set_session_value('yes', 'yes')
         return render_template('reception/food_list.html',
                                dish_sort =  dish_sort,
