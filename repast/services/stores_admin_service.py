@@ -94,10 +94,11 @@ class StoresAdminService(BaseService):
                 pic_name = time_file_name(secure_filename(upload_name), sign='_')
                 di = {'picture_name':pic_name}
                 if stores_info:
-                    stores_info.update(picture_name=pic_name)
                     old_picture = stores_info.picture_name
+                    stores_info.update(picture_name=pic_name)
                     if old_picture:
                         try:
+                            picture.save(os.path.join(base_path+rel_path+'/', pic_name))
                             os.remove(os.path.join(base_path+rel_path+ '/', old_picture))
                         except:
                             pass
