@@ -315,6 +315,7 @@ def to_package_list():
     brand_id = request.args.get('brand_id')   #传入品牌id
     stores_id = request.args.get('stores_id') # 当前餐厅
     set_session_value('stores_id', stores_id)
+    set_session_dish(None)
     package_count = Package.query.filter(Package.brand_id == brand_id).count()
     package = Package.get_package_by_brand(brand_id)
     return render_template('reception/taocan.html',
@@ -327,7 +328,6 @@ def to_meal_list():
     """菜品列表"""
     package_id = request.args.get('package_id')
     brand_id = request.args.get('brand_id')
-    set_session_dish(None)
    # user_id = request.args.get('user_id')
     dish = get_session_dish()
     package = None

@@ -45,6 +45,6 @@ def append_json(model):
             model_pic = flatten(model[i])
             json['dish'].append(model_pic)
     else:
-        set_session_dish(None)
+        pass#set_session_dish(None)
     return json
 
