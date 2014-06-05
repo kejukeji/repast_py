@@ -1,8 +1,8 @@
 #popup_container {
 	font-family: Arial, sans-serif;
 	font-size: 12px;
-	min-width: 300px; /* Dialog will be no smaller than this */
-	max-width: 600px; /* Dialog will wrap after this width */
+	min-width: 200px; /* Dialog will be no smaller than this */
+	max-width: 300px; /* Dialog will wrap after this width */
 	background: #FFF;
 	border: solid 5px #999;
 	color: #000;
@@ -44,7 +44,7 @@
 }
 
 #popup_message {
-	padding-left: 48px;
+	padding-left: 0px;
 }
 
 #popup_panel {
