@@ -30,8 +30,11 @@ class DoCoupons():
         user = user_service.get_user_by_id(user_id)
         temp = []
         coupons_array = []
-        if user.coupons_id:
-            temp = user.coupons_id.split(',')
+        if user:
+            try:
+                temp = user.coupons_id.split(',')
+            except:
+                pass
         if temp:
             for t in temp:
                 coupons = DoCoupons.get_coupons_by_id(t)
