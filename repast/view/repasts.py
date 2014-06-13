@@ -72,6 +72,8 @@ def do_assistant_login():
 
 def to_my_page():
     user_id = get_session_user()
+    if user_id:
+        user_id = request.args.get('user_id')
     user = get_user_by_id(user_id)
     lens=user.coupons_id.split(',')
     user.count=len(lens)        #用户优惠券数量
