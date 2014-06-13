@@ -75,8 +75,12 @@ def to_my_page():
     if user_id:
         user_id = request.args.get('user_id')
     user = get_user_by_id(user_id)
-    lens=user.coupons_id.split(',')
-    user.count=len(lens)        #用户优惠券数量
+    try:
+        lens=user.coupons_id.split(',')
+        user.count=len(lens)
+    except:
+        lens = 0
+        user.count=lens   #用户优惠券数量
     return render_template('reception/my_page.html',
                            user=user)
 
