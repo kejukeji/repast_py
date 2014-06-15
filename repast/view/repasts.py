@@ -72,15 +72,16 @@ def do_assistant_login():
 
 def to_my_page():
     user_id = get_session_user()
-    if user_id:
+    if user_id is None:
         user_id = request.args.get('user_id')
     user = get_user_by_id(user_id)
-    try:
-        lens=user.coupons_id.split(',')
-        user.count=len(lens)
-    except:
-        lens = 0
-        user.count=lens   #用户优惠券数量
+    if user:
+        try:
+            lens=user.coupons_id.split(',')
+            user.count=len(lens)
+        except:
+            lens = 0
+            user.count=lens   #用户优惠券数量
     return render_template('reception/my_page.html',
                            user=user)
 
