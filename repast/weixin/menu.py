@@ -38,3 +38,8 @@ menu = """
 #open_id = "oFmv0t6ixCu5Hn_DT0iypHxy6zPQ"
 #errmsg = webChat.send_text_message(open_id,msg)
 #print errmsg
+
+import Image
+im = Image.open('/Users/K/Documents/Code/Python/repast_py/repast/static/images/img/rou.jpg')
+im.thumbnail((456, 267))
+im.save('/Users/K/Documents/Code/Python/repast_py/repast/static/images/img/rou_thumbnail.png', 'jpeg')
