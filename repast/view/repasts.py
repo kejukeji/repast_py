@@ -72,9 +72,16 @@ def do_assistant_login():
 
 def to_my_page():
     user_id = get_session_user()
+    if user_id is None:
+        user_id = request.args.get('user_id')
     user = get_user_by_id(user_id)
-    lens=user.coupons_id.split(',')
-    user.count=len(lens)        #用户优惠券数量
+    if user:
+        try:
+            lens=user.coupons_id.split(',')
+            user.count=len(lens)
+        except:
+            lens = 0
+            user.count=lens   #用户优惠券数量
     return render_template('reception/my_page.html',
                            user=user)
 
@@ -350,15 +357,15 @@ def to_meal_list():
         dish_sort = DishSort.get_dish_sort_by_brand_id(brand_id)
         if dish is None:
             dish = Dish.get_dish_by_brand(brand_id)
-        temp = []
-        for d in dish:
-            try:
-                d.number = 0
-            except:
-                d['number'] = 0
-            d_pic = flatten(d)
-            temp.append(d_pic)
-        set_session_dish(temp)
+            temp = []
+            for d in dish:
+                try:
+                    d.number = 0
+                except:
+                    d['number'] = 0
+                d_pic = flatten(d)
+                temp.append(d_pic)
+            set_session_dish(temp)
         set_session_value('yes', 'yes')
         return render_template('reception/food_list.html',
                                dish_sort =  dish_sort,
