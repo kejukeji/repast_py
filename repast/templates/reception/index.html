@@ -91,7 +91,7 @@
     <span class="span_width margin_left" style="float: left;"><a href="/m/my_page/"><img src="/static/images/img/zhuye_r5_c4_s1.jpg" style="height: auto;width: 100%"/></a></span>
     <span class="span_width margin_left" style="float: left;"><a href="http://resource.duopao.com/duopao/games1/BearRun/index.htm?version=0.2&game_code=g20140313122828903665"><img src="/static/images/img/zhuye_r5_c6_s1.JPG" style="height: auto;width: 100%"/></a></span>
 </div>
-
+<button onclick="temp()">立即关注</button>
 
 </body>
 
@@ -110,7 +110,18 @@
       // callback: function(index, element) {},
       // transitionEnd: function(index, element) {}
     });
+function temp(){
+        WeixinJSBridge.invoke("addContact", {webtype: "1",username: 'gh_122a2ee67fae'}, function(e) {
+            WeixinJSBridge.log(e.err_msg);
 
+            //e.err_msg:add_contact:added 已经添加
+            //e.err_msg:add_contact:cancel 取消添加
+            //e.err_msg:add_contact:ok 添加成功
+            if(e.err_msg == 'add_contact:added' || e.err_msg == 'add_contact:ok'){
+                //关注成功，或者已经关注过
+            }
+        })
+    }
     // with jQuery
     // window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
 
