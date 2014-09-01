@@ -253,7 +253,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user, request):
             "ArticleCount": 1,
             "item": [{
                 "Title": title,
-                "Description": request.form.get('device_id'),
+                "Description": request.data,
                 "PicUrl": BASE_URL + pic_url,
                 "Url": url
             }]
