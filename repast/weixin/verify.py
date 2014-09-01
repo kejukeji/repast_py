@@ -251,7 +251,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user, request):
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
             "CreateTime": 1,
-            "Content": request.form.get('device_id') + ", "+ request.args.get('device_id')
+            "Content": request.args.get('device_id')
     }
     return reply_dict
 
