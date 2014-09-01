@@ -12,11 +12,12 @@ from repast.services.queue_setting_service import get_schedule_by_user_id
 from repast.services.queue_setting_service import *
 
 def weixin():
-    web_chat = WebChat('1234','wx55970915710ceae8','0a9fcd79087745628d8eb5dd5fb9c418')
+    web_chat = WebChat('1234','wx74cda484a2ba4fc2','613db0445596a3d5dd39b7f418979c1f')
 
 
     if request.method == "GET":
         if web_chat.validate(**parse_request(request.args, ("timestamp", "nonce", "signature"))):
+            print make_response(request.args.get("echostr"))
             return make_response(request.args.get("echostr"))
         raise LookupError
 
@@ -68,7 +69,7 @@ def response_voice(xml_receive, web_chat):
 
 def response_text(xml_receive, web_chat):
     '''回复'''
-    Content = xml_receive.find("Content").text
+    Content = "总是这样"
     ToUserName = xml_receive.find("ToUserName").text
     FromUserName = xml_receive.find("FromUserName").text
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
