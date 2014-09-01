@@ -250,13 +250,8 @@ def event_scan(FromUserName, ToUserName, EventKey, user, request):
     reply_dict = {
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
-            "ArticleCount": 1,
-            "item": [{
-                "Title": title,
-                "Description": request.data,
-                "PicUrl": BASE_URL + pic_url,
-                "Url": url
-            }]
+            "CreateTime": 1,
+            "Content": request.data
     }
     return reply_dict
 
