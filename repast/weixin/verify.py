@@ -101,7 +101,7 @@ def response_event(xml_recv, web_chat, request):
         return response(web_chat, reply_dict, "news")
     if (Event == 'SCAN'):
         reply_dict = event_scan(FromUserName, ToUserName, EventKey, user, request)
-        return response(web_chat, reply_dict, "news")
+        return response(web_chat, reply_dict, "text")
     if (Event == 'LOCATION'):
         longitude = xml_recv.find("Latitude").text
         latitude = xml_recv.find("Longitude").text
