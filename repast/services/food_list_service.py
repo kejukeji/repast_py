@@ -48,7 +48,7 @@ def dish_format(dish, json, dish_id):
     if dish:
         temp_total = 0
         for d in dish:
-            temp_total = temp_total + int(d['price'] * int(d['number']))
+            temp_total += int(d['price']) * int(d['number'])
             json['dish_by_package'].append(d['id'])
             dish_id[str(d['id'])] = d['number']
         json['total'] = temp_total

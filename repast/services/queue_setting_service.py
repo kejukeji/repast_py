@@ -73,11 +73,7 @@ def check_queue_by_user_id_and_stores_id(user_id, stores_id, table_type_id):
         return queue
     return None
 
-def get_date_time_str():
-    now_time = todayfstr() # 当前时间
-    str_time = str(now_time)[:10] # 截取当前时间。去掉时分秒
-    args_time = '%'+ str_time +'%'
-    return args_time
+
 
 
 def create_queue(user_id, stores_id, table_type_id):

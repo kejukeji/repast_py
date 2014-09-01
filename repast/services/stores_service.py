@@ -145,11 +145,11 @@ def get_store_by_search_count(case):
 
 def get_store_by_position(province_id,city_id,country_id):
     if city_id==0 and country_id==0:
-        stores_count = Stores.query.filter(Stores.province_id ==province_id).count()
+        stores_count = Stores.query.filter(Stores.province_id == province_id).count()
         if stores_count ==1:
             stores = Stores.query.filter(Stores.province_id == province_id).first()
         elif stores_count >1:
-            stores = Stores.query.filter(Stores.province_id==province_id).all()
+            stores = Stores.query.filter(Stores.province_id == province_id).all()
         else:
             stores = None
     elif city_id!=0 and country_id==0:

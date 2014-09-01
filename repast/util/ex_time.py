@@ -16,3 +16,10 @@ def todayfstr(format_str='%Y-%m-%d %H:%M:%S'):
     """
 
     return datetime.datetime.now().strftime(format_str)
+
+
+def get_date_time_str():
+    now_time = todayfstr()  # 当前时间
+    str_time = str(now_time)[:10]  # 截取当前时间。去掉时分秒
+    args_time = '%' + str_time + '%'
+    return args_time
