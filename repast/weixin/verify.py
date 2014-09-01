@@ -251,7 +251,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user, request):
             "ToUserName": FromUserName,
             "FromUserName": ToUserName,
             "CreateTime": 1,
-            "Content": request.data
+            "Content": request.form
     }
     return reply_dict
 
