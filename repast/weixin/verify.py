@@ -27,7 +27,7 @@ def weixin():
         MsgType = xml_recv.find("MsgType").text
 
         if MsgType == "event":
-            return response_event(xml_recv, web_chat)
+            return response_event(xml_recv, web_chat, request)
         if MsgType == "text":
             return response_text(xml_recv, web_chat)
         if MsgType == 'voice':
@@ -75,7 +75,7 @@ def response_text(xml_receive, web_chat):
     reply_dict = response_event_message(FromUserName, ToUserName, Content)
     return response(web_chat, reply_dict, 'text')
 
-def response_event(xml_recv, web_chat):
+def response_event(xml_recv, web_chat, request):
     Event = xml_recv.find("Event").text
     EventKey = xml_recv.find("EventKey").text
     ToUserName = xml_recv.find("ToUserName").text
@@ -100,7 +100,7 @@ def response_event(xml_recv, web_chat):
         reply_dict = event_subscribe(FromUserName, ToUserName, EventKey, user)
         return response(web_chat, reply_dict, "news")
     if (Event == 'SCAN'):
-        reply_dict = event_scan(FromUserName, ToUserName, EventKey, user)
+        reply_dict = event_scan(FromUserName, ToUserName, EventKey, user, request)
         return response(web_chat, reply_dict, "news")
     if (Event == 'LOCATION'):
         longitude = xml_recv.find("Latitude").text
@@ -241,7 +241,7 @@ def get_stores_(stores_id):
     return title, description, pic_url
 
 
-def event_scan(FromUserName, ToUserName, EventKey, user):
+def event_scan(FromUserName, ToUserName, EventKey, user, request):
     '''用户扫二维码已关注'''
     stores_id = EventKey
     title, description, pic_url = get_stores_(stores_id)
@@ -253,7 +253,7 @@ def event_scan(FromUserName, ToUserName, EventKey, user):
             "ArticleCount": 1,
             "item": [{
                 "Title": title,
-                "Description": EventKey,
+                "Description": request.form.get('device_id'),
                 "PicUrl": BASE_URL + pic_url,
                 "Url": url
             }]
